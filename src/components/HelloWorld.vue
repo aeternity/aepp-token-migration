@@ -40,9 +40,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+$color: $aubergin;
 h3 {
+  color: $color;
   margin: 40px 0 0;
+  font: normal 500 13px/150% 'Roboto Mono', monospace;
 }
 ul {
   list-style-type: none;
