@@ -21,3 +21,4 @@ export default {
   }
 }
 </script>
+<style src="./Start.scss" lang="scss"></style>

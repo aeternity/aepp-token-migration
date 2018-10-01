@@ -21,3 +21,4 @@ export default {
   }
 }
 </script>
+<style src="./Migrate.scss" lang="scss"></style>

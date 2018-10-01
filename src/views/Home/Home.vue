@@ -1,8 +1,8 @@
 <template>
 <div class="home">
   <div>
-    <!-- <hero :msg=" title "></hero>
-    <tutorial-steps :msg=" title "></tutorial-steps> -->
+    <hero :title="hero.title"></hero>
+    <tutorial-steps ></tutorial-steps>
     <section >
       <accordion
       v-for="accordion in accordions"
@@ -28,7 +28,7 @@ export default {
   data: function () {
     return {
       hero: {
-        title: 'hello world'
+        title: '1.699.578'
       },
       accordions: [
         {
@@ -53,3 +53,4 @@ export default {
   }
 }
 </script>
+<style src="./Home.scss" lang="scss"></style>

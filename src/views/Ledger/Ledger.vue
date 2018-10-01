@@ -21,3 +21,4 @@ export default {
   }
 }
 </script>
+<style src="./Ledger.scss" lang="scss"></style>
