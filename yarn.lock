@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@aeternity/aepp-components@2.0.13":
+"@aeternity/aepp-components@^3.0.0":
   version "2.0.13"
   resolved "https://registry.yarnpkg.com/@aeternity/aepp-components/-/aepp-components-2.0.13.tgz#815999a57a311efb8f13c857f1f1847dee118247"
   integrity sha512-4hHvh4c6lZ/k96JXg0hxXoMZ+NZFVNil/Lu49jU6C843/vCd1xByjlFMyH/wjQmX7kZigV2A8+NaZNivqpbVjQ==
