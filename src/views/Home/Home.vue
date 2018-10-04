@@ -1,6 +1,17 @@
 <template>
+
 <div class="home">
-  <div>
+  <app-header>
+    <ae-button
+    to="./Start"
+    type="exciting"
+    size="medium"
+    :uppercase="true"
+    >
+      swap now
+    </ae-button>
+  </app-header>
+  <div class="home__frame">
     <hero :title="hero.title"></hero>
     <tutorial-steps ></tutorial-steps>
     <section >
@@ -20,6 +31,8 @@
 
 <script>
 // @ is an alias to /src
+import { AeButton } from '@aeternity/aepp-components'
+import AppHeader from '@/components/AppHeader.vue'
 import Hero from '@/components/Hero.vue'
 import TutorialSteps from '@/components/Tutorial-Steps.vue'
 import Accordion from '@/components/Accordion.vue'
@@ -49,7 +62,9 @@ export default {
   components: {
     Hero,
     TutorialSteps,
-    Accordion
+    Accordion,
+    AppHeader,
+    AeButton
   }
 }
 </script>

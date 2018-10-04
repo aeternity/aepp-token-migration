@@ -3,12 +3,13 @@ $dim: 10rem;
 .hero {
 	position: relative;
 	background-color: $white;
-	padding: 30%;
-	margin: $spacer-m;
+	height: 100%;
+	min-height: 100vh; 
 
 	&__title{
 		position: absolute;
-		font-size: 19vw;
+		font-size: 16vw;
+		padding: 30% 0;
 		top: 50%;
 		left: 50%;
 		text-align: center;
@@ -30,7 +31,7 @@ $dim: 10rem;
 		text-align: center;
 		top: 12%;
 		left: auto;
-    right: 5%;
+	 	right: 5%;
 		width: $dim;
 		height: $dim;
 		display: flex;

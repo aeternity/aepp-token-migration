@@ -3,8 +3,29 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $black;
-  font-size: 23px;
+  font-size: $base-font-size;
+  line-height: $base-font-size*1.35;
 }
-body * {
+body {
 	margin: 0;
+	background-color: $bg-color;
+	& * {
+		margin: 0;
+	}
+}
+
+a {
+	text-decoration: none;
+	color:  $black;
+	&:hover{
+		color: $magenta;
+	}
+}
+
+#app {
+	& .view__content{
+		max-width:60%;
+		margin:  0 auto;
+		margin-top: 5%;
+	}
 }
