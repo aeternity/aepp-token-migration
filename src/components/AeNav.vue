@@ -4,6 +4,7 @@
       v-for="page in pages"
       :key="page.id"
       :to="page.link"
+      @click.native.prevent="guideUser('please complete the steps', $event)"
       >
       <span class="ae-link__icon">
         <i></i>
@@ -29,7 +30,7 @@ export default {
           link: '/Start'
         },
         { name: 'Generate your key pair',
-          link: '/Airgap'
+          link: '/Tutorials'
         },
         { name: 'Enter your new æternity address',
           link: '/Migrate'
@@ -39,15 +40,23 @@ export default {
         },
         { name: 'Generate your key pair',
           link: '/Tutorial'
-        },
+        }
       ]
-    } 
+    }
+  },
+  methods: {
+    guideUser (message, event) {
+      // now we have access to the native event
+      event.preventDefault()
+      alert(message)
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
 .ae-nav {
   position: fixed;
   top: 4rem;
@@ -67,7 +76,6 @@ export default {
 
 .ae-link{
   padding: $spacer-xxs 0;
-
   &__line {
     position: absolute;
     top: 1.1rem;
@@ -87,7 +95,6 @@ export default {
     width: 1rem;
     height: 1rem;
     z-index: 2;
-
     & i {
       display: block;
       z-index: 2;
@@ -120,16 +127,10 @@ export default {
 
 //active styles
 .ae-nav__link{
-   &:hover{
-      & .ae-link__name{
-        display: inline-block;
-        background: $black;
-      }
-      & .ae-link__icon{
-        //border: 2px solid $black;
-        //background: $bg-color;
-      }
-    }
+  &:hover .ae-link__name{
+    display: inline-block;
+    background: $black;
+  }
 }
 
 .router-link-active .ae-link{

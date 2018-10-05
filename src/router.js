@@ -24,6 +24,11 @@ export default new Router({
       component: () => import('./views/Airgap/Airgap.vue')
     },
     {
+      path: '/Tutorials',
+      name: 'Tutorials',
+      component: () => import('./views/Tutorials/Tutorials.vue')
+    },
+    {
       path: '/Ledger',
       name: 'Ledger',
       component: () => import('./views/Ledger/Ledger.vue')

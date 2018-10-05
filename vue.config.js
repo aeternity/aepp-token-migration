@@ -14,9 +14,9 @@ module.exports = {
     }
   },
   chainWebpack: (config) => {
-    const svgRule = config.module.rule('svg');
+    const svgRule = config.module.rule('svg')
 
-    svgRule.uses.clear();
+    svgRule.uses.clear()
 
     svgRule
       .oneOf('inline')
@@ -28,6 +28,6 @@ module.exports = {
       .oneOf('external')
       .use('file-loader')
       .loader('file-loader')
-      .options({ name: 'assets/[name].[hash:8].[ext]' });
-  },
+      .options({ name: 'assets/[name].[hash:8].[ext]' })
+  }
 }

@@ -31,7 +31,7 @@ export default {
     text-align: center;
     padding: $spacer-m $spacer-l;
     width: 50%;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     position: relative;
     &__title{

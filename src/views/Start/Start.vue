@@ -51,7 +51,7 @@ export default {
           img: require('@/assets/graphics/airgap-logo.svg'),
           title: 'Airgap Vault',
           text: 'This creates an æternity key pair with AirGap, a secure way to store your key pair in an mobile app.',
-          link: '/Airgap',
+          link: '/Tutorials',
           is_neutral: false,
           is_secondary: true
         },
@@ -59,7 +59,7 @@ export default {
           img: require('@/assets/graphics/ledger-logo.svg'),
           title: 'Ledger Wallet',
           text: 'This creates an æternity key pair on the Ledger Nano S. A secure way to store your key pair on a hardware ledger.',
-          link: '/Ledger',
+          link: '/Tutorials',
           is_neutral: true,
           is_secondary: false
         }

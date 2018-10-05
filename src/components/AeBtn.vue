@@ -26,7 +26,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .ae-btn{
-    border-radius: 1.5rem;
+    border-radius: 2rem;
     padding: $spacer-m $spacer-xl;
     color: $white;
     font-size: 13px;
