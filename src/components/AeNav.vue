@@ -4,11 +4,9 @@
       v-for="page in pages"
       :key="page.id"
       :to="page.link"
-      @click.native.prevent="guideUser('please complete the steps', $event)"
+      event=""
       >
-      <span class="ae-link__icon">
-        <i></i>
-      </span>
+      <span class="ae-link__dot"></span>
       <span class="ae-link__name">
         {{ page.name }}
       </span>
@@ -78,25 +76,26 @@ export default {
   padding: $spacer-xxs 0;
   &__line {
     position: absolute;
-    top: 1.1rem;
-    left: .65rem;
+    top: 14px;
+    left: 11px;
     display: block;
     background: $black;
     width: 2px;
-    height: 4.7rem;
+    height: 90px;
   }
-  &__icon {
+  &__dot {
     display: inline-block;
     position: relative;
     margin: 2px;
     margin-right: $spacer-s;
     border-radius: 50%;
     border: 2px solid transparent;
-    width: 1rem;
-    height: 1rem;
+    width: 1.15rem;
+    height: 1.15rem;
     z-index: 2;
-    & i {
+    &:after {
       display: block;
+      content: '';
       z-index: 2;
       position: absolute;
       top: 50%;
@@ -134,11 +133,9 @@ export default {
 }
 
 .router-link-active .ae-link{
-  &__icon {
+  &__dot {
     border: 2px solid $black;
     background: $bg-color;
-    & i {
-    }
   }
   &__name {
     display: inline-block;
@@ -146,20 +143,20 @@ export default {
 }
 
 .router-link-active ~ .ae-nav__link {
-  & .ae-link__icon i{
+  & .ae-link__dot:after{
     background: $darkgrey;
   }
   & .ae-link__line {
     background: $darkgrey;
-    &:after{
+    &:before{
       position: absolute;
-      bottom: 5.45rem;
-      left: 0rem;
+      bottom: 90px;
+      left: 0;
       content: '';
       display: block;
       background: $darkgrey;
       width: 2px;
-      height: 4.7rem;
+      height: 90px;
       z-index: 1;
     }
   }

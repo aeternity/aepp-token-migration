@@ -2,35 +2,20 @@
   <main class="view" :class="this.$options.name">
     <app-header></app-header>
     <article class="view__content">
-      <ae-intro
-        :title="intro.title"
-      >
+      <ae-intro :title="intro.title" >
         <ae-btn to="/Migrate" :is_secondary="true">I have one already</ae-btn>
       </ae-intro>
-      <ae-block v-for="tutorial in tutorials"
-      :key="tutorial.id"
+      <div class="block" 
+        v-for="tutorial in tutorials"
+        :key="tutorial.id"
       >
-      <h3 class="block__title">{{ tutorial.title }}</h3>
-      <div class="ae-slider"
-      v-for="step in tutorial.steps"
-      :key="step.id"
-      >
-        <article class="ae-slider__body">
-            <h4 v-if="step.title">{{ step.title }}</h4>
-            <p v-if="step.text">{{ step.text }}</p>
-            <a
-            v-for="button in step.buttons"
-            :href="button.link"
-            :key="button.id"
-            >
-              <img :src="button.img">
-          </a>
-        </article>
-        <div class="ae-slider__img">
-          <img :src="step.img" :alt="step.title || tutorial.title ">
-        </div>
+        <ae-slider 
+          :slides="tutorial.steps" 
+          :maintitle="tutorial.title"
+          :condition="tutorial.steps.length > 1"
+        >
+        </ae-slider>
       </div>
-      </ae-block>
     </article>
     <ae-nav></ae-nav>
   </main>
@@ -45,6 +30,8 @@ import AeIntro from '@/components/AeIntro.vue'
 import AeCta from '@/components/AeCta.vue'
 import AeBtn from '@/components/AeBtn.vue'
 import AeNav from '@/components/AeNav.vue'
+import AeSlide from '@/components/AeSlide.vue'
+import AeSlider from '@/components/AeSlider.vue'
 export default {
   name: 'Tutorials',
   data: function () {
@@ -61,6 +48,7 @@ export default {
               title: '',
               img: require('@/assets/images/tutorial_airgap/download.png'),
               text: `Go to the App store of your choosing and download the mobile App. If possible, use a on a dedicated or old smartphone.
+
                 After the download put your phone in airplane mode to disconnect the device from any network, and open the app.
                 `,
               buttons: [
@@ -77,23 +65,47 @@ export default {
           ]
         },
         {
-          title: 'Download & Install AirGap Vault app',
+          title: 'Generate your secret',
           steps: [
             {
-              title: '',
-              text: `Go to the App store of your choosing and download the mobile App. If possible, use a on a dedicated or old smartphone.
-                After the download put your phone in airplane mode to disconnect the device from any network, and open the app.
-                `,
-              buttons: [
-                {
-                  img: '',
-                  link: ''
-                },
-                {
-                  img: '',
-                  link: ''
-                }
-              ]
+              title: 'Write your secret on a piece of paper',
+              img: require('@/assets/images/tutorial_airgap/generate_1.png'),
+              text: `Generate a new secret, you can also import an existing mnemonic phrase. 
+
+                We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
+                `
+            },
+            {
+              title: 'Write your secret on a piece of paper',
+              img: require('@/assets/images/tutorial_airgap/generate_1.png'),
+              text: `Generate a new secret, you can also import an existing mnemonic phrase. 
+
+                We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
+                `
+            },
+            {
+              title: 'Write your secret on a piece of paper',
+              img: require('@/assets/images/tutorial_airgap/generate_1.png'),
+              text: `Generate a new secret, you can also import an existing mnemonic phrase. 
+
+                We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
+                `
+            },
+            {
+              title: 'Write your secret on a piece of paper',
+              img: require('@/assets/images/tutorial_airgap/Group_11.png'),
+              text: `Generate a new secret, you can also import an existing mnemonic phrase. 
+
+                We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
+                `
+            },
+            {
+              title: 'Write your secret on a piece of paper',
+              img: require('@/assets/images/tutorial_airgap/generate_1.png'),
+              text: `Generate a new secret, you can also import an existing mnemonic phrase. 
+
+                We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
+                `
             }
           ]
         }
@@ -106,30 +118,26 @@ export default {
     AeIntro,
     AeCta,
     AeBtn,
-    AeNav
+    AeNav,
+    AeSlide,
+    AeSlider
   }
 }
 </script>
-<style lang="scss">
-  .block{
-    display: flex;
-    flex-wrap: wrap;
-    &__title {
-      @include font-size(xl);
-      line-height: 1.3em;
-      width: 50%;
-      margin-left: auto;
-
-    }
+<style lang="scss" scoped>
+.block{
+  margin-bottom: 10%;
+  
+}
+.ae-slider {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  &_single{
+    padding-top: 3rem;
+    padding-left: 2rem;
   }
+}
 
-  .ae-slider{
-    &__img{
-      width: 50%;
-      & img {
-        width: 100%;
-        height: auto;
-      }
-    }
-  }
+
 </style>

@@ -24,8 +24,42 @@ a {
 
 #app {
 	& .view__content{
-		max-width:60%;
+		max-width: 80%;
 		margin:  0 auto;
 		margin-top: 5%;
 	}
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.agile__dots {
+	position: absolute;
+	bottom:  $spacer-l;
+	right:  28%;
+	transform: translate(-28%);
+}
+.agile__dot button{
+    background: $grey;
+    border: none;
+    margin: 0 .5rem;
+    display: block;
+    border-radius: 50%;
+    padding: 5px;
+}
+.agile__dot--current button{
+  background: red;
+}
+
+.agile__slide{
+  padding-top: 3rem;
+  padding-left: 2rem;
 }

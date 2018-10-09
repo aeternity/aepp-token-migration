@@ -1,6 +1,8 @@
 <template>
   <section class="ae-cta">
-      <img :src="img" :alt="title">
+      <figure class="ae-cta__img">
+        <img :src="img" :alt="title">
+      </figure>
       <h3 class="ae-cta__title">
         {{ title }}
       </h3>
@@ -34,6 +36,10 @@ export default {
     display: flex;
     flex-direction: column;
     position: relative;
+    &__img {
+      max-width: 3rem;
+      margin: 0 auto;
+    }
     &__title{
       font-size: 1rem;
       line-height: 1.5em;
