@@ -14,7 +14,7 @@
         :subtitle="item.title"
         :text="item.text"
       >
-        <a v-if="item.buttons" 
+        <a v-if="item.buttons"
         v-for="button in item.buttons"
         :href="button.link"
         :key="button.id"
@@ -24,7 +24,7 @@
       </ae-slide>
     </div>
   </agile>
-  <div v-else class="ae-slider ae-slider_single"> 
+  <div v-else class="ae-slider ae-slider_single">
       <ae-slide v-for="item in slides"
         :key="item.id"
         :maintitle="maintitle"
@@ -33,7 +33,7 @@
         :subtitle="item.title"
         :text="item.text"
       >
-      <a v-if="item.buttons" 
+      <a v-if="item.buttons"
         v-for="button in item.buttons"
         :href="button.link"
         :key="button.id"
@@ -49,9 +49,9 @@ import AeSlide from '@/components/AeSlide.vue'
 export default {
   name: 'ae-slider',
   props: {
-      condition: true,
-      slides: { type: Array},
-      maintitle: String
+    condition: true,
+    slides: { type: Array },
+    maintitle: String
   },
   components: {
     AeSlide

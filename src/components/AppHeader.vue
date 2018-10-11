@@ -21,10 +21,13 @@
 
 <script>
 import { AeButton } from '@aeternity/aepp-components'
+import cmp from '@aeternity/aepp-components'
+
+console.log(AeButton, cmp)
 export default {
   name: 'app-header',
   components: {
-    AeButton
+    AeButton: cmp.AeButton
   }
 }
 </script>

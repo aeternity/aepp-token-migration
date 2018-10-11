@@ -5,17 +5,20 @@
       <ae-intro :title="intro.title" >
         <ae-btn to="/Migrate" :is_secondary="true">I have one already</ae-btn>
       </ae-intro>
-      <div class="block" 
+      <div class="block"
         v-for="tutorial in tutorials"
         :key="tutorial.id"
       >
-        <ae-slider 
-          :slides="tutorial.steps" 
+        <ae-slider
+          :slides="tutorial.steps"
           :maintitle="tutorial.title"
           :condition="tutorial.steps.length > 1"
         >
         </ae-slider>
       </div>
+      <ae-footer>
+        <ae-btn to="/Migrate" :is_primary="true">Done, start migration</ae-btn>
+      </ae-footer>
     </article>
     <ae-nav></ae-nav>
   </main>
@@ -23,15 +26,14 @@
 
 <script>
 // @ is an alias to /src
-// import { AeButton } from '@aeternity/aepp-components'
 import AppHeader from '@/components/AppHeader.vue'
 import AeBlock from '@/components/AeBlock.vue'
 import AeIntro from '@/components/AeIntro.vue'
 import AeCta from '@/components/AeCta.vue'
 import AeBtn from '@/components/AeBtn.vue'
 import AeNav from '@/components/AeNav.vue'
-import AeSlide from '@/components/AeSlide.vue'
 import AeSlider from '@/components/AeSlider.vue'
+import AeFooter from '@/components/AeFooter.vue'
 export default {
   name: 'Tutorials',
   data: function () {
@@ -119,15 +121,15 @@ export default {
     AeCta,
     AeBtn,
     AeNav,
-    AeSlide,
-    AeSlider
+    AeSlider,
+    AeFooter
   }
 }
 </script>
 <style lang="scss" scoped>
 .block{
   margin-bottom: 10%;
-  
+
 }
 .ae-slider {
   width: 100%;
@@ -138,6 +140,5 @@ export default {
     padding-left: 2rem;
   }
 }
-
 
 </style>

@@ -22,11 +22,11 @@
 export default {
   name: 'ae-slide',
   props: {
-      src: String,
-      alt: String,
-      maintitle: String,
-      subtitle: String,
-      text: String
+    src: String,
+    alt: String,
+    maintitle: String,
+    subtitle: String,
+    text: String
   }
 }
 </script>
@@ -59,7 +59,7 @@ export default {
     & img{
       object-fit: contain;
       object-position: 100% 100%;
-      
+
     }
   }
 }
@@ -120,7 +120,7 @@ export default {
     justify-content: flex-end;
     & img{
       object-fit: contain;
-      
+
     }
   }
 }

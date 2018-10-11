@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueAgile from 'vue-agile'
+import '@aeternity/aepp-components/dist/aepp.components.css'
 
 Vue.use(VueAgile)
 

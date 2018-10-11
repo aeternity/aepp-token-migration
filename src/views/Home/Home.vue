@@ -2,14 +2,15 @@
 
 <div class="home">
   <app-header>
-    <ae-button
-    to="./Start"
-    type="exciting"
-    size="medium"
-    :uppercase="true"
-    >
-      swap now
-    </ae-button>
+    <router-link to="/Start">
+      <ae-button
+      face="round"
+      fill="primary"
+      :uppercase="true"
+      >
+        swap now
+      </ae-button>
+    </router-link>
   </app-header>
   <div class="home__frame">
     <hero :title="hero.title"></hero>
@@ -36,6 +37,7 @@ import AppHeader from '@/components/AppHeader.vue'
 import Hero from '@/components/Hero.vue'
 import TutorialSteps from '@/components/Tutorial-Steps.vue'
 import Accordion from '@/components/Accordion.vue'
+import cmp from '@aeternity/aepp-components'
 export default {
   name: 'home',
   data: function () {
@@ -64,7 +66,7 @@ export default {
     TutorialSteps,
     Accordion,
     AppHeader,
-    AeButton
+    AeButton: cmp.AeButton
   }
 }
 </script>

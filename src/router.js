@@ -37,6 +37,16 @@ export default new Router({
       path: '/Migrate',
       name: 'Migrate',
       component: () => import('./views/Migrate/Migrate.vue')
+    },
+    {
+      path: '/Connect',
+      name: 'Connect',
+      component: () => import('./views/Connect/Connect.vue')
+    },
+    {
+      path: '/PrepareTransactions',
+      name: 'PrepareTransactions',
+      component: () => import('./views/PrepareTransactions/PrepareTransactions.vue')
     }
   ]
 })

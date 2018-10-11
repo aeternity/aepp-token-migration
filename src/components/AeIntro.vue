@@ -40,12 +40,13 @@ export default {
        margin-bottom: .5em;
     }
     &__text {
-      max-width: 28em;
+      //max-width: 28em;
       margin: 0 auto $spacer-xl ;
     }
 
     &__footer {
       margin-top: $spacer-xl;
+      text-align: center;
     }
   }
 </style>

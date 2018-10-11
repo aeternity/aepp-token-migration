@@ -4,7 +4,8 @@
     :class="{
       'ae-btn_primary': is_primary,
       'ae-btn_secondary': is_secondary,
-      'ae-btn_neutral': is_neutral
+      'ae-btn_neutral': is_neutral,
+      'ae-btn_blank': is_blank
     }"
   >
     <slot></slot>
@@ -18,6 +19,7 @@ export default {
     is_secondary: { type: Boolean, default: false },
     is_primary: { type: Boolean, default: false },
     is_neutral: { type: Boolean, default: false },
+    is_blank: { type: Boolean, default: false },
     to: { type: [String, Object], default: undefined }
   }
 }
@@ -30,8 +32,11 @@ export default {
     padding: $spacer-m $spacer-xl;
     color: $white;
     font-size: 13px;
+    line-height: 1;
     text-transform: uppercase;
+    display: inline-block;
     font-weight: 700;
+    margin-bottom: $spacer-m;
     &_primary{
       background-color: $btn_primary;
     }
@@ -40,6 +45,10 @@ export default {
     }
     &_neutral{
       background-color: $btn_neutral;
+    }
+    &_blank {
+      background-color: transparent;
+      color: $black;
     }
   }
 </style>
