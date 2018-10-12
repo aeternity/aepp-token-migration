@@ -27,9 +27,13 @@
 </template>
 
 <script>
-
-import { AeCard, AeText, AeAvatar, AeInput, AeToolbar, AeCheck, AeButton } from '@aeternity/aepp-components'
-import cmp from '@aeternity/aepp-components'
+import AeCard from '@aeternity/aepp-components/dist/ae-card'
+import AeText from '@aeternity/aepp-components/dist/ae-text'
+import AeAvatar from '@aeternity/aepp-components/dist/ae-identicon'
+import AeInput from '@aeternity/aepp-components/dist/ae-input'
+import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
+import AeCheck from '@aeternity/aepp-components/dist/ae-check'
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
 
 export default {
   name: 'ae-address-block',
@@ -37,14 +41,13 @@ export default {
     address: String
   },
   components: {
-    AeCard: cmp.AeCard,
-    AeText: cmp.AeText,
-    AeAvatar: cmp.AeAvatar,
-    AeInput: cmp.AeInput,
-    AeToolbar: cmp.AeToolbar,
-    AeCheck: cmp.AeCheck,
-    AeButton: cmp.AeButton
-
+    AeCard,
+    AeText,
+    AeAvatar,
+    AeInput,
+    AeToolbar,
+    AeCheck,
+    AeButton
   }
 }
 </script>

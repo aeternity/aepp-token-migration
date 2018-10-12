@@ -35,7 +35,6 @@ import AppHeader from '@/components/AppHeader.vue'
 import Hero from '@/components/Hero.vue'
 import TutorialSteps from '@/components/Tutorial-Steps.vue'
 import Accordion from '@/components/Accordion.vue'
-import cmp from '@aeternity/aepp-components'
 
 export default {
   name: 'home',
@@ -65,7 +64,7 @@ export default {
     TutorialSteps,
     Accordion,
     AppHeader,
-    AeButton: cmp.AeButton
+    AeButton
   }
 }
 </script>

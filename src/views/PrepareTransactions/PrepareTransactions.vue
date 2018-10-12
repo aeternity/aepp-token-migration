@@ -63,7 +63,6 @@ import AeAddressBlock from '@/components/AeAddressBlock.vue'
 import AeNav from '@/components/AeNav.vue'
 import AeFooter from '@/components/AeFooter.vue'
 import { AeButton, AeIcon, AeText, AeAvatar } from '@aeternity/aepp-components'
-import cmp from '@aeternity/aepp-components'
 
 export default {
   name: 'PrepareTransactions',
@@ -105,10 +104,10 @@ export default {
     AeNav,
     AeCta,
     AeAddressBlock,
-    AeButton: cmp.AeButton,
-    AeIcon: cmp.AeIcon,
-    AeText: cmp.AeText,
-    AeAvatar: cmp.AeAvatar,
+    AeButton,
+    AeIcon,
+    AeText,
+    AeAvatar,
     AeFooter
   },
   computed: {

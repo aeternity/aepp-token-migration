@@ -27,17 +27,16 @@ import AeBlock from '@/components/AeBlock.vue'
 import AeBtn from '@/components/AeBtn.vue'
 import AeAddressBlock from '@/components/AeAddressBlock.vue'
 import AeNav from '@/components/AeNav.vue'
-import AeFooter from '@/components/AeFooter.vue'
 import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
 import { AeButton, AeIcon } from '@aeternity/aepp-components'
-import cmp from '@aeternity/aepp-components'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Migrate',
   data: function () {
     return {
       scanner: false,
-      address: false,
+      addressInput: false,
       intro: {
         title: 'Supply us your new æternity address',
         intro: `This will be the address where all your tokens are going to be migrated to. When created with AirGap, you can easily scan it. When created with the Ledger you can easily copy it from the Ledger Live app.`
@@ -51,32 +50,31 @@ export default {
     AeBtn,
     AeNav,
     AeAddressBlock,
-    AeButton: cmp.AeButton,
-    AeIcon: cmp.AeIcon,
-    AeFooter,
+    AeButton,
+    AeIcon,
     VueQrReader
   },
   methods: {
     codeArrived (code) {
-      let address = code.replace('airgap-wallet://import?data=', '').replace('=', '')
-      // console.log(address)
-      this.$store.commit('setAddress', address)
-      this.scanner = false
+      this.$store.commit('setWalletAddress', code)
     },
     scanCode () {
       this.scanner = true
     },
     showAddress () {
-      this.address = true
+      this.addressInput = true
     },
     closeScanner () {
       this.scanner = false
     }
   },
   computed: {
-    account () {
-      return this.$store.state.address
-    }
+    ...mapState([
+      'AEToken',
+      'TokenBurner',
+      'walletAddress',
+      'web3'
+    ])
   }
 }
 </script>
@@ -100,5 +98,4 @@ export default {
     height: 2rem;
   }
 }
-
 </style>
