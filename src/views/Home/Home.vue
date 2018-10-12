@@ -1,43 +1,35 @@
 <template>
-
-<div class="home">
-  <app-header>
-    <router-link to="/Start">
-      <ae-button
-      face="round"
-      fill="primary"
-      :uppercase="true"
-      >
-        swap now
-      </ae-button>
-    </router-link>
-  </app-header>
-  <div class="home__frame">
-    <hero :title="hero.title"></hero>
-    <tutorial-steps ></tutorial-steps>
-    <section >
-      <accordion
-      v-for="accordion in accordions"
-      :key="accordion.id"
-      :title="accordion.title"
-      :accordion="accordion">
-        <p>
-          {{ accordion.body }}
-        </p>
-      </accordion>
-    </section>
+  <div class="home">
+    <app-header>
+      <router-link to="/Start">
+        <ae-button face="round" fill="primary" :uppercase="true">
+          Swap Now
+        </ae-button>
+      </router-link>
+    </app-header>
+    <div class="home__frame">
+      <hero :title="hero.title"/>
+      <tutorial-steps />
+      <section>
+        <accordion
+          v-for="accordion in accordions"
+          :key="accordion.id"
+          :title="accordion.title"
+          :accordion="accordion">
+          <p>{{ accordion.body }}</p>
+        </accordion>
+      </section>
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import { AeButton } from '@aeternity/aepp-components'
 import AppHeader from '@/components/AppHeader.vue'
 import Hero from '@/components/Hero.vue'
 import TutorialSteps from '@/components/Tutorial-Steps.vue'
 import Accordion from '@/components/Accordion.vue'
-import cmp from '@aeternity/aepp-components'
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+
 export default {
   name: 'home',
   data: function () {
@@ -66,8 +58,18 @@ export default {
     TutorialSteps,
     Accordion,
     AppHeader,
-    AeButton: cmp.AeButton
+    AeButton
   }
 }
 </script>
-<style src="./Home.scss" lang="scss"></style>
+<style lang="scss">
+.home {
+  padding: 0 $spacer-l;
+
+  &__frame {
+    //min-height: 100vh;
+    padding: $spacer-m;
+    background-image: linear-gradient(-180deg, #F7296E 0%, #6948A1 100%);
+  }
+}
+</style>

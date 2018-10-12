@@ -1,8 +1,8 @@
 <template>
   <main class="view" :class="this.$options.name">
-    <app-header></app-header>
+    <app-header />
     <article class="view__content">
-      <ae-intro :title="intro.title" :intro="intro.intro" >
+      <ae-intro :title="intro.title" :intro="intro.intro">
       </ae-intro>
       <ae-block>
         <header>
@@ -48,7 +48,7 @@
         </section>
       </ae-block>
     </article>
-    <ae-nav></ae-nav>
+    <ae-nav />
   </main>
 </template>
 
@@ -62,8 +62,11 @@ import AeCta from '@/components/AeCta.vue'
 import AeAddressBlock from '@/components/AeAddressBlock.vue'
 import AeNav from '@/components/AeNav.vue'
 import AeFooter from '@/components/AeFooter.vue'
-import { AeButton, AeIcon, AeText, AeAvatar } from '@aeternity/aepp-components'
-import cmp from '@aeternity/aepp-components'
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
+import AeText from '@aeternity/aepp-components/dist/ae-text'
+import AeAvatar from '@aeternity/aepp-components/dist/ae-identicon'
+
 export default {
   name: 'PrepareTransactions',
   data: function () {
@@ -104,10 +107,10 @@ export default {
     AeNav,
     AeCta,
     AeAddressBlock,
-    AeButton: cmp.AeButton,
-    AeIcon: cmp.AeIcon,
-    AeText: cmp.AeText,
-    AeAvatar: cmp.AeAvatar,
+    AeButton,
+    AeIcon,
+    AeText,
+    AeAvatar,
     AeFooter
   },
   computed: {
@@ -123,5 +126,4 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

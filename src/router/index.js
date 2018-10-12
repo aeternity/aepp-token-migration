@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home/Home.vue'
+import Home from '../views/Home/Home.vue'
 
 Vue.use(Router)
 
@@ -16,37 +16,37 @@ export default new Router({
     {
       path: '/Start',
       name: 'Start',
-      component: () => import('./views/Start/Start.vue')
+      component: () => import('../views/Start/Start.vue')
     },
     {
       path: '/Airgap',
       name: 'Airgap',
-      component: () => import('./views/Airgap/Airgap.vue')
+      component: () => import('../views/Airgap/Airgap.vue')
     },
     {
       path: '/Tutorials',
       name: 'Tutorials',
-      component: () => import('./views/Tutorials/Tutorials.vue')
+      component: () => import('../views/Tutorials/Tutorials.vue')
     },
     {
       path: '/Ledger',
       name: 'Ledger',
-      component: () => import('./views/Ledger/Ledger.vue')
+      component: () => import('../views/Ledger/Ledger.vue')
     },
     {
       path: '/Migrate',
       name: 'Migrate',
-      component: () => import('./views/Migrate/Migrate.vue')
+      component: () => import('../views/Migrate/Migrate.vue')
     },
     {
       path: '/Connect',
       name: 'Connect',
-      component: () => import('./views/Connect/Connect.vue')
+      component: () => import('../views/Connect/Connect.vue')
     },
     {
       path: '/PrepareTransactions',
       name: 'PrepareTransactions',
-      component: () => import('./views/PrepareTransactions/PrepareTransactions.vue')
+      component: () => import('../views/PrepareTransactions/PrepareTransactions.vue')
     }
   ]
 })

@@ -1,31 +1,25 @@
 <template>
   <main class="view" :class="this.$options.name">
-    <app-header>
-    </app-header>
+    <app-header />
     <article class="view__content">
-      <ae-intro
-        :title="intro.title"
-        :intro="intro.intro"
-      ></ae-intro>
+      <ae-intro :title="intro.title" :intro="intro.intro" />
       <ae-block to="/Migrate" name="Skip step">
         <ae-cta
           v-for="tutorial in tutorials"
           :key="tutorial.id"
           :img="tutorial.img"
           :title="tutorial.title"
-          :text="tutorial.text"
-        >
+          :text="tutorial.text">
           <ae-btn
             :to="tutorial.link"
             :is_neutral="tutorial.is_neutral"
-            :is_secondary="tutorial.is_secondary"
-            >
-              Get Started
+            :is_secondary="tutorial.is_secondary">
+            Get Started
           </ae-btn>
         </ae-cta>
       </ae-block>
     </article>
-    <ae-nav></ae-nav>
+    <ae-nav />
   </main>
 </template>
 
@@ -38,6 +32,7 @@ import AeIntro from '@/components/AeIntro.vue'
 import AeCta from '@/components/AeCta.vue'
 import AeBtn from '@/components/AeBtn.vue'
 import AeNav from '@/components/AeNav.vue'
+
 export default {
   name: 'Airgap',
   data: function () {

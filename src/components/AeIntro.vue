@@ -1,5 +1,5 @@
 <template>
-  <header class="ae-intro" >
+  <header class="ae-intro">
     <h2 class="ae-intro__title">
       {{ title }}
     </h2>
@@ -11,7 +11,6 @@
     </footer>
   </header>
 </template>
-
 <script>
 export default {
   name: 'ae-intro',
@@ -26,27 +25,29 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.ae-intro {
+  @include font-size(m);
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-  .ae-intro{
-    text-align: center;
-    max-width: 35em;
-    @include font-size(m);
-    margin: 0 auto $spacer-xl ;
-    &__title {
-       @include font-size(xxl);
-       line-height: 1.2em;
-       margin-bottom: .5em;
-    }
-    &__text {
-      //max-width: 28em;
-      margin: 0 auto $spacer-xl ;
-    }
+  text-align: center;
+  max-width: 35em;
+  margin: 0 auto $spacer-xl;
 
-    &__footer {
-      margin-top: $spacer-xl;
-      text-align: center;
-    }
+  &__title {
+    @include font-size(xxl);
+
+    line-height: 1.2em;
+    margin-bottom: .5em;
   }
+
+  &__text {
+    //max-width: 28em;
+    margin: 0 auto $spacer-xl;
+  }
+
+  &__footer {
+    margin-top: $spacer-xl;
+    text-align: center;
+  }
+}
 </style>

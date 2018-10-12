@@ -1,26 +1,24 @@
 <template>
   <main class="view" :class="this.$options.name">
-    <app-header></app-header>
+    <app-header />
     <article class="view__content">
-      <ae-intro :title="intro.title" >
+      <ae-intro :title="intro.title">
         <ae-btn to="/Migrate" :is_secondary="true">I have one already</ae-btn>
       </ae-intro>
       <div class="block"
-        v-for="tutorial in tutorials"
-        :key="tutorial.id"
-      >
+           v-for="tutorial in tutorials"
+           :key="tutorial.id">
         <ae-slider
           :slides="tutorial.steps"
           :maintitle="tutorial.title"
-          :condition="tutorial.steps.length > 1"
-        >
+          :condition="tutorial.steps.length > 1">
         </ae-slider>
       </div>
       <ae-footer>
         <ae-btn to="/Migrate" :is_primary="true">Done, start migration</ae-btn>
       </ae-footer>
     </article>
-    <ae-nav></ae-nav>
+    <ae-nav />
   </main>
 </template>
 
@@ -34,6 +32,7 @@ import AeBtn from '@/components/AeBtn.vue'
 import AeNav from '@/components/AeNav.vue'
 import AeSlider from '@/components/AeSlider.vue'
 import AeFooter from '@/components/AeFooter.vue'
+
 export default {
   name: 'Tutorials',
   data: function () {
@@ -72,7 +71,7 @@ export default {
             {
               title: 'Write your secret on a piece of paper',
               img: require('@/assets/images/tutorial_airgap/generate_1.png'),
-              text: `Generate a new secret, you can also import an existing mnemonic phrase. 
+              text: `Generate a new secret, you can also import an existing mnemonic phrase.
 
                 We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
                 `
@@ -80,7 +79,7 @@ export default {
             {
               title: 'Write your secret on a piece of paper',
               img: require('@/assets/images/tutorial_airgap/generate_1.png'),
-              text: `Generate a new secret, you can also import an existing mnemonic phrase. 
+              text: `Generate a new secret, you can also import an existing mnemonic phrase.
 
                 We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
                 `
@@ -88,7 +87,7 @@ export default {
             {
               title: 'Write your secret on a piece of paper',
               img: require('@/assets/images/tutorial_airgap/generate_1.png'),
-              text: `Generate a new secret, you can also import an existing mnemonic phrase. 
+              text: `Generate a new secret, you can also import an existing mnemonic phrase.
 
                 We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
                 `
@@ -96,7 +95,7 @@ export default {
             {
               title: 'Write your secret on a piece of paper',
               img: require('@/assets/images/tutorial_airgap/Group_11.png'),
-              text: `Generate a new secret, you can also import an existing mnemonic phrase. 
+              text: `Generate a new secret, you can also import an existing mnemonic phrase.
 
                 We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
                 `
@@ -104,7 +103,7 @@ export default {
             {
               title: 'Write your secret on a piece of paper',
               img: require('@/assets/images/tutorial_airgap/generate_1.png'),
-              text: `Generate a new secret, you can also import an existing mnemonic phrase. 
+              text: `Generate a new secret, you can also import an existing mnemonic phrase.
 
                 We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
                 `
@@ -127,15 +126,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.block{
+.block {
   margin-bottom: 10%;
 
 }
+
 .ae-slider {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  &_single{
+  &_single {
     padding-top: 3rem;
     padding-left: 2rem;
   }

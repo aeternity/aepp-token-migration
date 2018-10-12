@@ -8,18 +8,14 @@
     </footer>
   </div>
 </template>
-
 <script>
-// import { AeButton } from '@aeternity/aepp-components'
 export default {
   name: 'ae-block',
   props: ['to', 'name'],
-  components: {
-  }
+  components: {}
 }
 </script>
-
-<style scoped lang="scss">
+<style  lang="scss" scoped>
 .ae-block {
   background-color: $white;
   padding: $spacer-l;
@@ -29,34 +25,40 @@ export default {
   box-shadow: $shadow;
   border-radius: 8px;
   margin-bottom: $spacer-xxl;
+
   &__body {
-  display: flex;
+    display: flex;
+
     & .ae-cta:first-child {
-    border-right: 1px solid $grey;
-      &:after{
-      content: 'or';
-      display: flex;
-      align-items: center;
-      @include font-size(xs);
-      text-align: center;
-      line-height: 0;
-      width: 1rem;
-      height: 2.5rem;
-      position: absolute;
-      top: 50%;
-      right: -.65rem;
-      background: $white;
-      transform: translateY(-50%);
+      border-right: 1px solid $grey;
+
+      &:after {
+        @include font-size(xs);
+
+        content: 'or';
+        display: flex;
+        align-items: center;
+        text-align: center;
+        line-height: 0;
+        width: 1rem;
+        height: 2.5rem;
+        position: absolute;
+        top: 50%;
+        right: -.65rem;
+        background: $white;
+        transform: translateY(-50%);
       }
     }
   }
+
   &__footer {
-  text-align: center;
-  width: 100%;
-  padding: $spacer-l 0 0;
-  text-transform: uppercase;
-  font-weight: 700;
-  @include font-size(xs);
+    @include font-size(xs);
+
+    text-align: center;
+    width: 100%;
+    padding: $spacer-l 0 0;
+    text-transform: uppercase;
+    font-weight: 700;
   }
 }
 </style>
