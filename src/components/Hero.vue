@@ -1,35 +1,32 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="hero">
+    <div class="hero__info hero__info-block">
+      <p>
+        {{ infoBubble }}
+      </p>
+    </div>
+    <h1 class="hero__title">
+      {{ title }}
+    </h1>
+    <p class="hero__info">
+      {{ tokens }}
+    </p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Hero',
-  props: {
-    msg: String
+  props: ['title'],
+  data: function () {
+    return {
+      tokens: 'Tokens swappend so far',
+      infoBubble: `ERC20 Tokens
+      can now be swapped for mainnet coins`
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-$color: $aubergin;
-h3 {
-  color: $color;
-  margin: 40px 0 0;
-  font: normal 500 13px/150% 'Roboto Mono', monospace;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+<style src="./Hero.scss" scoped lang="scss"></style>

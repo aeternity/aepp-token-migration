@@ -3,14 +3,32 @@ $content-margin: 20px;
 
 //https://coolors.co/311b58-6f53a1-f0f0f0-f5f5f5-f7296e
 
+//Padding
+$spacer-xxs: .1rem;
+$spacer-xs: .25rem;
+$spacer-s: .5rem;
+$spacer-m: 1rem;
+$spacer-l: 2rem;
+$spacer-xl: 3rem;
+$spacer-xxl: 15%;
+
 $aubergin : #311B58;
 $aubergineLight : #6F53A1;
 $silver : #F0F0F0;
 $smoke : #F5F5F5;
-$magaenta : #F7296E;
+$magenta : #F7296E;
 $white : #FFFFFF;
 $black : #1E1E1E;
+$grey : #D3DCE6;
+$darkgrey : #929CA6;
 
+//buttoncolors
+$btn_neutral : #203040;
+$btn_primary : #FF0D6A;
+$btn_secondary : #6948A1;
+
+$bg-color: #EDF3F7;
+$shadow: 0 0 16px 0 rgba(27,68,121,0.10);
 $phone-width : 600px;
 $desktop-width : 900px;
 
