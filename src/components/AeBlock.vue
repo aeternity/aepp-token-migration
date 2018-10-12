@@ -8,17 +8,14 @@
     </footer>
   </div>
 </template>
-
 <script>
-// import { AeButton } from '@aeternity/aepp-components'
 export default {
   name: 'ae-block',
   props: ['to', 'name'],
   components: {}
 }
 </script>
-
-<style scoped lang="scss">
+<style  lang="scss" scoped>
 .ae-block {
   background-color: $white;
   padding: $spacer-l;
@@ -36,10 +33,11 @@ export default {
       border-right: 1px solid $grey;
 
       &:after {
+        @include font-size(xs);
+
         content: 'or';
         display: flex;
         align-items: center;
-        @include font-size(xs);
         text-align: center;
         line-height: 0;
         width: 1rem;
@@ -54,12 +52,13 @@ export default {
   }
 
   &__footer {
+    @include font-size(xs);
+
     text-align: center;
     width: 100%;
     padding: $spacer-l 0 0;
     text-transform: uppercase;
     font-weight: 700;
-    @include font-size(xs);
   }
 }
 </style>

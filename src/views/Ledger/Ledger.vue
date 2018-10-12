@@ -9,15 +9,9 @@
     </div>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-// import Hero from '@/components/Hero.vue'
 export default {
-  name: 'Ledger',
-  data: function () {
-    return {}
-  }
+  name: 'Ledger'
 }
 </script>
-<style src="./Ledger.scss" lang="scss"></style>
+<style lang="scss"></style>

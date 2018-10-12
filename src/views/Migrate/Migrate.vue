@@ -20,16 +20,17 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import { mapState } from 'vuex'
+import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
+
 import AppHeader from '@/components/AppHeader.vue'
 import AeIntro from '@/components/AeIntro.vue'
 import AeBlock from '@/components/AeBlock.vue'
 import AeBtn from '@/components/AeBtn.vue'
 import AeAddressBlock from '@/components/AeAddressBlock.vue'
 import AeNav from '@/components/AeNav.vue'
-import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
-import { AeButton, AeIcon } from '@aeternity/aepp-components'
-import { mapState } from 'vuex'
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 
 export default {
   name: 'Migrate',

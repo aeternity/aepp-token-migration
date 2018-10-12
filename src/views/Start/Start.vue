@@ -1,6 +1,10 @@
 <template>
   <main class="view" :class="this.$options.name">
-    <app-header />
+    <app-header>
+      <ae-button>
+        <ae-text face="sans-s" weight="500">CANCEL</ae-text>
+      </ae-button>
+    </app-header>
     <article class="view__content">
       <ae-intro :title="intro.title" :intro="intro.intro" />
       <ae-block to="/Migrate" name="Skip step">
@@ -24,14 +28,14 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import { AeButton } from '@aeternity/aepp-components'
 import AppHeader from '@/components/AppHeader.vue'
 import AeBlock from '@/components/AeBlock.vue'
 import AeIntro from '@/components/AeIntro.vue'
 import AeCta from '@/components/AeCta.vue'
 import AeBtn from '@/components/AeBtn.vue'
 import AeNav from '@/components/AeNav.vue'
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+import AeText from '@aeternity/aepp-components/dist/ae-text'
 
 export default {
   name: 'Start',
@@ -67,8 +71,10 @@ export default {
     AeIntro,
     AeCta,
     AeBtn,
-    AeNav
+    AeNav,
+    AeButton,
+    AeText
   }
 }
 </script>
-<style src="./Start.scss" lang="scss"></style>
+<style lang="scss"></style>

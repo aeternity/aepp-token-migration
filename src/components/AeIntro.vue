@@ -11,7 +11,6 @@
     </footer>
   </header>
 </template>
-
 <script>
 export default {
   name: 'ae-intro',
@@ -26,9 +25,7 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .ae-intro {
   @include font-size(m);
 

@@ -1,11 +1,9 @@
 <template>
   <footer class="ae-footer">
-    <slot/>
+    <slot />
   </footer>
 </template>
-
 <script>
-// @ is an alias to /src
 export default {
   name: 'ae-footer'
 }

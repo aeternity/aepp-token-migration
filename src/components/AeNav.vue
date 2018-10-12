@@ -13,7 +13,6 @@
     </router-link>
   </nav>
 </template>
-
 <script>
 export default {
   name: 'ae-nav',
@@ -55,10 +54,7 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-
+<style  lang="scss" scoped>
 .ae-nav {
   @include font-size(xs);
 

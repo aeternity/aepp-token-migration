@@ -32,7 +32,7 @@
          v-for="button in item.buttons"
          :href="button.link"
          :key="button.id">
-        <img :src="button.img">
+        <img :src="button.img" />
       </a>
     </ae-slide>
   </div>

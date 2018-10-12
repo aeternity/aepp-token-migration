@@ -34,7 +34,12 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import Web3 from 'web3'
+import { mapState, mapActions } from 'vuex'
+import tokenBurnerAbi from '../../assets/token-burner-abi.json'
+import ethereumjs from 'ethereumjs-abi'
+import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
+
 import AppHeader from '@/components/AppHeader.vue'
 import AeIntro from '@/components/AeIntro.vue'
 import AeBlock from '@/components/AeBlock.vue'
@@ -43,12 +48,9 @@ import AeCta from '@/components/AeCta.vue'
 import AeAddressBlock from '@/components/AeAddressBlock.vue'
 import AeNav from '@/components/AeNav.vue'
 import AeFooter from '@/components/AeFooter.vue'
-import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
-import { AeButton, AeIcon } from '@aeternity/aepp-components'
-import Web3 from 'web3'
-import { mapState, mapActions } from 'vuex'
-import tokenBurnerAbi from '../../assets/token-burner-abi.json'
-import ethereumjs from 'ethereumjs-abi'
+
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 
 export default {
   name: 'Connect',
@@ -157,5 +159,4 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

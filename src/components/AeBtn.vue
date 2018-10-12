@@ -6,12 +6,10 @@
       'ae-btn_secondary': is_secondary,
       'ae-btn_neutral': is_neutral,
       'ae-btn_blank': is_blank
-    }"
-  >
-    <slot></slot>
+    }">
+    <slot />
   </router-link>
 </template>
-
 <script>
 export default {
   name: 'ae-btn',
@@ -24,9 +22,7 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .ae-btn {
   border-radius: 2rem;
   padding: $spacer-m $spacer-xl;

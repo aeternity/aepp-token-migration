@@ -62,7 +62,10 @@ import AeCta from '@/components/AeCta.vue'
 import AeAddressBlock from '@/components/AeAddressBlock.vue'
 import AeNav from '@/components/AeNav.vue'
 import AeFooter from '@/components/AeFooter.vue'
-import { AeButton, AeIcon, AeText, AeAvatar } from '@aeternity/aepp-components'
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
+import AeText from '@aeternity/aepp-components/dist/ae-text'
+import AeAvatar from '@aeternity/aepp-components/dist/ae-identicon'
 
 export default {
   name: 'PrepareTransactions',

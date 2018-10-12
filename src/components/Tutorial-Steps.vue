@@ -3,7 +3,6 @@
     <h1>{{ msg }}</h1>
   </div>
 </template>
-
 <script>
 export default {
   name: 'TutorialSteps',
@@ -12,9 +11,7 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss" scoped>
 $color: $aubergin;
 
 h3 {

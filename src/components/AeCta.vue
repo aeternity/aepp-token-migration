@@ -14,7 +14,6 @@
     </div>
   </section>
 </template>
-
 <script>
 export default {
   name: 'ae-cta',
@@ -26,9 +25,7 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .ae-cta {
   text-align: center;
   padding: $spacer-m $spacer-l;

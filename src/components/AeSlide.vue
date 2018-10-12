@@ -15,10 +15,7 @@
     </section>
   </figure>
 </template>
-
 <script>
-// @ is an alias to /src
-
 export default {
   name: 'ae-slide',
   props: {
@@ -31,7 +28,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 .ae-slide {
   width: 75%;
   display: flex;

@@ -1,3 +1,4 @@
+import '@aeternity/aepp-components/dist/aepp.fonts.css'
 import '@aeternity/aepp-components/dist/aepp.components.css'
 
 import Vue from 'vue'
