@@ -1,18 +1,20 @@
-.app-header{
-	background-color: $white;
-	box-shadow: $shadow;
-	height: 4rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0 $spacer-l;
-	&__logo{
-		font-weight: 700;
-		font-size: .95rem;
-		display: flex;
-		align-items: center;
-		& svg{
-			margin-right: $spacer-s;
-		}
-	}
+.app-header {
+  background-color: $white;
+  box-shadow: $shadow;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacer-l;
+
+  &__logo {
+    font-weight: 700;
+    font-size: .95rem;
+    display: flex;
+    align-items: center;
+
+    & svg {
+      margin-right: $spacer-s;
+    }
+  }
 }

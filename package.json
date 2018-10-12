@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@aeternity/aepp-components": "github:aeternity/aepp-components#develop",
+    "@aeternity/aepp-components": "github:aeternity/aepp-components#feature/external-global-styles",
     "@zxing/library": "^0.8.3",
     "ethereumjs-abi": "^0.6.5",
     "human-standard-token-abi": "^2.0.0",

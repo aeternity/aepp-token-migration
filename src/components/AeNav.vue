@@ -1,16 +1,15 @@
 <template>
   <nav class="ae-nav">
     <router-link class="ae-nav__link"
-      v-for="page in pages"
-      :key="page.id"
-      :to="page.link"
-      event=""
-      >
+                 v-for="page in pages"
+                 :key="page.id"
+                 :to="page.link"
+                 event="">
       <span class="ae-link__dot"></span>
       <span class="ae-link__name">
         {{ page.name }}
       </span>
-        <span class="ae-link__line"></span>
+      <span class="ae-link__line"></span>
     </router-link>
   </nav>
 </template>
@@ -24,19 +23,24 @@ export default {
   data: function () {
     return {
       pages: [
-        { name: 'Start Migration',
+        {
+          name: 'Start Migration',
           link: '/Start'
         },
-        { name: 'Generate your key pair',
+        {
+          name: 'Generate your key pair',
           link: '/Tutorials'
         },
-        { name: 'Enter your new æternity address',
+        {
+          name: 'Enter your new æternity address',
           link: '/Migrate'
         },
-        { name: 'Connect your Etherum Wallet',
+        {
+          name: 'Connect your Etherum Wallet',
           link: '/Connect'
         },
-        { name: 'Generate your key pair',
+        {
+          name: 'Generate your key pair',
           link: '/Tutorial'
         }
       ]
@@ -56,6 +60,8 @@ export default {
 <style scoped lang="scss">
 
 .ae-nav {
+  @include font-size(xs);
+
   position: fixed;
   top: 4rem;
   left: 0;
@@ -63,7 +69,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @include font-size(xs);
+
   &__link {
     display: flex;
     align-items: center;
@@ -72,8 +78,9 @@ export default {
   }
 }
 
-.ae-link{
+.ae-link {
   padding: $spacer-xxs 0;
+
   &__line {
     position: absolute;
     top: 14px;
@@ -83,6 +90,7 @@ export default {
     width: 2px;
     height: 90px;
   }
+
   &__dot {
     display: inline-block;
     position: relative;
@@ -93,6 +101,7 @@ export default {
     width: 1.15rem;
     height: 1.15rem;
     z-index: 2;
+
     &:after {
       display: block;
       content: '';
@@ -110,6 +119,7 @@ export default {
       height: .7rem;
     }
   }
+
   &__name {
     display: none;
     background: $black;
@@ -120,35 +130,38 @@ export default {
 }
 
 //hide last line
-.ae-nav .ae-nav__link:last-child .ae-link__line{
+.ae-nav .ae-nav__link:last-child .ae-link__line {
   display: none;
 }
 
 //active styles
-.ae-nav__link{
-  &:hover .ae-link__name{
+.ae-nav__link {
+  &:hover .ae-link__name {
     display: inline-block;
     background: $black;
   }
 }
 
-.router-link-active .ae-link{
+.router-link-active .ae-link {
   &__dot {
     border: 2px solid $black;
     background: $bg-color;
   }
+
   &__name {
     display: inline-block;
   }
 }
 
 .router-link-active ~ .ae-nav__link {
-  & .ae-link__dot:after{
+  & .ae-link__dot:after {
     background: $darkgrey;
   }
+
   & .ae-link__line {
     background: $darkgrey;
-    &:before{
+
+    &:before {
       position: absolute;
       bottom: 90px;
       left: 0;
@@ -160,15 +173,17 @@ export default {
       z-index: 1;
     }
   }
-  &:hover{
-      & .ae-link__name{
-        display: inline-block;
-        background: $darkgrey;
-      }
-      & .ae-link__icon{
-        //border: 2px solid $black;
-        //background: $bg-color;
-      }
+  &:hover {
+
+    & .ae-link__name {
+      display: inline-block;
+      background: $darkgrey;
     }
+
+    & .ae-link__icon {
+      //border: 2px solid $black;
+      //background: $bg-color;
+    }
+  }
 }
 </style>

@@ -1,0 +1,75 @@
+html {
+  font-family: 'Inter UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $black;
+  font-size: $base-font-size;
+  line-height: $base-font-size*1.35;
+}
+
+body {
+  margin: 0;
+  background-color: $bg-color;
+
+  & * {
+    margin: 0;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $black;
+  &:hover {
+    color: $magenta;
+  }
+}
+
+#app {
+  & .view__content {
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 5%;
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.agile__dots {
+  position: absolute;
+  bottom: $spacer-l;
+  right: 28%;
+  transform: translate(-28%);
+}
+
+.agile__dot button {
+  background: $grey;
+  border: none;
+  margin: 0 .5rem;
+  display: block;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.agile__dot--current button {
+  background: red;
+}
+
+.agile__slide {
+  padding-top: 3rem;
+  padding-left: 2rem;
+}
+
+.ae-check-button[data-v-57274944] {
+  width: auto !important;
+}

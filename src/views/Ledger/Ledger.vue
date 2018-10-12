@@ -16,8 +16,7 @@
 export default {
   name: 'Ledger',
   data: function () {
-    return {
-    }
+    return {}
   }
 }
 </script>

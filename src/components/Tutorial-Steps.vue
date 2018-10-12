@@ -16,19 +16,23 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 $color: $aubergin;
+
 h3 {
   color: $color;
   margin: 40px 0 0;
   font: normal 500 13px/150% 'Roboto Mono', monospace;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }

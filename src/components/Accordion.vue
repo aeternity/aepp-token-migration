@@ -31,24 +31,28 @@ body * {
   margin: 0;
   padding: 0;
 }
+
 $color: $aubergin;
 .accordion {
   width: 100%;
   text-align: left;
 }
+
 .accordion__title {
   display: inline-block;
-  width: 3  0%;
+  width: 30%;
   vertical-align: middle;
   color: $color;
   font: normal 500 1rem/150% 'Roboto Mono', monospace;
 }
+
 .accordion__icon {
   font-size: 2em;
   display: inline-block;
   vertical-align: middle;
 }
-.active .accordion__icon{
- transform: rotate(45deg);
+
+.active .accordion__icon {
+  transform: rotate(45deg);
 }
 </style>

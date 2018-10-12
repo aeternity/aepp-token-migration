@@ -1,10 +1,10 @@
 <template>
   <main class="view" :class="this.$options.name">
-    <app-header></app-header>
+    <app-header />
     <article class="view__content">
-      <ae-intro :title="intro.title" :intro="intro.intro" >
+      <ae-intro :title="intro.title" :intro="intro.intro">
         <ae-button v-if="!account" @click="scanCode" face="round" fill="primary" extend>scan code</ae-button>
-        <ae-button v-else="account" @click="scanCode" face="flat" >scan again</ae-button>
+        <ae-button v-else @click="scanCode" face="flat">scan again</ae-button>
         <ae-button @click="showAddress" face="flat">enter address manually</ae-button>
       </ae-intro>
       <div class="webcam" v-if="scanner">
@@ -13,11 +13,9 @@
         </ae-button>
         <vue-qr-reader v-on:code-scanned="codeArrived" :responsive="true"/>
       </div>
-      <ae-address-block v-show="account || showAddress" :address="account">
-
-      </ae-address-block>
+      <ae-address-block v-show="account || showAddress" :address="account" />
     </article>
-    <ae-nav></ae-nav>
+    <ae-nav />
   </main>
 </template>
 
@@ -33,6 +31,7 @@ import AeFooter from '@/components/AeFooter.vue'
 import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
 import { AeButton, AeIcon } from '@aeternity/aepp-components'
 import cmp from '@aeternity/aepp-components'
+
 export default {
   name: 'Migrate',
   data: function () {
@@ -82,24 +81,24 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .webcam {
-    background-color: $black;
+.webcam {
+  background-color: $black;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+
+  &__btn {
     position: fixed;
     top: 0;
-    bottom: 0;
-    left: 0;
     right: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    &__btn {
-       position: fixed;
-      top: 0;
-      right: 0;
-      width: 2rem;
-      height: 2rem;
-
-    }
+    width: 2rem;
+    height: 2rem;
   }
+}
 
 </style>

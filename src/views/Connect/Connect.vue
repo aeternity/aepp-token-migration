@@ -1,32 +1,27 @@
 <template>
   <main class="view" :class="this.$options.name">
-    <app-header></app-header>
+    <app-header />
     <article class="view__content">
-      <ae-intro :title="intro.title" :intro="intro.intro" >
-      </ae-intro>
+      <ae-intro :title="intro.title" :intro="intro.intro" />
       <ae-block>
         <ae-cta
           v-for="connection in connections"
           :key="connection.id"
           :img="connection.img"
           :title="connection.name"
-          :text="connection.text"
-        >
-
+          :text="connection.text">
           <ae-button
             fill="secondary"
             face="round"
             extend
-            @click="setMetaMaskWeb3Provider"
-            >
+            @click="setMetaMaskWeb3Provider">
               Get Started
           </ae-button>
           <ae-button
             fill="secondary"
             face="round"
             extend
-            @click="connectMetaMask"
-            >
+            @click="connectMetaMask">
              connectMetaMask
           </ae-button>
         <!-- <router-link :to="connection.link">
@@ -34,7 +29,7 @@
         </ae-cta>
       </ae-block>
     </article>
-    <ae-nav></ae-nav>
+    <ae-nav />
   </main>
 </template>
 
@@ -52,7 +47,7 @@ import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
 import { AeButton, AeIcon } from '@aeternity/aepp-components'
 import Web3 from 'web3'
 import { mapState, mapActions } from 'vuex'
-import tokenBurnerAbi from '../../token-burner-abi.json'
+import tokenBurnerAbi from '../../assets/token-burner-abi.json'
 import ethereumjs from 'ethereumjs-abi'
 
 export default {
@@ -131,12 +126,12 @@ export default {
       var a = ethereumjs.rawEncode(['uint256'], [0x80]).toString('hex') + ethereumjs.rawEncode(['uint256'], [0x34]).toString('hex') + web3.utils.padRight(web3.utils.fromUtf8("ak_wmZUvZWrVibPM2PuSGhgWmMQXchEWgRTbwBp7tYUcPyBYHnpR").slice(2), 64)
       token.methods.approveAndCall(
         this.TokenBurner,
-        web3.utils.toWei("0.001"),
+        web3.utils.toWei('0.001'),
         '0x' + a
       )
-      .send({ from :  coinbase})
+      .send({ from: coinbase })
       .then(result => {
-        console.log("result")
+        console.log('result')
         console.log(result)
       })
       // AEToken.setProvider(web3.currentProvider)

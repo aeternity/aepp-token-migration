@@ -1,8 +1,8 @@
 <template>
   <main class="view" :class="this.$options.name">
-    <app-header></app-header>
+    <app-header />
     <article class="view__content">
-      <ae-intro :title="intro.title" :intro="intro.intro" >
+      <ae-intro :title="intro.title" :intro="intro.intro">
       </ae-intro>
       <ae-block>
         <header>
@@ -48,7 +48,7 @@
         </section>
       </ae-block>
     </article>
-    <ae-nav></ae-nav>
+    <ae-nav />
   </main>
 </template>
 
@@ -64,6 +64,7 @@ import AeNav from '@/components/AeNav.vue'
 import AeFooter from '@/components/AeFooter.vue'
 import { AeButton, AeIcon, AeText, AeAvatar } from '@aeternity/aepp-components'
 import cmp from '@aeternity/aepp-components'
+
 export default {
   name: 'PrepareTransactions',
   data: function () {
@@ -123,5 +124,4 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
