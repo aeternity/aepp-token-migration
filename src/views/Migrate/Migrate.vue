@@ -69,6 +69,7 @@ import AeBlock from '@/components/AeBlock.vue'
 import AeBtn from '@/components/AeBtn.vue'
 import AeAddressBlock from '@/components/AeAddressBlock.vue'
 import AeNav from '@/components/AeNav.vue'
+
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'

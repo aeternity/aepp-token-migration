@@ -6,9 +6,7 @@ module.exports = {
         // @/ is an alias to src/
         // so this assumes you have a file named `src/variables.scss`
         data: `
-          @import "@/style/variables.scss"; 
-          @import "@/style/mixins.scss";
-          @import "@/assets/fonts/fonts.scss";
+          @import "@/style/index.scss";
         `
       }
     }

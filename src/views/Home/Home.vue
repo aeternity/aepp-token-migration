@@ -1,11 +1,9 @@
 <template>
   <div class="home">
     <app-header>
-      <router-link to="/Start">
-        <ae-button face="round" fill="primary" :uppercase="true">
-          Swap Now
-        </ae-button>
-      </router-link>
+      <ae-button face="round" fill="primary" :uppercase="true" @click="$router.push('/Start')">
+        Swap Now
+      </ae-button>
     </app-header>
     <div class="home__frame">
       <hero :title="hero.title"/>
