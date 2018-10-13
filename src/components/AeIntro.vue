@@ -1,8 +1,11 @@
 <template>
   <header class="ae-intro">
-    <h2 class="ae-intro__title">
+    <h2 v-if="title" class="ae-intro__title">
       {{ title }}
     </h2>
+    <h3 v-else-if="subtitle" class="ae-intro__subtitle">
+      {{ subtitle }}
+    </h3>
     <p v-if="intro" class="ae-intro__text">
       {{ intro }}
     </p>
@@ -16,6 +19,7 @@ export default {
   name: 'ae-intro',
   props: {
     title: String,
+    subtitle: String,
     intro: String
   },
   computed: {
@@ -35,6 +39,12 @@ export default {
 
   &__title {
     @include font-size(xxl);
+
+    line-height: 1.2em;
+    margin-bottom: .5em;
+  }
+   &__subtitle {
+    @include font-size(xl);
 
     line-height: 1.2em;
     margin-bottom: .5em;

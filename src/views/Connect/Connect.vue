@@ -38,7 +38,6 @@ import Web3 from 'web3'
 import { mapState, mapActions } from 'vuex'
 import tokenBurnerAbi from '../../assets/token-burner-abi.json'
 import ethereumjs from 'ethereumjs-abi'
-import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
 
 import AppHeader from '@/components/AppHeader.vue'
 import AeIntro from '@/components/AeIntro.vue'
@@ -92,8 +91,7 @@ export default {
     AeAddressBlock,
     AeButton,
     AeIcon,
-    AeFooter,
-    VueQrReader
+    AeFooter
   },
   methods: {
     async setMetaMaskWeb3Provider () {
@@ -109,7 +107,7 @@ export default {
         alert('Kauf dir Metamask')
       }
     },
-    async getBalanceOf() {
+    async getBalanceOf () {
       var web3 = this.web3
       var coinbase = await web3.eth.getCoinbase()
       var abi = require('human-standard-token-abi')
@@ -125,17 +123,17 @@ export default {
       window.token = token
       window.tokenBurner = tokenBurner
       var coinbase = await web3.eth.getCoinbase()
-      var a = ethereumjs.rawEncode(['uint256'], [0x80]).toString('hex') + ethereumjs.rawEncode(['uint256'], [0x34]).toString('hex') + web3.utils.padRight(web3.utils.fromUtf8("ak_wmZUvZWrVibPM2PuSGhgWmMQXchEWgRTbwBp7tYUcPyBYHnpR").slice(2), 64)
+      var a = ethereumjs.rawEncode(['uint256'], [0x80]).toString('hex') + ethereumjs.rawEncode(['uint256'], [0x34]).toString('hex') + web3.utils.padRight(web3.utils.fromUtf8('ak_wmZUvZWrVibPM2PuSGhgWmMQXchEWgRTbwBp7tYUcPyBYHnpR').slice(2), 64)
       token.methods.approveAndCall(
         this.TokenBurner,
         web3.utils.toWei('0.001'),
         '0x' + a
       )
-      .send({ from: coinbase })
-      .then(result => {
-        console.log('result')
-        console.log(result)
-      })
+        .send({ from: coinbase })
+        .then(result => {
+          console.log('result')
+          console.log(result)
+        })
       // AEToken.setProvider(web3.currentProvider)
       // TokenBurner.setProvider(web3.currentProvider)
       web3.eth.getAccounts((err, accs) => {

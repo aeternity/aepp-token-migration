@@ -39,7 +39,7 @@ a {
 
 #app {
   & .view__content {
-    max-width: 80%;
+    max-width: 55em;
     margin: 0 auto;
     margin-top: 5%;
   }
@@ -85,5 +85,24 @@ html {
 
 .ae-check-button[data-v-57274944] {
   width: auto !important;
+}
+
+.qrcode-reader {
+  width: 100%;
+  height: 100%;
+  &__inner-wrapper{
+    width: 100%;
+  }
+  &__camera {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  &__pause-frame {
+    width: 100%;
+    height: auto;
+    filter: blur(20px);
+    object-fit: cover;
+  }
 }
 </style>
