@@ -1,78 +1,79 @@
 <template>
-  <div class="hero">
-    <div class="hero__info hero__info-block">
-      <p>
-        {{ infoBubble }}
-      </p>
+  <header class="hero">
+    <div class="hero__inner-wrapper">
+      <h1 class="hero__title">
+        {{ title }}
+      </h1>
+      <ae-text class="hero__text">
+        {{ text }}
+      </ae-text>
+      <router-link :to="to" class="button-wrapper">
+        <ae-button face="round" fill="primary" extend>
+          {{ cta }}
+        </ae-button>
+      </router-link>
     </div>
-    <h1 class="hero__title">
-      {{ title }}
-    </h1>
-    <p class="hero__info">
-      {{ tokens }}
-    </p>
-  </div>
+    <div class="line"></div>
+  </header>
 </template>
 <script>
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+import AeText from '@aeternity/aepp-components/dist/ae-text'
 export default {
   name: 'Hero',
-  props: ['title'],
-  data: function () {
-    return {
-      tokens: 'Tokens swappend so far',
-      infoBubble: `ERC20 Tokens
-      can now be swapped for mainnet coins`
-    }
+  props: {
+    title: String,
+    text: String,
+    to: { type: [String, Object], default: undefined },
+    cta: String
+  },
+  components: {
+    AeButton,
+    AeText
   }
 }
 </script>
 <style lang="scss" scoped>
-$dim: 10rem;
-
 .hero {
   position: relative;
-  background-color: $white;
   height: 100%;
-  min-height: 100vh;
-
+  min-height: 90vh;
+  background-color: $bg-color;
+  display: flex;
+  padding: $spacer-xl;
+  text-align: center;
+  &__inner-wrapper{
+    max-width: 60em;
+    margin: auto;
+  }
   &__title {
-    position: absolute;
-    font-size: 16vw;
-    padding: 30% 0;
-    top: 50%;
-    left: 50%;
-    text-align: center;
-    line-height: 1em;
-    transform: translate(-50%, -50%);
-    z-index: 10;
+
+    @include font-size(xxxl)
+    line-height: 1.1em;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
   }
 
-  &__info {
-    position: absolute;
-    bottom: 30%;
-    left: $spacer-m;
-    color: $white;
-    background-color: $magenta;
-    padding: $spacer-m;
-    display: inline-block;
-    transform: translateY(-30%);
-  }
+  &__text {
+    margin-bottom: 1.5rem;
+    @include font-size(l)
+    line-height: 1.7em;
 
-  &__info-block {
-    text-align: center;
-    top: 12%;
-    left: auto;
-    right: 5%;
-    width: $dim;
-    height: $dim;
-    display: flex;
-    border-radius: 50%;
-    transform: translate(-12%, -5%);
 
-    & p {
-      margin: auto;
-      white-space: pre-line;
-    }
   }
+}
+.button-wrapper{
+  display: block;
+  max-width: 15em;
+  margin: 0 auto;
+}
+.line {
+  height: 6rem;
+  width: 2px;
+  background-color: $magenta;
+  position: absolute;
+  bottom: -3rem;
+  left: 50%;
+  transform: translate(-50%);
 }
 </style>

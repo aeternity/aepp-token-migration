@@ -1,7 +1,7 @@
 <template>
   <router-link class="ae-btn"
-               :to="to"
-               :class="{
+
+    :class="{
       'ae-btn_primary': is_primary,
       'ae-btn_secondary': is_secondary,
       'ae-btn_neutral': is_neutral,
@@ -34,21 +34,21 @@ export default {
   font-weight: 700;
   margin-bottom: $spacer-m;
 
-  &_primary {
-    background-color: $btn_primary;
-  }
+  // &_primary {
+  //   background-color: $btn_primary;
+  // }
 
-  &_secondary {
-    background-color: $btn_secondary;
-  }
+  // &_secondary {
+  //   background-color: $btn_secondary;
+  // }
 
-  &_neutral {
-    background-color: $btn_neutral;
-  }
+  // &_neutral {
+  //   background-color: $btn_neutral;
+  // }
 
-  &_blank {
-    background-color: transparent;
-    color: $black;
-  }
+  // &_blank {
+  //   background-color: transparent;
+  //   color: $black;
+  // }
 }
 </style>
