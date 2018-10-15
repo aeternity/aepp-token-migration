@@ -52,11 +52,11 @@ export default {
 
   &__text {
     //max-width: 28em;
-    margin: 0 auto $spacer-xl;
+    margin: 0 auto;
   }
 
   &__footer {
-    margin-top: $spacer-xl;
+    margin-top: $spacer-l;
     text-align: center;
   }
 }

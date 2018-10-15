@@ -1,25 +1,32 @@
 <template>
   <main class="view" :class="this.$options.name">
-    <app-header>
-      <ae-button>
-        <ae-text face="sans-s" weight="500">CANCEL</ae-text>
-      </ae-button>
-    </app-header>
+    <app-header/>
     <article class="view__content">
-      <ae-intro :title="intro.title" :intro="intro.intro" />
-      <ae-block to="/Migrate" name="Skip step">
+      <ae-intro :title="intro.title" :intro="intro.intro">
+        <router-link to="/Migrate">
+          <ae-button
+            face="flat"
+            >
+            Skip step
+          </ae-button>
+        </router-link>
+      </ae-intro>
+      <ae-block>
         <ae-cta
-          v-for="tutorial in tutorials"
+          v-for="(tutorial, index) in tutorials"
           :key="tutorial.id"
           :img="tutorial.img"
           :title="tutorial.title"
           :text="tutorial.text">
-          <ae-btn
-            :to="tutorial.link"
-            :is_neutral="tutorial.is_neutral"
-            :is_secondary="tutorial.is_secondary">
-            Get Started
-          </ae-btn>
+          <router-link :to="tutorial.link">
+            <ae-button
+              :class="[index === 0 ? 'secondary' : 'neutral']"
+              face="round"
+              extend
+            >
+              Get Started
+            </ae-button>
+          </router-link>
         </ae-cta>
       </ae-block>
     </article>

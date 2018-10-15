@@ -43,7 +43,7 @@ export default {
         position: absolute;
         top: 50%;
         right: -.65rem;
-        background: $white;
+        background: $bg-color_light;
         transform: translateY(-50%);
       }
     }

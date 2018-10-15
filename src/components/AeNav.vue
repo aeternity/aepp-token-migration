@@ -1,10 +1,11 @@
 <template>
   <nav class="ae-nav">
     <router-link class="ae-nav__link"
-                 v-for="page in pages"
-                 :key="page.id"
-                 :to="page.link"
-                 event="">
+      v-for="page in pages"
+      :key="page.id"
+      :to="page.link"
+      event=""
+    >
       <span class="ae-link__dot"></span>
       <span class="ae-link__name">
         {{ page.name }}
@@ -39,8 +40,12 @@ export default {
           link: '/Connect'
         },
         {
-          name: 'Generate your key pair',
-          link: '/Tutorial'
+          name: 'Make transaction to migration address',
+          link: '/PrepareTransactions'
+        },
+        {
+          name: 'Migration Result',
+          link: '/MigrationResult'
         }
       ]
     }
@@ -90,12 +95,11 @@ export default {
   &__dot {
     display: inline-block;
     position: relative;
-    margin: 2px;
     margin-right: $spacer-s;
     border-radius: 50%;
     border: 2px solid transparent;
-    width: 1.15rem;
-    height: 1.15rem;
+    width: 25px;
+    height: 25px;
     z-index: 2;
 
     &:after {
@@ -111,8 +115,8 @@ export default {
       border-radius: 50%;
       background: $black;
       transform: translate(-50%, -50%);
-      width: .7rem;
-      height: .7rem;
+      width: 14px;
+      height: 14px;
     }
   }
 

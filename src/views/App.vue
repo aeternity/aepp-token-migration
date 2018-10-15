@@ -39,7 +39,7 @@ a {
 
 #app {
   & .view__content {
-    max-width: 55em;
+    max-width: 60em;
     margin: 0 auto;
     margin-top: 5%;
   }

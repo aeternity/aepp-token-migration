@@ -5,27 +5,29 @@
       <ae-intro :title="intro.title" :intro="intro.intro" />
       <ae-block>
         <ae-cta
-          v-for="connection in connections"
+          v-for="(connection, index) in connections"
           :key="connection.id"
           :img="connection.img"
           :title="connection.name"
-          :text="connection.text">
+          :text="connection.text"
+          :data-index="index"
+          >
+          <router-link v-if="index === 0" to="/PrepareTransactions">
+            <ae-button
+              fill="secondary"
+              face="round"
+              extend
+              @click="setMetaMaskWeb3Provider">
+                {{ connection.cta }}
+            </ae-button>
+          </router-link>
           <ae-button
-            fill="secondary"
+            v-else
+            fill="neutral"
             face="round"
-            extend
-            @click="setMetaMaskWeb3Provider">
-              Get Started
+            extend>
+              {{ connection.cta }}
           </ae-button>
-          <ae-button
-            fill="secondary"
-            face="round"
-            extend
-            @click="connectMetaMask">
-             connectMetaMask
-          </ae-button>
-        <!-- <router-link :to="connection.link">
-        </router-link> -->
         </ae-cta>
       </ae-block>
     </article>
@@ -58,21 +60,21 @@ export default {
       scanner: false,
       // address: false,
       intro: {
-        title: 'Connect your Ethereum Wallet',
+        title: 'Select the wallet where you hold your tokens',
         intro: `This way we can transfer your AE tokens to the AE Migration Address, which will verify your tokens and let them appear in æternity’s Mainnet.`
       },
       connections: [
         {
           name: 'Meta Mask',
           text: 'If you use Meta Mask, we are going to prepare the transaction here on this website.',
-          img: '',
+          img: require('@/assets/graphics/metamask-fox.svg'),
           link: '/PrepareTransactions',
           cta: 'CONNECT META MASK'
         },
         {
           name: 'MyEtherWallet',
           text: 'If you use MyEtherWallet, we are going to prepare the transaction there and you are going to be forwarded.',
-          img: '',
+          img: require('@/assets/graphics/myetherwallet.svg'),
           link: '',
           cta: 'Proceed on MEW'
         }

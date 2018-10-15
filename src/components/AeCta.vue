@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 .ae-cta {
   text-align: center;
-  padding: $spacer-m $spacer-l;
+  padding: $spacer-m 6rem;
   width: 50%;
   display: flex;
   flex-direction: column;
