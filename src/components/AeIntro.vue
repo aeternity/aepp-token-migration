@@ -31,27 +31,26 @@ export default {
 </script>
 <style lang="scss" scoped>
 .ae-intro {
-  @include font-size(m);
-
   text-align: center;
-  max-width: 35em;
+  max-width: 30em;
   margin: 0 auto $spacer-xl;
 
   &__title {
     @include font-size(xxl);
-
-    line-height: 1.2em;
+    font-weight: bold;
+    line-height: 1.1em;
     margin-bottom: .5em;
   }
    &__subtitle {
     @include font-size(xl);
-
+    font-weight: bold;
     line-height: 1.2em;
     margin-bottom: .5em;
   }
 
   &__text {
     //max-width: 28em;
+    @include font-size(m);
     margin: 0 auto;
   }
 

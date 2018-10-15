@@ -14,43 +14,48 @@ export default new Router({
       component: Home
     },
     {
-      path: '/Start',
+      path: '/start',
       name: 'Start',
       component: () => import('../views/Start/Start.vue')
     },
     {
-      path: '/Airgap',
-      name: 'Airgap',
-      component: () => import('../views/Airgap/Airgap.vue')
-    },
-    {
-      path: '/Tutorials',
+      path: '/tutorials',
       name: 'Tutorials',
       component: () => import('../views/Tutorials/Tutorials.vue')
     },
     {
-      path: '/Ledger',
-      name: 'Ledger',
-      component: () => import('../views/Ledger/Ledger.vue')
+      path: '/provide-address',
+      name: 'Provide Address',
+      component: () => import('../views/ProvideAddress/ProvideAddress.vue')
     },
     {
-      path: '/Migrate',
-      name: 'Migrate',
-      component: () => import('../views/Migrate/Migrate.vue')
+      path: '/input-address',
+      name: 'Input Address',
+      component: () => import('../views/InputAddress/InputAddress.vue')
     },
     {
-      path: '/Connect',
+      path: '/scan-address',
+      name: 'Scan Address',
+      component: () => import('../views/ScanAddress/ScanAddress.vue')
+    },
+     {
+      path: '/read-from-ledger',
+      name: 'Read from Ledger',
+      component: () => import('../views/ReadLedger/ReadLedger.vue')
+    },
+    {
+      path: '/connect',
       name: 'Connect',
       component: () => import('../views/Connect/Connect.vue')
     },
     {
-      path: '/PrepareTransactions',
-      name: 'PrepareTransactions',
+      path: '/prepare-transactions',
+      name: 'Prepare Transactions',
       component: () => import('../views/PrepareTransactions/PrepareTransactions.vue')
     },
     {
-      path: '/MigrationResults',
-      name: 'MigrationResults',
+      path: '/migration-results',
+      name: 'Migration Results',
       component: () => import('../views/MigrationResults/MigrationResults.vue')
     },
     {
