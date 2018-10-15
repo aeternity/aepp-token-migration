@@ -8,7 +8,15 @@ export default new Vuex.Store({
     step: 0,
     walletAddress: '',
     web3: null,
+
+    /**
+     * AE Token Contract
+     */
     AEToken: '0x35d8830ea35e6Df033eEdb6d5045334A4e34f9f9',
+
+    /**
+     * AE Burnable Contract
+     */
     TokenBurner: '0x4ecd812b010d9db16b0fb7143a79786b65b89b09'
   },
   mutations: {
