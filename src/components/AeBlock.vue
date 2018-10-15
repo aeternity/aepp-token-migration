@@ -17,14 +17,12 @@ export default {
 </script>
 <style  lang="scss" scoped>
 .ae-block {
-  background-color: $white;
+  background-color: $bg-color_light;
   padding: $spacer-l;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  box-shadow: $shadow;
-  border-radius: 8px;
-  margin-bottom: $spacer-xxl;
+  box-shadow: $shadow_wide;
 
   &__body {
     display: flex;
@@ -45,7 +43,7 @@ export default {
         position: absolute;
         top: 50%;
         right: -.65rem;
-        background: $white;
+        background: $bg-color_light;
         transform: translateY(-50%);
       }
     }
@@ -53,7 +51,6 @@ export default {
 
   &__footer {
     @include font-size(xs);
-
     text-align: center;
     width: 100%;
     padding: $spacer-l 0 0;

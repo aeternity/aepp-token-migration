@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     step: 0,
-    walletAddress: null,
+    walletAddress: '',
     web3: null,
     AEToken: '0x35d8830ea35e6Df033eEdb6d5045334A4e34f9f9',
     TokenBurner: '0x4ecd812b010d9db16b0fb7143a79786b65b89b09'

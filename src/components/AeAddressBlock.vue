@@ -1,33 +1,31 @@
 <template>
-  <ae-card>
+  <ae-block>
     <article class="ae-address-block">
-      <header class="ae-address-block__avatar">
-        <ae-avatar :address="address"/>
+      <header class="ae-address-block__header">
+        <div :class="[address ? '' : 'address-unkown']">
+          <ae-avatar :address="address"/>
+        </div>
       </header>
       <section class="ae-address-block__input">
-        <ae-input label="New æternity address" placeholder="...">
-          {{ address }}
-          <ae-toolbar slot="footer">
-            This field is &nbsp; <a href="#">mandatory</a>
-          </ae-toolbar>
-        </ae-input>
+        <slot name="body"></slot>
       </section>
       <footer class="ae-address-block__footer">
-        <ae-check name="approve" align="left">
+        <ae-check name="approve"  v-model="isChecked">
           <ae-text face="sans-s">I am certain my address and identicon are correct</ae-text>
         </ae-check>
         <div class="ae-address-block__footer__button">
           <router-link to="/Connect">
-            <ae-button face="round" fill="primary" extend>continue</ae-button>
+            <ae-button face="round" fill="primary"  :disabled="!isChecked" extend>continue</ae-button>
           </router-link>
+          <slot name="footer"></slot>
         </div>
       </footer>
     </article>
-  </ae-card>
+  </ae-block>
 </template>
 
 <script>
-import AeCard from '@aeternity/aepp-components/dist/ae-card'
+import AeBlock from '@/components/AeBlock'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeAvatar from '@aeternity/aepp-components/dist/ae-identicon'
 import AeInput from '@aeternity/aepp-components/dist/ae-input'
@@ -38,10 +36,12 @@ import AeButton from '@aeternity/aepp-components/dist/ae-button'
 export default {
   name: 'ae-address-block',
   props: {
-    address: String
+    address: String,
+    isChecked: false,
+    rescan: Boolean
   },
   components: {
-    AeCard,
+    AeBlock,
     AeText,
     AeAvatar,
     AeInput,
@@ -52,20 +52,30 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.address-unkown {
+  filter: grayscale(100%);
+  opacity: .5;
+}
 .ae-address-block {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
 
-  &__avatar {
+  &__header {
     display: flex;
     justify-content: space-evenly;
-    width: 100%;
+    width: auto;
+    box-shadow: $shadow;
+    margin: -$spacer-l;
+    margin-bottom: $spacer-l;
+    height: 4rem;
+    padding: $spacer-m;
+
   }
 
   &__input {
-    background-color: $white;
+    padding: $spacer-l $spacer-xxl 0;
   }
 
   &__footer {
@@ -74,10 +84,12 @@ export default {
     flex-direction: column;
     margin: $spacer-m 0;
     width: 100%;
+    padding: 0 $spacer-xxl;
 
     &__button {
       width: 18rem;
       margin: 2rem auto;
+
     }
   }
 }

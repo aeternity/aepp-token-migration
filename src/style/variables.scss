@@ -27,10 +27,15 @@ $btn_neutral : #203040;
 $btn_primary : #FF0D6A;
 $btn_secondary : #6948A1;
 
+$bg-color_light: #F7FAFC;
 $bg-color: #EDF3F7;
 $shadow: 0 0 16px 0 rgba(27,68,121,0.10);
+$shadow_wide:  0 0 25px 0 rgba(27,68,121,0.40);
 $phone-width : 600px;
 $desktop-width : 900px;
+
+$font-sans: "Inter UI", sans-serif !default;
+$font-mono: "IBM Plex Mono", monospace !default;
 
 $base-font-size: 18px;
 $font-sizes: (

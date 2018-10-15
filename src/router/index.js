@@ -47,6 +47,11 @@ export default new Router({
       path: '/PrepareTransactions',
       name: 'PrepareTransactions',
       component: () => import('../views/PrepareTransactions/PrepareTransactions.vue')
+    },
+    {
+      path: '/MigrationResults',
+      name: 'MigrationResults',
+      component: () => import('../views/MigrationResults/MigrationResults.vue')
     }
   ]
 })
