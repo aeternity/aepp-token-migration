@@ -52,6 +52,11 @@ export default new Router({
       path: '/MigrationResults',
       name: 'MigrationResults',
       component: () => import('../views/MigrationResults/MigrationResults.vue')
+    },
+    {
+      path: '/input-data-decoder',
+      name: 'InputDataDecoder',
+      component: () => import('../views/InputDataDecoder/InputDataDecoder.vue')
     }
   ]
 })
