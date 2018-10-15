@@ -36,14 +36,14 @@ $shadow_wide:  0 0 25px 0 rgba(27,68,121,0.40);
 $phone-width : 600px;
 $desktop-width : 900px;
 
-// $base-font-size: 18px;
+$base-font-size: 18px;
 $font-sizes: (
   xxs: (11px / $base-font-size) * 1rem, //0.6111111111111112em
   xs:  (14px / $base-font-size) * 1rem, //0.7777777777777778em
-  s:   (16px / $base-font-size) * 1rem, //0.8888888888888888em
-  m:   (18px / $base-font-size) * 1rem, //1em
+  s:   (18px / $base-font-size) * 1rem, //0.8888888888888888em
+  m:   (20px / $base-font-size) * 1rem, //1em
   l:   (24px / $base-font-size) * 1rem, //1.3333333333333333em
-  xl:  (30px / $base-font-size) * 1rem, //1.6666666666666667em
-  xxl: (50px / $base-font-size) * 1rem, //2.7777777777777777em
+  xl:  (36px / $base-font-size) * 1rem, //1.6666666666666667em
+  xxl: (55px / $base-font-size) * 1rem, //2.7777777777777777em
   xxxl: (65px / $base-font-size) * 1rem, //2.7777777777777777em
 );
