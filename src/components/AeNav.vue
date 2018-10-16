@@ -37,11 +37,11 @@ export default {
         },
         {
           name: 'Connect your Etherum Wallet',
-          link: '/Connect'
+          link: '/connect'
         },
         {
           name: 'Make transaction to migration address',
-          link: '/PrepareTransactions'
+          link: '/prepare-transactions'
         },
         {
           name: 'Migration Result',

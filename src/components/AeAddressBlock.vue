@@ -14,7 +14,7 @@
           <ae-text face="sans-s">I am certain my address and identicon are correct</ae-text>
         </ae-check>
         <div class="ae-address-block__footer__button">
-          <router-link to="/Connect">
+          <router-link to="/connect">
             <ae-button face="round" fill="primary"  :disabled="!isChecked" extend>continue</ae-button>
           </router-link>
           <slot name="footer"></slot>
