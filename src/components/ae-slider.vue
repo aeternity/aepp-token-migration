@@ -39,7 +39,7 @@
 </template>
 <script>
 // @ is an alias to /src
-import AeSlide from '@/components/AeSlide.vue'
+import AeSlide from '@/components/ae-slide.vue'
 
 export default {
   name: 'ae-slider',

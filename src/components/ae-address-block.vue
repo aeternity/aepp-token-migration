@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import AeBlock from '@/components/AeBlock'
+import AeBlock from '@/components/ae-block.vue'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeAvatar from '@aeternity/aepp-components/dist/ae-identicon'
 import AeInput from '@aeternity/aepp-components/dist/ae-input'
