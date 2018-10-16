@@ -3,7 +3,7 @@
     <app-header/>
     <article class="view__content">
       <ae-intro :title="intro.title" :intro="intro.intro">
-        <router-link to="/Migrate">
+        <router-link to="/provide-address">
           <ae-button
             face="flat"
             >

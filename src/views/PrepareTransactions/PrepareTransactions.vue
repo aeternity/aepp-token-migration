@@ -206,7 +206,7 @@ export default {
         .send({ from: coinbase })
         .then((results) => {
           console.log(results)
-          this.$router.push('/MigrationResults')
+          this.$router.push('/migration-results')
         })
 
       // AEToken.setProvider(web3.currentProvider)

@@ -11,7 +11,7 @@
           :title="connection.name"
           :text="connection.text"
           :data-index="index">
-          <router-link v-if="index === 0" to="/PrepareTransactions">
+          <router-link v-if="index === 0" to="/prepare-transactions">
             <ae-button fill="secondary" face="round" extend>
                 {{ connection.cta }}
             </ae-button>
@@ -59,7 +59,7 @@ export default {
           name: 'Meta Mask',
           text: 'If you use Meta Mask, we are going to prepare the transaction here on this website.',
           img: require('@/assets/graphics/metamask-fox.svg'),
-          link: '/PrepareTransactions',
+          link: '/prepare-transactions',
           cta: 'CONNECT META MASK'
         },
         {

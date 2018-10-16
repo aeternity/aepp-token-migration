@@ -46,7 +46,7 @@ export default {
     return {
       hero: {
         title: 'Migrate your AE tokens to the æternity mainnet',
-        text: `The mainnet is ready! All the AE tokens you own on Ethereum can now be migrated to the mainnet. With this tool we guide you securely through the process.`,
+        text: `The Mainnet is almost ready! All the AE tokens you own on Ethereum can now be migrated to the mainnet. With this tool we guide you securely through the process.`,
         link: '/start',
         cta: 'Start Migration'
       },
@@ -82,33 +82,33 @@ export default {
           title: 'Transfer the desired amount tokens to the AE Migration Address',
           text: 'Sed posuere consectetur est at lobortis. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.',
           links: [
-          {
-            img: require('@/assets/graphics/airgap-logo.svg'),
-            link: '',
-            cta: ''
-          },
+            {
+              img: require('@/assets/graphics/airgap-logo.svg'),
+              link: '',
+              cta: ''
+            }
           ]
         },
         {
           title: 'The AE Migration Address burns the AE tokens',
           text: 'Sed posuere consectetur est at lobortis. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.',
           links: [
-          {
-            img: require('@/assets/graphics/airgap-logo.svg'),
-            link: '',
-            cta: ''
-          },
+            {
+              img: require('@/assets/graphics/airgap-logo.svg'),
+              link: '',
+              cta: ''
+            }
           ]
         },
         {
           title: 'Your tokens are now available on the æternity Mainnet',
           text: 'Sed posuere consectetur est at lobortis. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.',
           links: [
-          {
-            img: require('@/assets/graphics/airgap-logo.svg'),
-            link: '',
-            cta: ''
-          },
+            {
+              img: require('@/assets/graphics/airgap-logo.svg'),
+              link: '',
+              cta: ''
+            }
           ]
         }
       ],

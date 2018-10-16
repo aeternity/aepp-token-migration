@@ -38,7 +38,7 @@ export default new Router({
       name: 'Scan Address',
       component: () => import('../views/ScanAddress/ScanAddress.vue')
     },
-     {
+    {
       path: '/read-from-ledger',
       name: 'Read from Ledger',
       component: () => import('../views/ReadLedger/ReadLedger.vue')

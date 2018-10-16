@@ -15,7 +15,7 @@
         </ae-slider>
       </div>
       <ae-footer>
-        <ae-btn to="/Migrate" :is_primary="true">Done, start migration</ae-btn>
+        <ae-btn to="/provide-address" :is_primary="true">Done, start migration</ae-btn>
       </ae-footer>
     </article>
     <ae-nav />
