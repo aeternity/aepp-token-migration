@@ -4,9 +4,7 @@
     <article class="view__content">
       <ae-intro :title="intro.title" :intro="intro.intro">
         <router-link to="/provide-address">
-          <ae-button
-            face="flat"
-            >
+          <ae-button face="flat">
             Skip step
           </ae-button>
         </router-link>
@@ -22,8 +20,7 @@
             <ae-button
               :class="[index === 0 ? 'secondary' : 'neutral']"
               face="round"
-              extend
-            >
+              extend>
               Get Started
             </ae-button>
           </router-link>
@@ -35,12 +32,12 @@
 </template>
 
 <script>
-import AppHeader from '@/components/AppHeader.vue'
-import AeBlock from '@/components/AeBlock.vue'
-import AeIntro from '@/components/AeIntro.vue'
-import AeCta from '@/components/AeCta.vue'
-import AeBtn from '@/components/AeBtn.vue'
-import AeNav from '@/components/AeNav.vue'
+import AppHeader from '@/components/app-header.vue'
+import AeBlock from '@/components/ae-block.vue'
+import AeIntro from '@/components/ae-intro.vue'
+import AeCta from '@/components/ae-cta.vue'
+import AeBtn from '@/components/ae-btn.vue'
+import AeNav from '@/components/ae-nav.vue'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 

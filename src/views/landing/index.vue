@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import AppHeader from '@/components/AppHeader.vue'
-import Hero from '@/components/Hero.vue'
-import Steps from '@/components/Steps.vue'
-import Accordion from '@/components/Accordion.vue'
-import AeIntro from '@/components/AeIntro.vue'
+import AppHeader from '@/components/app-header.vue'
+import Hero from '@/components/hero.vue'
+import Steps from '@/components/steps.vue'
+import Accordion from '@/components/accordion.vue'
+import AeIntro from '@/components/ae-intro.vue'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 
 export default {

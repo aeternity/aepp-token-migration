@@ -26,12 +26,12 @@
 <script>
 // @ is an alias to /src
 // import { AeButton } from '@aeternity/aepp-components'
-import AppHeader from '@/components/AppHeader.vue'
-import AeBlock from '@/components/AeBlock.vue'
-import AeIntro from '@/components/AeIntro.vue'
-import AeCta from '@/components/AeCta.vue'
-import AeBtn from '@/components/AeBtn.vue'
-import AeNav from '@/components/AeNav.vue'
+import AppHeader from '@/components/app-header.vue'
+import AeBlock from '@/components/ae-block.vue'
+import AeIntro from '@/components/ae-intro.vue'
+import AeCta from '@/components/ae-cta.vue'
+import AeBtn from '@/components/ae-btn.vue'
+import AeNav from '@/components/ae-nav.vue'
 
 export default {
   name: 'Airgap',

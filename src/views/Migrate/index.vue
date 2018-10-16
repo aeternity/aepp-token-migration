@@ -54,7 +54,6 @@
           </div>
         </qrcode-reader>
       </div>
-
     </article>
     <ae-nav />
   </main>
@@ -63,12 +62,12 @@
 <script>
 import { mapState } from 'vuex'
 import { QrcodeReader } from 'vue-qrcode-reader'
-import AppHeader from '@/components/AppHeader.vue'
-import AeIntro from '@/components/AeIntro.vue'
-import AeBlock from '@/components/AeBlock.vue'
-import AeBtn from '@/components/AeBtn.vue'
-import AeAddressBlock from '@/components/AeAddressBlock.vue'
-import AeNav from '@/components/AeNav.vue'
+import AppHeader from '@/components/app-header.vue'
+import AeIntro from '@/components/ae-intro.vue'
+import AeBlock from '@/components/ae-block.vue'
+import AeBtn from '@/components/ae-btn.vue'
+import AeAddressBlock from '@/components/ae-address-block.vue'
+import AeNav from '@/components/ae-nav.vue'
 
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'

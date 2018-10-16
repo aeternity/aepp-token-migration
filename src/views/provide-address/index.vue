@@ -14,8 +14,7 @@
             <ae-button
               :class="[index === 0 ? 'secondary' : 'neutral']"
               face="round"
-              extend
-            >
+              extend>
               {{ input.cta }}
             </ae-button>
           </router-link>
@@ -27,14 +26,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import AppHeader from '@/components/AppHeader.vue'
-import AeIntro from '@/components/AeIntro.vue'
-import AeBlock from '@/components/AeBlock.vue'
-import AeBtn from '@/components/AeBtn.vue'
-import AeAddressBlock from '@/components/AeAddressBlock.vue'
-import AeNav from '@/components/AeNav.vue'
-import AeCta from '@/components/AeCta.vue'
+import AppHeader from '@/components/app-header.vue'
+import AeIntro from '@/components/ae-intro.vue'
+import AeBlock from '@/components/ae-block.vue'
+import AeBtn from '@/components/ae-btn.vue'
+import AeNav from '@/components/ae-nav.vue'
+import AeCta from '@/components/ae-cta.vue'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 
@@ -77,10 +74,6 @@ export default {
     AeCta,
     AeText,
     AeButton
-  },
-  methods: {
-  },
-  computed: {
   }
 }
 </script>

@@ -1,9 +1,11 @@
 <template>
-  <main class="view" :class="this.$options.name">
+  <main class="view block" :class="this.$options.name">
     <app-header />
     <article class="view__content">
       <ae-intro :title="intro.title">
-        <ae-btn to="/Migrate" :is_secondary="true">I have one already</ae-btn>
+        <router-link to="/provide-address">
+          <ae-button face="round" fill="secondary">I have one already</ae-button>
+        </router-link>
       </ae-intro>
       <div class="block"
            v-for="tutorial in tutorials"
@@ -15,7 +17,9 @@
         </ae-slider>
       </div>
       <ae-footer>
-        <ae-btn to="/provide-address" :is_primary="true">Done, start migration</ae-btn>
+        <router-link to="/provide-address">
+          <ae-button face="round" fill="primary">Done, start migration</ae-button>
+        </router-link>
       </ae-footer>
     </article>
     <ae-nav />
@@ -23,15 +27,16 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import AppHeader from '@/components/AppHeader.vue'
-import AeBlock from '@/components/AeBlock.vue'
-import AeIntro from '@/components/AeIntro.vue'
-import AeCta from '@/components/AeCta.vue'
-import AeBtn from '@/components/AeBtn.vue'
-import AeNav from '@/components/AeNav.vue'
-import AeSlider from '@/components/AeSlider.vue'
-import AeFooter from '@/components/AeFooter.vue'
+import AppHeader from '@/components/app-header.vue'
+import AeBlock from '@/components/ae-block.vue'
+import AeIntro from '@/components/ae-intro.vue'
+import AeCta from '@/components/ae-cta.vue'
+import AeBtn from '@/components/ae-btn.vue'
+import AeNav from '@/components/ae-nav.vue'
+import AeSlider from '@/components/ae-slider.vue'
+import AeFooter from '@/components/ae-footer.vue'
+
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
 
 export default {
   name: 'Tutorials',
@@ -121,20 +126,25 @@ export default {
     AeBtn,
     AeNav,
     AeSlider,
-    AeFooter
+    AeFooter,
+
+    /**
+     * Components page
+     */
+    AeButton
   }
 }
 </script>
 <style lang="scss" scoped>
 .block {
   margin-bottom: 10%;
-
 }
 
 .ae-slider {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+
   &_single {
     padding-top: 3rem;
     padding-left: 2rem;

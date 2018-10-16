@@ -26,11 +26,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import AppHeader from '@/components/AppHeader.vue'
-import AeIntro from '@/components/AeIntro.vue'
-import AeBlock from '@/components/AeBlock.vue'
-import AeAddressBlock from '@/components/AeAddressBlock.vue'
-import AeNav from '@/components/AeNav.vue'
+import AppHeader from '@/components/app-header.vue'
+import AeIntro from '@/components/ae-intro.vue'
+import AeBlock from '@/components/ae-block.vue'
+import AeAddressBlock from '@/components/ae-address-block.vue'
+import AeNav from '@/components/ae-nav.vue'
 
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
@@ -97,23 +97,21 @@ export default {
       }
     },
     ...mapState([
-      'AEToken',
-      'TokenBurner',
-      'walletAddress',
-      'web3'
+      'walletAddress'
     ])
   }
 }
 </script>
 <style lang="scss" scoped>
-
 .wallet-address {
   &__field{
     background-color: $white;
     padding: $spacer-l $spacer-m;
+
     & .ae-text.mono-base[data-v-11a5cd56] {
-      word-break: break-all;
       @include font-size(l);
+
+      word-break: break-all;
     }
   }
 }
