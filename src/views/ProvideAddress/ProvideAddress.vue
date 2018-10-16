@@ -76,7 +76,7 @@ export default {
     AeNav,
     AeCta,
     AeText,
-    AeButton,
+    AeButton
   },
   methods: {
   },

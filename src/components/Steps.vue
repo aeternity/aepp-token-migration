@@ -27,7 +27,7 @@
 export default {
   name: 'steps',
   props: {
-    steps: Array,
+    steps: Array
   },
   data: function () {
     return {

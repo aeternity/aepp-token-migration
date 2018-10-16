@@ -87,7 +87,7 @@ export default {
     AeFooter
   },
   methods: {
-    //async setMetaMaskWeb3Provider () {
+    // async setMetaMaskWeb3Provider () {
     //  var web3
     //  if (typeof window.web3 !== 'undefined') {
     //    console.warn("Using web3 detected from external source. If you find that your accounts don't appear or you have 0 Fluyd, ensure you've configured that source properly. If using MetaMask, see the following link. Feel free to delete this warning. 🙂 http://truffleframework.com/tutorials/truffle-and-metamask")
@@ -99,11 +99,11 @@ export default {
     //  } else {
     //    alert('Kauf dir Metamask')
     //  }
-    //},
+    // },
     //
-    //...mapActions([
+    // ...mapActions([
     //  'setWeb3'
-    //])
+    // ])
   },
   computed: {
     account () {

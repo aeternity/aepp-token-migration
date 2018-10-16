@@ -74,7 +74,7 @@ export default {
         callFunction: this.inputData.substr(0, 8) === 'cae9ca51',
         burnContract: this.inputData.substr(8, 64) === '0000000000000000000000004ecd812b010d9db16b0fb7143a79786b65b89b09',
         amount: Web3.utils.fromWei(Web3.utils.toBN('0x' + this.inputData.substr(72, 64)).toString()),
-        aeternity : new Web3().utils.hexToString((new Web3()).eth.abi.decodeParameter('bytes', this.inputData.substr(136)))
+        aeternity: new Web3().utils.hexToString((new Web3()).eth.abi.decodeParameter('bytes', this.inputData.substr(136)))
       }
     },
     ...mapState([

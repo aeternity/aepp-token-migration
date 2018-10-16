@@ -59,7 +59,6 @@ export default {
     @include font-size(l)
     line-height: 1.7em;
 
-
   }
 }
 .button-wrapper{
