@@ -32,7 +32,6 @@ export default {
 <style lang="scss" scoped>
 .ae-intro {
   text-align: center;
-  max-width: 30em;
   margin: 0 auto $spacer-xl;
 
   &__title {

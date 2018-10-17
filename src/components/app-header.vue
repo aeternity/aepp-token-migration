@@ -1,6 +1,6 @@
 <template>
-  <header class="app-header">
-    <div class="app-header__logo">
+  <header class="appp-header">
+    <div class="appp-header__logo">
       <img :src="require('../assets/logo.svg')" alt="æternity">
       æternity
     </div>
@@ -21,7 +21,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.app-header {
+.appp-header {
   background-color: $white;
   box-shadow: $shadow;
   height: 4rem;

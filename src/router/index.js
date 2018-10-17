@@ -8,59 +8,69 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      name: 'index',
       path: '/',
-      name: 'Landing',
-      component: require('../views/landing/index').default
+      component: require('../views/index/index.vue').default
     },
     {
+      name: 'start',
       path: '/start',
-      name: 'Start',
-      component: () => import('../views/start/index.vue')
+      component: () => import('../views/tutorial/index.vue')
     },
     {
+      name: 'airgap',
+      path: '/airgap',
+      component: () => import('../views/tutorial/airgap/index.vue')
+    },
+    {
+      name: 'ledger',
+      path: '/ledger',
+      component: () => import('../views/tutorial/ledger/index.vue')
+    },
+    {
+      name: 'tutorials',
       path: '/tutorials',
-      name: 'Tutorials',
-      component: () => import('../views/tutorials/index.vue')
+      component: () => import('../views/tutorial/tutorials/index.vue')
     },
     {
+      name: 'provide-address',
       path: '/provide-address',
-      name: 'Provide Address',
-      component: () => import('../views/provide-address/index.vue')
+      component: () => import('../views/migration/provide-address/index.vue')
     },
     {
+      name: 'input-address',
       path: '/input-address',
-      name: 'Input Address',
-      component: () => import('../views/input-address/index.vue')
+      component: () => import('../views/migration/input-address/index.vue')
     },
     {
+      name: 'scan-address',
       path: '/scan-address',
-      name: 'Scan Address',
-      component: () => import('../views/scan-address/index.vue')
+      component: () => import('../views/migration/scan-address/index.vue')
     },
     {
+      name: 'read-from-ledger',
       path: '/read-from-ledger',
-      name: 'Read from Ledger',
-      component: () => import('../views/read-ledger/index.vue')
+      component: () => import('../views/tutorial/ledger/read-ledger/index.vue')
     },
     {
+      name: 'connect',
       path: '/connect',
-      name: 'Connect',
-      component: () => import('../views/connect/index.vue')
+      component: () => import('../views/migration/connect/index.vue')
     },
     {
+      name: 'prepare-transactions',
       path: '/prepare-transactions',
-      name: 'Prepare Transactions',
-      component: () => import('../views/prepare-transactions/index.vue')
+      component: () => import('../views/migration/prepare-transactions/index.vue')
     },
     {
+      name: 'migrate-results',
       path: '/migration-results',
-      name: 'Migration Results',
-      component: () => import('../views/migration-results/index.vue')
+      component: () => import('../views/status/migration-results/index.vue')
     },
     {
+      name: 'input-data-decoder',
       path: '/input-data-decoder',
-      name: 'InputDataDecoder',
-      component: () => import('../views/input-data-decoder/index.vue')
+      component: () => import('../views/migration/input-data-decoder/index.vue')
     }
   ]
 })
