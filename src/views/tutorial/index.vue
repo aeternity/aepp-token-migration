@@ -8,14 +8,20 @@
         text="Begin migrating your AE tokens" />
     </app-header>
     <app-view container>
-      <ae-intro :title="intro.title" :intro="intro.intro">
+      <app-intro>
+        <template slot="title">
+          Start Migration
+        </template>
+        <template slot="intro">
+          For migrating your ERC20 tokens from ethereum to the
+          æternity main net you need to safely create a key pair first.
+          Skip this step if you already created one.
+        </template>
         <router-link to="/provide-address">
-          <ae-button face="flat">
-            Skip step
-          </ae-button>
+          <ae-button face="flat">Skip this step</ae-button>
         </router-link>
-      </ae-intro>
-      <ae-block>
+      </app-intro>
+      <app-panel primary padding shadow>
         <ae-cta
           v-for="(tutorial, index) in tutorials"
           :key="tutorial.id"
@@ -31,27 +37,22 @@
             </ae-button>
           </router-link>
         </ae-cta>
-      </ae-block>
+      </app-panel>
     </app-view>
   </app-view>
 </template>
 
 <script>
-import AeBlock from '@/components/ae-block.vue'
-import AeIntro from '@/components/ae-intro.vue'
-import AeCta from '@/components/ae-cta.vue'
-import AeBtn from '@/components/ae-btn.vue'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
+
+import AeCta from '@/components/ae-cta.vue'
+import AppIntro from '../../components/app-intro.vue'
 
 export default {
   name: 'start',
   data: function () {
     return {
-      intro: {
-        title: 'Start Migration',
-        intro: `For migrating your ERC20 tokens from Ethereum to the æternity main net you need to safely create a key pair first. Skip this step if you already created one.`
-      },
       tutorials: [
         {
           img: require('@/assets/graphics/airgap-logo.svg'),
@@ -73,10 +74,9 @@ export default {
     }
   },
   components: {
-    AeBlock,
-    AeIntro,
     AeCta,
-    AeBtn,
+
+    AppIntro,
     AeButton,
     AeText
   }

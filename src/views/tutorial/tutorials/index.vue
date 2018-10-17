@@ -8,23 +8,25 @@
         text="Create an Aeternity account with Airgap" />
     </app-header>
     <app-view container>
-      <article class="view__content">
-        <ae-intro :title="intro.title">
-          <router-link to="/provide-address">
-            <ae-button face="round" fill="secondary">I have one already</ae-button>
-          </router-link>
-        </ae-intro>
-        <div class="block"
-             v-for="tutorial in tutorials"
-             :key="tutorial.id">
-          <ae-slider
-            :slides="tutorial.steps"
-            :maintitle="tutorial.title"
-            :condition="tutorial.steps.length > 1">
-          </ae-slider>
-        </div>
-
-      </article>
+      <app-intro>
+        <template slot="title">
+          Generate your key pair with AirGap
+        </template>
+        <template slot="intro">
+          For migrating your ERC20 tokens from ethereum to the æternity
+          main net you need to safely create a key pair first. Skip this step if you already created one.
+        </template>
+        <router-link to="/provide-address">
+          <ae-button face="round" fill="secondary">I have one already</ae-button>
+        </router-link>
+      </app-intro>
+      <div class="block" v-for="tutorial in tutorials" :key="tutorial.id">
+        <ae-slider
+          :slides="tutorial.steps"
+          :maintitle="tutorial.title"
+          :condition="tutorial.steps.length > 1">
+        </ae-slider>
+      </div>
     </app-view>
     <app-footer>
       <router-link to="/provide-address">
@@ -35,22 +37,18 @@
 </template>
 
 <script>
-import AeBlock from '@/components/ae-block.vue'
-import AeIntro from '@/components/ae-intro.vue'
-import AeCta from '@/components/ae-cta.vue'
-import AeBtn from '@/components/ae-btn.vue'
-import AeSlider from '@/components/ae-slider.vue'
-
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
+
+
+import AppIntro from '@/components/app-intro.vue'
+
+import AeCta from '@/components/ae-cta.vue'
+import AeSlider from '@/components/ae-slider.vue'
 
 export default {
   name: 'Tutorials',
   data: function () {
     return {
-      intro: {
-        title: 'Generate your key pair with AirGap',
-        intro: `For migrating your ERC20 tokens from Ethereum to the æternity main net you need to safely create a key pair first. Skip this step if you already created one.`
-      },
       tutorials: [
         {
           title: 'Download & Install AirGap Vault app',
@@ -124,14 +122,10 @@ export default {
     }
   },
   components: {
-    AeBlock,
-    AeIntro,
     AeCta,
-    AeBtn,
     AeSlider,
-    /**
-     * Components page
-     */
+
+    AppIntro,
     AeButton
   }
 }

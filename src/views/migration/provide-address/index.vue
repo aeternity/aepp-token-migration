@@ -8,50 +8,44 @@
         text="Enter your Aeternity account address" />
     </app-header>
     <app-view container>
-      <article class="view__content">
-        <ae-intro :title="intro.title" :intro="intro.intro"/>
-        <ae-block to="/input-address" name="Enter Address Manually" >
-          <ae-cta
-            v-for="(input, index) in inputs"
-            :key="input.id"
-            :img="input.img"
-            :title="input.title"
-            :text="input.text">
-            <router-link :to="input.link">
-              <ae-button
-                :class="[index === 0 ? 'secondary' : 'neutral']"
-                face="round"
-                extend>
-                {{ input.cta }}
-              </ae-button>
-            </router-link>
-          </ae-cta>
-        </ae-block>
-      </article>
+      <app-intro>
+        <template slot="title">
+          Provide your new æternity address
+        </template>
+        <template slot="intro">
+          All of your tokens will be migrated to this address.
+        </template>
+      </app-intro>
+      <app-panel primary padding shadow>
+        <ae-cta
+          v-for="(input, index) in inputs"
+          :key="input.id"
+          :img="input.img"
+          :title="input.title"
+          :text="input.text">
+          <router-link :to="input.link">
+            <ae-button :class="[index === 0 ? 'secondary' : 'neutral']" face="round" extend>
+              {{ input.cta }}
+            </ae-button>
+          </router-link>
+        </ae-cta>
+      </app-panel>
     </app-view>
   </app-view>
 </template>
-
 <script>
-import AeIntro from '@/components/ae-intro.vue'
-import AeBlock from '@/components/ae-block.vue'
-import AeBtn from '@/components/ae-btn.vue'
-import AeCta from '@/components/ae-cta.vue'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 
+import AppIntro from '@/components/app-intro.vue'
+import AeBlock from '@/components/ae-block.vue'
+import AeBtn from '@/components/ae-btn.vue'
+import AeCta from '@/components/ae-cta.vue'
+
 export default {
-  name: 'ProvideAddress',
+  name: 'provide-address',
   data: function () {
     return {
-      scanner: false,
-      addressInput: false,
-      addressIsUnknown: true,
-      paused: false,
-      intro: {
-        title: 'Provide your new æternity address',
-        intro: `All of your tokens will be migrated to this address.`
-      },
       inputs: [
         {
           img: require('@/assets/graphics/airgap-logo.svg'),
@@ -71,14 +65,14 @@ export default {
     }
   },
   components: {
-    AeIntro,
     AeBlock,
     AeBtn,
     AeCta,
+
+    AppIntro,
     AeText,
     AeButton
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

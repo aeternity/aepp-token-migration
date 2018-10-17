@@ -8,13 +8,13 @@
       <slot />
 
       <!-- Identicon with address -->
-      <div class="app-header__identicon" v-if="walletAddress">
+      <div class="app-header__identicon" :class="{ grayscale: !walletAddress }">
         <ae-address
           class="app-header__address"
           :value="walletAddress"
           length="short"
         />
-        <ae-identicon :address="walletAddress" />
+        <ae-identicon :address="walletAddress ? walletAddress : 'none'" />
       </div>
     </div>
   </header>
@@ -76,6 +76,11 @@ export default {
     align-items: center;
     height: 100%;
     padding-right: 2rem;
+
+    &.grayscale {
+      opacity: 0.40;
+      filter: grayscale(95%);
+    }
   }
 
   &__address {

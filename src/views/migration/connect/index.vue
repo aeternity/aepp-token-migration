@@ -8,51 +8,48 @@
         text="Select your wallet where you hold your tokens" />
     </app-header>
     <app-view container>
-      <article class="view__content">
-        <ae-intro :title="intro.title" :intro="intro.intro" />
-        <ae-block>
-          <ae-cta
-            v-for="(connection, index) in connections"
-            :key="connection.id"
-            :img="connection.img"
-            :title="connection.name"
-            :text="connection.text"
-            :data-index="index">
-            <router-link v-if="index === 0" to="/prepare-transactions">
-              <ae-button fill="secondary" face="round" extend>
-                {{ connection.cta }}
-              </ae-button>
-            </router-link>
-            <ae-button v-else fill="neutral" face="round" extend>
+      <app-intro>
+        <template slot="title">
+          Select the wallet where you hold your tokens
+        </template>
+        <template slot="intro">
+          This way we can transfer your AE tokens to the AE Migration Address,
+          which will verify your tokens and let them appear in æternity’s Mainnet.
+        </template>
+      </app-intro>
+      <app-panel primary padding shadow>
+        <ae-cta
+          v-for="(connection, index) in connections"
+          :key="connection.id"
+          :img="connection.img"
+          :title="connection.name"
+          :text="connection.text"
+          :data-index="index">
+          <router-link v-if="index === 0" to="/prepare-transactions">
+            <ae-button fill="secondary" face="round" extend>
               {{ connection.cta }}
             </ae-button>
-          </ae-cta>
-        </ae-block>
-      </article>
+          </router-link>
+          <ae-button v-else fill="neutral" face="round" extend>
+            {{ connection.cta }}
+          </ae-button>
+        </ae-cta>
+      </app-panel>
     </app-view>
   </app-view>
 </template>
 
 <script>
-import AeIntro from '@/components/ae-intro.vue'
-import AeBlock from '@/components/ae-block.vue'
-import AeBtn from '@/components/ae-btn.vue'
-import AeCta from '@/components/ae-cta.vue'
-import AeAddressBlock from '@/components/ae-address-block.vue'
-
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
+
+import AppIntro from '@/components/app-intro.vue'
+import AeCta from '@/components/ae-cta.vue'
 
 export default {
   name: 'Connect',
   data: function () {
     return {
-      scanner: false,
-      // address: false,
-      intro: {
-        title: 'Select the wallet where you hold your tokens',
-        intro: `This way we can transfer your AE tokens to the AE Migration Address, which will verify your tokens and let them appear in æternity’s Mainnet.`
-      },
       connections: [
         {
           name: 'Meta Mask',
@@ -70,15 +67,11 @@ export default {
         }
 
       ]
-
     }
   },
   components: {
-    AeIntro,
-    AeBlock,
-    AeBtn,
     AeCta,
-    AeAddressBlock,
+    AppIntro,
     AeButton,
     AeIcon
   }
