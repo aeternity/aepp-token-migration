@@ -17,6 +17,7 @@
     "truffle": "^4.1.14",
     "truffle-contract": "^3.0.6",
     "vue": "^2.5.17",
+    "vue-affix": "^0.4.0",
     "vue-agile": "^0.3.7",
     "vue-popperjs": "^1.2.6",
     "vue-qrcode-reader": "^1.2.2",

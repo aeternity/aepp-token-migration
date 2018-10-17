@@ -20,6 +20,7 @@ $magenta : #F7296E;
 $white : #FFFFFF;
 $black : #1E1E1E;
 $grey : #D3DCE6;
+$dark-grey : #4E5A66;
 $darkgrey : #929CA6;
 
 //buttoncolors
@@ -32,11 +33,11 @@ $bg-color: #EDF3F7;
 $shadow: 0 0 16px 0 rgba(27,68,121,0.10);
 $shadow_wide:  0 0 25px 0 rgba(27,68,121,0.40);
 $phone-width: 768px;
-$desktop-width : 900px;
+$desktop-width : 1000px;
 
 ;
 $base-line-height: 1.75rem;
-$base-font-size: 18px;
+$base-font-size: 16px;
 
 $font-sizes: (
   xxs: (11px / $base-font-size) * 1rem, //0.6111111111111112em

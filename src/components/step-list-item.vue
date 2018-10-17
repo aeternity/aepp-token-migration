@@ -1,40 +1,48 @@
 <template>
-    <li class="step-list-item">
-      <span class="step-list-item__number">
-        <span class="step-list-item__number__text">Step</span>
-      </span>
+    <li class="step-list-item"
+      :class="{ 'is-active': isActive }"
+      >
+      <div class="step-list-item__number">
+        <div class="step-list-item__inner-wrapper">
+          <div class="step-list-item__number__text">{{ name }}</div>
+          <slot name="number"/>
+        </div>
+      </div>
       <article class="step-list-item__info">
-        <slot/>
+        <slot name="info"/>
       </article>
     </li>
 </template>
 
 <script>
-export default {
-  name: 'step-list-item',
-}
+  export default {
+    name: 'step-list-item',
+    props: {
+      isActive: Boolean,
+      name: String
+    }
+  }
 </script>
 <style lang="scss">
 .step-list-item {
   display: flex;
   box-shadow: $shadow_wide;
-  @include only-phone{
-    flex-direction: column;
-  }
+  margin-bottom: $spacer-xl;
+  width: 100%;
   @include tablet-and-desktop {
     margin-bottom: $spacer-xl;
+  }
 
+  &__inner-wrapper {
+    margin: auto;
   }
 
   &__number {
     display: flex;
-    background-color: $magenta;
-    color: $white;
     padding: $spacer-m;
     @include tablet-and-desktop{
-      width: 19rem;
-      padding: $spacer-l;
       text-align: center;
+      padding: $spacer-l;
       position: relative;
     }
 
@@ -44,18 +52,18 @@ export default {
       display: block;
       margin: auto;
       @include tablet-and-desktop {
-         @include font-size(xs);
          font-weight: normal;
       }
       &:after {
         counter-increment: count-steps;
         content: counter(count-steps);
-
-
         font-weight: bold;
         line-height: .9em;
+        margin-left: .4em;
         @include tablet-and-desktop {
-          font-size: 6rem;
+          margin: 0;
+          padding: $spacer-m;
+          font-size: 8.5rem;
           display: block;
         }
       }
@@ -63,19 +71,73 @@ export default {
   }
   &__info {
     padding: $spacer-l;
-    padding-left: $spacer-xl;
+    @include tablet-and-desktop {
+      padding: $spacer-l;
+      padding-left: $spacer-xl;
+    }
   }
 }
-.step-list-item:not(:last-child) .step-list-item__number:after{
-  content: '';
-  height: $spacer-xl;
-  width: 1px;
-  display: block;
-  background-color: $black;
-  position: absolute;
-  bottom: -$spacer-xl;
-  left: 50%;
-  transform: translate(-50%);
+.is-primary {
+  .step-list-item {
+    flex-direction: column;
+    @include tablet-and-desktop {
+      flex-direction: row;
+    }
+    &__number{
+      background-color: $magenta;
+      color: $white;
+      @include tablet-and-desktop{
+        text-align: center;
+        position: relative;
+        width: 100%;
+        max-width: 18rem;
+      }
+    }
+  }
+
+
+}
+.is-secondary {
+  .step-list-item {
+    flex-direction: column;
+    text-align: center;
+      @include tablet-and-desktop {
+        width: 100%;
+        max-width: 18rem;
+      }
+      @include only-desktop {
+        margin-right: $spacer-l;
+        &:last-child {
+          margin-right: 0;
+        }
+    }
+
+    &__number{
+      background-color: $bg-color;
+      color: $dark-grey;
+      margin-bottom: $spacer-l;
+    }
+  }
+  .is-active .step-list-item {
+    &__number{
+      background-color: $dark-grey;
+      color: $white;
+    }
+  }
+}
+
+@include tablet-and-desktop {
+  .is-primary .step-list-item:not(:last-child) .step-list-item__number:after{
+    content: '';
+    height: $spacer-xl;
+    width: 2px;
+    display: block;
+    background-color: $black;
+    position: absolute;
+    bottom: -$spacer-xl;
+    left: 50%;
+    transform: translate(-50%);
+  }
 }
 
 </style>

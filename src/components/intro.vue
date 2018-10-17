@@ -11,8 +11,7 @@ export default {
 <style lang="scss" scoped>
 .intro {
   text-align: center;
-  max-width: 28em;
-  margin: $spacer-xl auto;
+
 
   &__footer {
     margin-top: $spacer-l;
