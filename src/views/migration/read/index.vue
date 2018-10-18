@@ -1,10 +1,12 @@
 <template>
-  <main class="view" :class="this.$options.name">
-    <app-header />
-    <article class="view__content">
+  <app-view>
+    <app-header>
+      <app-header-nav prog="3/5" text="Enter your Aeternity account address"/>
+    </app-header>
+    <app-view container>
       <h1>Read from Ledger</h1>
-    </article>
-  </main>
+    </app-view>
+  </app-view>
 </template>
 
 <script>

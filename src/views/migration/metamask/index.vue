@@ -16,25 +16,41 @@
       </app-intro>
       <app-panel shadow>
         <app-panel primary padding>
+          <template slot="header">
+            hello
+          </template>
           <app-intro>
             <template slot="subtitle">
               Migration Process
             </template>
             <template slot="intro">
-              The tokens aren't being transferred directly to your æternity address,
-              but first to an AE Migration address.
-              The moment that you can expect your tokens in the Mainnet, depends on the phase.
+              The tokens aren't being transferred directly to your æternity address, <br />
+              but first to an AE Migration address. The moment that you can expect <br />
+              your tokens in the Mainnet, depends on the phase.
             </template>
           </app-intro>
-        </app-panel>
-        <app-panel padding primary>
           <ae-avatar :address="walletAddress" />
           {{ balance }}
         </app-panel>
-        <app-panel padding secondary>
+        <app-panel primary padding>
+          <app-intro>
+            <template slot="subtitle">
+              AE Token Balance
+            </template>
+            <template slot="intro">
+              Define the amount of tokens you want to migrate here. You can <br />
+              migrate all your tokens at once, or in multiple steps.
+            </template>
+          </app-intro>
           <input type="text" v-model="amount" style="width: 100%; height: 40px; border: none; margin: 50px 0" />
-          <br />
-          <ae-button face="round" fill="secondary" extend @click="connectMetaMask(amount, walletAddress)">Migrate</ae-button>
+          <ae-button face="round" fill="secondary" extend @click="migrate(amount, walletAddress)">Migrate</ae-button>
+        </app-panel>
+        <app-panel padding secondary>
+          <ae-icon name="info" />
+          <ae-text>
+            The transaction you’re about to make will not send any ETH, will only use ETH for gas.
+            The amount of tokens that you send will be stored in the data tab in MetaMask.
+          </ae-text>
         </app-panel>
       </app-panel>
     </app-view>
@@ -90,56 +106,23 @@ export default {
     },
 
     async getBalanceOf () {
-      //var web3 = this.web3
-      //var coinbase = await web3.eth.getCoinbase()
-      //var abi = require('human-standard-token-abi')
-      //var token = new web3.eth.Contract(abi, this.AEToken)
-      //token.methods.balanceOf(coinbase).call().then((res) => this.setEthereumBalance(res))
-
       this.$getAEBalance().then((res) => this.setEthereumBalance(res))
     },
 
     /**
      * Connect to Metamask
      */
-    async connectMetaMask (_amount, _sender) {
-      //const abi = require('human-standard-token-abi')
-      //const token = new this.web3.eth.Contract(abi, this.AEToken)
-      //// Why is there an instance here? of the token burner
-      //// var tokenBurner = new this.web3.eth.Contract(tokenBurnerAbi, this.TokenBurner)
-      //const coinbase = await this.web3.eth.getCoinbase()
-      ///**
-      // * Payload should never be
-      // * generated when there's no address
-      // *
-      // * always doublecheck if there is an address
-      // */
-      //const payload = ethereumjs
-      //  .rawEncode(['uint256'], [0x80])
-      //  .toString('hex') + ethereumjs.rawEncode(['uint256'], [0x34]).toString('hex') + this.web3.utils.padRight(
-      //  // this.web3.utils.fromUtf8('ak_wmZUvZWrVibPM2PuSGhgWmMQXchEWgRTbwBp7tYUcPyBYHnpR').slice(2), 64
-      //  this.web3.utils.fromUtf8(_sender).slice(2), 64
-      //)
-      //
-      //token
-      //  .methods
-      //  .approveAndCall(this.TokenBurner, this.web3.utils.toWei(_amount, 'ether'), '0x' + payload)
-      //  .send({ from: coinbase })
-      //  .then((results) => {
-      //    console.log(results)
-      //    this.$router.push('/migration-results')
-      //  })
-      //
-      //// AEToken.setProvider(web3.currentProvider)
-      //// TokenBurner.setProvider(web3.currentProvider)
-      //
-      //// this.web3.eth.getAccounts((err, accs) => {
-      ////  console.log(err, accs)
-      //// })
-
-      return this.$migrateTokens(_amount, this.$encodePayload(_sender))
+    async migrate (_amount, _sender) {
+      return this
+        .$migrateTokens(_amount, this.$encodePayload(_sender))
+        .then(
+          () => this.$router.push({ name: 'result' })
+        )
     }
   },
+  /**
+   * Update Later
+   */
   mounted: function () {
     this.getBalanceOf()
     this.$checkNetwork(42)

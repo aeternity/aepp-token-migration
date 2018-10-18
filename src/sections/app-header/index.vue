@@ -15,7 +15,7 @@
           :value="walletAddress"
           length="short"
         />
-        <router-link :to="{ name: 'index' }">
+        <router-link :to="{ name: 'scan' }">
           <ae-identicon :address="walletAddress ? walletAddress : 'none'" />
         </router-link>
       </div>

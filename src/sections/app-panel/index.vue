@@ -33,6 +33,12 @@ export default {
 
   &.padding {
     padding: 3rem;
+
+    > .app-panel-header {
+      margin-top: -3rem;
+      margin-right: -3rem;
+      margin-left: -3rem;
+    }
   }
   &.shadow {
     box-shadow: 0 0 25px rgba(0, 33, 87, 0.40);
@@ -47,5 +53,6 @@ export default {
   background: $color-white;
   box-shadow: 0 0 16px $color-shadow-alpha-15;
   height: 5.125rem;
+  margin-bottom: 3rem;
 }
 </style>

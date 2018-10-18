@@ -36,7 +36,7 @@ export default {
   &__subtitle {
     @extend %face-sans-l;
 
-    font-size: rem(20px);
+    font-size: rem(23px);
     font-weight: bold;
     line-height: 2rem;
   }
