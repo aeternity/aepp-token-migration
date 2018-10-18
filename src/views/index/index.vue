@@ -46,7 +46,7 @@ export default {
       hero: {
         title: 'Migrate your AE tokens to the æternity mainnet',
         text: `The Mainnet is almost ready! All the AE tokens you own on Ethereum can now be migrated to the mainnet. With this tool we guide you securely through the process.`,
-        link: '/start',
+        link: '/begin',
         cta: 'Start Migration'
       },
       intro: {
@@ -55,7 +55,7 @@ export default {
       },
       cta: {
         title: 'How to migrate',
-        link: '/start',
+        link: '/begin',
         cta: 'Start Migration',
         text: `All the AE Tokens that are going to be migrated with this tool, will be available in the Mainnet after a certain period of time.`
       },

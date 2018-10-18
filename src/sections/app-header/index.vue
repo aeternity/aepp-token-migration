@@ -1,6 +1,6 @@
 <template>
   <header class="app-header">
-    <router-link :to="{ name: 'landing' }" class="app-header__logo">
+    <router-link :to="{ name: 'index' }" class="app-header__logo">
       <img :src="require('@/assets/logo.svg')" alt="æternity">
     </router-link>
     <div class="app-header__slot">
@@ -10,11 +10,14 @@
       <!-- Identicon with address -->
       <div class="app-header__identicon" :class="{ grayscale: !walletAddress }">
         <ae-address
+          v-if="walletAddress"
           class="app-header__address"
           :value="walletAddress"
           length="short"
         />
-        <ae-identicon :address="walletAddress ? walletAddress : 'none'" />
+        <router-link :to="{ name: 'index' }">
+          <ae-identicon :address="walletAddress ? walletAddress : 'none'" />
+        </router-link>
       </div>
     </div>
   </header>

@@ -25,22 +25,24 @@ export default {
   margin: 0 auto $spacer-xl;
 
   &__title {
-    @include font-size(xxl);
+    @extend %face-sans-l;
 
+    font-size: rem(55px);
     font-weight: bold;
-    line-height: 1.1em;
-    margin-bottom: .5em;
+    line-height: 4.0625rem;
+    color: $color-neutral-negative-3;
+    margin: 1.5rem 0;
   }
-   &__subtitle {
-    @include font-size(xl);
+  &__subtitle {
+    @extend %face-sans-l;
 
+    font-size: rem(20px);
     font-weight: bold;
-    line-height: 1.2em;
-    margin-bottom: .5em;
+    line-height: 2rem;
   }
 
   &__text {
-    @include font-size(m);
+    @extend %face-sans-base;
 
     margin: 0 auto;
   }

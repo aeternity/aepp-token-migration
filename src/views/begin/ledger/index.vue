@@ -1,40 +1,47 @@
 <template>
-  <div :class="this.$options.name">
-    <app-header />
-    <article class="view__content">
-      <ae-intro :title="intro.title">
-        <ae-btn to="/provide-address" :is_secondary="true">I have one already</ae-btn>
-      </ae-intro>
-      <div class="block"
-           v-for="tutorial in tutorials"
-           :key="tutorial.id">
+  <app-view>
+    <app-header>
+      <app-header-nav
+        prog="2/5"
+        :prev="{ name: 'start' }"
+        :next="{ name: 'provide-address' }"
+        text="Create an Aeternity account with Airgap" />
+    </app-header>
+    <app-view container>
+      <app-intro>
+        <template slot="title">
+          Create an æternity account with AirGap
+        </template>
+        <router-link to="/migration">
+          <ae-button face="round" fill="secondary">I already have an account</ae-button>
+        </router-link>
+      </app-intro>
+      <div class="block" v-for="tutorial in tutorials" :key="tutorial.id">
         <ae-slider
           :slides="tutorial.steps"
           :maintitle="tutorial.title"
           :condition="tutorial.steps.length > 1">
         </ae-slider>
       </div>
-      <app-footer>
-        <ae-btn to="/provide-address" :is_primary="true">Done, start migration</ae-btn>
-      </app-footer>
-    </article>
-  </div>
+    </app-view>
+    <app-footer>
+      <router-link to="/migration">
+        <ae-button face="round" fill="primary" shadow>Start Migration</ae-button>
+      </router-link>
+    </app-footer>
+  </app-view>
 </template>
+
 <script>
-import AeBlock from '@/components/ae-block.vue'
-import AeIntro from '@/components/ae-intro.vue'
-import AeCta from '@/components/ae-cta.vue'
-import AeBtn from '@/components/ae-btn.vue'
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+
+import AppIntro from '@/components/app-intro.vue'
 import AeSlider from '@/components/ae-slider.vue'
 
 export default {
-  name: 'ledger-wallet',
+  name: 'Tutorials',
   data: function () {
     return {
-      intro: {
-        title: 'Generate your key pair with AirGap',
-        intro: `For migrating your ERC20 tokens from Ethereum to the æternity main net you need to safely create a key pair first. Skip this step if you already created one.`
-      },
       tutorials: [
         {
           title: 'Download & Install AirGap Vault app',
@@ -108,14 +115,26 @@ export default {
     }
   },
   components: {
-    AeBlock,
-    AeIntro,
-    AeCta,
-    AeBtn,
-    AeSlider
+    AppIntro,
+    AeSlider,
+    AeButton
   }
 }
 </script>
-<style lang="scss">
-  .ledger-wallet {}
+<style lang="scss" scoped>
+.block {
+  margin-bottom: 10%;
+}
+
+.ae-slider {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  &_single {
+    padding-top: 3rem;
+    padding-left: 2rem;
+  }
+}
+
 </style>

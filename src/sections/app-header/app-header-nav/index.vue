@@ -1,30 +1,30 @@
 <template>
   <div class="app-header-nav">
-    <div class="app-header-nav__menu" v-if="prev && prog && next">
-      <router-link :to="prev">
+    <div class="app-header-nav__menu">
+      <ae-button @click="$router.go(-1)">
         <ae-icon name="left-more" class="app-header-nav__rotate" />
-      </router-link>
+      </ae-button>
       {{ prog }}
-      <router-link :to="next">
+      <ae-button @click="$router.go(1)">
         <ae-icon name="left-more" />
-      </router-link>
+      </ae-button>
     </div>
     <p class="app-header-nav__text">{{ text }}</p>
   </div>
 </template>
 <script>
 import AeText from '@aeternity/aepp-components/dist/ae-text'
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 
 export default {
   name: 'app-header-nav',
   components: {
     AeText,
+    AeButton,
     AeIcon
   },
   props: {
-    prev: [Object, String],
-    next: [Object, String],
     prog: String,
     text: String
   }
@@ -47,7 +47,7 @@ export default {
     height: 100%;
     line-height: 1;
 
-    > /deep/ a > .ae-icon {
+    > /deep/ .ae-button > .ae-icon {
       font-size: 1.5rem;
       margin: 0 0.5rem;
     }

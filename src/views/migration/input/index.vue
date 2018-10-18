@@ -1,9 +1,20 @@
 <template>
   <app-view>
-    <app-header />
+    <app-header>
+      <app-header-nav prog="4/5" text="Select your wallet where you hold your tokens" />
+    </app-header>
     <app-view container>
       <article class="view__content">
-        <ae-intro  :subtitle="intro.title" :intro="intro.intro"/>
+        <app-intro>
+          <template slot="title">
+            Enter your æternity account address
+          </template>
+          <template slot="intro">
+            Please make sure the address below is the correct æternity address which you made.
+            All AE tokens will be sent to this address.
+            You cannot change the address your tokens will be sent to later!
+          </template>
+        </app-intro>
         <ae-address-block :address="walletAddress" >
           <template slot="body">
             <input type="text" v-model="manualAddressInput">
@@ -27,7 +38,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import AeIntro from '@/components/ae-intro.vue'
 import AeBlock from '@/components/ae-block.vue'
 import AeAddressBlock from '@/components/ae-address-block.vue'
 
@@ -37,6 +47,8 @@ import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
+import AppIntro from '../../../components/app-intro.vue'
+
 export default {
   name: 'input-address',
   data: function () {
@@ -44,16 +56,11 @@ export default {
       scanner: false,
       addressInput: false,
       addressIsUnknown: true,
-      paused: false,
-      intro: {
-        title: 'Enter your æternity account address',
-        intro: `Please make sure the address below is the correct æternity address which you made. All AE tokens will be sent to this address. You cannot change the address your tokens will be sent to later!
-        `
-      }
+      paused: false
     }
   },
   components: {
-    AeIntro,
+    AppIntro,
     AeBlock,
     AeText,
     AeInput,

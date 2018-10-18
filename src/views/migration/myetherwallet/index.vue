@@ -1,21 +1,30 @@
 <template>
-  <main class="view" :class="this.$options.name">
-    <app-header />
-    <article class="view__content">
-      <ae-intro :title="intro.title" :intro="intro.intro" />
-      <ae-block>
+  <app-view>
+    <app-header>
+      <app-header-nav prog="5/5" text="Prepare your transaction with MetaMask" />
+    </app-header>
+    <app-view container>
+      <app-intro>
+        <template slot="title">
+          Input Data Decoder Tool
+        </template>
+        <template slot="intro">
+          Use this tool to decode the input data of the transaction
+        </template>
+      </app-intro>
+      <app-panel padding shadow>
         <div>
           <textarea v-model="inputData" />
         </div>
-      </ae-block>
-      <ae-block>
-        <div>{{inputData}}</div>
-      </ae-block>
-      <ae-block>
-        <div>{{decodedInputData}}</div>
-      </ae-block>
-    </article>
-  </main>
+        <app-panel>
+          <div>{{inputData}}</div>
+        </app-panel>
+        <app-panel>
+          <div>{{decodedInputData}}</div>
+        </app-panel>
+      </app-panel>
+    </app-view>
+  </app-view>
 </template>
 
 <script>
@@ -24,9 +33,8 @@ import { mapState, mapActions } from 'vuex'
 import tokenBurnerAbi from '@/assets/token-burner-abi.json'
 import abi from 'ethereumjs-abi'
 import tokenAbi from 'human-standard-token-abi'
-import AeIntro from '@/components/ae-intro.vue'
+import AppIntro from '../../../components/app-intro.vue'
 import AeBlock from '@/components/ae-block.vue'
-import AeBtn from '@/components/ae-btn.vue'
 import AeAddressBlock from '@/components/ae-address-block.vue'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
@@ -35,20 +43,15 @@ window.Web4 = Web3
 window.abi = abi
 
 export default {
-  name: 'Connect',
+  name: 'myetherwallet',
   data: function () {
     return {
-      intro: {
-        title: 'Input Data Decoder Tool',
-        intro: `Use this tool to decode the input data of the transaction`
-      },
       inputData: 'cae9ca510000000000000000000000004ecd812b010d9db16b0fb7143a79786b65b89b0900000000000000000000000000000000000000000000000000038d7ea4c680000000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000007400000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000034616b5f776d5a55765a5772566962504d32507553476867576d4d51586368455767525462774270377459556350794259486e7052000000000000000000000000'
     }
   },
   components: {
-    AeIntro,
+    AppIntro,
     AeBlock,
-    AeBtn,
     AeAddressBlock,
     AeButton,
     AeIcon,
