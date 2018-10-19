@@ -5,13 +5,12 @@
 </template>
 <script>
 export default {
-  name: 'intro',
+  name: 'intro'
 }
 </script>
 <style lang="scss" scoped>
 .intro {
   text-align: center;
-
 
   &__footer {
     margin-top: $spacer-l;

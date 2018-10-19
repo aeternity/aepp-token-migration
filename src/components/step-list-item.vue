@@ -15,13 +15,13 @@
 </template>
 
 <script>
-  export default {
-    name: 'step-list-item',
-    props: {
-      isActive: Boolean,
-      name: String
-    }
+export default {
+  name: 'step-list-item',
+  props: {
+    isActive: Boolean,
+    name: String
   }
+}
 </script>
 <style lang="scss">
 .step-list-item {
@@ -94,7 +94,6 @@
       }
     }
   }
-
 
 }
 .is-secondary {
