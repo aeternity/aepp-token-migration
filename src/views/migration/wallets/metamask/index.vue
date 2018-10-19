@@ -67,7 +67,7 @@ import AeAvatar from '@aeternity/aepp-components/dist/ae-identicon'
 import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
-import AppIntro from '../../../components/app-intro.vue'
+import AppIntro from '../../../../components/app-intro.vue'
 
 export default {
   name: 'metamask',

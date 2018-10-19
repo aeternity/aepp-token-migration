@@ -39,7 +39,7 @@
           The Mainnet is almost ready! All the AE tokens you own on Ethereum can now be migrated to the mainnet. With this tool we guide you securely through the process.
         </p>
         <div class="button-wrapper">
-          <router-link to="/start">
+          <router-link :to="{ name: 'begin' }">
             <ae-button face="round" fill="primary" extend>
               Start Migration
             </ae-button>
