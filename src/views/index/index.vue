@@ -421,12 +421,6 @@ export default {
   overflow: hidden;
 }
 
-.menu {
-  //position: relative;
-  //overflow: hidden;
-  //width:  1.7rem;
-}
-
 .menu-icon {
   font-size: 1.7rem;
 }
