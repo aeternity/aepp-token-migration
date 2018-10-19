@@ -1,12 +1,12 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="3/5" text="Enter your Aeternity account address" />
+      <app-header-nav prog="3/6" text="Enter your Aeternity account address" />
     </app-header>
     <app-view container>
       <app-intro>
         <template slot="title">
-          Provide your new æternity address
+          Provide your new <br /> æternity address
         </template>
         <template slot="intro">
           All of your tokens will be migrated to this address.
@@ -24,7 +24,7 @@
               Choose in Airgap the æternity wallet and show the QR code.
             </template>
             <router-link :to="{ name: 'scan' }" slot="button">
-              <ae-button face="round" fill="primary" extend>Scan from Airgap</ae-button>
+              <ae-button face="round" fill="secondary" extend>Scan from Airgap</ae-button>
             </router-link>
           </app-column>
           <app-separator>or</app-separator>
@@ -38,7 +38,7 @@
               as soon as the æternity app op the Ledger is open.
             </template>
             <router-link :to="{ name: 'read' }" slot="button">
-              <ae-button face="round" fill="neutral" extend>Read Address from Ledger</ae-button>
+              <ae-button class="ae-button-ledger" face="round" extend>Read Address from Ledger</ae-button>
             </router-link>
           </app-column>
         </app-row>

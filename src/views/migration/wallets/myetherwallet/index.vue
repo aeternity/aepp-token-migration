@@ -1,7 +1,7 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="5/5" text="Prepare your transaction with MetaMask" />
+      <app-header-nav prog="6/6" text="Prepare your transaction with MetaMask" />
     </app-header>
     <app-view container>
       <app-intro>

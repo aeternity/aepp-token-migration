@@ -1,7 +1,7 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="3/5" text="Enter your Aeternity account address"/>
+      <app-header-nav prog="4/6" text="Enter your Aeternity account address"/>
     </app-header>
     <app-view container>
       <app-intro>
@@ -43,10 +43,7 @@
       </app-panel>
     </app-view>
     <qrcode-reader class="app-scan" @decode="onDecode" :paused="paused" :camera="!paused" v-show="scanner">
-      <app-header>
-        <app-header-nav prog="3/5" text="Enter your Aeternity account address"/>
-      </app-header>
-      <ae-button class="app-scan__btn" @click="closeScanner" face="icon" fill="neutral" :disabled="!walletAddress">
+      <ae-button class="app-scan__btn" @click="closeScanner" face="icon" fill="neutral">
         <ae-icon name="close"/>
       </ae-button>
     </qrcode-reader>
@@ -106,6 +103,7 @@ export default {
     },
     closeScanner () {
       this.scanner = false
+      this.$router.go(-1)
     },
     toggleRescan () {
       this.paused = false
@@ -143,7 +141,7 @@ export default {
 
   &__btn {
     position: fixed;
-    top: 6rem;
+    top: 2rem;
     right: 2rem;
   }
 

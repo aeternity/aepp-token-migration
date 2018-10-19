@@ -1,5 +1,5 @@
 <template>
-  <section class="app-column">
+  <div class="app-column">
     <figure class="app-column__img">
       <slot name="image" />
     </figure>
@@ -12,7 +12,7 @@
     <div class="app-column__btn">
       <slot name="button" />
     </div>
-  </section>
+  </div>
 </template>
 <script>
 export default {

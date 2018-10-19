@@ -1,12 +1,12 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="4/5" text="Select your wallet where you hold your tokens" />
+      <app-header-nav prog="5/6" text="Select your wallet where you hold your tokens" />
     </app-header>
     <app-view container>
       <app-intro>
         <template slot="title">
-          Select the wallet where you hold your tokens
+          Select your wallet where you <br /> hold your tokens
         </template>
         <template slot="intro">
           For now, we only support migrating with MetaMask and MyEtherWallet.
@@ -38,11 +38,16 @@
               If you use MyEtherWallet, we are going to prepare the transaction there and you will be forwarded.
             </template>
             <router-link :to="{ name: 'myetherwallet' }" slot="button">
-              <ae-button face="round" fill="neutral" extend>Proceed on MEW</ae-button>
+              <ae-button class="ae-button-ledger" face="round" extend>Proceed on MEW</ae-button>
             </router-link>
           </app-column>
         </app-row>
       </app-panel>
+      <app-intro style="padding-top: 4rem; margin-bottom: 0">
+        <template slot="intro">
+          It is also possible to use another web3 desktop wallet/browser <br /> instead of MetaMask.
+        </template>
+      </app-intro>
     </app-view>
   </app-view>
 </template>

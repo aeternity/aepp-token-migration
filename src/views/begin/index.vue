@@ -1,17 +1,17 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="1/5" text="Begin migrating your AE tokens"/>
+      <app-header-nav prog="1/6" text="Begin migrating your AE tokens"/>
     </app-header>
     <app-view container>
       <app-intro>
         <template slot="title">
-          Begin migrating your AE tokens
+          Create an aeternity account
         </template>
         <template slot="intro">
-          Before you can migrate your AE tokens from Ethereum to the
-          æternity Mainnet you need to have an æternity account.
-          You can skip this step if you already have an æternity account.
+          For highest security it is recommended to use AirGap or Ledger <br />
+          Nano S. This requires an installation of Airgap on a mobile device <br />
+          or a connection with Ledger Nano S.
         </template>
         <router-link :to="{ name: 'migration' }">
           <ae-button face="flat">Skip this step</ae-button>
@@ -29,7 +29,7 @@
               A secure way to store your key pair in a mobile app.
             </template>
             <router-link to="/begin/airgap" slot="button">
-              <ae-button face="round" fill="primary" extend>Get Started</ae-button>
+              <ae-button face="round" fill="secondary" extend>Get Started</ae-button>
             </router-link>
           </app-column>
           <app-separator>or</app-separator>
@@ -43,17 +43,30 @@
               A secure way to store your key pair on a hardware ledger.
             </template>
             <router-link to="/begin/ledger" slot="button">
-              <ae-button face="round" fill="neutral" extend>Get Started</ae-button>
+              <ae-button class="ae-button-ledger" face="round" extend>Get Started</ae-button>
             </router-link>
           </app-column>
         </app-row>
       </app-panel>
+      <app-intro style="padding-top: 4rem; margin-bottom: 0">
+        <template slot="intro">
+          Other options to create an æternity account are also available, <br />
+          they are explained in our blogpost.
+        </template>
+        <router-link :to="{ name: 'migration' }">
+          <ae-button face="flat">
+            <ae-icon name="link" />
+            Read how to
+          </ae-button>
+        </router-link>
+      </app-intro>
     </app-view>
   </app-view>
 </template>
 
 <script>
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
+import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 
 import AppIntro from '../../components/app-intro.vue'
@@ -65,6 +78,7 @@ export default {
   name: 'begin',
   components: {
     AeButton,
+    AeIcon,
     AeText,
     AppIntro,
     AppRow,

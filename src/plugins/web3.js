@@ -23,15 +23,25 @@ export default {
       $web3 = new Web3(window.web3.currentProvider)
 
       Object.assign(Vue.prototype, { $web3 })
-    } else {
-      throw Error('web3 from metamask was not found!')
     }
 
     /**
-     * Check if the user is logged in MetaMask
+     * Check if the browser has web3 installed
+     * @return {Promise<undefined>}
+     */
+    Vue.prototype.$hasWeb3 = async function () {
+      if (typeof window.web3 === 'undefined') {
+        throw Error('No web3 provider found on the browser!')
+      }
+
+      return undefined
+    }
+
+    /**
+     * Check if the user is logged in to a web wallet
      * @return {Promise<void>}
      */
-    Vue.prototype.$isLoggedInMetamask = async function () {
+    Vue.prototype.$isLoggedIn = async function () {
       if (!$web3) {
         throw Error('$web3 is not installed!')
       }
@@ -39,7 +49,7 @@ export default {
       const accounts = await $web3.eth.getAccounts()
 
       if (accounts.length === 0) {
-        throw Error('Used not logged in!')
+        throw Error('You\'re not logged in!')
       }
     }
 
@@ -153,8 +163,15 @@ export default {
           options.tokenBurner,
           $web3.utils.toWei(_amount, 'ether'),
           _payload
-        )
-        .send({ from: coinbase })
+        ).send({ from: coinbase })
+    }
+
+    /**
+     * https://www.myetherwallet.com/?to=0x35d8830ea35e6df033eedb6d5045334a4e34f9f9&value=0&gaslimit=300000&data=cae9ca510000000000000000000000004ecd812b010d9db16b0fb7143a79786b65b89b0900000000000000000000000000000000000000000000000000038d7ea4c680000000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000007400000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000034616b5f776d5a55765a5772566962504d32507553476867576d4d51586368455767525462774270377459556350794259486e7052000000000000000000000000#send-transaction
+     * @return {Promise<void>}
+     */
+    Vue.prototype.$migrateThroughMEW = async function () {
+
     }
   }
 }
