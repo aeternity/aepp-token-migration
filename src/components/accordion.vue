@@ -1,16 +1,20 @@
 <template>
-  <div class="accordion" :class="{ active: open }">
-    <h4 @click="toggle" class="accordion__title">{{ title }}</h4>
-    <span class="accordion__icon">+</span>
-    <div class="accordion__content" v-show="open">
-      <slot />
+  <div class="accordion" :class="{ 'is-open': open }">
+    <div class="accordion__subject" @click="toggle">
+      <slot name="title"/>
+      <ae-icon :name="`${ open ? 'close' : 'plus'}`" fill="primary" size="2.5rem"/>
+    </div>
+    <div class="accordion__content">
+      <slot name="body"/>
     </div>
   </div>
 </template>
 
 <script>
+import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
+
 export default {
-  name: 'Accordion',
+  name: 'accordion',
   props: ['title', 'accordion'],
   data: function () {
     return {
@@ -21,7 +25,11 @@ export default {
     toggle (accordion) {
       this.open = !this.open
     }
+  },
+  components: {
+    AeIcon
   }
+
 }
 </script>
 <style lang="scss" scoped>
@@ -30,23 +38,25 @@ $color: $aubergin;
 .accordion {
   width: 100%;
   text-align: left;
+  margin-top:  $spacer-m;
+  padding-bottom: $spacer-m;
+  border-bottom: 2px solid $grey;
+
+  &__subject {
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__content {
+    height: 0;
+    overflow: hidden;
+    transition: height .3s ease;
+  }
+}
+.is-open .accordion__content{
+  height: auto;
 }
 
-.accordion__title {
-  display: inline-block;
-  width: 30%;
-  vertical-align: middle;
-  color: $color;
-  font: normal 500 1rem/150% 'Roboto Mono', monospace;
-}
-
-.accordion__icon {
-  font-size: 2em;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.active .accordion__icon {
-  transform: rotate(45deg);
-}
 </style>

@@ -4,11 +4,6 @@
 // *****************************
 //------------------------------
 
-h1, h2, h3, h4, h5, h6, p {
-  line-height: $base-line-height;
-  font-weight: normal;
-}
-
 p {
   line-height: $base-line-height;
   font-size: $base-font-size;
@@ -20,5 +15,24 @@ a {
 
   &:hover {
     color: $color-primary;
+  }
+}
+
+.title {
+  font-weight: 600;
+  line-height: 1.2em;
+
+  &-main {
+    @include font-size(xxxxl);
+  }
+  &-sub {
+    @include font-size(xxxl);
+  }
+  &-category {
+    @include font-size(xxl);
+    margin-bottom: $spacer-m;
+  }
+  &-subcategory {
+    @include font-size(xl);
   }
 }
