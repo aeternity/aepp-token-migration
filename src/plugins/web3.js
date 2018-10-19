@@ -28,6 +28,22 @@ export default {
     }
 
     /**
+     * Check if the user is logged in MetaMask
+     * @return {Promise<void>}
+     */
+    Vue.prototype.$isLoggedInMetamask = async function () {
+      if (!$web3) {
+        throw Error('$web3 is not installed!')
+      }
+
+      const accounts = await $web3.eth.getAccounts()
+
+      if (accounts.length === 0) {
+        throw Error('Used not logged in!')
+      }
+    }
+
+    /**
      * Returns the balance in AE of the address holder
      * @return {Promise<any>}
      */

@@ -13,3 +13,12 @@ p {
   line-height: $base-line-height;
   font-size: $base-font-size;
 }
+
+a {
+  color: $color-black;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}

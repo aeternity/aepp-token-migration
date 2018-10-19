@@ -29,9 +29,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .ae-slide {
-  width: 75%;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   overflow: visible;
   box-shadow: $shadow;
   background: $white;
@@ -58,7 +58,6 @@ export default {
     & img {
       object-fit: contain;
       object-position: 100% 100%;
-
     }
   }
 }
