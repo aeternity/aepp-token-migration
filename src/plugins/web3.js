@@ -32,6 +32,10 @@ export default {
      * @return {Promise<void>}
      */
     Vue.prototype.$isLoggedInMetamask = async function () {
+      if (!$web3) {
+        throw Error('$web3 is not installed!')
+      }
+
       const accounts = await $web3.eth.getAccounts()
 
       if (accounts.length === 0) {

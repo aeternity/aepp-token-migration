@@ -66,12 +66,12 @@ export default new Router({
     {
       name: 'metamask',
       path: '/migration/metamask',
-      component: () => import('../views/migration/metamask/index.vue')
+      component: () => import('../views/migration/wallets/metamask/index.vue')
     },
     {
       name: 'myetherwallet',
       path: '/migration/myetherwallet',
-      component: () => import('../views/migration/myetherwallet/index.vue')
+      component: () => import('../views/migration/wallets/myetherwallet/index.vue')
     },
 
     /**
