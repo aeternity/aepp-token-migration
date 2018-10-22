@@ -1,8 +1,8 @@
 .agile__dots {
   position: absolute;
   bottom: $spacer-l;
-  right: 28%;
-  transform: translate(-28%);
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .agile__dot button {
@@ -18,10 +18,10 @@
   background: red;
 }
 
-.agile__slide {
+/* .agile__slide {
   padding-top: 3rem;
   padding-left: 2rem;
-}
+} */
 
 .qrcode-reader {
   width: 100%;

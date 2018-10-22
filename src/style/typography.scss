@@ -21,18 +21,30 @@ a {
 .title {
   font-weight: 600;
   line-height: 1.2em;
-
+  margin: 0;
+  margin-bottom: .4em;
   &-main {
     @include font-size(xxxxl);
+    @include only-phone {
+      @include font-size(xl);
+    }
   }
   &-sub {
     @include font-size(xxxl);
+    @include only-phone {
+      @include font-size(xl);
+    }
   }
   &-category {
     @include font-size(xxl);
-    margin-bottom: $spacer-m;
+    @include only-phone {
+      @include font-size(xl);
+    }
   }
   &-subcategory {
     @include font-size(xl);
+    @include only-phone {
+      @include font-size(l);
+    }
   }
 }
