@@ -1,104 +1,82 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="4/5" text="Select your wallet where you hold your tokens" />
+      <app-header-nav prog="4/6" text="Enter your Aeternity account address"/>
     </app-header>
     <app-view container>
-      <article class="view__content">
-        <app-intro>
-          <template slot="title">
-            Enter your æternity account address
-          </template>
-          <template slot="intro">
-            Please make sure the address below is the correct æternity address which you made.
-            All AE tokens will be sent to this address.
-            You cannot change the address your tokens will be sent to later!
-          </template>
-        </app-intro>
-        <ae-address-block :address="walletAddress" >
-          <template slot="body">
-            <input type="text" v-model="manualAddressInput">
-            <ae-input label="Your æternity address" placeholder="..." v-model="manualAddressInput">
-              <template slot="body">
-                <input type="text" >
-              </template>
-              <ae-toolbar slot="footer"  align="right">
-                <ae-button face="toolbar">
-                  <ae-icon name="paste" />
-                  Paste
-                </ae-button>
-              </ae-toolbar>
-            </ae-input>
-          </template>
-        </ae-address-block>
-      </article>
+      <app-intro>
+        <template slot="title">
+          Enter your æternity account <br /> address
+        </template>
+        <template slot="intro">
+          Please make sure the address below is the correct æternity <br />
+          address which you made. All AE tokens will be sent to this address. <br />
+          You cannot change the address your tokens will be sent to later!
+        </template>
+      </app-intro>
+      <app-panel primary padding shadow>
+        <div class="app-scan-address">
+          <app-address :value="walletAddress">
+            <ae-toolbar slot="footer" align="right">
+              <ae-button face="toolbar">
+                <ae-icon name="camera" />
+                Scan
+              </ae-button>
+            </ae-toolbar>
+          </app-address>
+          <ae-check name="approve" v-model="validated">
+            <ae-text face="sans-s">
+              I am certain my address and identicon are correct
+            </ae-text>
+          </ae-check>
+          <br />
+        </div>
+        <div class="app-scan-button-group">
+          <router-link class="app-scan-link" :to="{ name: 'wallets' }" :disabled="!approved">
+            <ae-button face="round" fill="primary" :disabled="!approved" extend>
+              Continue
+            </ae-button>
+          </router-link>
+        </div>
+      </app-panel>
     </app-view>
   </app-view>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import AeBlock from '@/components/ae-block.vue'
-import AeAddressBlock from '@/components/ae-address-block.vue'
 
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
-import AeInput from '@aeternity/aepp-components/dist/ae-input'
+import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
+import AppAddress from '../../../components/app-address.vue'
 import AppIntro from '../../../components/app-intro.vue'
 
 export default {
-  name: 'input-address',
+  name: 'scan',
   data: function () {
     return {
-      scanner: false,
-      addressInput: false,
-      addressIsUnknown: true,
-      paused: false
+      scanner: true,
+      address: false,
+      paused: false,
+      validated: false
     }
   },
   components: {
+    AppAddress,
     AppIntro,
-    AeBlock,
-    AeText,
-    AeInput,
-    AeAddressBlock,
-    AeButton,
     AeIcon,
+    AeText,
+    AeButton,
+    AeCheck,
     AeToolbar
   },
-  methods: {
-    addManualAddressInput (value) {
-      this.$store.commit('setWalletAddress', value)
-    },
-    onDecode (content) {
-      this.paused = true
-      this.$store.commit('setWalletAddress', content)
-    },
-    scanCode () {
-      this.scanner = true
-    },
-    showAddress () {
-      this.addressInput = true
-    },
-    closeScanner () {
-      this.scanner = false
-    },
-    toggleRescan () {
-      this.paused = false
-      this.$store.commit('setWalletAddress', '')
-    }
-  },
   computed: {
-    manualAddressInput: {
-      get () {
-        return this.$store.state.walletAddress
-      },
-      set (value) {
-        this.$store.commit('setWalletAddress', value)
-      }
+    approved: function () {
+      return this.validated && this.walletAddress
     },
     ...mapState([
       'walletAddress'
@@ -107,16 +85,22 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.wallet-address {
-  &__field{
-    background-color: $white;
-    padding: $spacer-l $spacer-m;
+.app-scan-link {
+  width: 100%;
+}
 
-    & .ae-text.mono-base[data-v-11a5cd56] {
-      @include font-size(l);
+.app-scan-button-group {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 220px;
+  margin: 2rem auto 0 auto;
+}
 
-      word-break: break-all;
-    }
-  }
+.app-scan-address {
+  display: block;
+  margin: 0 auto;
+  width: 520px;
 }
 </style>

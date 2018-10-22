@@ -6,32 +6,29 @@
     <app-view container>
       <app-intro>
         <template slot="title">
-          Enter your æternity account address
+          Enter your æternity account <br /> address
         </template>
         <template slot="intro">
-          Please make sure the address below is the correct æternity address which you made.
-          All AE tokens will be sent to this address.
+          Please make sure the address below is the correct æternity <br />
+          address which you made. All AE tokens will be sent to this address. <br />
           You cannot change the address your tokens will be sent to later!
         </template>
       </app-intro>
       <app-panel primary padding shadow>
-        <app-address disabled>
-          <ae-address :value="walletAddress" v-if="walletAddress" />
-          <!--<ae-toolbar slot="footer"  align="right">-->
-            <!--<ae-button face="toolbar">-->
-              <!--<ae-icon name="save" />-->
-              <!--Copy-->
-            <!--</ae-button>-->
-            <!--<ae-button @click="toggleRescan" face="toolbar">-->
-              <!--<ae-icon name="camera" />-->
-              <!--Scan-->
-            <!--</ae-button>-->
-          <!--</ae-toolbar>-->
-        </app-address>
-        <ae-check name="approve" v-model="validated">
-          <ae-text face="sans-s">I am certain my address and identicon are correct</ae-text>
-        </ae-check>
-        <br />
+        <div class="app-scan-address">
+          <app-address v-if="walletAddress" :value="walletAddress" disabled>
+            <ae-toolbar slot="footer" align="right">
+              <ae-button face="toolbar">
+                <ae-icon name="camera" />
+                Scan
+              </ae-button>
+            </ae-toolbar>
+          </app-address>
+          <ae-check name="approve" v-model="validated">
+            <ae-text face="sans-s">I am certain my address and identicon are correct</ae-text>
+          </ae-check>
+          <br />
+        </div>
         <div class="app-scan-button-group">
           <router-link class="app-scan-link" :to="{ name: 'wallets' }" :disabled="!approved">
             <ae-button face="round" fill="primary" :disabled="!approved" extend>Continue</ae-button>
@@ -54,12 +51,10 @@
 import { mapState } from 'vuex'
 import { QrcodeReader } from 'vue-qrcode-reader'
 
-import AeAddress from '@aeternity/aepp-components/dist/ae-address'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
-import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
 import AppAddress from '../../../components/app-address.vue'
@@ -78,12 +73,10 @@ export default {
   components: {
     AppAddress,
     AppIntro,
-    AeAddress,
     AeIcon,
     AeText,
     AeButton,
     AeCheck,
-    AeInput,
     AeToolbar,
     QrcodeReader
   },
@@ -114,20 +107,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
-.app-scan-link {
-  width: 100%;
-}
-
-.app-scan-button-group {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 220px;
-  margin: 2rem auto;
-}
-
 .app-scan {
   background-color: $color-black;
   position: fixed;
@@ -151,5 +130,24 @@ export default {
     left: 0;
     right: 0;
   }
+}
+
+.app-scan-link {
+  width: 100%;
+}
+
+.app-scan-button-group {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 220px;
+  margin: 2rem auto 0 auto;
+}
+
+.app-scan-address {
+  display: block;
+  margin: 0 auto;
+  width: 520px;
 }
 </style>

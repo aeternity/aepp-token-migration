@@ -1,13 +1,67 @@
 <template>
   <div class="app-address" :class="{ disabled }">
+    <div class="app-address-input">
+      <label for="address">Your æternity address</label>
+      <textarea
+        maxlength="70"
+        :v-model="value"
+        id="address"
+        ref="address"
+        :disabled="disabled"></textarea>
+    </div>
     <slot />
   </div>
 </template>
 <script>
+import Cleave from 'cleave.js'
+
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
+
 export default {
   name: 'app-address',
+  components: {
+    AeButton,
+    AeIcon
+  },
+  data () {
+    return {
+      cleave: null,
+      options: {
+        blocks: [
+          3, 2, 3,
+          3, 3, 3,
+          3, 3, 3,
+          3, 3, 3,
+          3, 3, 3,
+          3, 3, 3
+        ]
+      }
+    }
+  },
   props: {
+    value: String,
     disabled: Boolean
+  },
+  watch: {
+    value (value) {
+      this.cleave.destroy()
+      this.$refs.address.value = value
+      this.cleave = new Cleave(
+        this.$refs.address,
+        this.options
+      )
+    }
+  },
+  mounted () {
+    this.$refs.address.value = this.value
+    this.cleave = new Cleave(
+      this.$refs.address,
+      this.options
+    )
+  },
+  beforeDestroy () {
+    this.cleave.destroy()
   }
 }
 </script>
@@ -18,14 +72,41 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
+  max-width: 510px;
   overflow: hidden;
   transition: all $base-transition-time;
   border-left: 2px solid $color-focus;
-  min-height: 10rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   &.disabled {
     color: $color-neutral-negative-1;
+  }
+}
+
+.app-address-input {
+  padding-left: 1rem;
+
+  > label {
+    @extend %face-sans-xs;
+
+    display: block;
+    color: $color-focus;
+    margin-bottom: 1rem;
+  }
+
+  > textarea {
+    @extend %face-mono-base;
+
+    width: 100%;
+    height: auto;
+    font-size: 1.4375rem;
+    background: transparent;
+    line-height: 2rem;
+    min-height: 70px;
+    max-height: 70px;
+    border: 0;
+    resize: none;
+    color: #76818C;
   }
 }
 </style>

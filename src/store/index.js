@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    walletAddress: null
+    walletAddress: 'ak_v12Pf9vWcN5tSuN2SeFL3RmYUDpu7zeeUsSuAYwyGDMW9NX3B'
   },
   mutations: {
     setWalletAddress (state, address) {
