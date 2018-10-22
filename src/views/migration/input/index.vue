@@ -6,7 +6,7 @@
     <app-view container>
       <app-intro>
         <template slot="title">
-          Enter your æternity account <br /> address
+          Enter your æternity account address
         </template>
         <template slot="intro">
           Please make sure the address below is the correct æternity <br />
@@ -16,9 +16,9 @@
       </app-intro>
       <app-panel primary padding shadow>
         <div class="app-scan-address">
-          <app-address :value="walletAddress">
-            <ae-toolbar slot="footer" align="right">
-              <ae-button face="toolbar">
+          <app-address @input="updateAddress">
+            <ae-toolbar align="right">
+              <ae-button @click="scanAddress" face="toolbar">
                 <ae-icon name="camera" />
                 Scan
               </ae-button>
@@ -29,7 +29,6 @@
               I am certain my address and identicon are correct
             </ae-text>
           </ae-check>
-          <br />
         </div>
         <div class="app-scan-button-group">
           <router-link class="app-scan-link" :to="{ name: 'wallets' }" :disabled="!approved">
@@ -56,7 +55,7 @@ import AppAddress from '../../../components/app-address.vue'
 import AppIntro from '../../../components/app-intro.vue'
 
 export default {
-  name: 'scan',
+  name: 'migration-input',
   data: function () {
     return {
       scanner: true,
@@ -81,6 +80,14 @@ export default {
     ...mapState([
       'walletAddress'
     ])
+  },
+  methods: {
+    scanAddress: function () {
+      this.$router.push({ name: 'scan' })
+    },
+    updateAddress: function (value) {
+      this.$store.commit('setWalletAddress', value)
+    }
   }
 }
 </script>

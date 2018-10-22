@@ -1,16 +1,12 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav
-        prog="2/5"
-        :prev="{ name: 'start' }"
-        :next="{ name: 'provide-address' }"
-        text="Create an Aeternity account with Airgap" />
+      <app-header-nav prog="2/6" text="Create an Aeternity account with Airgap" />
     </app-header>
     <app-view container>
       <app-intro>
         <template slot="title">
-          Create an æternity account with AirGap
+          Create an æternity <br /> account with AirGap
         </template>
         <router-link to="/migration">
           <ae-button face="round" fill="secondary">I already have an account</ae-button>
@@ -22,10 +18,11 @@
             <img :src="require('@/assets/images/tutorial_airgap/download.png')" alt="">
           </figure>
           <section class="tutorial__info">
-            <h3 class="title title-category">Generate your secret</h3>
+            <h3 class="title title-category">Download & Install AirGap Vault app</h3>
             <p>
-              Go to the App store of your choosing and download the mobile App. If possible, use a on a dedicated or old smartphone.
-              After the download put your phone in airplane mode to disconnect the device from any network, and open the app.
+              Go to the App Store of Android Market and download the mobile App.
+              For maximum security we recommend using a dedicated smartphone to
+              store your AE tokens. <a href="" target="_blank">Learn More »</a>
             </p>
             <footer>
               <a href="">
@@ -46,11 +43,11 @@
                 <img :src="require('@/assets/images/tutorial_airgap/generate_1.png')" alt="">
               </figure>
               <section class="tutorial__info">
-                <h3 class="title title-category">Download & Install AirGap Vault app</h3>
+                <h3 class="title title-category">Generate your secret</h3>
                 <h4 class="title title-subcategory">Write your secret on a piece of paper</h4>
                 <p>
-                  Generate a new secret, you can also import an existing mnemonic phrase.
-                  We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
+                  Your secret is what allows you to restore your tokens in case
+                  you lose the phone where you installed the AirGap Vault app.
                 </p>
               </section>
             </div>
@@ -83,8 +80,9 @@
                 <h3 class="title title-category">Download & Install AirGap Vault app</h3>
                 <h4 class="title title-subcategory">Write your secret on a piece of paper</h4>
                 <p>
-                  Generate a new secret, you can also import an existing mnemonic phrase.
-                  We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
+                  Go to the App Store of Android Market and download the mobile App.
+                  For maximum security we recommend using a dedicated smartphone
+                  to store your AE tokens. Learn More »
                 </p>
               </section>
             </div>

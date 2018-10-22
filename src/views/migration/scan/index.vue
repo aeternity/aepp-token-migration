@@ -6,7 +6,7 @@
     <app-view container>
       <app-intro>
         <template slot="title">
-          Enter your æternity account <br /> address
+          Enter your æternity account address
         </template>
         <template slot="intro">
           Please make sure the address below is the correct æternity <br />
@@ -16,9 +16,9 @@
       </app-intro>
       <app-panel primary padding shadow>
         <div class="app-scan-address">
-          <app-address v-if="walletAddress" :value="walletAddress" disabled>
-            <ae-toolbar slot="footer" align="right">
-              <ae-button face="toolbar">
+          <app-address :value="walletAddress" disabled>
+            <ae-toolbar align="right">
+              <ae-button @click="toggleRescan" face="toolbar">
                 <ae-icon name="camera" />
                 Scan
               </ae-button>
@@ -96,7 +96,7 @@ export default {
     },
     closeScanner () {
       this.scanner = false
-      this.$router.go(-1)
+      this.$router.push({ name: 'migration' })
     },
     toggleRescan () {
       this.paused = false

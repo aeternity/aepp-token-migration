@@ -3,8 +3,9 @@
     <div class="app-address-input">
       <label for="address">Your æternity address</label>
       <textarea
+        @input="$emit('input', $event.target.value)"
         maxlength="70"
-        :v-model="value"
+        v-model="value"
         id="address"
         ref="address"
         :disabled="disabled"></textarea>
