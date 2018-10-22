@@ -80,23 +80,12 @@ export default {
   },
   computed: {
     payLoad () {
-      return `${
-        'cae9ca51'
-      }${
-        '0000000000000000000000004ecd812b010d9db16b0fb7143a79786b65b89b09'
-      }${
-        this.$web3.utils.padLeft(this.$web3.utils.toHex(this.$web3.utils.toWei(this.amount)).slice(2), 64)
-      }${
-        '0000000000000000000000000000000000000000000000000000000000000060'
-      }${
-        '0000000000000000000000000000000000000000000000000000000000000074'
-      }${
-        '0000000000000000000000000000000000000000000000000000000000000080'
-      }${
-        '0000000000000000000000000000000000000000000000000000000000000034'
-      }${
-        this.$web3.utils.padRight(this.$web3.utils.fromUtf8(this.walletAddress).slice(2), 64)
-      }`
+      return new(new Web3()).eth.Contract(tokenAbi).methods.approveAndCall(
+        // TODO: get burner token contract address from plugin
+        '0x4ecd812b010d9db16b0fb7143a79786b65b89b09',
+        this.$web3.utils.toWei(this.amount, 'ether'),
+        this.$encodePayload(this.walletAddress)
+      ).encodeABI().slice(2)
     },
     mewLink () {
       return `https://www.myetherwallet.com/?to=0x35d8830ea35e6df033eedb6d5045334a4e34f9f9&value=0&gaslimit=300000&data=${this.payLoad}#send-transaction`
