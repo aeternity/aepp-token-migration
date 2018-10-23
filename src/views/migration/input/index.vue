@@ -108,6 +108,6 @@ export default {
 .app-scan-address {
   display: block;
   margin: 0 auto;
-  width: 520px;
+  width: 560px;
 }
 </style>

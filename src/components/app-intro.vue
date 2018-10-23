@@ -3,7 +3,7 @@
     <h2 v-if="$slots.title" class="app-intro__title">
       <slot name="title" />
     </h2>
-    <h3 v-else-if="$slots.subtitle" class="app-intro__subtitle">
+    <h3 v-if="$slots.subtitle" class="app-intro__subtitle">
       <slot name="subtitle" />
     </h3>
     <p v-if="$slots.intro" class="app-intro__text">

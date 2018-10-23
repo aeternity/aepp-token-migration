@@ -3,9 +3,9 @@
     <div class="app-address-input">
       <label for="address">Your æternity address</label>
       <textarea
+        placeholder="ak_"
         @input="$emit('input', $event.target.value)"
         maxlength="70"
-        v-model="value"
         id="address"
         ref="address"
         :disabled="disabled"></textarea>
@@ -41,7 +41,10 @@ export default {
     }
   },
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: ''
+    },
     disabled: Boolean
   },
   watch: {
@@ -73,7 +76,7 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  max-width: 510px;
+  max-width: 560px;
   overflow: hidden;
   transition: all $base-transition-time;
   border-left: 2px solid $color-focus;
@@ -98,16 +101,18 @@ export default {
   > textarea {
     @extend %face-mono-base;
 
+    margin-bottom: 1rem;
     width: 100%;
     height: auto;
-    font-size: 1.4375rem;
+    font-size: 1.6rem;
     background: transparent;
-    line-height: 2rem;
-    min-height: 70px;
-    max-height: 70px;
+    line-height: 2.125rem;
+    min-height: 72px;
+    max-height: 72px;
     border: 0;
     resize: none;
     color: #76818C;
+    text-align: justify;
   }
 }
 </style>

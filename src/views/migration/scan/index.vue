@@ -90,18 +90,19 @@ export default {
   },
   methods: {
     onDecode (content) {
+      this.$store.commit('setWalletAddress', content)
       this.paused = true
       this.scanner = false
-      this.$store.commit('setWalletAddress', content)
     },
     closeScanner () {
+      this.$store.commit('setWalletAddress', null)
       this.scanner = false
       this.$router.push({ name: 'migration' })
     },
     toggleRescan () {
+      this.$store.commit('setWalletAddress', null)
       this.paused = false
       this.scanner = true
-      this.$store.commit('setWalletAddress', null)
     }
   }
 }
@@ -148,6 +149,6 @@ export default {
 .app-scan-address {
   display: block;
   margin: 0 auto;
-  width: 520px;
+  width: 560px;
 }
 </style>

@@ -46,3 +46,13 @@
 .ae-button-ledger {
   background: $color-neutral-negative-3 !important;
 }
+
+.app-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  border: 1px solid #4E5A66;
+}

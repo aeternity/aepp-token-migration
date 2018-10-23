@@ -26,6 +26,18 @@ export default {
     }
 
     /**
+     * Reference to the token contract
+     * @type {string}
+     */
+    Vue.prototype.$tokenContract = options.tokenContract
+
+    /**
+     * Reference to the burner contract
+     * @type {string}
+     */
+    Vue.prototype.$tokenBurner = options.tokenBurner
+
+    /**
      * Check if the browser has web3 installed
      * @return {Promise<undefined>}
      */
@@ -51,6 +63,14 @@ export default {
       if (accounts.length === 0) {
         throw Error('You\'re not logged in!')
       }
+    }
+
+    Vue.prototype.$getCoinbase = async function () {
+      if (!$web3) {
+        throw Error('$web3 is not installed!')
+      }
+
+      return $web3.eth.getCoinbase()
     }
 
     /**

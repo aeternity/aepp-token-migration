@@ -1,19 +1,24 @@
 <template>
   <app-view>
+    <!-- App header -->
     <app-header>
       <app-header-nav prog="5/6" text="Select your wallet where you hold your tokens" />
     </app-header>
+
+    <!-- App view -->
     <app-view container>
       <app-intro>
         <template slot="title">
           Select your wallet where you <br /> hold your tokens
         </template>
         <template slot="intro">
-          For now, we only support migrating with MetaMask and MyEtherWallet.
-          If you hold your tokens somewhere else, create accounts on either of the option below first.
-          And move your tokens there to proceed.
+          For now, we only support migrating with MetaMask and <br />
+          MyEtherWallet. If you hold your tokens somewhere else, <br />
+          create accounts on either of the option below first. And <br />
+          move your tokens there to proceed.
         </template>
       </app-intro>
+
       <app-panel primary padding shadow>
         <app-row>
           <app-column>
@@ -43,15 +48,41 @@
           </app-column>
         </app-row>
       </app-panel>
+
       <app-intro style="padding-top: 4rem; margin-bottom: 0">
         <template slot="intro">
           It is also possible to use another web3 desktop wallet/browser <br /> instead of MetaMask.
         </template>
       </app-intro>
     </app-view>
+
+    <!-- Modal  modal && name === 'wallet-not-found' -->
+    <app-modal v-if="modal && name === 'wallet-not-found'" @click="closeModal">
+      <app-panel primary padding shadow>
+        <template slot="header">
+          <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="Metamask">
+          Migrating with MetaMask
+        </template>
+        <app-intro>
+          <template slot="title">
+            <ae-icon name="card" />
+          </template>
+          <template slot="subtitle">
+            Wallet not found
+          </template>
+          <template slot="intro">
+            We could not read your account from MetaMask. <br />
+            Please try unlocking it again. We recommend using the <br />
+            Chrome browser to complete the token migration.
+          </template>
+          <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">
+            Close
+          </ae-button>
+        </app-intro>
+      </app-panel>
+    </app-modal>
   </app-view>
 </template>
-
 <script>
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
@@ -62,7 +93,7 @@ import AppSeparator from '../../../components/app-separator.vue'
 import AppColumn from '../../../components/app-column.vue'
 
 export default {
-  name: 'wallets',
+  name: 'migration-wallets',
   components: {
     AeButton,
     AeIcon,
@@ -70,6 +101,37 @@ export default {
     AppRow,
     AppSeparator,
     AppColumn
+  },
+  methods: {
+    openModal: function (name) {
+      Object.assign(this.$data, {
+        modal: true,
+        name
+      })
+    },
+    closeModal: function () {
+      Object.assign(this.$data, {
+        modal: false,
+        name: null
+      })
+    }
+  },
+  data: function () {
+    return { modal: false, name: null }
+  },
+  beforeRouteLeave: async function (to, from, next) {
+    if (to.name !== 'metamask') {
+      return next()
+    }
+
+    try {
+      await this.$hasWeb3()
+      await this.$isLoggedIn()
+    } catch (e) {
+      return this.openModal('wallet-not-found')
+    }
+
+    return next()
   }
 }
 </script>

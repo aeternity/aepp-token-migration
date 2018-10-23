@@ -63,7 +63,6 @@
     </app-view>
   </app-view>
 </template>
-
 <script>
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'

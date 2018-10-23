@@ -1,12 +1,12 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="2/6" text="Create an Aeternity account with Airgap" />
+      <app-header-nav prog="2/6" text="Create an Aeternity account with Airgap"/>
     </app-header>
     <app-view container>
       <app-intro>
         <template slot="title">
-          Create an æternity <br /> account with AirGap
+          Create an æternity <br/> account with AirGap
         </template>
         <router-link to="/migration">
           <ae-button face="round" fill="secondary">I already have an account</ae-button>
@@ -62,7 +62,8 @@
                 <h4 class="title title-subcategory">Write your secret on a piece of paper</h4>
                 <p>
                   Generate a new secret, you can also import an existing mnemonic phrase.
-                  We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
+                  We recommend that you generate a new secret on the air gapped device and not import one that was
+                  previously used in a device with network connectivity.
                 </p>
               </section>
             </div>
@@ -97,7 +98,8 @@
                 <h4 class="title title-subcategory">Write your secret on a piece of paper</h4>
                 <p>
                   Generate a new secret, you can also import an existing mnemonic phrase.
-                  We recommend that you generate a new secret on the air gapped device and not import one that was previously used in a device with network connectivity.
+                  We recommend that you generate a new secret on the air gapped device and not import one that was
+                  previously used in a device with network connectivity.
                 </p>
               </section>
             </div>
@@ -116,10 +118,10 @@
 <script>
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 
-import AppIntro from '@/components/app-intro.vue'
-import AppSlider from '@/components/app-slider.vue'
-import AppSlideContainer from '@/components/app-slide-container.vue'
-import AeBlock from '@/components/ae-block.vue'
+import AppIntro from '../../../components/app-intro.vue'
+import AppSlider from '../../../components/app-slider.vue'
+import AppSlideContainer from '../../../components/app-slide-container.vue'
+import AeBlock from '../../../components/ae-block.vue'
 
 export default {
   name: 'Tutorials',
@@ -145,12 +147,12 @@ export default {
     isMobile () {
       return this.windowWidth <= 768
     }
-  },
+  }
 }
 </script>
 <style lang="scss" scoped>
 
-.tutorial-wrapper{
+.tutorial-wrapper {
   position: relative;
   z-index: 1;
   margin-bottom: $spacer-xl;
@@ -177,6 +179,7 @@ export default {
 
   @include tablet-and-desktop {
     margin-left: -7%;
+
     &:after {
       content: '';
       box-shadow: $shadow_wide;
@@ -221,10 +224,10 @@ export default {
   &__info {
     padding: $spacer-xl 0;
     @include tablet-and-desktop {
-    width: 50%;
-    max-width: 24em;
-    margin: auto;
-    margin-top: 15%;
+      width: 50%;
+      max-width: 24em;
+      margin: auto;
+      margin-top: 15%;
     }
     @include only-phone {
       padding: $spacer-xl $spacer-m;
@@ -244,6 +247,7 @@ export default {
     }
   }
 }
+
 @include tablet-and-desktop {
   @supports (display: grid) {
 
@@ -252,7 +256,7 @@ export default {
       grid-template-columns: 1fr 1fr;
       grid-gap: 40px;
 
-      &__info{
+      &__info {
         grid-column-start: 2;
         grid-column-end: 2;
         width: 100%;

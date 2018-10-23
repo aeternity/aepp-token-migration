@@ -1,5 +1,5 @@
 <template>
-  <div class="app-panel" :class="{ primary, secondary, padding, shadow }">
+  <div class="app-panel" :class="{ primary, secondary, padding, shadow, border }">
     <div class="app-panel-header" v-if="$slots.header">
       <slot name="header" />
     </div>
@@ -14,7 +14,8 @@ export default {
     primary: Boolean,
     secondary: Boolean,
     padding: Boolean,
-    shadow: Boolean
+    shadow: Boolean,
+    border: Boolean
   }
 }
 </script>
@@ -43,9 +44,14 @@ export default {
   &.shadow {
     box-shadow: 0 0 25px rgba(0, 33, 87, 0.40);
   }
+  &.border {
+    border-bottom: 1px solid #D3DCE6;
+  }
 }
 
 .app-panel-header {
+  @extend %face-sans-l;
+
   position: relative;
   display: flex;
   justify-content: center;
@@ -54,5 +60,13 @@ export default {
   box-shadow: 0 0 16px $color-shadow-alpha-15;
   height: 5.125rem;
   margin-bottom: 3rem;
+  font-size: 1rem;
+  font-weight: bold;
+
+  > img {
+    margin-right: 1rem;
+    width: 28px;
+    height: 26px;
+  }
 }
 </style>

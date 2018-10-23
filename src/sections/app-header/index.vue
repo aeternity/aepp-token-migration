@@ -80,6 +80,12 @@ export default {
     height: 100%;
     padding-right: 2rem;
 
+    > a {
+      display: inline-flex;
+      align-self: center;
+      margin-left: 1rem;
+    }
+
     &.grayscale {
       opacity: 0.40;
       filter: grayscale(95%);
