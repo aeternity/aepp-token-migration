@@ -1,8 +1,11 @@
 <template>
   <app-view>
+    <!-- App Header -->
     <app-header>
       <app-header-nav prog="6/6" text="Prepare your transaction with MetaMask" />
     </app-header>
+
+    <!-- App View -->
     <app-view container>
       <app-intro>
         <template slot="title">
@@ -54,6 +57,16 @@
         </app-panel>
       </app-panel>
     </app-view>
+
+    <!-- Modal -->
+    <app-modal>
+      <app-panel primary padding shadow>
+        <template slot="header">
+          hello
+        </template>
+        hello
+      </app-panel>
+    </app-modal>
   </app-view>
 </template>
 
@@ -67,6 +80,7 @@ import AeAvatar from '@aeternity/aepp-components/dist/ae-identicon'
 import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
+import AppModal from '../../../../sections/app-modal/index.vue'
 import AppIntro from '../../../../components/app-intro.vue'
 
 export default {
@@ -85,13 +99,14 @@ export default {
     }
   },
   components: {
-    AppIntro,
     AeButton,
     AeIcon,
     AeText,
     AeAvatar,
     AeInput,
-    AeToolbar
+    AeToolbar,
+    AppModal,
+    AppIntro,
   },
   computed: {
     ...mapState([

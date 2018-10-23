@@ -1,16 +1,15 @@
 import '@aeternity/aepp-components/dist/aepp.fonts.css'
 import '@aeternity/aepp-components/dist/aepp.components.css'
+import '@/sections/index.js'
 
 import Vue from 'vue'
 import VueAgile from 'vue-agile'
 import Affix from 'vue-affix'
+import VueWeb3 from './plugins/web3'
 
-import '@/sections/index.js'
 import app from './views/app.vue'
 import router from './router'
 import store from './store'
-
-import VueWeb3 from './plugins/web3'
 
 Vue.use(Affix)
 Vue.use(VueAgile)
