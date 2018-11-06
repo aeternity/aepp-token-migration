@@ -22,7 +22,34 @@
         JavaScript enabled. Please enable it to continue.
       </strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <style>
+      @keyframes rotate {
+        from {
+          transform: scaleX(-1) rotate(0deg);
+        }
+
+        to {
+          transform: scaleX(-1) rotate(360deg);
+        }
+      }
+
+      html, body, #app {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background: #EDF3F7;
+      }
+
+      .loading {
+        width: 50px;
+        animation: rotate 2s reverse infinite linear;
+      }
+      </style>
+      <img src="./loader.svg" class="loading" alt="Loading">
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>
