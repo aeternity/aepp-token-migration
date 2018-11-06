@@ -1,6 +1,6 @@
 # aepp-token-migration
 
-[![Build Status](https://ci.aepps.com/job/aepp-token-migration/32/badge/icon)](https://ci.aepps.com/job/aepp-token-migration/32/)
+[![Build Status](https://ci.aepps.com/job/aepp-token-migration/badge/icon)](https://ci.aepps.com/job/aepp-token-migration/)
 
 This is the repository for Aepp Token Migration which is an application to help facilitate token migration for
 the Aeternity blockchain, from ERC20 tokens to Aeternity blockchain mainnet.
