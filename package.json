@@ -1,39 +1,53 @@
 {
+  "private": false,
   "name": "aepp-token-migration",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
+  "license": "none",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "vue": "^2.5.17"
+    "@aeternity/aepp-components": "github:aeternity/aepp-components#enhance/ae-input-data-change",
+    "@aeternity/ledger-app-api": "0.0.4",
+    "@ledgerhq/hw-transport-u2f": "^4.24.0",
+    "@zxing/library": "^0.8.3",
+    "base58check": "^2.0.0",
+    "cleave.js": "^1.4.4",
+    "ethereumjs-abi": "^0.6.5",
+    "human-standard-token-abi": "^2.0.0",
+    "jazzicon": "^1.5.0",
+    "lodash.orderby": "^4.6.0",
+    "vue": "^2.5.17",
+    "vue-agile": "^0.3.7",
+    "vue-qrcode-reader": "^1.2.2",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "web3": "^1.0.0-beta.35"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
     "@vue/cli-plugin-babel": "^3.0.4",
     "@vue/cli-plugin-eslint": "^3.0.4",
     "@vue/cli-service": "^3.0.4",
-    "vue-template-compiler": "^2.5.17"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
+    "@vue/eslint-config-standard": "^3.0.1",
+    "babel-jest": "^23.4.2",
+    "babel-loader": "^8.0.2",
+    "eslint": "^5.5.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^4.7.1",
+    "html-webpack-inline-source-plugin": "0.0.10",
+    "jest": "^23.5.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "vue-svg-loader": "^0.10.0",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.17.2",
+    "webpack-bundle-analyzer": "^3.0.3"
   },
   "browserslist": [
     "> 1%",

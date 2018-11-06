@@ -1,0 +1,41 @@
+<template>
+  <div id="app">
+    <app-notice v-if="!mainnet">
+      You’re connected to a Testnet,
+      the tokens that you are about to migrate
+      will NOT be available in the Mainnet
+    </app-notice>
+    <router-view/>
+  </div>
+</template>
+<script>
+import { network } from '../plugins/web3'
+
+import AppNotice from '../components/app-notice.vue'
+
+export default {
+  name: 'app',
+  components: {
+    AppNotice
+  },
+  data () {
+    return { mainnet: true }
+  },
+  watch: {
+    async $route () {
+      try {
+        await this.$hasWeb3()
+      } catch (e) {
+        return
+      }
+
+      try {
+        await this.$checkNetwork(network.mainnet)
+        this.mainnet = true
+      } catch (e) {
+        this.mainnet = false
+      }
+    }
+  }
+}
+</script>
