@@ -125,7 +125,7 @@ export default {
       }/${
         '39EBBD6D-5A94-0739-FF27-B17F3957B700'
       }/data/${
-        'TokenBurnings?where=pubKey'
+        'TokenBurnings?pageSize=100&where=pubKey'
       }%20%3D%20%27${this.$route.params.pubkey}%27`
 
       const response = await fetch(url)
