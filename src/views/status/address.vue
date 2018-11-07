@@ -125,8 +125,10 @@ export default {
       }/${
         process.env.VUE_APP_BL_KEY
       }/data/${
-        'TokenBurnings?pageSize=100&where=pubKey'
-      }%20%3D%20%27${this.$route.params.pubkey}%27`
+        process.env.VUE_APP_BL_TABLE
+      }?pageSize=100&where=pubKey%20%3D%20%27${
+        this.$route.params.pubkey
+      }%27`
 
       const response = await fetch(url)
       const contentType = response.headers.get('content-type')
