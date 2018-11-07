@@ -120,9 +120,9 @@ export default {
       const url = `${
         'https://api.backendless.com'
       }/${
-        'CBD0589C-4114-2D15-FF41-6FC7F3EE8800'
+        process.env.VUE_APP_BL_ID
       }/${
-        '39EBBD6D-5A94-0739-FF27-B17F3957B700'
+        process.env.VUE_APP_BL_KEY
       }/data/${
         'TokenBurnings?where=pubKey'
       }%20%3D%20%27${this.$route.params.pubkey}%27`
