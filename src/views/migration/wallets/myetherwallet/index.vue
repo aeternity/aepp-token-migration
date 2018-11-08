@@ -41,14 +41,14 @@
             </li>
             <li>
               <span>
-                <app-jazzicon :address="$tokenContract" v-if="$tokenContract"/>
+                <ae-identicon :address="$tokenContract" v-if="$tokenContract"/>
               </span>
               <h4>AE Token Contract</h4>
               <p v-html="$options.filters.chunk($tokenContract)"></p>
             </li>
             <li>
               <span>
-                <app-jazzicon :address="$tokenBurner" v-if="$tokenBurner"/>
+                <ae-identicon :address="$tokenBurner" v-if="$tokenBurner"/>
               </span>
               <h4>AE Migration Contract</h4>
               <p v-html="$options.filters.chunk($tokenBurner)"></p>

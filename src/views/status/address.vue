@@ -33,7 +33,6 @@
           </h1>
           <h4 class="app-migration-result-subtitle">In total</h4>
         </app-panel>
-
         <app-panel primary padding>
           <div class="app-migration-result-account">
             <h4>All Migrations to</h4>
@@ -66,6 +65,9 @@
         </app-panel>
       </app-panel>
     </app-view>
+    <app-modal v-if="loading">
+      <img :src="require('../../../public/loader.svg')" class="app-migration-result-loading" alt="Loading">
+    </app-modal>
   </app-view>
 </template>
 <script>
@@ -99,6 +101,7 @@ export default {
   },
   data () {
     return {
+      loading: true,
       intervalId: 0,
       burnEvents: []
     }
@@ -157,7 +160,11 @@ export default {
     ])
   },
   mounted () {
-    this.getBurnEventsByAeAccount()
+    this.getBurnEventsByAeAccount().then(() => {
+      if (this.burnEvents.length > 0) {
+        this.loading = false
+      }
+    })
     this.intervalId = setInterval(this.getBurnEventsByAeAccount, 30000)
   },
   beforeDestroy () {
@@ -270,5 +277,13 @@ export default {
   display: block;
   width: 220px;
   margin: 0 auto;
+}
+
+.app-migration-result-loading {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 50px;
+  animation: rotate 2s reverse infinite linear;
 }
 </style>
