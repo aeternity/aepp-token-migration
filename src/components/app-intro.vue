@@ -1,5 +1,5 @@
 <template>
-  <header class="app-intro">
+  <header class="app-intro" :class="{ [align]: Boolean(align)}">
     <h2 v-if="$slots.title" class="app-intro__title">
       <slot name="title"/>
     </h2>
@@ -16,13 +16,24 @@
 </template>
 <script>
 export default {
-  name: 'app-intro'
+  name: 'app-intro',
+  props: {
+    align: String
+  }
 }
 </script>
 <style lang="scss" scoped>
 .app-intro {
   text-align: center;
   margin: 0 auto $spacer-xl;
+
+  &.left {
+    text-align: left;
+
+    > /deep/ .app-intro__subtitle {
+      margin-top: 0;
+    }
+  }
 
   &__title {
     @extend %face-sans-l;

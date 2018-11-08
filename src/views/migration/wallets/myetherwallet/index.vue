@@ -110,37 +110,92 @@
       </app-panel>
     </app-view>
 
-    <!-- Modal for processing -->
-    <app-modal v-if="modal && name === 'processing'" @click="closeModal">
-      <app-panel primary padding shadow>
+    <!-- Step process -->
+    <app-modal v-if="modal && name === 'step'" @click="closeModal">
+      <app-panel tertiary padding shadow v-if="step === 1">
         <template slot="header">
           <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
           Migrating with MyEtherWallet
         </template>
-        <app-intro>
-          <template slot="title">
-            <ae-icon name="reload" class="app-rotate"/>
-          </template>
-          <template slot="subtitle">
-            We have generated the transaction link
-          </template>
-          <template slot="intro">
-            We have generated your transaction, what is left is for you to <br />
-            do is to proceed at MEW and continue with the migration. <br />
-            Afterwards you can check the transactions you've done already.
-          </template>
-        </app-intro>
-        <div class="app-myetherwallet-button-group">
-          <router-link :to="{ name: 'result', params: { pubkey: walletAddress } }">
-            <ae-button face="round" fill="neutral">
-              Check Transactions
+        <app-row>
+          <div class="app-myetherwallet-screenshot">
+            <img :src="require('../../../../assets/graphics/screenshot.png')" alt="MyEtherWallet">
+          </div>
+          <app-separator />
+          <app-column size="small">
+            <app-intro align="left">
+              <template slot="subtitle">
+                You will be forwarded to the transaction link on MyEtherWallet
+              </template>
+              <template slot="intro">
+                The transaction form will be pre-filled and
+                <span class="app-highlight">
+                  should not be changed!
+                </span> <br /> <br />
+                Continue for more information, before proceeding.
+              </template>
+            </app-intro>
+            <ae-button @click="step = 2" face="round" fill="secondary" extend>
+              Continue
             </ae-button>
-          </router-link>
-          <a :href="migrate" target="_blank">
-            <ae-button class="ae-button-ledger" face="round" fill="primary">
-              Proceed at MEW
-            </ae-button>
-          </a>
+          </app-column>
+        </app-row>
+      </app-panel>
+      <app-panel tertiary padding shadow v-if="step === 2 || step === 3">
+        <template slot="header">
+          <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
+          Migrating with MyEtherWallet
+        </template>
+        <app-row>
+          <div class="app-myetherwallet-screenshot">
+            <img :src="require('../../../../assets/graphics/screenshot-2.png')" alt="MyEtherWallet">
+          </div>
+          <app-separator />
+          <app-column size="small">
+            <ul class="app-myetherwallet-list">
+              <li>
+                <span>1</span>
+                Address of the AE Token Contract.
+                Learn more about token transfer <a href="#">here</a>.
+              </li>
+              <li>
+                <span>2</span>
+                Amount of <strong>ETH</strong> to send to the aeternity token contract, this is
+                <strong>not</strong> the <strong>AE</strong> amount
+                <div class="app-highlight">
+                  This field must to be zero.
+                </div>
+              </li>
+              <li>
+                <span>3</span>
+                Gas needed for the contract’s executions.
+              </li>
+              <li>
+                <span>4</span>
+                Dataload included in the transaction, It contains the
+                <strong>AE Migration Address</strong>, your <strong>AE Mainnet Account</strong>
+                and the <strong>Amount of AE</strong> Decode dataload <a href="#">here</a>.
+              </li>
+              <li>
+                <a :href="migrate" target="_blank" v-if="step === 2">
+                  <ae-button @click="step = 3" face="round" fill="secondary" extend>
+                    Migrate on MEW
+                  </ae-button>
+                </a>
+                <router-link :to="{ name: 'result', params: { pubkey: walletAddress } }" v-if="step === 3">
+                  <ae-button @click="step = 3" face="round" fill="alternative" extend>
+                    Check Migrations
+                  </ae-button>
+                </router-link>
+              </li>
+            </ul>
+          </app-column>
+        </app-row>
+        <div class="app-myetherwallet-notification" v-if="step === 2">
+          When you are done come back to check your transaction!
+        </div>
+        <div class="app-myetherwallet-notification" v-else-if="step === 3">
+          Closed the MyEtherWallet transaction too soon? <a :href="migrate" target="_blank">Try again</a>
         </div>
       </app-panel>
     </app-modal>
@@ -161,6 +216,9 @@ import AppIntro from '../../../../components/app-intro.vue'
 import AppJazzicon from '../../../../components/app-jazzicon.vue'
 import AppProcess from '../../../../components/app-process.vue'
 import AppUrl from '../../../../components/app-url.vue'
+import AppRow from '../../../../components/app-row.vue'
+import AppSeparator from '../../../../components/app-separator.vue'
+import AppColumn from '../../../../components/app-column.vue'
 
 import mixinsModal from '../../../../mixins/modal'
 
@@ -178,10 +236,13 @@ export default {
     AppIntro,
     AppJazzicon,
     AppProcess,
-    AppUrl
+    AppUrl,
+    AppRow,
+    AppSeparator,
+    AppColumn
   },
   data: function () {
-    return { amount: null, gasPrice: '0' }
+    return { amount: null, gasPrice: '0', step: 0 }
   },
   computed: {
     migrate () {
@@ -200,7 +261,8 @@ export default {
   },
   methods: {
     startMigration () {
-      this.openModal('processing')
+      this.step = 1
+      this.openModal('step')
     }
   },
   mounted: async function () {
@@ -211,6 +273,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.app-myetherwallet-screenshot {
+  background: #EEF3F7;
+  width: 50%;
+}
+
 .app-myetherwallet-button-group {
   display: block;
   text-align: center;
@@ -219,5 +286,58 @@ export default {
     width: 240px;
     margin: 0 1rem;
   }
+}
+
+.app-myetherwallet-list {
+  padding: 0 0 0 0.5rem;
+  margin: 0 0 1rem 2rem;
+  text-align: left;
+
+  > li {
+    @extend %face-sans-l;
+
+    position: relative;
+    list-style: none;
+    font-size: 1rem;
+    color: #203040;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+
+    a {
+      text-decoration: underline;
+    }
+
+    &:last-child > a {
+      text-decoration: none;
+    }
+
+    > span {
+      display: inline-block;
+      border-radius: 50%;
+      text-align: center;
+      vertical-align: center;
+      line-height: 16px;
+      position: absolute;
+      top: 0;
+      left: -1.5rem;
+      width: 16px;
+      height: 16px;
+      background: $color-primary;
+      color: $color-white;
+      font-size: 0.725rem;
+      font-weight: bold;
+    }
+  }
+}
+
+.app-myetherwallet-notification {
+  display: block;
+  position: relative;
+  margin: 0 -3rem -3rem -3rem;
+  background: #D3DCE6;
+  text-align: center;
+  padding: 0.5rem;
+  color: #203040;
+  font-size: 1rem;
 }
 </style>

@@ -45,6 +45,12 @@
 
 .ae-button-ledger {
   background: $color-neutral-negative-3 !important;
+
+  &[disabled] {
+    opacity: 1 !important;
+    color: $color-white !important;
+    background: #929CA6 !important;
+  }
 }
 
 .app-icons {

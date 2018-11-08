@@ -1,5 +1,5 @@
 <template>
-  <div class="app-panel" :class="{ primary, secondary, padding, margin, shadow, middle, centered, overflow }">
+  <div class="app-panel" :class="{ primary, secondary, tertiary, padding, margin, shadow, middle, centered, overflow }">
     <div class="app-panel-header" v-if="$slots.header">
       <slot name="header"/>
     </div>
@@ -13,6 +13,7 @@ export default {
   props: {
     primary: Boolean,
     secondary: Boolean,
+    tertiary: Boolean,
     padding: Boolean,
     margin: Boolean,
     shadow: Boolean,
@@ -33,6 +34,9 @@ export default {
   }
   &.secondary {
     background: #E3ECF2;
+  }
+  &.tertiary {
+    background: #EEF3F7;
   }
 
   &.padding {

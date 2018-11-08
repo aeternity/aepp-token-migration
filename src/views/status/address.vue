@@ -161,9 +161,7 @@ export default {
   },
   mounted () {
     this.getBurnEventsByAeAccount().then(() => {
-      if (this.burnEvents.length > 0) {
-        this.loading = false
-      }
+      this.loading = false
     })
     this.intervalId = setInterval(this.getBurnEventsByAeAccount, 30000)
   },

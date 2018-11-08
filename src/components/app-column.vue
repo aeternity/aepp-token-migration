@@ -1,5 +1,5 @@
 <template>
-  <div class="app-column" :class="{ [align]: Boolean(align) }">
+  <div class="app-column" :class="{ [align]: Boolean(align), [size]: Boolean(size) }">
     <figure class="app-column__img" v-if="$slots.image">
       <slot name="image"/>
     </figure>
@@ -19,7 +19,8 @@
 export default {
   name: 'app-column',
   props: {
-    align: String
+    align: String,
+    size: String
   }
 }
 </script>
@@ -37,6 +38,9 @@ export default {
   }
   &.right {
     text-align: right;
+  }
+  &.small {
+    padding: 1rem 2rem;
   }
 
   &__img {

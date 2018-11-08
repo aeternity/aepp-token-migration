@@ -41,10 +41,9 @@
             </template>
             <router-link :to="{ name: 'read' }" slot="button" disabled>
               <ae-button class="ae-button-ledger" face="round" extend disabled>
-                Read Address from Ledger
+                Coming soon
               </ae-button>
             </router-link>
-            <span class="ae-coming-soon">Coming soon...</span>
           </app-column>
         </app-row>
         <br/>
