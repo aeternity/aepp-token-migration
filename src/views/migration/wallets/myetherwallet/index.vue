@@ -33,9 +33,7 @@
           </app-intro>
           <app-process>
             <li>
-              <span>
-                <ae-identicon address="0x• ••• ••• ••• ••• ••• ••• ••• ••• ••• ••• ••• •••"/>
-              </span>
+              <span></span>
               <h4>Your Ethereum Account</h4>
               <p>0x• ••• ••• ••• ••• ••• ••• ••• ••• ••• ••• ••• •••</p>
             </li>

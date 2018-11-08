@@ -28,7 +28,10 @@ export default {
       top: 2rem;
       left: -4rem;
       border: 2px solid #979797;
+      background: #979797;
       border-radius: 50%;
+      width: 36px;
+      height: 36px;
 
       &:before {
         display: block;
