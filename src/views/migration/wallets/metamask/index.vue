@@ -167,8 +167,8 @@
             Something went wrong
           </template>
           <template slot="intro">
-            The migration didn't took place. This doesn’t affect your <br />
-            tokens, you are safe to try the migration again.
+            Migration did not take place. This does not affect your <br />
+            tokens, you are safe to try again.
           </template>
           <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">
             Try Again

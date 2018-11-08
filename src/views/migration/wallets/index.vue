@@ -36,7 +36,7 @@
               MyEtherWallet
             </template>
             <template slot="text">
-              If you use MyEtherWallet, we are going to prepare the transaction there and you will be forwarded.
+              If you use MyEtherWallet, we are going to prepare the transaction here first and forward you there.
             </template>
             <router-link :to="{ name: 'myetherwallet' }" slot="button">
               <ae-button class="ae-button-ledger" face="round" extend>

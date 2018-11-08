@@ -20,8 +20,8 @@
               Airgap Vault
             </template>
             <template slot="text">
-              Provide the address from Airgap.
-              Choose in Airgap the æternity wallet and show the QR code.
+              Provide an account available in the AirGap Vault app. Click on the æternity account in
+              AirGap Vault and you will see a QR code. Scan it.
             </template>
             <router-link :to="{ name: 'scan' }" slot="button">
               <ae-button face="round" fill="secondary" extend>
@@ -36,8 +36,7 @@
               Ledger Wallet
             </template>
             <template slot="text">
-              Connect the Ledger over USB and click on the button below,
-              as soon as the æternity app op the Ledger is open.
+              Connect your Ledger Wallet over USB, select the æternity app and click on the button below.
             </template>
             <router-link :to="{ name: 'read' }" slot="button" disabled>
               <ae-button class="ae-button-ledger" face="round" extend disabled>
