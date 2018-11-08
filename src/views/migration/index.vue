@@ -39,11 +39,12 @@
               Connect the Ledger over USB and click on the button below,
               as soon as the æternity app op the Ledger is open.
             </template>
-            <router-link :to="{ name: 'read' }" slot="button">
-              <ae-button class="ae-button-ledger" face="round" extend>
+            <router-link :to="{ name: 'read' }" slot="button" disabled>
+              <ae-button class="ae-button-ledger" face="round" extend disabled>
                 Read Address from Ledger
               </ae-button>
             </router-link>
+            <span class="ae-coming-soon">Coming soon...</span>
           </app-column>
         </app-row>
         <br/>

@@ -101,3 +101,9 @@
 .ae-check-button:before, .ae-check-button:after {
   left: 0 !important;
 }
+
+.ae-coming-soon {
+  @extend %face-uppercase-xs;
+
+  margin: 0.5rem 0;
+}
