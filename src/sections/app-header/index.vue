@@ -7,16 +7,23 @@
       <!-- Slot for the header content -->
       <slot/>
       <!-- Identicon with address -->
-      <div class="app-header__identicon" :class="{ grayscale: !validAddress }">
+      <div class="app-header__identicon">
         <ae-address
           v-if="walletAddress"
           class="app-header__address"
           :value="walletAddress"
           length="short"
         />
-        <router-link :to="{ name: 'migration' }">
+        <router-link :to="{ name: 'migration' }" :class="{ 'app-header__grayscale': !validAddress }">
           <ae-identicon :address="validAddress ? walletAddress : 'none'"/>
         </router-link>
+        <a href="https://forum.aeternity.com" class="app-header__forum" target="_blank">
+          <img :src="require('../../assets/icons/forum.svg')" alt="Visit Forum">
+          <div>
+            <h4>Need assistance?</h4>
+            <p>Click to visit our forum for more information</p>
+          </div>
+        </a>
       </div>
     </div>
   </header>
@@ -77,6 +84,59 @@ export default {
     }
   }
 
+  &__forum {
+    position: relative;
+    display: inline-block;
+    color: #203040;
+    z-index: 100;
+
+    > img {
+      width: 20px;
+
+      &:hover + div {
+        display: block;
+        visibility: visible;
+      }
+    }
+
+    > div {
+      display: none;
+      visibility: hidden;
+      position: absolute;
+      top: 100%;
+      right: -14px;
+      margin-top: 1rem;
+      width: 250px;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #203040;
+
+      &:before {
+        content: ' ';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 12.5px 15px 12.5px;
+        border-color: transparent transparent #203040 transparent;
+        right: 10px;
+        top: -10px;
+      }
+
+      > h4 {
+        margin: 0;
+        color: $color-white;
+      }
+
+      > p {
+        font-size: 0.875rem;
+        line-height: 1.5;
+        margin: 0;
+        color: #D3DCE6;
+      }
+    }
+  }
+
   &__identicon {
     display: flex;
     align-self: flex-end;
@@ -90,11 +150,11 @@ export default {
       align-self: center;
       margin-left: 1rem;
     }
+  }
 
-    &.grayscale {
-      opacity: 0.40;
-      filter: grayscale(95%);
-    }
+  &__grayscale {
+    opacity: 0.40;
+    filter: grayscale(95%);
   }
 
   &__address {
