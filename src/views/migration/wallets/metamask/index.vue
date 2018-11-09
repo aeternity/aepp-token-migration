@@ -142,7 +142,7 @@
             <ae-icon name="reload" class="app-rotate"/>
           </template>
           <template slot="subtitle">
-            We are migrating your tokens
+            Please confirm the transaction in MetaMask
           </template>
           <template slot="intro">
             Please hold on for a bit. As soon as the transaction is <br />
