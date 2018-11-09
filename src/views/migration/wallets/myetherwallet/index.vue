@@ -172,7 +172,8 @@
                 <span>4</span>
                 Dataload included in the transaction, It contains the
                 <strong>AE Migration Address</strong>, your <strong>AE Mainnet Account</strong>
-                and the <strong>Amount of AE</strong> Decode dataload <a href="#">here</a>.
+                and the <strong>Amount of AE</strong> Decode dataload
+                <a href="//verify-data.aeternity.com" target="_blank">here</a>.
               </li>
               <li>
                 <a :href="migrate" target="_blank" v-if="step === 2">
