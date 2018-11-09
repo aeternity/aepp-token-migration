@@ -29,7 +29,8 @@
           <img :src="require('../../assets/graphics/header-check.svg')" class="app-migration-result-check">
           <h4 class="app-migration-result-subtitle">You successfully migrated</h4>
           <h1 class="app-migration-result-title">
-            {{collectiveSum}}<span>AE</span>
+            {{collectiveSum | shorten(true) }}.<small style="font-size: 2rem;">{{collectiveSum | shorten }}</small>
+            <span>&nbsp;AE</span>
           </h1>
           <h4 class="app-migration-result-subtitle">In total</h4>
         </app-panel>
@@ -57,7 +58,8 @@
                   <p v-html="$options.filters.chunk(e.transactionHash)"></p>
                 </a>
                 <h1>
-                  {{e.value | fromWei }}<small>AE</small>
+                  {{e.value | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{e.value | fromWei | shorten }}</small>
+                  <small>&nbsp;AE</small>
                 </h1>
               </div>
             </li>

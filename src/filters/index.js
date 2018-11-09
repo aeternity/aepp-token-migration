@@ -12,3 +12,14 @@ Vue.filter('fromWei', function (value) {
   if (!value) return
   return utils.fromWei(value)
 })
+
+Vue.filter('shorten', function (value, pre) {
+  if (!value) return
+  const splitValue = value.split('.')
+  if (pre) {
+    return splitValue[0]
+  } else if (splitValue[1]) {
+    return splitValue[1]
+  }
+  return 0
+})
