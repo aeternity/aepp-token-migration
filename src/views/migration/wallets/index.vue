@@ -11,7 +11,7 @@
         <template slot="intro">
           For now, we only support migrating with MetaMask (for web3) and
           MyEtherWallet. If you hold your tokens somewhere else,
-          create accounts on either of the options below first.<br/>
+          create an account on either of the options below first.<br/>
           you can then move your tokens to this account to proceed.<br/>
           IMPORTANT: You will need to have enough ETH on the same account to
           pay for gas and transaction fees.
