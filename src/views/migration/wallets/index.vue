@@ -14,7 +14,7 @@
           create an account on either of the options below first.<br/>
           You can then move your tokens to this account to proceed.<br/>
           IMPORTANT: You will need to have enough ETH on the same account to
-          pay for gas and transaction fees.
+          pay for gas.
         </template>
       </app-intro>
       <app-panel primary padding shadow>
