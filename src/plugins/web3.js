@@ -173,13 +173,15 @@ export default {
       if (!_sender) {
         throw Error(`_sender not found!`)
       }
+      let slicedAeddress = $web3.utils.fromUtf8(_sender).slice(2)
+      let len = $web3.utils.toHex(slicedAeddress.length / 2)
 
       return `0x${
         ethereumjs.rawEncode(['uint256'], [0x80]).toString('hex')
       }${
-        ethereumjs.rawEncode(['uint256'], [0x34]).toString('hex')
+        ethereumjs.rawEncode(['uint256'], [len]).toString('hex')
       }${
-        $web3.utils.padRight($web3.utils.fromUtf8(_sender).slice(2), 64)
+        $web3.utils.padRight(slicedAeddress, 64)
       }`
     }
 
