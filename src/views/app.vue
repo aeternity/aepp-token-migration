@@ -39,6 +39,12 @@ export default {
   },
   mounted: async function () {
     try {
+      await this.$hasWeb3()
+    } catch (e) {
+      return
+    }
+
+    try {
       await this.$checkNetwork(network.mainnet)
       this.mainnet = true
     } catch (e) {
