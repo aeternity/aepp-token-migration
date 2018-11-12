@@ -77,7 +77,7 @@
             </ae-toolbar>
           </ae-input>
           <br />
-          <app-url :value="migrate">
+          <app-url :value="migrate" disabled>
             <ae-toolbar align="justify" fill="neutral">
               <span>Your Migration payload is saved in this link</span>
               <ae-button face="toolbar">
