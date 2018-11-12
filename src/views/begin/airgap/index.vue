@@ -24,7 +24,7 @@
             <p>
               Go to the App Store or the Play Store and download the <b>AirGap Vault App</b>.
               For maximum security we recommend using a dedicated smartphone to
-              store your AE tokens. <a href="#" target="_blank">Learn More »</a>
+              store your AE tokens. <a href="https://medium.com/airgap-it/what-is-airgap-74456b4844fb" target="_blank">Learn More »</a>
             </p>
             <footer>
               <a href="https://itunes.apple.com/us/app/airgap-vault-secure-secrets/id1417126841" target="_blank">
