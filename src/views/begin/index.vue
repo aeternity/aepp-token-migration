@@ -55,12 +55,12 @@
           Other options to create an æternity account are also available, <br/>
           they are explained in our blogpost.
         </template>
-        <router-link :to="{ name: 'migration' }">
+        <a href="https://blog.aeternity.com/launched-first-phase-of-ae-token-migration-bafa68b12463" target="_blank">
           <ae-button face="flat">
             <ae-icon name="link"/>
             Read how to
           </ae-button>
-        </router-link>
+        </a>
       </app-intro>
     </app-view>
   </app-view>
