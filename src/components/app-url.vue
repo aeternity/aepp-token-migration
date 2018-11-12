@@ -1,7 +1,7 @@
 <template>
   <div class="app-url">
     <label for="url">MyEtherWallet URL</label>
-    <textarea :value="value" id="url"></textarea>
+    <textarea :value="value" id="url" :disabled="disabled"></textarea>
     <div>
       <slot></slot>
     </div>
@@ -11,7 +11,11 @@
 export default {
   name: 'app-url',
   props: {
-    value: String
+    value: String,
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
