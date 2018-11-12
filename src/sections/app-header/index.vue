@@ -14,9 +14,10 @@
           :value="walletAddress"
           length="short"
         />
-        <router-link :to="{ name: 'migration' }" :class="{ 'app-header__grayscale': !validAddress }">
-          <ae-identicon :address="validAddress ? walletAddress : 'none'"/>
-        </router-link>
+        <ae-identicon
+          :class="{ 'app-header__grayscale': !validAddress }"
+          :address="validAddress ? walletAddress : 'none'"
+        />
         <a href="https://forum.aeternity.com/t/token-migration-phase-0-support-and-faq/1275" class="app-header__forum" target="_blank">
           <img :src="require('../../assets/icons/forum.png')" alt="Visit Forum">
           <div>
@@ -146,7 +147,7 @@ export default {
     height: 100%;
     padding-right: 2rem;
 
-    > a {
+    > a, > canvas {
       display: inline-flex;
       align-self: center;
       margin-left: 1rem;
