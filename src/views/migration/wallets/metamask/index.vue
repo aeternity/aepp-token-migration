@@ -85,12 +85,20 @@
               </ae-button>
             </ae-toolbar>
           </ae-input>
-          <br />
+          <div class="app-check-spacing">
+            <ae-check name="approve" v-model="validated">
+              <ae-text face="sans-s">
+                I agree to the <a href="#">Terms of Service</a>
+              </ae-text>
+            </ae-check>
+          </div>
           <ae-button
             class="app-center-block"
             face="round"
             fill="secondary"
-            @click="migrate(amount, walletAddress)">
+            @click="migrate(amount, walletAddress)"
+            :disabled="!validated"
+          >
             Make Transaction
           </ae-button>
         </app-panel>
@@ -187,6 +195,7 @@ import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
 import AeInput from '@aeternity/aepp-components/dist/ae-input'
+import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
 import AppModal from '../../../../sections/app-modal/index.vue'
@@ -208,6 +217,7 @@ export default {
     AeText,
     AeIdenticon,
     AeInput,
+    AeCheck,
     AeToolbar,
     AppModal,
     AppIntro,
@@ -219,7 +229,8 @@ export default {
       balance: '0',
       amount: null,
       coinbase: null,
-      gasPrice: '0'
+      gasPrice: '0',
+      validated: false
     }
   },
   computed: {
