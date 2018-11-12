@@ -52,7 +52,7 @@
               <h5>{{ new Date(e.created).toDateString() }}</h5>
               <div class="app-migration-result-tx">
                 <!-- TODO: Here we're checking what env we're in!-->
-                <a :href="`https://${
+                <a :href="`//${
                  env === 'development' ? 'kovan.' : ''
                 }etherscan.io/tx/${e.transactionHash}`" target="_blank">
                   <p v-html="$options.filters.chunk(e.transactionHash)"></p>

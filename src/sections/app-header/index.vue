@@ -17,7 +17,7 @@
         <router-link :to="{ name: 'migration' }" :class="{ 'app-header__grayscale': !validAddress }">
           <ae-identicon :address="validAddress ? walletAddress : 'none'"/>
         </router-link>
-        <a href="https://forum.aeternity.com" class="app-header__forum" target="_blank">
+        <a href="//forum.aeternity.com" class="app-header__forum" target="_blank">
           <img :src="require('../../assets/icons/forum.svg')" alt="Visit Forum">
           <div>
             <h4>Need assistance?</h4>
