@@ -9,9 +9,9 @@
           Prepare your transaction <br/> with Meta Mask
         </template>
         <template slot="intro">
-          The transaction you are about to make will transfer your AE <br/>
-          Tokens to the AE Migration Address. Once the tokens are <br/>
-          transferred to this address we will take care of everything else for you.
+        You are about to transfer AE tokens to the AE Token Contract, which <br/>
+        sends them to the AE Migration Contract. The Migration Contract <br/>
+        takes care of everything else for you.
         </template>
       </app-intro>
       <app-panel shadow>
@@ -25,9 +25,9 @@
               Migration Process
             </template>
             <template slot="intro">
-              The tokens aren't being transferred directly to your æternity address, <br/>
-              but first to an AE Migration address. The moment that you can expect <br/>
-              your tokens in the Mainnet, depends on the phase.
+            The tokens aren't being transferred directly to your æternity address. <br/>
+            The moment that you can expect your tokens in the Mainnet,<br/>
+            depends on the phase.
             </template>
           </app-intro>
           <app-process>

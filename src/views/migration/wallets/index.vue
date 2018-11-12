@@ -1,19 +1,18 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="5/6" text="Select your wallet where you hold your tokens" />
+      <app-header-nav prog="5/6" text="Select the wallet where you hold your AE tokens" />
     </app-header>
     <app-view container>
       <app-intro>
         <template slot="title">
-          Select your wallet where you <br/> hold your tokens
+          Select the wallet where you <br/> hold your AE tokens
         </template>
         <template slot="intro">
-          For now, we only support migrating with MetaMask (for web3) and
-          MyEtherWallet. If you hold your tokens somewhere else,
-          create an account on either of the options below first.<br/>
-          You can then move your tokens to this account to proceed.<br/>
-          IMPORTANT: You will need to have enough ETH on the same account to
+          Currently, we only support migrating with MetaMask (or any other web3 wallet) and
+          MyEtherWallet. <br/>
+          If you hold your tokens somewhere else, move them to either of these wallets. Create an account there if necessary.<br/><br/>
+          <strong>IMPORTANT</strong>: You will need to have enough ETH on the same account to
           pay for gas and transaction fees.
         </template>
       </app-intro>
@@ -25,10 +24,10 @@
               MetaMask
             </template>
             <template slot="text">
-              If you use Meta Mask, we are going to prepare the transaction here on this website.
+              If you use MetaMask, click below to prepare the transaction.
             </template>
             <router-link :to="{ name: 'metamask' }" slot="button">
-              <ae-button face="round" fill="secondary" extend>Connect MetaMask</ae-button>
+              <ae-button face="round" fill="secondary" extend>Proceed with MetaMask</ae-button>
             </router-link>
           </app-column>
           <app-separator>or</app-separator>
@@ -38,21 +37,16 @@
               MyEtherWallet
             </template>
             <template slot="text">
-              If you use MyEtherWallet, we are going to prepare the transaction here first and forward you there.
+              If you use MyEtherwallet, click below to prepare the transaction.
             </template>
             <router-link :to="{ name: 'myetherwallet' }" slot="button">
               <ae-button class="ae-button-ledger" face="round" extend>
-                Proceed on MEW
+                Proceed with MEW
               </ae-button>
             </router-link>
           </app-column>
         </app-row>
       </app-panel>
-      <app-intro class="app-spacing-top">
-        <template slot="intro">
-          It is also possible to use another web3 desktop wallet/browser <br/> instead of MetaMask.
-        </template>
-      </app-intro>
     </app-view>
     <!-- Wallet not found -->
     <app-modal v-if="modal && name === 'wallet-not-found'" @click="closeModal">

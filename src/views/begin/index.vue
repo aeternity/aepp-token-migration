@@ -6,11 +6,11 @@
     <app-view container>
       <app-intro>
         <template slot="title">
-          Create an aeternity account
+          Create an æternity account
         </template>
         <template slot="intro">
           For highest security it is recommended to use AirGap or Ledger <br/>
-          Nano S. This requires an installation of Airgap on a mobile device <br/>
+          Nano S. This requires an installation of AirGap Vault on a mobile device <br/>
           or a connection with Ledger Nano S.
         </template>
         <router-link :to="{ name: 'migration' }">
