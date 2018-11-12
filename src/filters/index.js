@@ -14,7 +14,7 @@ Vue.filter('fromWei', function (value) {
 })
 
 Vue.filter('shorten', function (value, pre) {
-  if (!value) return
+  if (!value || !value.includes('.')) return value
   const splitValue = value.split('.')
   if (pre) {
     return splitValue[0]
