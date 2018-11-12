@@ -14,7 +14,7 @@
           :value="walletAddress"
           length="short"
         />
-        <router-link :to="{ name: 'migration' }" :class="{ 'app-header__grayscale': !validAddress }">
+        <router-link @click.native="resetAddress" :to="{ name: 'migration' }" :class="{ 'app-header__grayscale': !validAddress }">
           <ae-identicon :address="validAddress ? walletAddress : 'none'"/>
         </router-link>
         <a href="//forum.aeternity.com/t/token-migration-phase-0-support-and-faq/1275" class="app-header__forum" target="_blank">
@@ -50,6 +50,11 @@ export default {
       )
     },
     ...mapState(['walletAddress'])
+  },
+  methods: {
+    resetAddress: function () {
+      this.$store.commit('setWalletAddress', null)
+    }
   }
 }
 </script>
