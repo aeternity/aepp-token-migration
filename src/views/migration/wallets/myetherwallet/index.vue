@@ -162,7 +162,6 @@
               <li>
                 <span>1</span>
                 Address of the AE Token Contract.
-                Learn more about token transfer <a href="#">here</a>.
               </li>
               <li>
                 <span>2</span>
