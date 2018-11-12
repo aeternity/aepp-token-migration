@@ -74,7 +74,7 @@ export default {
     return {
       scanner: false,
       address: false,
-      paused: false
+      paused: true
     }
   },
   computed: {

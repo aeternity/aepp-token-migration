@@ -162,6 +162,7 @@ export default {
     ])
   },
   mounted () {
+    this.$store.commit('setWalletAddress', this.$route.params.pubkey || null)
     this.getBurnEventsByAeAccount().then(() => {
       this.loading = false
     })
