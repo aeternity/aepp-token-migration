@@ -35,9 +35,7 @@
               Ledger Wallet
             </template>
             <template slot="text">
-              Connect your Ledger Wallet over USB, select the æternity app and click on the button below.
-              <br />
-              <br />
+              Connect your Ledger Wallet over USB, select the æternity app.
             </template>
             <router-link :to="{ name: 'read' }" slot="button" disabled>
               <ae-button class="ae-button-ledger" face="round" extend disabled>
