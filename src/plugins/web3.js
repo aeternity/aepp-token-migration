@@ -239,7 +239,7 @@ export default {
      * @param _payload
      * @return {string}
      */
-    Vue.prototype.$generateMEWURI = function (_contract, _payload, _gas = 300000) {
+    Vue.prototype.$generateMEWURI = function (_contract, _payload, _gas = GASLIMIT) {
       return `https://www.myetherwallet.com/?to=${
         _contract
       }&value=0&gaslimit=${
