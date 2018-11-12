@@ -80,9 +80,9 @@
           <app-url :value="migrate" disabled>
             <ae-toolbar align="justify" fill="neutral">
               <span>Your Migration payload is saved in this link</span>
-              <ae-button face="toolbar">
-                <ae-icon name="copy"/>
-                COPY ADDRESS
+              <ae-button face="toolbar" v-copy-to-clipboard="migrate">
+                <ae-icon name="copy" />
+                COPY LINK
               </ae-button>
             </ae-toolbar>
           </app-url>
@@ -211,6 +211,8 @@
 <script>
 import { mapState } from 'vuex'
 
+import { directives } from '@aeternity/aepp-components'
+
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
@@ -233,6 +235,9 @@ import mixinsModal from '../../../../mixins/modal'
 export default {
   name: 'migration-wallets-myetherwallet',
   mixins: [mixinsModal],
+  directives: {
+    copyToClipboard: directives.copyToClipboard
+  },
   components: {
     AeButton,
     AeIcon,
