@@ -39,7 +39,7 @@
             </li>
             <li>
               <span>
-                <ae-identicon :address="$tokenContract" v-if="$tokenContract"/>
+                <img :src="require('../../../../assets/graphics/aeternity-contract.png')" alt="æternity contract">
               </span>
               <h4>AE Token Contract</h4>
               <p v-html="$options.filters.chunk($tokenContract)"></p>
