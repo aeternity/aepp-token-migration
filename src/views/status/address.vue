@@ -9,9 +9,7 @@
           You’re ready for <br/> the æternity Mainnet!
         </template>
         <template slot="intro">
-          You have completed your part of migrating the AE tokens <br/>
-          to the æternity Mainnet. Your tokens have been <br/>
-          transfered to the AE Migration Address.
+          You have completed your part of migrating to the æternity Mainnet
         </template>
         <div class="app-migration-result-print">
           <ae-button @click="print()" face="round" fill="primary" extend shadow>
@@ -32,7 +30,7 @@
             {{collectiveSum | shorten(true) }}.<small style="font-size: 2rem;">{{collectiveSum | shorten }}</small>
             <span>&nbsp;AE</span>
           </h1>
-          <h4 class="app-migration-result-subtitle">In total</h4>
+          <h4 class="app-migration-result-subtitle">in total</h4>
         </app-panel>
         <app-panel primary padding>
           <div class="app-migration-result-account">

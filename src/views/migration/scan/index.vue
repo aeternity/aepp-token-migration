@@ -1,17 +1,17 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="4/6" text="Enter your Aeternity account address"/>
+      <app-header-nav prog="4/6" text="Provide your æternity account"/>
     </app-header>
     <app-view container>
       <app-intro>
         <template slot="title">
-          Enter your æternity account address
+          Provide your æternity account
         </template>
         <template slot="intro">
-          Please make sure the address below is the correct æternity <br/>
-          address which you made. All AE tokens will be sent to this address. <br/>
-          You cannot change the address your tokens will be sent to later!
+        Please make sure the address you provide is your real æternity address, <br/>
+        this cannot be changed afterwards. All tokens you choose to transfer <br/>
+        will be available on this address.
         </template>
       </app-intro>
       <app-panel primary padding shadow>

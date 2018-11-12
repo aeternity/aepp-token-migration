@@ -1,15 +1,15 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="3/6" text="Enter your Aeternity account address"/>
+      <app-header-nav prog="3/6" text="Provide your æternity account"/>
     </app-header>
     <app-view container>
       <app-intro>
         <template slot="title">
-          Provide your new <br/> æternity address
+          Provide your æternity account
         </template>
         <template slot="intro">
-          All of your tokens will be migrated to this address.
+          The amount of tokens you choose to migrate, will be available on this address in the Mainnet.
         </template>
       </app-intro>
       <app-panel primary padding shadow>
@@ -17,11 +17,10 @@
           <app-column>
             <img :src="require('../../assets/graphics/airgap-logo.svg')" alt="Airgap Vault" slot="image">
             <template slot="title">
-              Airgap Vault
+              AirGap Vault
             </template>
             <template slot="text">
-              Provide an account available in the AirGap Vault app. Click on the æternity account in
-              AirGap Vault and you will see a QR code. Scan it.
+              Open your æternity wallet in the AirGap Vault and scan your QR code.
             </template>
             <router-link :to="{ name: 'scan' }" slot="button">
               <ae-button face="round" fill="secondary" extend>

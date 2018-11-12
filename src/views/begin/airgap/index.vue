@@ -1,7 +1,7 @@
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="2/6" text="Create an Aeternity account with Airgap"/>
+      <app-header-nav prog="2/6" text="Create an æternity account with AirGap"/>
     </app-header>
     <app-view container>
       <app-intro>
@@ -22,7 +22,7 @@
           <section class="tutorial__info">
             <h3 class="title title-category">Download & Install AirGap Vault app</h3>
             <p>
-              Go to the App Store of Android Market and download the <b>Airgap Vault App</b>.
+              Go to the App Store or the Play Store and download the <b>Airgap Vault App</b>.
               For maximum security we recommend using a dedicated smartphone to
               store your AE tokens. <a href="#" target="_blank">Learn More »</a>
             </p>
