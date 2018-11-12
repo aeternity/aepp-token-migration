@@ -20,9 +20,9 @@
       <app-panel primary padding shadow>
         <app-row>
           <app-column>
-            <img :src="require('@/assets/graphics/airgap-logo.svg')" alt="Airgap Vault" slot="image">
+            <img :src="require('@/assets/graphics/airgap-logo.svg')" alt="AirGap Vault" slot="image">
             <template slot="title">
-              Airgap Vault
+              AirGap Vault
             </template>
             <template slot="text">
               Create an æternity account with AirGap.
