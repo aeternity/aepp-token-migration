@@ -9,11 +9,10 @@
           Select your wallet where you <br/> hold your tokens
         </template>
         <template slot="intro">
-          For now, we only support migrating with MetaMask (for web3) and
-          MyEtherWallet. If you hold your tokens somewhere else,
-          create an account on either of the options below first.<br/>
-          You can then move your tokens to this account to proceed.<br/>
-          IMPORTANT: You will need to have enough ETH on the same account to
+          For now, we only support migrating with MetaMask (for web3) and MyEtherWallet.<br/>
+          If you hold your tokens somewhere else, create an account on either of the options below first.<br/>
+          You can then move your tokens to this account to proceed.<br/><br/>
+          <b>IMPORTANT:</b> You will need to have enough ETH on the same account to
           pay for gas.
         </template>
       </app-intro>
