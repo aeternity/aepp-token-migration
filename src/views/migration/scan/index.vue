@@ -87,28 +87,25 @@ export default {
       scanner: true,
       address: false,
       paused: false,
-      validated: false,
-      validbase58: false
+      validated: false
     }
   },
   computed: {
     approved: function () {
       return this.validated && this.walletAddress && this.validbase58
     },
+    validbase58: function () {
+      if (!this.walletAddress) return false
+      try {
+        this.$base58Check(this.walletAddress)
+        return true
+      } catch (e) {
+        return false
+      }
+    },
     ...mapState([
       'walletAddress'
     ])
-  },
-  watch: {
-    walletAddress (address) {
-      if (!address) return
-      try {
-        this.$base58Check(address)
-        this.validbase58 = true
-      } catch (e) {
-        this.validbase58 = false
-      }
-    }
   },
   methods: {
     onDecode (content) {
@@ -118,6 +115,7 @@ export default {
     },
     closeScanner () {
       this.$store.commit('setWalletAddress', null)
+      this.paused = true
       this.scanner = false
       this.$router.push({ name: 'migration' })
     },

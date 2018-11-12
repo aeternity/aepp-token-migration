@@ -86,12 +86,20 @@
               </ae-button>
             </ae-toolbar>
           </app-url>
-          <br />
+          <div class="app-check-spacing">
+            <ae-check name="approve" v-model="validated">
+              <ae-text face="sans-s">
+                I agree to the <a href="//migrate.aeternity.com/#/tos" target="_blank">Terms of Service</a>
+              </ae-text>
+            </ae-check>
+          </div>
           <ae-button
             @click="startMigration"
             class="app-center-block ae-button-ledger"
             face="round"
-            fill="secondary">
+            fill="secondary"
+            :disabled="!validated"
+          >
             Start Migration on MEW
           </ae-button>
         </app-panel>
@@ -172,7 +180,8 @@
                 <span>4</span>
                 Dataload included in the transaction, It contains the
                 <strong>AE Migration Address</strong>, your <strong>AE Mainnet Account</strong>
-                and the <strong>Amount of AE</strong> Decode dataload <a href="#">here</a>.
+                and the <strong>Amount of AE</strong> Decode dataload
+                <a href="//verify-data.aeternity.com" target="_blank">here</a>.
               </li>
               <li>
                 <a :href="migrate" target="_blank" v-if="step === 2">
@@ -207,6 +216,7 @@ import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
 import AeInput from '@aeternity/aepp-components/dist/ae-input'
+import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
 import AppModal from '../../../../sections/app-modal/index.vue'
@@ -229,6 +239,7 @@ export default {
     AeText,
     AeIdenticon,
     AeInput,
+    AeCheck,
     AeToolbar,
     AppModal,
     AppIntro,
@@ -240,7 +251,7 @@ export default {
     AppColumn
   },
   data: function () {
-    return { amount: null, gasPrice: '0', step: 0 }
+    return { amount: null, gasPrice: '0', step: 0, validated: false }
   },
   computed: {
     migrate () {

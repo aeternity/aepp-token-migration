@@ -27,14 +27,14 @@
               store your AE tokens. <a href="#" target="_blank">Learn More »</a>
             </p>
             <footer>
-              <a href="#" target="_blank">
+              <a href="https://itunes.apple.com/us/app/airgap-vault-secure-secrets/id1417126841" target="_blank">
                 <img
                   :src="require('@/assets/graphics/apple-store.svg')"
                   alt="Apple Store"
                   title="Go to Apple Store"
                 />
               </a>
-              <a href="#" target="_blank">
+              <a href="https://play.google.com/store/apps/details?id=it.airgap.vault" target="_blank">
                 <img
                   :src="require('@/assets/graphics/google-play.svg')"
                   alt="Google Play"

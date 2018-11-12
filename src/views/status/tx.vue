@@ -41,7 +41,7 @@
               <ae-address
                 v-if="$route.params.pubkey"
                 :value="$route.params.pubkey"
-                length="short"
+                length="flat"
               />
               <ae-identicon :address="$route.params.pubkey" />
             </span>
@@ -209,6 +209,10 @@ export default {
     justify-content: space-between;
     align-items: center;
     color: #76818C;
+
+    > ul {
+      margin-right: 1rem;
+    }
   }
 }
 

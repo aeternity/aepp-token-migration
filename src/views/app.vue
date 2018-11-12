@@ -36,6 +36,14 @@ export default {
         this.mainnet = false
       }
     }
+  },
+  mounted: async function () {
+    try {
+      await this.$checkNetwork(network.mainnet)
+      this.mainnet = true
+    } catch (e) {
+      this.mainnet = false
+    }
   }
 }
 </script>
