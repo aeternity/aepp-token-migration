@@ -118,6 +118,7 @@ export default {
     },
     closeScanner () {
       this.$store.commit('setWalletAddress', null)
+      this.paused = true
       this.scanner = false
       this.$router.push({ name: 'migration' })
     },
