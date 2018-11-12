@@ -2,6 +2,8 @@ import Web3 from 'web3'
 import ABI from 'human-standard-token-abi'
 import ethereumjs from 'ethereumjs-abi'
 import base58check from 'base58check'
+const BN = Web3.utils.BN
+const GASLIMIT = new BN(300000)
 
 /**
  * Exporting IDs of the networks
@@ -131,10 +133,10 @@ export default {
      * @return {Promise<{eth: *, gas: number}>}
      */
     Vue.prototype.$hasEnoughETHForGas = async function () {
-      const eth = await this.$getETHBalance()
-      const gas = await $web3.eth.getGasPrice()
+      const eth = new BN(await this.$getETHBalance())
+      const gas = new BN(await $web3.eth.getGasPrice()).mul(GASLIMIT)
 
-      if (eth < gas) {
+      if (eth.lt(gas)) {
         throw Error('Not enough gas to execute this transaction')
       }
 
@@ -237,7 +239,7 @@ export default {
      * @param _payload
      * @return {string}
      */
-    Vue.prototype.$generateMEWURI = function (_contract, _payload, _gas = 300000) {
+    Vue.prototype.$generateMEWURI = function (_contract, _payload, _gas = GASLIMIT) {
       return `https://www.myetherwallet.com/?to=${
         _contract
       }&value=0&gaslimit=${
