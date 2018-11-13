@@ -66,36 +66,36 @@ is invoked which receives and prepares the tokens for their availability on the 
 ## Tools (We built and use)
 
 1. Token migration landing page: This is the home page that token owners got to, to begin their token migration.
-  - __Url__: https://migrate.aeternity.com/#/
-  - __Source__: https://github.com/aeternity/aepp-token-migration-landing
+    - __Url__: https://migrate.aeternity.com/#/
+    - __Source__: https://github.com/aeternity/aepp-token-migration-landing
 2. The base app: This is also our æternity wallet allowing you to create your æternity address & view the balance of 
 your tokens transferred thus far.
-  - __url__: https://base.aepps.com
-  - __Source__: https://github.com/aeternity/aepp-base
+    - __url__: https://base.aepps.com
+    - __Source__: https://github.com/aeternity/aepp-base
 3. Payload verification tool: Useful for decoding & verifying the migration data prior to approving your transaction.
-  - __url__: https://verify-data.aeternity.com/
-  - __source__: https://github.com/aeternity/aepp-token-migration-payload
+    - __url__: https://verify-data.aeternity.com/
+    - __source__: https://github.com/aeternity/aepp-token-migration-payload
 4. Token Burner Listener: This is a Node js script that listens to events of tokens burnt (transferred),
 it captures these events and logs them in BackendLess allowing easy report of balances burnt/transferred by 
 account thus far. This is merely for reporting and can be validated by interrogating the token burner contract
 or simply viewing events on etherscan.
-  - __source__: https://github.com/aeternity/token-burn-listener
+    - __source__: https://github.com/aeternity/token-burn-listener
 4. Token Burn Contract: This is the solidity code that runs on the ethereum virtual machine (EVM),
 it is invoked every time a user transfers their ae token(s) to æternity main net.
-  - __source__: https://github.com/aeternity/ae-token-migration-contract
+    - __source__: https://github.com/aeternity/ae-token-migration-contract
 5. Initial AE Balance Generator: Used to generate account balances per account on the æternity blockchain. It is run 
 when the node boots up.
-  - __source__: https://github.com/aeternity/initial-ae-balances-generator
+    - __source__: https://github.com/aeternity/initial-ae-balances-generator
 
 ## 3rd Party tools (we also use).
 
 To facilitate the token migration process we use web3 wallets and other tools.
 
 1. Airgap Vault: useful for creating an æternity address & securely storing your key pair.
-  - __URL__: https://airgap.it/
-  - __Note__: Integration developed but not supported at the time of writing.
+    - __URL__: https://airgap.it/
+    - __Note__: Integration developed but not supported at the time of writing.
 2. Ledger Wallet: Hardware wallet for creating your æternity account & storing your key pair.
-  - __Note__: Integration developed but not supported at the time of writing
+    - __Note__: Integration developed but not supported at the time of writing
 3. My Ether Wallet: Used for signing token transfer transactions during then migration process. 
 4. MetaMask: Web3 chrome plugin for signing token transfer transactions during then migration process.
 5. Backendless: for reporting to the user their migration events with ease.
