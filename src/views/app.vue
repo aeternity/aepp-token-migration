@@ -6,23 +6,31 @@
       will NOT be available in the Mainnet
     </app-notice>
     <router-view/>
-    <div class="app-is-mobile" v-if="isMobile">
-      <h1>Mobile phones are not supported for now.</h1>
+    <div class="app-is-mobile-backdrop">
+      <div class="app-is-mobile">
+        <img src="../assets/graphics/desktop.png" alt="Desktop">
+        <h2>Please switch to desktop</h2>
+        <p>Currently, we do not support mobile phones</p>
+        <a href="https://migrate.aeternity.com">
+          <ae-button face="round" fill="primary" extend>Ok</ae-button>
+        </a>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { network } from '../plugins/web3'
-
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AppNotice from '../components/app-notice.vue'
 
 export default {
   name: 'app',
   components: {
+    AeButton,
     AppNotice
   },
   data () {
-    return { mainnet: true, isMobile: false }
+    return { mainnet: true }
   },
   watch: {
     async $route () {
@@ -41,17 +49,6 @@ export default {
     }
   },
   mounted: async function () {
-    if (navigator.userAgent.match(/Android/i) ||
-        navigator.userAgent.match(/webOS/i) ||
-        navigator.userAgent.match(/iPhone/i) ||
-        navigator.userAgent.match(/iPad/i) ||
-        navigator.userAgent.match(/iPod/i) ||
-        navigator.userAgent.match(/BlackBerry/i) ||
-        navigator.userAgent.match(/Windows Phone/i)) {
-      this.isMobile = true
-      return
-    }
-
     try {
       await this.$hasWeb3()
     } catch (e) {
@@ -68,24 +65,64 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.app-is-mobile {
+.app-is-mobile-backdrop {
   position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
+  display: none;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
-  background: $color-neutral-positive-2;
-  overflow: auto;
+  background: #EDF3F7;
+  overflow: hidden;
   z-index: 1000;
+  padding: 2rem 1rem;
 
-  > h1 {
-    text-align: center;
+  @media screen and (max-width: 767px) {
+    display: flex;
+    visibility: visible;
+  }
+}
+.app-is-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: $color-white;
+  border-radius: 4px;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  > img {
+    width: calc(100% + 4rem);
+    margin-left: calc(-4rem);
+    margin-right: calc(-4rem);
+    position: relative;
+  }
+
+  > a {
+    display: block;
+    width: 100%;
+  }
+
+  > h2 {
+    margin-bottom: 0.5rem;
     line-height: 1.5;
+    font-weight: bold;
+    font-size: 1.4375rem;
+    color: #001833;
+  }
+
+  > p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #4E5A66;
+    font-size: 1.0625rem;
   }
 }
 </style>
