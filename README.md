@@ -3,7 +3,7 @@
 [![Build Status](https://ci.aepps.com/job/aepp-token-migration/badge/icon)](https://ci.aepps.com/job/aepp-token-migration/)
 
 This is the repository for Aepp Token Migration which is an application to help facilitate token migration for
-the Aeternity blockchain, from ERC20 tokens to Aeternity blockchain mainnet.
+the Aeternity blockchain, from ERC20 tokens to Aeternity blockchain main net.
 
 The tool works by connecting with a 3rd party wallet, in current case we support MetaMask, MyEtherWallet and Ledger
 Wallet.
@@ -58,13 +58,13 @@ we have built a host of additional tools which give the user a smooth migration 
 integrating with 3rd party wallets (as mentioned above).
 
 Note: We refer often to the term "Token Burning" which simply means the transfer of ERC20 tokens from etherium
-blockchain to the aeternit mainnet.
+blockchain to the aeternit main net.
 
 A brief explanation of the token transfer process.
 
 To transfer tokens it is necessary to have enough ETH to pay for gas and transaction fees. Tokens can be transferred
 in unlimited multiple batches. When a user transfers his/her tokens, first they specify the number, 2nd they connect
-their wallet to sign the transaction. In the 3rd step the contract burner contract (see below) a solidity smart contract is invoked which receives and prepares them for their availability on the aeternity main net.
+their wallet to sign the transaction. In the 3rd step the contract burner contract (see below) a solidity smart contract is invoked which receives and prepares the tokens for their availability on the aeternity main net.
 
 Tools (We built and use)
 
@@ -90,7 +90,7 @@ source: https://github.com/aeternity/token-burn-listener
 4. Token Burn Contract: This is the solidity code that runs on the etherium virtual machine (EVM),
 it is invoked everytime a user transfers their ae token(s) to aeternity main net.
 
-source: https://github.com/aeternity/AETokenBurningProject
+source: https://github.com/aeternity/ae-token-migration-contract
 
 5. Initial AE Balance Generator: Used to generate account balances per account on the aeternity blockchain. It is run when the node boots up.
 
