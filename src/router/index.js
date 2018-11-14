@@ -57,9 +57,5 @@ export default new Router({
     name: 'tx',
     path: '/status/tx/:pubkey',
     component: require('../views/status/tx.vue').default
-  }, {
-    name: 'payload',
-    path: '/status/payload',
-    component: require('../views/status/payload.vue').default
   }]
 })

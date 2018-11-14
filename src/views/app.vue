@@ -1,18 +1,25 @@
 <template>
   <div id="app">
+    <!-- Notice element -->
     <app-notice v-if="!mainnet">
       You’re connected to a Testnet,
       the tokens that you are about to migrate
       will NOT be available in the Mainnet
     </app-notice>
+
+    <!-- Render everything here -->
     <router-view/>
+
+    <!-- Blocker for non-mobile phones -->
     <div class="app-is-mobile-backdrop">
       <div class="app-is-mobile">
         <img src="../assets/graphics/desktop.png" alt="Desktop">
         <h2>Please switch to desktop</h2>
         <p>Currently, we do not support mobile phones</p>
         <a href="https://migrate.aeternity.com">
-          <ae-button face="round" fill="primary" extend>Ok</ae-button>
+          <ae-button face="round" fill="primary" extend>
+            Ok
+          </ae-button>
         </a>
       </div>
     </div>
