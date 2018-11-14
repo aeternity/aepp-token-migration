@@ -22,6 +22,17 @@ export default {
   width: 100%;
   height: 40px;
 
+  a {
+    margin: 0 0.2rem;
+    display: inline-block;
+    color: $color-white;
+    text-decoration: underline;
+
+    &:hover, &:focus {
+      color: $color-white;
+    }
+  }
+
   @media print {
     display: none;
     visibility: hidden;
