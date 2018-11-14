@@ -66,7 +66,7 @@ is invoked which receives and prepares the tokens for their availability on the 
 ## Tools that users can use in each step
 
 1. Creating an address: There are a few different ways to create an æternity account 
-   - 1.1 The Base æpp: This is also our æternity wallet allowing you to create your æternity address & view the balance of your tokens transferred thus far. **Please use the base æpp only for small ammounts, since we don't consider webwallets secure enough for large migrations.**
+   - 1.1 The Base æpp: This is also our æternity wallet allowing you to create your æternity address & view the balance of your tokens transferred thus far. **Please use the base æpp only for small amounts, since we don't consider webwallets secure enough for large migrations.**
       * __url__: https://base.aepps.com
       * __Source__: https://github.com/aeternity/aepp-base
    - 1.2 Airgap Vault: very secure for storing your key pair and works best with a second offline mobile device.
