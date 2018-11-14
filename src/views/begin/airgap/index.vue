@@ -137,10 +137,10 @@
               </figure>
               <section class="tutorial__info">
                 <h3 class="title title-category">Your Wallet</h3>
-                <h4 class="title title-subcategory">Select ‘æternity’</h4>
+                <h4 class="title title-subcategory">Add a new wallet: æternity</h4>
                 <p>
                   For the purpose of migrating to the Mainnet, we will create an æternity account.
-                  Select ‘Add Wallet’ and choose <strong>æternity</strong>
+                  Select ‘Add Wallet’ and choose <span class="app-highlight">æternity</span>
                 </p>
               </section>
             </div>
