@@ -15,8 +15,7 @@
           Are you ready for <br /> the æternity Mainnet?
         </template>
         <template slot="intro">
-          Enter the hash of the transaction you made on <br />
-          MyEtherWallet, to check if you are ready.
+          Enter your æternity address and check the status of your migrations.
         </template>
       </app-intro>
       <div class="app-migration-check">
