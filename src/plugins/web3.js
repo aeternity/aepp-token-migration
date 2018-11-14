@@ -2,7 +2,11 @@ import Web3 from 'web3'
 import ABI from 'human-standard-token-abi'
 import ethereumjs from 'ethereumjs-abi'
 import base58check from 'base58check'
-const BN = Web3.utils.BN
+
+/**
+ * Constants
+ */
+const { BN } = Web3.utils
 const GASLIMIT = new BN(300000)
 
 /**
@@ -141,14 +145,6 @@ export default {
       }
 
       return { eth, gas }
-    }
-
-    /**
-     * TODO: Figure out a way to estimate gas
-     * @return {Promise<number>}
-     */
-    Vue.prototype.$estimateGas = async function () {
-      return $web3.eth.getGasPrice()
     }
 
     /**
