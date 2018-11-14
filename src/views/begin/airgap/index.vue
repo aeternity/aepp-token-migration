@@ -133,28 +133,14 @@
           <app-slide-container>
             <div class="tutorial">
               <figure class="tutorial__img" v-if="!isMobile">
-                <img :src="require('@/assets/images/tutorial-airgap/2.0-wallet-generate.svg')">
-              </figure>
-              <section class="tutorial__info">
-                <h3 class="title title-category">Your Wallet</h3>
-                <h4 class="title title-subcategory">Add a new wallet</h4>
-                <p>
-                  A wallet consists of the public address and the derivation path of a specific coin.
-                </p>
-              </section>
-            </div>
-          </app-slide-container>
-          <app-slide-container>
-            <div class="tutorial">
-              <figure class="tutorial__img" v-if="!isMobile">
                 <img :src="require('@/assets/images/tutorial-airgap/2.1-wallet-select.svg')">
               </figure>
               <section class="tutorial__info">
                 <h3 class="title title-category">Your Wallet</h3>
-                <h4 class="title title-subcategory">Select ‘æternity’</h4>
+                <h4 class="title title-subcategory">Add a new wallet: æternity</h4>
                 <p>
-                  For the purpose of migrating to the Mainnet, we
-                  will create an æternity account. Select ‘Add Wallet’.
+                  For the purpose of migrating to the Mainnet, we will create an æternity account.
+                  Select ‘Add Wallet’ and choose <span class="app-highlight">æternity</span>
                 </p>
               </section>
             </div>
