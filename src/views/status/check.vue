@@ -1,9 +1,15 @@
 <template>
   <app-view>
+    <!-- Application Header -->
     <app-header>
       <app-header-nav text="Statuspage"/>
     </app-header>
+
+    <!-- Content View -->
     <app-view container>
+      <app-notice v-if="scannerError">
+        {{ scannerError }}. Please enter your address manually.
+      </app-notice>
       <app-intro>
         <template slot="title">
           Are you ready for <br /> the æternity Mainnet?
@@ -37,8 +43,17 @@
         </router-link>
       </div>
     </app-view>
-    <qrcode-reader class="app-scan" @decode="onDecode" :paused="paused" :camera="!paused" v-show="scanner">
-      <ae-button class="app-scan__btn" @click="closeScanner" face="icon" fill="neutral">
+
+    <!-- QRCode Scanner -->
+    <qrcode-reader
+      class="app-scan"
+      @init="onInit"
+      @decode="onDecode"
+      :paused="paused"
+      :camera="!paused"
+      v-show="scanner"
+    >
+      <ae-button class="app-scan__btn" @click="closeScanner(null)" face="icon" fill="neutral">
         <ae-icon name="close"/>
       </ae-button>
     </qrcode-reader>
@@ -47,57 +62,36 @@
 <script>
 import { mapState } from 'vuex'
 
-import { QrcodeReader } from 'vue-qrcode-reader'
-
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
+import AppNotice from '../../components/app-notice.vue'
 import AppAddress from '../../components/app-address.vue'
 import AppIntro from '../../components/app-intro.vue'
 
+import mixinsScan from '../../mixins/scan'
+
 export default {
   name: 'migration-check',
+  mixins: [mixinsScan],
   components: {
+    AppNotice,
     AppAddress,
     AppIntro,
     AeIcon,
     AeText,
     AeButton,
     AeCheck,
-    AeToolbar,
-    QrcodeReader
+    AeToolbar
   },
   data: function () {
-    return {
-      scanner: false,
-      address: false,
-      paused: true
-    }
+    return { scanner: false, paused: true }
   },
   computed: {
-    ...mapState([
-      'walletAddress'
-    ])
-  },
-  methods: {
-    onDecode (content) {
-      this.$store.commit('setWalletAddress', content)
-      this.paused = true
-      this.scanner = false
-    },
-    closeScanner () {
-      this.$store.commit('setWalletAddress', null)
-      this.paused = true
-      this.scanner = false
-    },
-    toggleRescan () {
-      this.$store.commit('setWalletAddress', null)
-      this.paused = false
-      this.scanner = true
-    }
+    ...mapState(['walletAddress'])
   }
 }
 </script>
@@ -106,30 +100,5 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.app-scan {
-  background-color: $color-black;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-
-  &__btn {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-  }
-
-  /deep/ .app-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
 }
 </style>
