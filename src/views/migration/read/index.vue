@@ -9,9 +9,9 @@
           Provide your æternity account
         </template>
         <template slot="intro">
-        Please make sure the address you provide is your real æternity address, <br/>
-        this cannot be changed afterwards. All tokens you choose to transfer <br/>
-        will be available on this address. 
+          Please make sure the address you provide is your real æternity address, <br/>
+          this cannot be changed afterwards. All tokens you choose to transfer <br/>
+          will be available on this address.
         </template>
       </app-intro>
       <app-panel primary padding shadow>
