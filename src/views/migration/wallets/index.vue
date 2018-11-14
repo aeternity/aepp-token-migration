@@ -10,13 +10,8 @@
         </template>
         <template slot="intro">
           Currently, we only support migrating with MyEtherWallet and MetaMask (or any other web3 wallet). <br/>
-<<<<<<< HEAD
           Both ways support Ledger and Trezor hardware wallets.</br></br>
           If you hold your tokens somewhere else, move them to one of these wallets.
-=======
-          MetaMask also supports Ledger and Trezor handware ledgers, if you hold your tokens in either of those.</br></br>
-          If you hold your tokens somewhere else, move them to either of the wallets below.
->>>>>>> f1babea34b8fddb4a039013f499b34a393d6bcba
           Create an account there if necessary.<br/><br/>
           <strong>IMPORTANT</strong>: You will need to have enough ETH on the same account to
           pay for transaction fees.
