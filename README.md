@@ -3,7 +3,7 @@
 [![Build Status](https://ci.aepps.com/job/aepp-token-migration/badge/icon)](https://ci.aepps.com/job/aepp-token-migration/)
 
 This is the repository for æpp Token Migration which is an application to help facilitate token migration for
-the æternity blockchain, from ERC20 tokens to æternity blockchain main net.
+the æternity blockchain, from ERC20 tokens on Ethereum to æternity blockchain main net.
 
 The tool works by connecting with a 3rd party wallet, in current case we support MetaMask, MyEtherWallet and Ledger
 Wallet.
@@ -49,11 +49,11 @@ npm run lint
 
 ## Token migration further explained
 
-Alongside the token migration app (source here and also available on https://token-migration.aepps.com/) 
+Alongside the token migration app (source here and also available on https://aepp-migrate.aeternity.com/) 
 we have built a host of additional tools which give the user a smooth migration journey as well as 
 integrated with 3rd party wallets (as mentioned above).
 
-__Note__: We refer often to the term "Token Burning" which simply means the transfer of ERC20 tokens from ethereum
+__Note__: We refer often to the term "Token Migration" which simply means the transfer of ERC20 tokens from ethereum
 blockchain to the æternity main net.
 
 ## A brief explanation of the token transfer process.
@@ -66,7 +66,7 @@ is invoked which receives and prepares the tokens for their availability on the 
 ## Tools that users can use in each step
 
 1. Creating an address: There are a few different ways to create an æternity account 
-   - 1.1 The Base App: This is also our æternity wallet allowing you to create your æternity address & view the balance of your tokens transferred thus far.
+   - 1.1 The Base æpp: This is also our æternity wallet allowing you to create your æternity address & view the balance of your tokens transferred thus far. **Please use the base æpp only for small amounts, since we don't consider webwallets secure enough for large migrations.**
       * __url__: https://base.aepps.com
       * __Source__: https://github.com/aeternity/aepp-base
    - 1.2 Airgap Vault: very secure for storing your key pair and works best with a second offline mobile device.
@@ -85,7 +85,7 @@ is invoked which receives and prepares the tokens for their availability on the 
       * __Source__: https://github.com/aeternity/aepp-token-migration-landing
   
     - 2.2 Direct to the Progressive web app: 
-      * __Url__: https://token-migration.aepps.com/
+      * __Url__: https://aepp-migrate.aeternity.com/
       * __Source__: here
 
     - 2.3 Command line cli: in development
@@ -98,7 +98,7 @@ is invoked which receives and prepares the tokens for their availability on the 
    
     - 4.1 My Ether Wallet: a web app wallet for signing transactions. Note: do not change the ETH amount on this screen at the migratio stage.  
     - 4.2 MetaMask: Web3 chrome plugin for signing token transfer transactions during then migration process.
-    - 4.3 Ledger Wallet: A hardware wallte with integration currently developed but not supported at the time of writing.
+    - 4.3 Hardware Wallets: MyEtherWallet & MetaMask both support hardware wallets to sign transactions.
 
 4. Token Burn Contract: This is the solidity code that runs on the ethereum virtual machine (EVM),
 it is invoked every time a user transfers their ae token(s) to æternity main net.
