@@ -71,38 +71,31 @@ export default {
   right: 0;
   left: 0;
   bottom: 0;
-  display: none;
   visibility: hidden;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
   background: #EDF3F7;
-  overflow: hidden;
   z-index: 1000;
-  padding: 2rem 1rem;
-
-  @media screen and (max-width: 767px) {
-    display: flex;
-    visibility: visible;
-  }
+  overflow: hidden;
 }
+
 .app-is-mobile {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  flex: 1 0;
   background: $color-white;
   border-radius: 4px;
   padding: 4rem 2rem;
+  margin: 0 2rem;
   text-align: center;
+  width: 100%;
 
   > img {
-    width: calc(100% + 4rem);
+    position: relative;
     margin-left: calc(-4rem);
     margin-right: calc(-4rem);
-    position: relative;
+    width: calc(100% + 4rem);
   }
 
   > a {
@@ -123,6 +116,19 @@ export default {
     margin-bottom: 1rem;
     color: #4E5A66;
     font-size: 1.0625rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #app {
+    overflow: hidden;
+    height: 100%;
+    max-height: none;
+  }
+
+  .app-is-mobile-backdrop {
+    display: flex;
+    visibility: visible;
   }
 }
 </style>
