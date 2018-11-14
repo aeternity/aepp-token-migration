@@ -60,5 +60,10 @@ export default {
 
     margin: 0 0 $spacer-l;
   }
+
+  @include only-phone {
+    width: auto;
+    padding: 1rem 0;
+  }
 }
 </style>

@@ -161,6 +161,11 @@ export default {
 
   &__address {
     color: $color-neutral-negative-1;
+
+    @include only-phone {
+      display: none;
+      visibility: hidden;
+    }
   }
 
   @media print {

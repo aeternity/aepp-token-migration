@@ -13,5 +13,10 @@ export default {
   position: relative;
   display: flex;
   justify-content: space-between;
+
+  @include only-phone {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>
