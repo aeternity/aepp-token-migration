@@ -32,6 +32,7 @@ export default {
       border-radius: 50%;
       width: 36px;
       height: 36px;
+      // TODO: this removed the inline element
       overflow: hidden;
 
       &:before {
