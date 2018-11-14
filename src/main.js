@@ -7,6 +7,7 @@ import VueWeb3 from './plugins/web3'
 
 import app from './views/app.vue'
 import router from './router'
+import i18n from './i18n'
 import store from './store'
 
 import './filters/index.js'
@@ -20,6 +21,7 @@ Vue.use(VueWeb3, {
 
 export default new Vue({
   router,
+  i18n,
   store,
   render: h => h(app)
 }).$mount('#app')
