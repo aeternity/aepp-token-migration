@@ -28,7 +28,11 @@
         <div class="app-scan-address">
           <app-address :value="walletAddress" disabled>
             <ae-toolbar align="justify">
-              <span v-if="!validbase58 && (walletAddress && walletAddress.length > 0)">
+              <span v-if="validbase58">
+                <ae-identicon :address="walletAddress" size="xs" style="vertical-align: middle" />
+                Your Identicon
+              </span>
+              <span v-else-if="!validbase58 && (walletAddress && walletAddress.length > 0)">
                 Invalid AE Address
               </span>
               <span v-else> </span>
@@ -81,6 +85,7 @@ import { mapState } from 'vuex'
 
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
+import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
@@ -99,6 +104,7 @@ export default {
     AppAddress,
     AppIntro,
     AeIcon,
+    AeIdenticon,
     AeText,
     AeButton,
     AeCheck,
