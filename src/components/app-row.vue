@@ -15,6 +15,7 @@ export default {
   justify-content: space-between;
 
   @include only-phone {
+    padding: 0 2rem;
     flex-direction: column;
     align-items: center;
   }

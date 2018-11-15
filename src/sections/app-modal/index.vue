@@ -44,5 +44,10 @@ export default {
 
   max-width: 900px;
   width: 900px;
+
+  @include only-phone {
+    max-width: none;
+    width: calc(100% - 4rem);
+  }
 }
 </style>

@@ -233,6 +233,7 @@ export default {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+
     &:not(:last-child):after {
       content: '';
       display: block;
@@ -257,9 +258,6 @@ export default {
       display: block;
       position: absolute;
       margin: 1rem;
-      top: 0;
-      height: 100%;
-      width: 100%;
       top: 10%;
       left: 10%;
       height: 90%;

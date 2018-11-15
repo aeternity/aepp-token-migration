@@ -239,5 +239,10 @@ export default {
   display: block;
   margin: 0 auto;
   width: 560px;
+
+  @include only-phone {
+    width: auto;
+    text-align: center;
+  }
 }
 </style>

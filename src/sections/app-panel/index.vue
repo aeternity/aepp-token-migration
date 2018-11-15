@@ -49,10 +49,24 @@ export default {
       margin-right: -3rem;
       margin-left: -3rem;
     }
+
+    @include only-phone {
+      padding: 1rem;
+
+      > .app-panel-header {
+        margin-top: -1rem;
+        margin-right: -1rem;
+        margin-left: -1rem;
+      }
+    }
   }
 
   &.margin {
     margin-bottom: 8rem;
+
+    @include only-phone {
+      margin-bottom: 1rem;
+    }
   }
   &.shadow {
     box-shadow: 0 0 10px 0 rgba(27,68,121,0.14);
@@ -67,6 +81,13 @@ export default {
     padding-left: 12rem;
     padding-right: 12rem;
     padding-bottom: 4rem;
+
+    @include only-phone {
+      padding-top: 0;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-bottom: 4rem;
+    }
   }
   &.middle {
     @include center-both;
