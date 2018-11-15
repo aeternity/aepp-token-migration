@@ -26,6 +26,12 @@ export default {
     width: 100%;
     padding: 1.5rem 0;
     z-index: 10;
+
+    @include only-phone {
+      width: auto;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+    }
   }
 
   &:before, &:after {

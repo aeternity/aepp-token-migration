@@ -28,6 +28,10 @@ export default {
   text-align: center;
   margin: 0 auto $spacer-xl;
 
+  @include only-phone {
+    margin: 0 auto 2rem;
+  }
+
   &.left {
     text-align: left;
 
@@ -40,7 +44,7 @@ export default {
     padding: 0 10rem;
 
     @include only-phone {
-      padding: 0 4rem;
+      padding: 0 1rem;
     }
   }
 
@@ -86,6 +90,10 @@ export default {
   &__footer {
     margin-top: 2rem;
     text-align: center;
+
+    @include only-phone {
+      margin-top: 1rem;
+    }
   }
 
   @media print {
