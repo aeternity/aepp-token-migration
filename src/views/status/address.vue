@@ -4,9 +4,9 @@
       <app-header-nav text="Statuspage"/>
     </app-header>
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
-          You’re ready for <br/> the æternity Mainnet!
+          You’re ready for the æternity Mainnet!
         </template>
         <template slot="intro">
           You have completed your part of migrating to the æternity Mainnet

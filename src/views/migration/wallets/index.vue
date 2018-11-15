@@ -4,15 +4,16 @@
       <app-header-nav prog="5/6" text="Select the wallet where you hold your AE tokens" />
     </app-header>
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
-          Select the wallet where you <br/> hold your AE tokens
+          Select the wallet where you hold your AE tokens
         </template>
         <template slot="intro">
-          Currently, we only support migrating with MyEtherWallet and MetaMask (or any other web3 wallet). <br/>
-          Both ways support Ledger and Trezor hardware wallets.</br></br>
+          Currently, we only support migrating with MyEtherWallet and MetaMask (or any other web3 wallet).
+          Both ways support Ledger and Trezor hardware wallets.
           If you hold your tokens somewhere else, move them to one of these wallets.
-          Create an account there if necessary.<br/><br/>
+          Create an account there if necessary.
+          <br /><br />
           <strong>IMPORTANT</strong>: You will need to have enough ETH on the same account to
           pay for transaction fees.
         </template>
@@ -38,7 +39,7 @@
               MyEtherWallet
             </template>
             <template slot="text">
-              If you use MyEtherwallet, click below to prepare the transaction.
+              If you use MyEtherWallet, click below to prepare the transaction.
             </template>
             <router-link :to="{ name: 'myetherwallet' }" slot="button">
               <ae-button class="ae-button-ledger" face="round" extend>
@@ -53,7 +54,7 @@
     <app-modal v-if="modal && name === 'wallet-not-found'" @click="closeModal">
       <app-panel primary padding shadow>
         <template slot="header">
-          <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="Metamask">
+          <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="MetaMask">
           Migrating with MetaMask
         </template>
         <app-intro>
@@ -64,8 +65,7 @@
             Wallet not found
           </template>
           <template slot="intro">
-            We could not read your account from MetaMask. <br/>
-            Please try unlocking it again. We recommend using the <br/>
+            We could not read your account from MetaMask. Please try unlocking it again. We recommend using the
             Chrome browser to complete the token migration.
           </template>
           <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">

@@ -5,14 +5,13 @@
     </app-header>
     <!-- App View -->
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
-          Prepare your transaction <br/> with MyEtherWallet
+          Prepare your transaction with MyEtherWallet
         </template>
         <template slot="intro">
-          You are about to transfer AE tokens to the AE Token Contract, which <br/>
-          sends them to the AE Migration Contract. The Migration Contract <br/>
-          takes care of everything else for you.
+          You are about to transfer AE tokens to the AE Token Contract, which sends them to the AE Migration Contract.
+          The Migration Contract takes care of everything else for you.
         </template>
       </app-intro>
       <app-panel shadow>
@@ -74,8 +73,13 @@
               Migration Process
             </template>
             <template slot="intro">
+<<<<<<< HEAD
               The tokens aren't being transferred directly to your æternity address. <br />
               See how the migration process looks like
+=======
+              The tokens aren't being transferred directly to your æternity address. The moment that you can expect
+              your tokens in the Mainnet, depends on the phase.
+>>>>>>> removing <br /> from text
             </template>
           </app-intro>
           <app-process collapsed>
@@ -109,6 +113,25 @@
           <hr class="app-horizontal-line" />
         </app-panel>
         <app-panel primary padding centered>
+<<<<<<< HEAD
+=======
+          <app-intro>
+            <template slot="subtitle">
+              AE Token Balance
+            </template>
+            <template slot="intro">
+              Define the amount of tokens you want to migrate here. You can migrate all your tokens at once,
+              or in multiple steps.
+            </template>
+          </app-intro>
+          <ae-input for="amount" type="number" label="Amount" v-model="amount" placeholder="0.0" aemount>
+            <ae-text slot="header" fill="black">AE Tokens</ae-text>
+            <ae-toolbar align="justify" slot="footer">
+              <span>Estimated GAS: {{ gasPrice }} ETH</span>
+            </ae-toolbar>
+          </ae-input>
+          <br />
+>>>>>>> removing <br /> from text
           <app-url :value="migrate" disabled>
             <ae-toolbar align="justify" fill="neutral">
               <span>Your Migration payload is saved in this link</span>
@@ -122,8 +145,8 @@
         <app-panel class="app-text-center" padding secondary>
           <ae-icon name="info" size="2rem" class="app-highlight"/>
           <ae-text face="sans-s" :weight="700">
-            The transaction you’re about to make will not send any ETH, it will only use ETH for gas. The <br />
-            amount of tokens that you send will be stored in the payload, which can be found in <br />
+            The transaction you’re about to make will not send any ETH, it will only use ETH for gas. The amount of
+            tokens that you send will be stored in the payload, which can be found in
             <span class="app-highlight">
               Generated Data in MyEtherWallet.
             </span>
@@ -157,8 +180,8 @@
                 The transaction form will be pre-filled and
                 <span class="app-highlight">
                   should not be changed!
-                </span> <br /> <br />
-                Continue for more information, before proceeding.
+                </span>
+                <p>Continue for more information, before proceeding.</p>
               </template>
             </app-intro>
             <ae-button @click="step = 2" face="round" fill="secondary" extend>

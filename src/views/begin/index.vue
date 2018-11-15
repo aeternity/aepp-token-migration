@@ -4,14 +4,13 @@
       <app-header-nav prog="1/6" text="Begin migrating your AE tokens"/>
     </app-header>
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
           Create an æternity account
         </template>
         <template slot="intro">
-          For highest security it is recommended to use AirGap or Ledger <br/>
-          Nano S. This requires an installation of AirGap Vault on a mobile device <br/>
-          or a connection with Ledger Nano S.
+          For highest security it is recommended to use AirGap or Ledger Nano S. This requires an installation
+          of AirGap Vault on a mobile device or a connection with Ledger Nano S.
         </template>
         <router-link :to="{ name: 'migration' }">
           <ae-button face="flat">Skip this step</ae-button>
@@ -25,8 +24,7 @@
               AirGap Vault
             </template>
             <template slot="text">
-              Create an æternity account with AirGap.
-              A secure way to store your key pair in a mobile app.
+              Create an æternity account with AirGap. A secure way to store your key pair in a mobile app.
             </template>
             <router-link :to="{ name: 'airgap' }" slot="button">
               <ae-button face="round" fill="secondary" extend>Get Started</ae-button>
@@ -39,8 +37,8 @@
               Ledger Wallet
             </template>
             <template slot="text">
-              This creates an æternity account with the Ledger Nano S.
-              A secure way to store your key pair on a hardware ledger.
+              This creates an æternity account with the Ledger Nano S. A secure way to store your key pair
+              on a hardware ledger.
             </template>
             <router-link :to="{ name: 'ledger' }" slot="button" disabled>
               <ae-button class="ae-button-ledger" face="round" extend disabled>
@@ -52,8 +50,7 @@
       </app-panel>
       <app-intro class="app-spacing-top">
         <template slot="intro">
-          Other options to create an æternity account are also available, <br/>
-          they are explained in our forum.
+          Other options to create an æternity account are also available, they are explained in our forum.
         </template>
         <a href="https://forum.aeternity.com/t/token-migration-phase-0-support-and-faq/1275" target="_blank">
           <ae-button face="flat">
