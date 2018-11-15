@@ -12,9 +12,10 @@ script:
 deploy:
 - provider: script
   skip_cleanup: true
-  script: rsync -r --delete-after -v $TRAVIS_BUILD_DIR/dist/* deploy@139.59.142.164:/var/www/html/token-migration.aepps.com/
+  script: rsync -r --delete-after -v $TRAVIS_BUILD_DIR/dist/* deploy@139.59.142.164:/var/www/html/$TRAVIS_BRANCH-migration.aepps.com/
   on:
-    branch: master
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^master|staging|develop$
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_d9a888dfcdad_key -iv $encrypted_d9a888dfcdad_iv
   -in deploy.enc -out deploy -d
