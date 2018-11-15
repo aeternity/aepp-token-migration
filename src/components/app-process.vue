@@ -107,6 +107,7 @@ export default {
 
       > span {
         position: static;
+        display: inline-block;
 
         &:before, &:after {
           display: none;

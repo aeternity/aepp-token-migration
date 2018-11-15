@@ -41,6 +41,11 @@ export default {
   }
   &.small {
     padding: 1rem 2rem;
+
+    @include only-phone {
+      width: auto;
+      padding: 1rem 0;
+    }
   }
 
   &__img {

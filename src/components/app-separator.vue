@@ -1,6 +1,6 @@
 <template>
   <div class="app-separator">
-    <span>
+    <span v-if="$slots.default">
       <slot/>
     </span>
   </div>

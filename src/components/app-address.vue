@@ -127,7 +127,7 @@ export default {
     padding-right: 1rem;
 
     > textarea {
-      min-height: 130px;
+      min-height: 170px;
       max-height: none;
       text-align: center;
     }

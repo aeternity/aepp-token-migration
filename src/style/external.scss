@@ -149,8 +149,14 @@
   }
 }
 
-
 .app-horizontal-line {
   border-top: 1px solid #D3DCE6;
   border-bottom: none;
+}
+
+@include only-phone {
+  .hide-mobile {
+    display: none;
+    visibility: hidden;
+  }
 }

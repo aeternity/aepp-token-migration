@@ -170,7 +170,7 @@
           <div class="app-myetherwallet-screenshot">
             <img :src="require('../../../../assets/graphics/screenshot.png')" alt="MyEtherWallet">
           </div>
-          <app-separator />
+          <app-separator class="hide-mobile" />
           <app-column size="small">
             <app-intro align="left">
               <template slot="subtitle">
@@ -199,7 +199,7 @@
           <div class="app-myetherwallet-screenshot">
             <img :src="require('../../../../assets/graphics/screenshot-2.png')" alt="MyEtherWallet">
           </div>
-          <app-separator />
+          <app-separator class="hide-mobile" />
           <app-column size="small">
             <ul class="app-myetherwallet-list">
               <li>
@@ -334,6 +334,10 @@ export default {
 <style lang="scss" scoped>
 .app-myetherwallet-screenshot {
   width: 50%;
+
+  @include only-phone {
+    width: 100%;
+  }
 }
 
 .app-myetherwallet-button-group {
@@ -386,6 +390,11 @@ export default {
       font-weight: bold;
     }
   }
+
+  @include only-phone {
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .app-myetherwallet-notification {
@@ -397,5 +406,10 @@ export default {
   padding: 0.5rem;
   color: #203040;
   font-size: 1rem;
+
+  @include only-phone {
+    margin: 0 -1rem -1rem -1rem;
+    line-height: 1.5;
+  }
 }
 </style>
