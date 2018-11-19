@@ -73,9 +73,8 @@
               Migration Process
             </template>
             <template slot="intro">
-              The tokens aren't being transferred directly to your æternity address. <br/>
-              The moment that you can expect your tokens in the Mainnet,<br/>
-              depends on the phase.
+              The tokens aren't being transferred directly to your æternity address. <br />
+              See how the migration process looks like
             </template>
           </app-intro>
           <app-process collapsed>
@@ -109,15 +108,6 @@
           <hr class="app-horizontal-line" />
         </app-panel>
         <app-panel primary padding centered>
-          <app-intro>
-            <template slot="subtitle">
-              AE Token Balance
-            </template>
-            <template slot="intro">
-              Define the amount of tokens you want to migrate here. You can <br/>
-              migrate all your tokens at once, or in multiple steps.
-            </template>
-          </app-intro>
           <app-url :value="migrate" disabled>
             <ae-toolbar align="justify" fill="neutral">
               <span>Your Migration payload is saved in this link</span>
