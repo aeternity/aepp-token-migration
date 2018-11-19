@@ -1,5 +1,5 @@
 <template>
-  <header class="app-intro" :class="{ [align]: Boolean(align)}">
+  <section class="app-intro" :class="{ [align]: Boolean(align)}">
     <h2 v-if="$slots.title" class="app-intro__title">
       <slot name="title"/>
     </h2>
@@ -12,7 +12,7 @@
     <footer class="app-intro__footer" v-if="$slots.default">
       <slot/>
     </footer>
-  </header>
+  </section>
 </template>
 <script>
 export default {

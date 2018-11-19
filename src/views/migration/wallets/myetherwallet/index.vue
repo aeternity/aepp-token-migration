@@ -21,6 +21,53 @@
             <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
             Migrating with MyEtherWallet
           </template>
+          <app-panel centered>
+            <app-intro>
+              <template slot="subtitle">
+                Amount AE to migrate
+              </template>
+              <template slot="intro">
+                <p>
+                  Define the amount of tokens you want to migrate here. You can migrate all your tokens at once,
+                  or in multiple steps.
+                </p>
+                <ae-text face="sans-s">
+                  <span class="app-highlight">Important</span>: Do not edit the amount field on MyEtherWallet manually!
+                </ae-text>
+              </template>
+            </app-intro>
+            <ae-input
+              for="amount"
+              type="number"
+              label="Amount to migrate"
+              v-model="amount"
+              placeholder="0.0"
+              aemount
+            >
+              <ae-text slot="header" fill="black">AE</ae-text>
+              <ae-toolbar align="justify" slot="footer">
+                <span>Estimated GAS: {{ gasPrice }} ETH</span>
+              </ae-toolbar>
+            </ae-input>
+            <br />
+            <ae-button
+              @click="startMigration"
+              class="app-center-block ae-button-ledger"
+              face="round"
+              fill="secondary"
+              :disabled="!validated"
+            >
+              Start Migration on MEW
+            </ae-button>
+            <div class="app-check-spacing">
+              <ae-check name="approve" v-model="checked">
+                <ae-text face="sans-s">
+                  I agree to the <a href="//migrate.aeternity.com/#/tos" target="_blank">Terms of Service</a>
+                </ae-text>
+              </ae-check>
+            </div>
+          </app-panel>
+          <hr class="app-horizontal-line" />
           <app-intro>
             <template slot="subtitle">
               Migration Process
@@ -31,7 +78,7 @@
               depends on the phase.
             </template>
           </app-intro>
-          <app-process>
+          <app-process collapsed>
             <li>
               <span></span>
               <h4>Your Ethereum Account</h4>
@@ -59,6 +106,7 @@
               <p v-html="$options.filters.chunk(walletAddress)"></p>
             </li>
           </app-process>
+          <hr class="app-horizontal-line" />
         </app-panel>
         <app-panel primary padding centered>
           <app-intro>
@@ -70,13 +118,6 @@
               migrate all your tokens at once, or in multiple steps.
             </template>
           </app-intro>
-          <ae-input for="amount" type="number" label="Amount" v-model="amount" placeholder="0.0" aemount>
-            <ae-text slot="header" fill="black">AE Tokens</ae-text>
-            <ae-toolbar align="justify" slot="footer">
-              <span>Estimated GAS: {{ gasPrice }} ETH</span>
-            </ae-toolbar>
-          </ae-input>
-          <br />
           <app-url :value="migrate" disabled>
             <ae-toolbar align="justify" fill="neutral">
               <span>Your Migration payload is saved in this link</span>
@@ -86,22 +127,6 @@
               </ae-button>
             </ae-toolbar>
           </app-url>
-          <div class="app-check-spacing">
-            <ae-check name="approve" v-model="validated">
-              <ae-text face="sans-s">
-                I agree to the <a href="//migrate.aeternity.com/#/tos" target="_blank">Terms of Service</a>
-              </ae-text>
-            </ae-check>
-          </div>
-          <ae-button
-            @click="startMigration"
-            class="app-center-block ae-button-ledger"
-            face="round"
-            fill="secondary"
-            :disabled="!validated"
-          >
-            Start Migration on MEW
-          </ae-button>
         </app-panel>
         <app-panel class="app-text-center" padding secondary>
           <ae-icon name="info" size="2rem" class="app-highlight"/>
@@ -111,6 +136,10 @@
             <span class="app-highlight">
               Generated Data in MyEtherWallet.
             </span>
+          </ae-text>
+          <br />
+          <ae-text face="sans-s" class="app-highlight">
+            DO NOT SEND AE TOKENS TO THE MIGRATION CONTRACT DIRECTLY FROM AN EXCHANGE
           </ae-text>
         </app-panel>
       </app-panel>
@@ -255,9 +284,12 @@ export default {
     AppColumn
   },
   data: function () {
-    return { amount: null, gasPrice: '0', step: 0, validated: false }
+    return { amount: null, gasPrice: '0', step: 0, checked: false }
   },
   computed: {
+    validated: function () {
+      return Number(this.amount) && this.checked
+    },
     migrate () {
       if (!this.walletAddress) return
       return this.$generateMEWURI(

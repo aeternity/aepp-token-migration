@@ -1,11 +1,33 @@
 <template>
-  <div class="app-process">
-    <slot/>
+  <div class="app-process" v-if="!collapsed">
+    <slot />
+  </div>
+  <div v-else>
+    <button class="app-process-collapse" @click="visible = !visible">
+      <ae-icon name="plus" v-if="!visible"/>
+      <ae-icon name="close" v-else/>
+    </button>
+    <div class="app-process" v-show="visible">
+      <slot />
+    </div>
   </div>
 </template>
 <script>
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
+
 export default {
-  name: 'app-process'
+  name: 'app-process',
+  components: {
+    AeButton,
+    AeIcon
+  },
+  data: function () {
+    return { visible: false }
+  },
+  props: {
+    collapsed: Boolean
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -75,5 +97,18 @@ export default {
       border-bottom: none;
     }
   }
+}
+
+.app-process-collapse {
+  position: relative;
+  display: block;
+  width: 3rem;
+  margin: 0 auto;
+  background: none;
+  border: 0;
+  font-size: 2rem;
+  padding: 0;
+  color: $color-neutral-negative-3;
+  cursor: pointer;
 }
 </style>
