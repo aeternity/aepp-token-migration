@@ -129,7 +129,7 @@
           </ae-text>
           <br />
           <ae-text face="sans-s" class="app-highlight">
-            DO NOT SEND AE TOKENS TO THE MIGRATION CONTRACT DIRECTLY FROM AN EXCHANGE
+            DO NOT SEND AE TOKENS TO THE MIGRATION CONTRACT DIRECTLY
           </ae-text>
         </app-panel>
       </app-panel>
