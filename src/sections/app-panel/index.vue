@@ -28,9 +28,11 @@ export default {
   position: relative;
   overflow: hidden;
   background: $color-white;
+  border-radius: 8px;
 
   &.primary {
-    background: #F7FAFC;
+    // background: #F7FAFC;
+    background: $color-white;
   }
   &.secondary {
     background: #E3ECF2;
@@ -53,7 +55,8 @@ export default {
     margin-bottom: 8rem;
   }
   &.shadow {
-    box-shadow: 0 0 25px rgba(0, 33, 87, 0.40);
+    box-shadow: 0 0 10px 0 rgba(27,68,121,0.14);
+    background: #FFFFFF;
 
     @media print {
       box-shadow: none;

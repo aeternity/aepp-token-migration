@@ -287,7 +287,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .app-myetherwallet-screenshot {
-  background: #EEF3F7;
   width: 50%;
 }
 

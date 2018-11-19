@@ -90,6 +90,7 @@ export default {
 }
 
 .app-address-input {
+  background: $color-neutral-positive-3;
   padding-left: 1rem;
 
   > label {

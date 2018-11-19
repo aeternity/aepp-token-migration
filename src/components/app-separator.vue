@@ -21,7 +21,7 @@ export default {
   > span {
     @extend %face-sans-s;
 
-    background: $color-neutral-positive-3;
+    background: $color-white;
     width: 100%;
     padding: 1.5rem 0;
     z-index: 10;

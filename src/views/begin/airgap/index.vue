@@ -227,8 +227,9 @@ export default {
   width: 100%;
 
   @include only-phone {
-    box-shadow: $shadow_wide;
-    background-color: $bg-color_light;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgba(27,68,121,0.14);
+    background-color: $color-white;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
@@ -250,8 +251,9 @@ export default {
 
     &:after {
       content: '';
-      box-shadow: $shadow_wide;
-      background-color: $bg-color_light;
+      border-radius: 8px;
+      box-shadow: 0 0 10px 0 rgba(27,68,121,0.14);
+      background-color: $color-white;
       display: block;
       position: absolute;
       margin: 1rem;
