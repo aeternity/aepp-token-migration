@@ -51,7 +51,13 @@
                 <span>Estimated GAS: {{ gasPrice }} ETH</span>
               </ae-toolbar>
             </ae-input>
-            <br />
+            <div class="app-check-spacing">
+              <ae-check name="approve" v-model="checked">
+                <ae-text face="sans-s">
+                  I agree to the <a href="//migrate.aeternity.com/#/tos" target="_blank">Terms of Service</a>
+                </ae-text>
+              </ae-check>
+            </div>
             <ae-button
               @click="startMigration"
               class="app-center-block ae-button-ledger"
@@ -61,13 +67,6 @@
             >
               Start Migration on MEW
             </ae-button>
-            <div class="app-check-spacing">
-              <ae-check name="approve" v-model="checked">
-                <ae-text face="sans-s">
-                  I agree to the <a href="//migrate.aeternity.com/#/tos" target="_blank">Terms of Service</a>
-                </ae-text>
-              </ae-check>
-            </div>
           </app-panel>
           <hr class="app-horizontal-line" />
           <app-intro>
