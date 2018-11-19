@@ -129,7 +129,6 @@ export default {
     > textarea {
       min-height: 170px;
       max-height: none;
-      text-align: center;
     }
   }
 }

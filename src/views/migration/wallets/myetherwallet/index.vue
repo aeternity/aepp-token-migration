@@ -73,13 +73,8 @@
               Migration Process
             </template>
             <template slot="intro">
-<<<<<<< HEAD
               The tokens aren't being transferred directly to your æternity address. <br />
               See how the migration process looks like
-=======
-              The tokens aren't being transferred directly to your æternity address. The moment that you can expect
-              your tokens in the Mainnet, depends on the phase.
->>>>>>> removing <br /> from text
             </template>
           </app-intro>
           <app-process collapsed>
@@ -113,26 +108,10 @@
           <hr class="app-horizontal-line" />
         </app-panel>
         <app-panel primary padding centered>
-<<<<<<< HEAD
-=======
-          <app-intro>
-            <template slot="subtitle">
-              AE Token Balance
-            </template>
-            <template slot="intro">
-              Define the amount of tokens you want to migrate here. You can migrate all your tokens at once,
-              or in multiple steps.
-            </template>
-          </app-intro>
-          <ae-input for="amount" type="number" label="Amount" v-model="amount" placeholder="0.0" aemount>
-            <ae-text slot="header" fill="black">AE Tokens</ae-text>
-            <ae-toolbar align="justify" slot="footer">
-              <span>Estimated GAS: {{ gasPrice }} ETH</span>
-            </ae-toolbar>
-          </ae-input>
-          <br />
->>>>>>> removing <br /> from text
           <app-url :value="migrate" disabled>
+=======
+          <app-url class="hide-mobile" :value="migrate" disabled>
+>>>>>>> Adding some responsive fixes
             <ae-toolbar align="justify" fill="neutral">
               <span>Your Migration payload is saved in this link</span>
               <ae-button face="toolbar" v-copy-to-clipboard="migrate">
