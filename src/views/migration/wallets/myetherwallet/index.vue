@@ -32,7 +32,9 @@
                   or in multiple steps.
                 </p>
                 <ae-text face="sans-s">
-                  <span class="app-highlight">Important</span>: Do not edit the amount field on MyEtherWallet manually!
+                  <span class="app-highlight">Important</span>:
+                  <strong>Do not change</strong> any field on
+                  <strong>MyEtherWallet</strong> manually!
                 </ae-text>
               </template>
             </app-intro>
