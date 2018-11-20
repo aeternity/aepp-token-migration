@@ -32,7 +32,6 @@
           </app-intro>
           <app-process>
             <li>
-              <!-- TODO: Ask Ray if we should have jazzicon representation for the Metamask wallet icon -->
               <span v-if="false">
                 <ae-identicon :address="coinbase" v-if="coinbase"/>
               </span>
@@ -86,7 +85,7 @@
             </ae-toolbar>
           </ae-input>
           <div class="app-check-spacing">
-            <ae-check name="approve" v-model="validated">
+            <ae-check name="approve" v-model="checked">
               <ae-text face="sans-s">
                 I agree to the <a href="//migrate.aeternity.com/#/tos" target="_blank">Terms of Service</a>
               </ae-text>
@@ -230,10 +229,13 @@ export default {
       amount: null,
       coinbase: null,
       gasPrice: '0',
-      validated: false
+      checked: false
     }
   },
   computed: {
+    validated: function () {
+      return Number(this.amount) && this.checked
+    },
     ...mapState([
       'walletAddress'
     ])
