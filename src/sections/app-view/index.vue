@@ -29,7 +29,7 @@ export default {
 
     @include only-phone {
       width: auto;
-      margin: 0 2rem;
+      margin: 0 1rem;
     }
   }
 }

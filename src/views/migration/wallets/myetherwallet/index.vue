@@ -137,7 +137,7 @@
 
     <!-- Step process -->
     <app-modal v-if="modal && name === 'step'" @click="closeModal">
-      <app-panel tertiary padding shadow v-if="step === 1">
+      <app-panel tertiary padding shadow overflow v-if="step === 1" :close="closeModal">
         <template slot="header">
           <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
           Migrating with MyEtherWallet
@@ -166,7 +166,7 @@
           </app-column>
         </app-row>
       </app-panel>
-      <app-panel tertiary padding shadow v-if="step === 2 || step === 3">
+      <app-panel tertiary padding shadow overflow v-if="step === 2 || step === 3" :close="closeModal">
         <template slot="header">
           <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
           Migrating with MyEtherWallet

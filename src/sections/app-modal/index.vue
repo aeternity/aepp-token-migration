@@ -51,7 +51,7 @@ export default {
     height: 100%;
 
     /deep/ .app-panel {
-      height: 100%;
+      min-height: 100%;
     }
   }
 }

@@ -2,14 +2,23 @@
   <div class="app-panel" :class="{ primary, secondary, tertiary, padding, margin, shadow, middle, centered, overflow }">
     <div class="app-panel-header" v-if="$slots.header">
       <slot name="header"/>
+      <ae-button class="app-panel-close hide-desktop" v-if="close" @click="close">
+        <ae-icon name="close"/>
+      </ae-button>
     </div>
     <slot/>
   </div>
 </template>
-
 <script>
+import AeButton from '@aeternity/aepp-components/dist/ae-button'
+import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
+
 export default {
   name: 'app-panel',
+  components: {
+    AeButton,
+    AeIcon
+  },
   props: {
     primary: Boolean,
     secondary: Boolean,
@@ -19,7 +28,8 @@ export default {
     shadow: Boolean,
     centered: [Boolean, String],
     middle: Boolean,
-    overflow: Boolean
+    overflow: Boolean,
+    close: [Boolean, Function]
   }
 }
 </script>
@@ -84,9 +94,9 @@ export default {
 
     @include only-phone {
       padding-top: 0;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-bottom: 4rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-bottom: 2rem;
     }
   }
   &.middle {
@@ -118,5 +128,17 @@ export default {
     width: 28px;
     height: 26px;
   }
+
+  @include only-phone {
+    justify-content: flex-start;
+    padding-left: 2rem;
+  }
+}
+
+.app-panel-close {
+  position: absolute;
+  right: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 </style>
