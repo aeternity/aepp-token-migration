@@ -40,6 +40,10 @@ export default {
   background: $color-white;
   border-radius: 8px;
 
+  > .app-panel {
+    border-radius: 0;
+  }
+
   &.primary {
     // background: #F7FAFC;
     background: $color-white;

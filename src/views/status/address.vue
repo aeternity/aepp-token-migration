@@ -254,7 +254,7 @@ export default {
     padding: 2rem 0;
 
     @include phone-and-tablet {
-      text-align: center;
+      text-align: left;
     }
 
     &:last-child {
@@ -274,6 +274,7 @@ export default {
 
   @include phone-and-tablet {
     flex-direction: column;
+    align-items: flex-start;
   }
 
   > h1 {

@@ -57,7 +57,9 @@
         </div>
         <div class="app-scan-button-group">
           <ae-button @click="toggleRescan" extend>
-            Scan Again
+            <ae-text face="uppercase-base" :weight=700>
+              Scan Again
+            </ae-text>
           </ae-button>
         </div>
       </app-panel>
