@@ -55,7 +55,7 @@
           Other options to create an æternity account are also available, <br/>
           they are explained in our forum.
         </template>
-        <a href="https://forum.aeternity.com/t/token-migration-phase-0-support-and-faq/1275" target="_blank">
+        <a href="https://forum.aeternity.com/t/token-migration-phase-1-support-and-faq/1411" target="_blank">
           <ae-button face="flat">
             <ae-icon name="link"/>
             Read how to
