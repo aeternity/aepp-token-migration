@@ -204,9 +204,6 @@ import AppProcess from '../../../../components/app-process.vue'
 
 import mixinsModal from '../../../../mixins/modal'
 
-/**
- * TODO: People can send 0 Token transfers, don't let them do that
- */
 export default {
   name: 'migration-wallets-metamask',
   mixins: [mixinsModal],
