@@ -6,10 +6,10 @@
     <app-view container>
       <app-intro spacing>
         <template slot="title">
-          You’re ready for the æternity Mainnet!
+          Check your migrations!
         </template>
         <template slot="intro">
-          You have completed your part of migrating to the æternity Mainnet
+          You have completed your part of migrating your AE tokens to the æternity Mainnet.
         </template>
         <div class="app-migration-result-print">
           <ae-button @click="print()" face="round" fill="primary" extend shadow>
