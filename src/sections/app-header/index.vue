@@ -18,7 +18,7 @@
           :class="{ 'app-header__grayscale': !validAddress }"
           :address="validAddress ? walletAddress : 'none'"
         />
-        <a href="https://forum.aeternity.com/t/token-migration-phase-0-support-and-faq/1275" class="app-header__forum" target="_blank">
+        <a href="https://forum.aeternity.com/t/token-migration-phase-1-support-and-faq/1411" class="app-header__forum" target="_blank">
           <img :src="require('../../assets/icons/forum.png')" alt="Visit Forum">
           <div>
             <h4>Need assistance?</h4>
