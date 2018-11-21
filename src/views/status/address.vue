@@ -25,7 +25,7 @@
       <app-panel shadow>
         <app-panel secondary padding style="text-align: center">
           <img :src="require('../../assets/graphics/header-check.svg')" class="app-migration-result-check">
-          <h4 class="app-migration-result-subtitle">You successfully migrated</h4>
+          <h4 class="app-migration-result-subtitle">You've migrated</h4>
           <h1 class="app-migration-result-title">
             {{collectiveSum | shorten(true) }}.<small style="font-size: 2rem;">{{collectiveSum | shorten }}</small>
             <span>&nbsp;AE</span>
@@ -43,7 +43,6 @@
               />
               <ae-identicon :address="$route.params.pubkey" />
             </span>
-
           </div>
           <ul class="app-migration-result-table">
             <li v-for="(e, index) in orderedBurnEvents" :key="index">
@@ -192,6 +191,13 @@ export default {
     font-weight: normal;
     font-size: 1.875rem;
   }
+
+  @include phone-and-tablet {
+    font-size: 4rem;
+  }
+  @include only-phone {
+    font-size: 2rem;
+  }
 }
 
 .app-migration-result-subtitle {
@@ -222,6 +228,20 @@ export default {
       margin-right: 1rem;
     }
   }
+
+  @include phone-and-tablet {
+    flex-direction: column;
+    justify-content: center;
+
+    > span {
+      display: block;
+      text-align: center;
+
+      > ul {
+        padding-bottom: 1rem;
+      }
+    }
+  }
 }
 
 .app-migration-result-table {
@@ -232,6 +252,10 @@ export default {
     border-bottom: 1px solid #D3DCE6;
     list-style: none;
     padding: 2rem 0;
+
+    @include phone-and-tablet {
+      text-align: center;
+    }
 
     &:last-child {
       border-bottom: 0;
@@ -248,12 +272,22 @@ export default {
   justify-content: space-between;
   align-items: center;
 
+  @include phone-and-tablet {
+    flex-direction: column;
+  }
+
   > h1 {
     margin: 0;
     font-weight: normal;
 
     > small {
       font-size: 50%;
+    }
+  }
+
+  @include phone-and-tablet {
+    > a {
+      margin-bottom: 1rem;
     }
   }
 
@@ -268,6 +302,10 @@ export default {
     /deep/ > span {
       display: inline-block;
       margin-right: 1rem;
+    }
+
+    @include phone-and-tablet {
+      width: auto;
     }
   }
 
