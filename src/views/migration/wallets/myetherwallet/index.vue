@@ -108,10 +108,7 @@
           <hr class="app-horizontal-line" />
         </app-panel>
         <app-panel primary padding centered>
-          <app-url :value="migrate" disabled>
-=======
           <app-url class="hide-mobile" :value="migrate" disabled>
->>>>>>> Adding some responsive fixes
             <ae-toolbar align="justify" fill="neutral">
               <span>Your Migration payload is saved in this link</span>
               <ae-button face="toolbar" v-copy-to-clipboard="migrate">
