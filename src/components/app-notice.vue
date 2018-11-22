@@ -13,17 +13,15 @@ export default {
   @extend %face-sans-l;
 
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  text-align: center;
   background: $color-primary;
   color: $color-white;
   font-size: 0.875rem;
   width: 100%;
-  height: 40px;
+  padding: 0.5rem;
 
   a {
-    margin: 0 0.2rem;
     display: inline-block;
     color: $color-white;
     text-decoration: underline;

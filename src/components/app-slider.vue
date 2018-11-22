@@ -12,5 +12,9 @@ export default {
 <style lang="scss" scoped>
 .app-slider /deep/ .agile__dots {
   left: 72.5%;
+
+  @include only-phone {
+    left: 50%;
+  }
 }
 </style>

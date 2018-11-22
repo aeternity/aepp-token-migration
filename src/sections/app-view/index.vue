@@ -26,6 +26,11 @@ export default {
     &.small {
       max-width: 52rem;
     }
+
+    @include only-phone {
+      width: auto;
+      margin: 0 1rem;
+    }
   }
 }
 </style>

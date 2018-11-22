@@ -4,14 +4,13 @@
       <app-header-nav prog="4/6" text="Provide your æternity account"/>
     </app-header>
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
           Provide your æternity account
         </template>
         <template slot="intro">
-          Please make sure the address you provide is your real æternity address, <br/>
-          this cannot be changed afterwards. All tokens you choose to transfer <br/>
-          will be available on this address.
+          Please make sure the address you provide is your real æternity address, this cannot be changed afterwards.
+          All tokens you choose to transfer will be available on this address.
         </template>
       </app-intro>
       <app-panel primary padding shadow>
@@ -240,5 +239,10 @@ export default {
   display: block;
   margin: 0 auto;
   width: 560px;
+
+  @include only-phone {
+    width: auto;
+    text-align: center;
+  }
 }
 </style>

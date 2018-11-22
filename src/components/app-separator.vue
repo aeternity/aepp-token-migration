@@ -1,6 +1,6 @@
 <template>
   <div class="app-separator">
-    <span>
+    <span v-if="$slots.default">
       <slot/>
     </span>
   </div>
@@ -17,6 +17,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   > span {
     @extend %face-sans-s;
@@ -25,6 +26,12 @@ export default {
     width: 100%;
     padding: 1.5rem 0;
     z-index: 10;
+
+    @include only-phone {
+      width: auto;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+    }
   }
 
   &:before, &:after {
@@ -43,6 +50,26 @@ export default {
   }
   &:after {
     bottom: 0;
+  }
+
+  @include only-phone {
+    &:before, &:after {
+      top: auto;
+      bottom: auto;
+      margin: auto;
+      height: 1px;
+      width: 50%;
+      background: $color-neutral-positive-1;
+    }
+
+    &:before {
+      left: 0;
+      right: auto;
+    }
+    &:after {
+      left: auto;
+      right: 0;
+    }
   }
 }
 </style>

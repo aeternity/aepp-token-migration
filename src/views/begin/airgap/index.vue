@@ -4,11 +4,11 @@
       <app-header-nav prog="2/6" text="Create an æternity account with AirGap"/>
     </app-header>
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
-          Create an æternity <br/> account with AirGap
+          Create an æternity account with AirGap
         </template>
-        <router-link to="/migration">
+        <router-link :to="{ name: 'migration' }">
           <ae-button face="round" fill="secondary">
             I already have an account
           </ae-button>
@@ -233,6 +233,7 @@ export default {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+
     &:not(:last-child):after {
       content: '';
       display: block;
@@ -257,9 +258,6 @@ export default {
       display: block;
       position: absolute;
       margin: 1rem;
-      top: 0;
-      height: 100%;
-      width: 100%;
       top: 10%;
       left: 10%;
       height: 90%;

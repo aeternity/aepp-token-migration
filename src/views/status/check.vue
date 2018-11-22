@@ -10,9 +10,9 @@
       <app-notice v-if="scannerError">
         {{ scannerError }}. Please enter your address manually.
       </app-notice>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
-          Are you ready for <br /> the æternity Mainnet?
+          Check how many tokens you have migrated to the æternity Mainnet
         </template>
         <template slot="intro">
           Enter your æternity address and check the status of your migrations.

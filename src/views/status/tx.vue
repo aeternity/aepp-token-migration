@@ -4,14 +4,13 @@
       <app-header-nav text="Statuspage"/>
     </app-header>
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
-          You’re ready for <br/> the æternity Mainnet!
+          You’re ready for the æternity Mainnet!
         </template>
         <template slot="intro">
-          You have completed your part of migrating the AE tokens <br/>
-          to the æternity Mainnet. Your tokens have been <br/>
-          transfered to the AE Migration Address.
+          You have completed your part of migrating the AE tokens to the æternity Mainnet. Your tokens have been
+          transferred to the AE Migration Address.
         </template>
         <div class="app-migration-result-print">
           <ae-button @click="print()" face="round" fill="primary" extend shadow>

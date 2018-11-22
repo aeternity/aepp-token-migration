@@ -18,7 +18,8 @@
 export default {
   name: 'app-intro',
   props: {
-    align: String
+    align: String,
+    spacing: Boolean
   }
 }
 </script>
@@ -27,11 +28,23 @@ export default {
   text-align: center;
   margin: 0 auto $spacer-xl;
 
+  @include only-phone {
+    margin: 0 auto 2rem;
+  }
+
   &.left {
     text-align: left;
 
     > /deep/ .app-intro__subtitle {
       margin-top: 0;
+    }
+  }
+
+  &.spacing {
+    padding: 0 10rem;
+
+    @include only-phone {
+      padding: 0 1rem;
     }
   }
 
@@ -43,24 +56,44 @@ export default {
     line-height: 4.0625rem;
     color: $color-neutral-negative-3;
     margin: 1.5rem 0;
+
+    @include only-phone {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
   }
+
   &__subtitle {
     @extend %face-sans-l;
 
     font-size: rem(23px);
     font-weight: bold;
     line-height: 2rem;
+
+    @include only-phone {
+      font-size: 1.125rem;
+      line-height: 1.125rem;
+    }
   }
 
   &__text {
     @extend %face-sans-base;
 
     margin: 0 auto;
+
+    @include only-phone {
+      font-size: 1rem;
+      line-height: 1.2rem;
+    }
   }
 
   &__footer {
     margin-top: 2rem;
     text-align: center;
+
+    @include only-phone {
+      margin-top: 1rem;
+    }
   }
 
   @media print {

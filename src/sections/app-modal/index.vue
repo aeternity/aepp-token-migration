@@ -44,5 +44,15 @@ export default {
 
   max-width: 900px;
   width: 900px;
+
+  @include only-phone {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+
+    /deep/ .app-panel {
+      min-height: 100%;
+    }
+  }
 }
 </style>
