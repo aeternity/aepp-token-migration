@@ -48,18 +48,10 @@ export default new Router({
   }, {
     name: 'check',
     path: '/status/result',
-    component: require('../views/status/check.vue').default
+    component: require('../views/status/index.vue').default
   }, {
     name: 'result',
     path: '/status/result/:pubkey',
     component: require('../views/status/address.vue').default
-  }, {
-    name: 'tx',
-    path: '/status/tx/:pubkey',
-    component: require('../views/status/tx.vue').default
-  }, {
-    name: 'payload',
-    path: '/status/payload',
-    component: require('../views/status/payload.vue').default
   }]
 })

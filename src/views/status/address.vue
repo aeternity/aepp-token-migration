@@ -16,7 +16,7 @@
             Print / Save as PDF
           </ae-button>
           <router-link :to="{ name: 'migration' }">
-            <ae-button @click="resetWalletAddress" face="flat" fill="neutral"  extend>
+            <ae-button @click="$store.commit('setWalletAddress', null)" face="flat" fill="neutral"  extend>
               Migrate More Tokens
             </ae-button>
           </router-link>
@@ -32,36 +32,77 @@
           </h1>
           <h4 class="app-migration-result-subtitle">in total</h4>
         </app-panel>
-        <app-panel primary padding>
-          <div class="app-migration-result-account">
-            <h4>All Migrations to</h4>
-            <span>
-              <ae-address
-                v-if="$route.params.pubkey"
-                :value="$route.params.pubkey"
-                length="flat"
-              />
-              <ae-identicon :address="$route.params.pubkey" />
-            </span>
-          </div>
-          <ul class="app-migration-result-table">
-            <li v-for="(e, index) in orderedBurnEvents" :key="index">
-              <h5>{{ new Date(e.created).toDateString() }}</h5>
-              <div class="app-migration-result-tx">
-                <!-- TODO: Here we're checking what env we're in!-->
-                <a :href="`https://${
+        <div class="app-migration-panel-phase">
+          <app-panel primary padding>
+            <div class="app-migration-result-account">
+              <h4>All Migrations to</h4>
+              <span>
+                <ae-address
+                  v-if="$route.params.pubkey"
+                  :value="$route.params.pubkey"
+                  length="flat"
+                />
+                <ae-identicon :address="$route.params.pubkey" />
+              </span>
+            </div>
+            <ul class="app-migration-result-table">
+              <li v-for="(e, index) in phase[0]" :key="index">
+                <h5>{{ new Date(e.created).toDateString() }}</h5>
+                <div class="app-migration-result-tx">
+                  <!-- TODO: Here we're checking what env we're in!-->
+                  <a :href="`https://${
                  env === 'development' ? 'kovan.' : ''
                 }etherscan.io/tx/${e.transactionHash}`" target="_blank">
-                  <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                </a>
+                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                  </a>
+                  <h1>
+                    {{e.value | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{e.value | fromWei | shorten }}</small>
+                    <small>&nbsp;AE</small>
+                  </h1>
+                </div>
+              </li>
+            </ul>
+            <div class="app-migration-result-account">
+              <h4>Total Migrations in Phase 0</h4>
+              <span>
                 <h1>
-                  {{e.value | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{e.value | fromWei | shorten }}</small>
+                  {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{totalAmountMigrated(this.phase[0]) | fromWei | shorten }}</small>
                   <small>&nbsp;AE</small>
                 </h1>
-              </div>
-            </li>
-          </ul>
-        </app-panel>
+              </span>
+            </div>
+          </app-panel>
+        </div>
+        <div class="app-migration-panel-phase">
+          <app-panel primary padding>
+            <ul class="app-migration-result-table">
+              <li v-for="(e, index) in phase[1]" :key="index">
+                <h5>{{ new Date(e.created).toDateString() }}</h5>
+                <div class="app-migration-result-tx">
+                  <!-- TODO: Here we're checking what env we're in!-->
+                  <a :href="`https://${
+                 env === 'development' ? 'kovan.' : ''
+                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
+                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                  </a>
+                  <h1>
+                    {{e.value | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{e.value | fromWei | shorten }}</small>
+                    <small>&nbsp;AE</small>
+                  </h1>
+                </div>
+              </li>
+            </ul>
+            <div class="app-migration-result-account">
+              <h4>Total Migrations in Phase 1</h4>
+              <span>
+                <h1>
+                  {{totalAmountMigrated(this.phase[1]) | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
+                  <small>&nbsp;AE</small>
+                </h1>
+              </span>
+            </div>
+          </app-panel>
+        </div>
       </app-panel>
     </app-view>
     <app-modal v-if="loading">
@@ -102,25 +143,21 @@ export default {
     return {
       loading: true,
       intervalId: 0,
-      burnEvents: []
+      phase: {
+        0: [],
+        1: []
+      }
     }
   },
   methods: {
-    resetWalletAddress () {
-      this.$store.commit('setWalletAddress', null)
-    },
-
     /**
      * Mapping print function from window
      * to a function inside VueJS
      */
     print: print.bind(window),
 
-    /**
-     * Get all burn events for Ae account
-     */
-    async getBurnEventsByAeAccount () {
-      const url = `${
+    async phaseAPIResponse (phase) {
+      const response = await fetch(`${
         'https://api.backendless.com'
       }/${
         process.env.VUE_APP_BL_ID
@@ -130,26 +167,51 @@ export default {
         process.env.VUE_APP_BL_TABLE
       }?pageSize=100&where=pubKey%20%3D%20%27${
         this.$route.params.pubkey
-      }%27`
+      }%27%20and%20deliveryPeriod%3D${phase}`)
 
-      const response = await fetch(url)
       const contentType = response.headers.get('content-type')
       if (contentType && contentType.includes('application/json')) {
-        this.burnEvents = await response.json()
+        return response.json()
       }
+      return []
+    },
+
+    /**
+     * Get all burn events
+     */
+    async getBurnEvents () {
+      const [zero, one] = await Promise.all([
+        this.phaseAPIResponse(0),
+        this.phaseAPIResponse(1)
+      ])
+      this.phase = {
+        0: orderBy(zero, ['created'], ['desc']),
+        1: orderBy(one, ['created'], ['desc'])
+      }
+    },
+
+    /**
+     * Gets an array of burn events and calculates
+     * the amount migrated
+     * @param phase
+     * @return {*}
+     */
+    totalAmountMigrated: function (phase) {
+      return phase.map(
+        e => new utils.BN(e.value)
+      ).reduce(
+        (a, v) => a.add(v),
+        new utils.BN(0)
+      )
     }
   },
   computed: {
-    orderedBurnEvents () {
-      return orderBy(this.burnEvents, ['created'], ['desc'])
-    },
     collectiveSum () {
       return utils.fromWei(
-        this.burnEvents.map(
-          e => new utils.BN(e.value)
-        ).reduce(
-          (a, v) => a.add(v),
-          new utils.BN(0)
+        this.totalAmountMigrated(
+          this.phase[0].concat(
+            this.phase[1]
+          )
         )
       )
     },
@@ -160,10 +222,8 @@ export default {
   },
   mounted () {
     this.$store.commit('setWalletAddress', this.$route.params.pubkey || null)
-    this.getBurnEventsByAeAccount().then(() => {
-      this.loading = false
-    })
-    this.intervalId = setInterval(this.getBurnEventsByAeAccount, 30000)
+    this.intervalId = setInterval(this.getBurnEvents, 30000)
+    this.getBurnEvents().then(() => { this.loading = false })
   },
   beforeDestroy () {
     clearInterval(this.intervalId)
@@ -327,5 +387,9 @@ export default {
   margin: 0 auto;
   width: 50px;
   animation: rotate 2s reverse infinite linear;
+}
+
+.app-migration-panel-phase {
+  border-bottom: 1px solid #D3DCE6;
 }
 </style>
