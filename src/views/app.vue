@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <app-notice v-if="!mainnet">
-      You’re connected to a Testnet,
+      You’re connected to a Ethereum Testnet,
       the tokens that you are about to migrate
-      will NOT be available in the Mainnet
+      will NOT be available in the æternity Mainnet
     </app-notice>
     <router-view />
   </div>
