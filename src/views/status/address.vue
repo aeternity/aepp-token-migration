@@ -44,8 +44,8 @@
               <h2 class="warning">
                 Tokens migrated in Phase 1
                 <span>
-                  Contains all migrations from Phase 1 (november 26th, 2018 - February 2019). <br />
-                  They will be available in Mainnet when Phase 2 starts
+                  Tokens will be available after the 1st Hardfork.<br />
+                  All tokens migrated during Phase 1 (November 26th, 2018 - February 2019).
                 </span>
               </h2>
               <h1>
@@ -79,7 +79,7 @@
             <div class="app-migration-result-phase">
               <h2 class="check">
                 Tokens migrated in Phase 0
-                <span>Tokens which are available in the Genesis Block from Mainnet Launch</span>
+                <span>Tokens will be available on Mainnet Launch.</span>
               </h2>
               <h1>
                 {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
