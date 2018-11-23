@@ -4,12 +4,14 @@
       <app-header-nav prog="2/6" text="Create an Aeternity account with Ledger Nano S"/>
     </app-header>
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
-          Create an æternity account <br/> with Ledger Nano S
+          Create an æternity account with Ledger Nano S
         </template>
         <router-link to="/migration">
-          <ae-button face="round" fill="secondary" class="ae-button-ledger">I already have an account</ae-button>
+          <ae-button face="round" fill="secondary" class="ae-button-ledger">
+            I already have an account
+          </ae-button>
         </router-link>
       </app-intro>
       <app-panel padding margin shadow overflow>
@@ -21,7 +23,7 @@
             alt="Install"
           />
           <template slot="info">
-            <h1>Download and install <br /> the Ledger app</h1>
+            <h1>Download and install the Ledger app</h1>
             <p>For now it can be downloaded from our Github page. Soon it will be available in Ledger Live.</p>
           </template>
         </app-tutorial>
@@ -35,7 +37,7 @@
             alt="Account"
           />
           <template slot="info">
-            <h1>Create æternity <br /> account on the Ledger</h1>
+            <h1>Create æternity account on the Ledger</h1>
             <p>
               This will securely create an æternity account on the Ledger.
               Please confirm on the Ledger when you’re asked to do so.

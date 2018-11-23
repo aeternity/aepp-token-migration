@@ -4,14 +4,13 @@
       <app-header-nav prog="6/6" text="Prepare your transaction with MetaMask"/>
     </app-header>
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
-          Prepare your transaction <br/> with Meta Mask
+          Prepare your transaction with Meta Mask
         </template>
         <template slot="intro">
-        You are about to transfer AE tokens to the AE Token Contract, which <br/>
-        sends them to the AE Migration Contract. The Migration Contract <br/>
-        takes care of everything else for you.
+          You are about to transfer AE tokens to the AE Token Contract, which sends them to the AE Migration Contract.
+          The Migration Contract takes care of everything else for you.
         </template>
       </app-intro>
       <app-panel shadow>
@@ -25,14 +24,12 @@
               Migration Process
             </template>
             <template slot="intro">
-            The tokens aren't being transferred directly to your æternity address. <br/>
-            The moment that you can expect your tokens in the Mainnet,<br/>
-            depends on the phase.
+              The tokens aren't being transferred directly to your æternity address. The moment that you can expect
+              your tokens in the Mainnet, depends on the phase.
             </template>
           </app-intro>
           <app-process>
             <li>
-              <!-- TODO: Ask Ray if we should have jazzicon representation for the Metamask wallet icon -->
               <span v-if="false">
                 <ae-identicon :address="coinbase" v-if="coinbase"/>
               </span>
@@ -71,8 +68,8 @@
               AE Token Balance
             </template>
             <template slot="intro">
-              Define the amount of tokens you want to migrate here. You can <br/>
-              migrate all your tokens at once, or in multiple steps.
+              Define the amount of tokens you want to migrate here. You can migrate all your tokens at once, or
+              in multiple steps.
             </template>
           </app-intro>
           <ae-input for="amount" type="number" label="Amount" v-model="amount" :placeholder="balance" aemount>
@@ -86,7 +83,7 @@
             </ae-toolbar>
           </ae-input>
           <div class="app-check-spacing">
-            <ae-check name="approve" v-model="validated">
+            <ae-check name="approve" v-model="checked">
               <ae-text face="sans-s">
                 I agree to the <a href="//migrate.aeternity.com/#/tos" target="_blank">Terms of Service</a>
               </ae-text>
@@ -105,8 +102,8 @@
         <app-panel class="app-text-center" padding secondary>
           <ae-icon name="info" size="2rem" class="app-highlight"/>
           <ae-text face="sans-s" :weight=700>
-            The transaction you’re about to make will not send any ETH, will only use ETH for gas. The <br/>
-            amount of tokens that you send will be stored in the
+            The transaction you’re about to make will not send any ETH, will only use ETH for gas. The amount of tokens
+            that you send will be stored in the
             <span class="app-highlight">
               data tab in MetaMask.
             </span>
@@ -153,8 +150,7 @@
             Please confirm the transaction in MetaMask
           </template>
           <template slot="intro">
-            Please hold on for a bit. As soon as the transaction is <br />
-            successful, we will forward you to the result page.
+            Please hold on for a bit. As soon as the transaction is successful, we will forward you to the result page.
           </template>
         </app-intro>
       </app-panel>
@@ -205,9 +201,6 @@ import AppProcess from '../../../../components/app-process.vue'
 
 import mixinsModal from '../../../../mixins/modal'
 
-/**
- * TODO: People can send 0 Token transfers, don't let them do that
- */
 export default {
   name: 'migration-wallets-metamask',
   mixins: [mixinsModal],
@@ -230,10 +223,13 @@ export default {
       amount: null,
       coinbase: null,
       gasPrice: '0',
-      validated: false
+      checked: false
     }
   },
   computed: {
+    validated: function () {
+      return Number(this.amount) && this.checked
+    },
     ...mapState([
       'walletAddress'
     ])

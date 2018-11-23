@@ -87,6 +87,10 @@ export default {
   &.disabled {
     color: $color-neutral-negative-1;
   }
+
+  @include only-phone {
+    max-width: none;
+  }
 }
 
 .app-address-input {
@@ -117,6 +121,15 @@ export default {
     resize: none;
     color: #76818C;
     text-align: justify;
+  }
+
+  @include only-phone {
+    padding-right: 1rem;
+
+    > textarea {
+      min-height: 170px;
+      max-height: none;
+    }
   }
 }
 </style>

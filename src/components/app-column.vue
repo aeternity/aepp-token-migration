@@ -41,6 +41,11 @@ export default {
   }
   &.small {
     padding: 1rem 2rem;
+
+    @include only-phone {
+      width: auto;
+      padding: 1rem 0;
+    }
   }
 
   &__img {
@@ -59,6 +64,11 @@ export default {
     @extend %face-sans-s;
 
     margin: 0 0 $spacer-l;
+  }
+
+  @include only-phone {
+    width: auto;
+    padding: 1rem 0;
   }
 }
 </style>

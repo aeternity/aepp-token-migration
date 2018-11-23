@@ -58,6 +58,11 @@ export default {
     font-family: $font-sans;
     font-weight: bold;
     color: #203040;
+
+    @include only-phone {
+      display: none;
+      visibility: hidden;
+    }
   }
 
   &__rotate {

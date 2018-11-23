@@ -4,19 +4,19 @@
       <app-header-nav text="Statuspage"/>
     </app-header>
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
-          You’re ready for <br/> the æternity Mainnet!
+          Check your migrations!
         </template>
         <template slot="intro">
-          You have completed your part of migrating to the æternity Mainnet
+          You have completed your part of migrating your AE tokens to the æternity Mainnet.
         </template>
         <div class="app-migration-result-print">
           <ae-button @click="print()" face="round" fill="primary" extend shadow>
             Print / Save as PDF
           </ae-button>
           <router-link :to="{ name: 'migration' }">
-            <ae-button @click="resetWalletAddress" face="flat" fill="neutral"  extend>
+            <ae-button @click="$store.commit('setWalletAddress', null)" face="flat" fill="neutral"  extend>
               Migrate More Tokens
             </ae-button>
           </router-link>
@@ -25,44 +25,88 @@
       <app-panel shadow>
         <app-panel secondary padding style="text-align: center">
           <img :src="require('../../assets/graphics/header-check.svg')" class="app-migration-result-check">
-          <h4 class="app-migration-result-subtitle">You successfully migrated</h4>
+          <h4 class="app-migration-result-subtitle">You've migrated</h4>
           <h1 class="app-migration-result-title">
-            {{collectiveSum | shorten(true) }}.<small style="font-size: 2rem;">{{collectiveSum | shorten }}</small>
+            {{collectiveSum | shorten(true) }}<small style="font-size: 2rem;">.{{collectiveSum | shorten }}</small>
             <span>&nbsp;AE</span>
           </h1>
-          <h4 class="app-migration-result-subtitle">in total</h4>
+          <h4 class="app-migration-result-subtitle">in total to the following address</h4>
+          <ae-identicon :address="$route.params.pubkey"/>
+          <ae-address
+            v-if="$route.params.pubkey"
+            :value="$route.params.pubkey"
+            length="flat"
+          />
         </app-panel>
-        <app-panel primary padding>
-          <div class="app-migration-result-account">
-            <h4>All Migrations to</h4>
-            <span>
-              <ae-address
-                v-if="$route.params.pubkey"
-                :value="$route.params.pubkey"
-                length="flat"
-              />
-              <ae-identicon :address="$route.params.pubkey" />
-            </span>
-
-          </div>
-          <ul class="app-migration-result-table">
-            <li v-for="(e, index) in orderedBurnEvents" :key="index">
-              <h5>{{ new Date(e.created).toDateString() }}</h5>
-              <div class="app-migration-result-tx">
-                <!-- TODO: Here we're checking what env we're in!-->
-                <a :href="`https://${
+        <div class="app-migration-panel-phase">
+          <app-panel primary padding>
+            <div class="app-migration-result-phase">
+              <h2 class="warning">
+                Tokens migrated in Phase 1
+                <span>
+                  Tokens will be available after the 1st Hardfork.<br />
+                  All tokens migrated during Phase 1 (November 26th, 2018 - February 2019).
+                </span>
+              </h2>
+              <h1>
+                {{totalAmountMigrated(this.phase[1]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
+                <small>&nbsp;AE</small>
+              </h1>
+            </div>
+            <ul class="app-migration-result-table">
+              <li v-for="(e, index) in phase[1]" :key="index">
+                <h5>
+                  {{ new Date(e.created).toDateString() }}
+                  <span>PHASE {{ e.deliveryPeriod }}</span>
+                </h5>
+                <div class="app-migration-result-tx">
+                  <a :href="`https://${
                  env === 'development' ? 'kovan.' : ''
                 }etherscan.io/tx/${e.transactionHash}`" target="_blank">
-                  <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                </a>
-                <h1>
-                  {{e.value | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{e.value | fromWei | shorten }}</small>
-                  <small>&nbsp;AE</small>
-                </h1>
-              </div>
-            </li>
-          </ul>
-        </app-panel>
+                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                  </a>
+                  <h1>
+                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
+                    <small>&nbsp;AE</small>
+                  </h1>
+                </div>
+              </li>
+            </ul>
+          </app-panel>
+        </div>
+        <div class="app-migration-panel-phase">
+          <app-panel primary padding>
+            <div class="app-migration-result-phase">
+              <h2 class="check">
+                Tokens migrated in Phase 0
+                <span>Tokens will be available on Mainnet Launch.</span>
+              </h2>
+              <h1>
+                {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
+                <small>&nbsp;AE</small>
+              </h1>
+            </div>
+            <ul class="app-migration-result-table">
+              <li v-for="(e, index) in phase[0]" :key="index">
+                <h5>
+                  {{ new Date(e.created).toDateString() }}
+                  <span>PHASE {{ e.deliveryPeriod }}</span>
+                </h5>
+                <div class="app-migration-result-tx">
+                  <a :href="`https://${
+                 env === 'development' ? 'kovan.' : ''
+                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
+                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                  </a>
+                  <h1>
+                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
+                    <small>&nbsp;AE</small>
+                  </h1>
+                </div>
+              </li>
+            </ul>
+          </app-panel>
+        </div>
       </app-panel>
     </app-view>
     <app-modal v-if="loading">
@@ -103,25 +147,21 @@ export default {
     return {
       loading: true,
       intervalId: 0,
-      burnEvents: []
+      phase: {
+        0: [],
+        1: []
+      }
     }
   },
   methods: {
-    resetWalletAddress () {
-      this.$store.commit('setWalletAddress', null)
-    },
-
     /**
      * Mapping print function from window
      * to a function inside VueJS
      */
     print: print.bind(window),
 
-    /**
-     * Get all burn events for Ae account
-     */
-    async getBurnEventsByAeAccount () {
-      const url = `${
+    async phaseAPIResponse (phase) {
+      const response = await fetch(`${
         'https://api.backendless.com'
       }/${
         process.env.VUE_APP_BL_ID
@@ -131,26 +171,51 @@ export default {
         process.env.VUE_APP_BL_TABLE
       }?pageSize=100&where=pubKey%20%3D%20%27${
         this.$route.params.pubkey
-      }%27`
+      }%27%20and%20deliveryPeriod%3D${phase}`)
 
-      const response = await fetch(url)
       const contentType = response.headers.get('content-type')
       if (contentType && contentType.includes('application/json')) {
-        this.burnEvents = await response.json()
+        return response.json()
       }
+      return []
+    },
+
+    /**
+     * Get all burn events
+     */
+    async getBurnEvents () {
+      const [zero, one] = await Promise.all([
+        this.phaseAPIResponse(0),
+        this.phaseAPIResponse(1)
+      ])
+      this.phase = {
+        0: orderBy(zero, ['created'], ['desc']),
+        1: orderBy(one, ['created'], ['desc'])
+      }
+    },
+
+    /**
+     * Gets an array of burn events and calculates
+     * the amount migrated
+     * @param phase
+     * @return {*}
+     */
+    totalAmountMigrated: function (phase) {
+      return phase.map(
+        e => new utils.BN(e.value)
+      ).reduce(
+        (a, v) => a.add(v),
+        new utils.BN(0)
+      )
     }
   },
   computed: {
-    orderedBurnEvents () {
-      return orderBy(this.burnEvents, ['created'], ['desc'])
-    },
     collectiveSum () {
       return utils.fromWei(
-        this.burnEvents.map(
-          e => new utils.BN(e.value)
-        ).reduce(
-          (a, v) => a.add(v),
-          new utils.BN(0)
+        this.totalAmountMigrated(
+          this.phase[0].concat(
+            this.phase[1]
+          )
         )
       )
     },
@@ -161,10 +226,8 @@ export default {
   },
   mounted () {
     this.$store.commit('setWalletAddress', this.$route.params.pubkey || null)
-    this.getBurnEventsByAeAccount().then(() => {
-      this.loading = false
-    })
-    this.intervalId = setInterval(this.getBurnEventsByAeAccount, 30000)
+    this.intervalId = setInterval(this.getBurnEvents, 30000)
+    this.getBurnEvents().then(() => { this.loading = false })
   },
   beforeDestroy () {
     clearInterval(this.intervalId)
@@ -191,6 +254,13 @@ export default {
   > span {
     font-weight: normal;
     font-size: 1.875rem;
+  }
+
+  @include phone-and-tablet {
+    font-size: 4rem;
+  }
+  @include only-phone {
+    font-size: 2rem;
   }
 }
 
@@ -222,6 +292,80 @@ export default {
       margin-right: 1rem;
     }
   }
+
+  @include phone-and-tablet {
+    flex-direction: column;
+    justify-content: center;
+
+    > span {
+      display: block;
+      text-align: center;
+
+      > ul {
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}
+
+.app-migration-result-phase {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #203040;
+
+  @include phone-and-tablet {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  > h2 {
+    position: relative;
+    font-size: rem(22px);
+    font-weight: bold;
+    padding-left: 2.5rem;
+
+    &:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    &.check:before {
+      background-image: url('../../assets/icons/check.png');
+    }
+
+    &.warning:before {
+      background-image: url('../../assets/icons/warning.png');
+    }
+
+    > span {
+      @extend %face-uppercase-xs;
+
+      display: block;
+      font-size: rem(13px);
+      color: #4E5A66;
+      text-transform: none;
+      font-weight: normal;
+      margin-top: rem(4px);
+      line-height: 1.5;
+    }
+  }
+
+  > h1 {
+    font-size: 3rem;
+
+    > small {
+      font-size: 1rem;
+    }
+  }
 }
 
 .app-migration-result-table {
@@ -233,12 +377,26 @@ export default {
     list-style: none;
     padding: 2rem 0;
 
+    @include phone-and-tablet {
+      text-align: left;
+    }
+
     &:last-child {
       border-bottom: 0;
     }
 
     > h5 {
       margin: 0;
+
+      > span {
+        @extend %face-uppercase-xs;
+
+        display: block;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        line-height: 1;
+        color: #4E5A66;
+      }
     }
   }
 }
@@ -248,12 +406,23 @@ export default {
   justify-content: space-between;
   align-items: center;
 
+  @include phone-and-tablet {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   > h1 {
     margin: 0;
     font-weight: normal;
 
     > small {
       font-size: 50%;
+    }
+  }
+
+  @include phone-and-tablet {
+    > a {
+      margin-bottom: 1rem;
     }
   }
 
@@ -268,6 +437,10 @@ export default {
     /deep/ > span {
       display: inline-block;
       margin-right: 1rem;
+    }
+
+    @include phone-and-tablet {
+      width: auto;
     }
   }
 
@@ -288,5 +461,9 @@ export default {
   margin: 0 auto;
   width: 50px;
   animation: rotate 2s reverse infinite linear;
+}
+
+.app-migration-panel-phase {
+  border-bottom: 1px solid #D3DCE6;
 }
 </style>

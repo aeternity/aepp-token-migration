@@ -118,6 +118,10 @@
   margin: 2rem 0;
   text-align: center;
 
+  @include only-phone {
+    text-align: left;
+  }
+
   a {
     text-decoration: underline;
     font-weight: bold;
@@ -149,8 +153,21 @@
   }
 }
 
-
 .app-horizontal-line {
   border-top: 1px solid #D3DCE6;
   border-bottom: none;
+}
+
+@include only-phone {
+  .hide-mobile {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+@include only-desktop {
+  .hide-desktop {
+    display: none;
+    visibility: hidden;
+  }
 }

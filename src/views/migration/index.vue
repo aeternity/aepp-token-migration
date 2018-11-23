@@ -4,7 +4,7 @@
       <app-header-nav prog="3/6" text="Provide your æternity account"/>
     </app-header>
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
           Provide your æternity account
         </template>

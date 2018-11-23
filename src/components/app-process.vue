@@ -36,6 +36,10 @@ export default {
   padding: 0 4rem 0 8rem;
   z-index: 10;
 
+  @include only-phone {
+    padding: 1rem;
+  }
+
   /deep/ > li {
     list-style: none;
     position: relative;
@@ -95,6 +99,25 @@ export default {
 
     &:last-child {
       border-bottom: none;
+    }
+
+    @include only-phone {
+      padding: 1rem 0;
+      text-align: center;
+
+      > span {
+        position: static;
+        display: inline-block;
+
+        &:before, &:after {
+          display: none;
+          visibility: hidden;
+        }
+      }
+
+      > p {
+        word-break: break-word;
+      }
     }
   }
 }

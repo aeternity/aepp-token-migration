@@ -5,14 +5,13 @@
     </app-header>
     <!-- App View -->
     <app-view container>
-      <app-intro>
+      <app-intro spacing>
         <template slot="title">
-          Prepare your transaction <br/> with MyEtherWallet
+          Prepare your transaction with MyEtherWallet
         </template>
         <template slot="intro">
-          You are about to transfer AE tokens to the AE Token Contract, which <br/>
-          sends them to the AE Migration Contract. The Migration Contract <br/>
-          takes care of everything else for you.
+          You are about to transfer AE tokens to the AE Token Contract, which sends them to the AE Migration Contract.
+          The Migration Contract takes care of everything else for you.
         </template>
       </app-intro>
       <app-panel shadow>
@@ -109,7 +108,7 @@
           <hr class="app-horizontal-line" />
         </app-panel>
         <app-panel primary padding centered>
-          <app-url :value="migrate" disabled>
+          <app-url class="hide-mobile" :value="migrate" disabled>
             <ae-toolbar align="justify" fill="neutral">
               <span>Your Migration payload is saved in this link</span>
               <ae-button face="toolbar" v-copy-to-clipboard="migrate">
@@ -122,8 +121,8 @@
         <app-panel class="app-text-center" padding secondary>
           <ae-icon name="info" size="2rem" class="app-highlight"/>
           <ae-text face="sans-s" :weight="700">
-            The transaction you’re about to make will not send any ETH, it will only use ETH for gas. The <br />
-            amount of tokens that you send will be stored in the payload, which can be found in <br />
+            The transaction you’re about to make will not send any ETH, it will only use ETH for gas. The amount of
+            tokens that you send will be stored in the payload, which can be found in
             <span class="app-highlight">
               Generated Data in MyEtherWallet.
             </span>
@@ -138,7 +137,7 @@
 
     <!-- Step process -->
     <app-modal v-if="modal && name === 'step'" @click="closeModal">
-      <app-panel tertiary padding shadow v-if="step === 1">
+      <app-panel tertiary padding shadow overflow v-if="step === 1" :close="closeModal">
         <template slot="header">
           <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
           Migrating with MyEtherWallet
@@ -147,7 +146,7 @@
           <div class="app-myetherwallet-screenshot">
             <img :src="require('../../../../assets/graphics/screenshot.png')" alt="MyEtherWallet">
           </div>
-          <app-separator />
+          <app-separator class="hide-mobile" />
           <app-column size="small">
             <app-intro align="left">
               <template slot="subtitle">
@@ -157,8 +156,8 @@
                 The transaction form will be pre-filled and
                 <span class="app-highlight">
                   should not be changed!
-                </span> <br /> <br />
-                Continue for more information, before proceeding.
+                </span>
+                <p>Continue for more information, before proceeding.</p>
               </template>
             </app-intro>
             <ae-button @click="step = 2" face="round" fill="secondary" extend>
@@ -167,7 +166,7 @@
           </app-column>
         </app-row>
       </app-panel>
-      <app-panel tertiary padding shadow v-if="step === 2 || step === 3">
+      <app-panel tertiary padding shadow overflow v-if="step === 2 || step === 3" :close="closeModal">
         <template slot="header">
           <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
           Migrating with MyEtherWallet
@@ -176,7 +175,7 @@
           <div class="app-myetherwallet-screenshot">
             <img :src="require('../../../../assets/graphics/screenshot-2.png')" alt="MyEtherWallet">
           </div>
-          <app-separator />
+          <app-separator class="hide-mobile" />
           <app-column size="small">
             <ul class="app-myetherwallet-list">
               <li>
@@ -311,6 +310,10 @@ export default {
 <style lang="scss" scoped>
 .app-myetherwallet-screenshot {
   width: 50%;
+
+  @include only-phone {
+    width: 100%;
+  }
 }
 
 .app-myetherwallet-button-group {
@@ -363,6 +366,11 @@ export default {
       font-weight: bold;
     }
   }
+
+  @include only-phone {
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .app-myetherwallet-notification {
@@ -374,5 +382,10 @@ export default {
   padding: 0.5rem;
   color: #203040;
   font-size: 1rem;
+
+  @include only-phone {
+    margin: 0 -1rem -1rem -1rem;
+    line-height: 1.5;
+  }
 }
 </style>
