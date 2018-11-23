@@ -27,80 +27,84 @@
           <img :src="require('../../assets/graphics/header-check.svg')" class="app-migration-result-check">
           <h4 class="app-migration-result-subtitle">You've migrated</h4>
           <h1 class="app-migration-result-title">
-            {{collectiveSum | shorten(true) }}.<small style="font-size: 2rem;">{{collectiveSum | shorten }}</small>
+            {{collectiveSum | shorten(true) }}<small style="font-size: 2rem;">.{{collectiveSum | shorten }}</small>
             <span>&nbsp;AE</span>
           </h1>
-          <h4 class="app-migration-result-subtitle">in total</h4>
+          <h4 class="app-migration-result-subtitle">in total to the following address</h4>
+          <ae-identicon :address="$route.params.pubkey"/>
+          <ae-address
+            v-if="$route.params.pubkey"
+            :value="$route.params.pubkey"
+            length="flat"
+          />
         </app-panel>
         <div class="app-migration-panel-phase">
           <app-panel primary padding>
-            <div class="app-migration-result-account">
-              <h4>All Migrations to</h4>
-              <span>
-                <ae-address
-                  v-if="$route.params.pubkey"
-                  :value="$route.params.pubkey"
-                  length="flat"
-                />
-                <ae-identicon :address="$route.params.pubkey" />
-              </span>
+            <div class="app-migration-result-phase">
+              <h2 class="warning">
+                Tokens migrated in Phase 1
+                <span>
+                  Contains all migrations from Phase 1 (november 26th, 2018 - February 2019). <br />
+                  They will be available in Mainnet when Phase 2 starts
+                </span>
+              </h2>
+              <h1>
+                {{totalAmountMigrated(this.phase[1]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
+                <small>&nbsp;AE</small>
+              </h1>
             </div>
             <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[0]" :key="index">
-                <h5>{{ new Date(e.created).toDateString() }}</h5>
+              <li v-for="(e, index) in phase[1]" :key="index">
+                <h5>
+                  {{ new Date(e.created).toDateString() }}
+                  <span>PHASE {{ e.deliveryPeriod }}</span>
+                </h5>
                 <div class="app-migration-result-tx">
-                  <!-- TODO: Here we're checking what env we're in!-->
                   <a :href="`https://${
                  env === 'development' ? 'kovan.' : ''
                 }etherscan.io/tx/${e.transactionHash}`" target="_blank">
                     <p v-html="$options.filters.chunk(e.transactionHash)"></p>
                   </a>
                   <h1>
-                    {{e.value | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{e.value | fromWei | shorten }}</small>
+                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
                     <small>&nbsp;AE</small>
                   </h1>
                 </div>
               </li>
             </ul>
-            <div class="app-migration-result-account">
-              <h4>Total Migrations in Phase 0</h4>
-              <span>
-                <h1>
-                  {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{totalAmountMigrated(this.phase[0]) | fromWei | shorten }}</small>
-                  <small>&nbsp;AE</small>
-                </h1>
-              </span>
-            </div>
           </app-panel>
         </div>
         <div class="app-migration-panel-phase">
           <app-panel primary padding>
+            <div class="app-migration-result-phase">
+              <h2 class="check">
+                Tokens migrated in Phase 0
+                <span>Tokens which are available in the Genesis Block from Mainnet Launch</span>
+              </h2>
+              <h1>
+                {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
+                <small>&nbsp;AE</small>
+              </h1>
+            </div>
             <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[1]" :key="index">
-                <h5>{{ new Date(e.created).toDateString() }}</h5>
+              <li v-for="(e, index) in phase[0]" :key="index">
+                <h5>
+                  {{ new Date(e.created).toDateString() }}
+                  <span>PHASE {{ e.deliveryPeriod }}</span>
+                </h5>
                 <div class="app-migration-result-tx">
-                  <!-- TODO: Here we're checking what env we're in!-->
                   <a :href="`https://${
                  env === 'development' ? 'kovan.' : ''
                 }etherscan.io/tx/${e.transactionHash}`" target="_blank">
                     <p v-html="$options.filters.chunk(e.transactionHash)"></p>
                   </a>
                   <h1>
-                    {{e.value | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{e.value | fromWei | shorten }}</small>
+                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
                     <small>&nbsp;AE</small>
                   </h1>
                 </div>
               </li>
             </ul>
-            <div class="app-migration-result-account">
-              <h4>Total Migrations in Phase 1</h4>
-              <span>
-                <h1>
-                  {{totalAmountMigrated(this.phase[1]) | fromWei | shorten(true) }}.<small style="font-size: 1.125rem;">{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
-                  <small>&nbsp;AE</small>
-                </h1>
-              </span>
-            </div>
           </app-panel>
         </div>
       </app-panel>
@@ -304,6 +308,66 @@ export default {
   }
 }
 
+.app-migration-result-phase {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #203040;
+
+  @include phone-and-tablet {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  > h2 {
+    position: relative;
+    font-size: rem(22px);
+    font-weight: bold;
+    padding-left: 2.5rem;
+
+    &:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    &.check:before {
+      background-image: url('../../assets/icons/check.png');
+    }
+
+    &.warning:before {
+      background-image: url('../../assets/icons/warning.png');
+    }
+
+    > span {
+      @extend %face-uppercase-xs;
+
+      display: block;
+      font-size: rem(13px);
+      color: #4E5A66;
+      text-transform: none;
+      font-weight: normal;
+      margin-top: rem(4px);
+      line-height: 1.5;
+    }
+  }
+
+  > h1 {
+    font-size: 3rem;
+
+    > small {
+      font-size: 1rem;
+    }
+  }
+}
+
 .app-migration-result-table {
   padding: 0;
   margin: 0;
@@ -323,6 +387,16 @@ export default {
 
     > h5 {
       margin: 0;
+
+      > span {
+        @extend %face-uppercase-xs;
+
+        display: block;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        line-height: 1;
+        color: #4E5A66;
+      }
     }
   }
 }
