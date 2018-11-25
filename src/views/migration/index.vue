@@ -9,7 +9,7 @@
           Provide your æternity account
         </template>
         <template slot="intro">
-          The amount of tokens you choose to migrate, will be available on this address in the Mainnet.
+          The amount of tokens you choose to migrate, will be available on this address in the next scheduled hardfork release.
         </template>
       </app-intro>
       <app-panel primary padding shadow>
