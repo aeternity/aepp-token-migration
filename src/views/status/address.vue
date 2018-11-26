@@ -82,7 +82,7 @@
                 <span>Tokens will be available on Mainnet Launch.</span>
               </h2>
               <h1>
-                {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
+                {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[0]) | fromWei | shorten }}</small>
                 <small>&nbsp;AE</small>
               </h1>
             </div>
