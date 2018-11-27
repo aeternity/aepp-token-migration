@@ -1,6 +1,14 @@
 <i18n>
   {
-    "en": {},
+    "en": {
+      "title": "Statuspage",
+      "scannerError": "Please enter your address manually.",
+      "intro": {
+        "title": "Check how many tokens you have migrated to the æternity Mainnet",
+        "intro": "Enter your æternity address and check the status of your migrations."
+      },
+      "checkMigrations": "Check Migrations"
+    },
     "ru": {},
     "zh-CN": {}
   }
@@ -9,20 +17,20 @@
   <app-view>
     <!-- Application Header -->
     <app-header>
-      <app-header-nav text="Statuspage"/>
+      <app-header-nav :text="$t('title')"/>
     </app-header>
 
     <!-- Content View -->
     <app-view container>
       <app-notice v-if="scannerError">
-        {{ scannerError }}. Please enter your address manually.
+        {{ scannerError }}. {{ $t('scannerError') }}
       </app-notice>
       <app-intro spacing>
         <template slot="title">
-          Check how many tokens you have migrated to the æternity Mainnet
+          {{ $t('intro.title') }}
         </template>
         <template slot="intro">
-          Enter your æternity address and check the status of your migrations.
+          {{ $t('intro.intro') }}
         </template>
       </app-intro>
       <div class="app-migration-check">
@@ -34,7 +42,7 @@
           <ae-toolbar align="right">
             <ae-button @click="toggleRescan" face="toolbar">
               <ae-icon name="camera"/>
-              Scan
+              {{ $t('scan') }}
             </ae-button>
           </ae-toolbar>
         </app-address>
@@ -44,7 +52,7 @@
           :disabled="!walletAddress"
         >
           <ae-button face="round" fill="primary" :disabled="!walletAddress">
-            Check Migrations
+            {{ $t('checkMigrations') }}
           </ae-button>
         </router-link>
       </div>

@@ -1,6 +1,24 @@
 <i18n>
   {
-    "en": {},
+    "en": {
+      "intro": {
+        "title": "Check your migrations!",
+        "intro": "You have completed your part of migrating your AE tokens to the æternity Mainnet."
+      },
+      "print": "Print / Save as PDF",
+      "migrateMore": "Migrate More Tokens",
+      "migrated": "You've migrated",
+      "total": "in total to the following address",
+      "phase": "PHASE",
+      "phase0": {
+        "migrated": "Tokens migrated in Phase 0",
+        "details": "Tokens will be available on Mainnet Launch."
+      },
+      "phase1": {
+        "migrated": "Tokens migrated in Phase 1",
+        "details": "Tokens will be available after the 1st Hardfork.<br /> All tokens migrated during Phase 1 (November 26th, 2018 - February 2019)."
+      }
+    },
     "ru": {},
     "zh-CN": {}
   }
@@ -13,18 +31,18 @@
     <app-view container>
       <app-intro spacing>
         <template slot="title">
-          Check your migrations!
+          {{ $t('intro.title') }}
         </template>
         <template slot="intro">
-          You have completed your part of migrating your AE tokens to the æternity Mainnet.
+          {{ $t('intro.intro') }}
         </template>
         <div class="app-migration-result-print">
           <ae-button @click="print()" face="round" fill="primary" extend shadow>
-            Print / Save as PDF
+            {{ $t('print') }}
           </ae-button>
           <router-link :to="{ name: 'migration' }">
             <ae-button @click="$store.commit('setWalletAddress', null)" face="flat" fill="neutral"  extend>
-              Migrate More Tokens
+              {{ $t('migrateMore') }}
             </ae-button>
           </router-link>
         </div>
@@ -32,12 +50,12 @@
       <app-panel shadow>
         <app-panel secondary padding style="text-align: center">
           <img :src="require('../../assets/graphics/header-check.svg')" class="app-migration-result-check">
-          <h4 class="app-migration-result-subtitle">You've migrated</h4>
+          <h4 class="app-migration-result-subtitle">{{ $t('migrated') }}</h4>
           <h1 class="app-migration-result-title">
             {{collectiveSum | shorten(true) }}<small style="font-size: 2rem;">.{{collectiveSum | shorten }}</small>
             <span>&nbsp;AE</span>
           </h1>
-          <h4 class="app-migration-result-subtitle">in total to the following address</h4>
+          <h4 class="app-migration-result-subtitle">{{ $t('total') }}</h4>
           <ae-identicon :address="$route.params.pubkey"/>
           <ae-address
             v-if="$route.params.pubkey"
@@ -49,11 +67,8 @@
           <app-panel primary padding>
             <div class="app-migration-result-phase">
               <h2 class="warning">
-                Tokens migrated in Phase 1
-                <span>
-                  Tokens will be available after the 1st Hardfork.<br />
-                  All tokens migrated during Phase 1 (November 26th, 2018 - February 2019).
-                </span>
+                {{ $t('phase1.migrated') }}
+                <span v-html="$t('phase1.details')" />
               </h2>
               <h1>
                 {{totalAmountMigrated(this.phase[1]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
@@ -64,7 +79,7 @@
               <li v-for="(e, index) in phase[1]" :key="index">
                 <h5>
                   {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
+                  <span>{{ $t('phase') }} {{ e.deliveryPeriod }}</span>
                 </h5>
                 <div class="app-migration-result-tx">
                   <a :href="`https://${
@@ -85,8 +100,8 @@
           <app-panel primary padding>
             <div class="app-migration-result-phase">
               <h2 class="check">
-                Tokens migrated in Phase 0
-                <span>Tokens will be available on Mainnet Launch.</span>
+                {{ $t('phase0.migrated') }}
+                <span>{{ $t('phase0.details') }}</span>
               </h2>
               <h1>
                 {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[0]) | fromWei | shorten }}</small>
@@ -97,7 +112,7 @@
               <li v-for="(e, index) in phase[0]" :key="index">
                 <h5>
                   {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
+                  <span>{{ $t('phase') }} {{ e.deliveryPeriod }}</span>
                 </h5>
                 <div class="app-migration-result-tx">
                   <a :href="`https://${
