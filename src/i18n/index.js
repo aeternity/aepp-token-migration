@@ -5,7 +5,8 @@ Vue.use(VueI18n)
 
 const messages = {
   en: require('./en.json'),
-  zh: require('./zh.json')
+  ru: require('./ru.json'),
+  'zh-CN': require('./zh-CN.json')
 }
 
 export default new VueI18n({

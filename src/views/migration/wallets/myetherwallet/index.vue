@@ -1,3 +1,10 @@
+<i18n>
+  {
+    "en": {},
+    "ru": {},
+    "zh-CN": {}
+  }
+</i18n>
 <template>
   <app-view>
     <app-header>

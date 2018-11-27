@@ -1,9 +1,20 @@
+<i18n>
+  {
+    "en": {
+      "notice": "You’re connected to a Ethereum Testnet, the tokens that you are about to migrate will NOT be available in the æternity Mainnet"
+    },
+    "ru": {
+      "notice": ""
+    },
+    "zh-CN": {
+      "notice": ""
+    }
+  }
+</i18n>
 <template>
   <div id="app">
     <app-notice v-if="!mainnet">
-      You’re connected to a Ethereum Testnet,
-      the tokens that you are about to migrate
-      will NOT be available in the æternity Mainnet
+      {{ $t('notice') }}
     </app-notice>
     <router-view />
   </div>

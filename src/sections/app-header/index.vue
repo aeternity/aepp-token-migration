@@ -1,3 +1,10 @@
+<i18n>
+  {
+    "en": {},
+    "ru": {},
+    "zh-CN": {}
+  }
+</i18n>
 <template>
   <header class="app-header">
     <router-link :to="{ name: 'begin' }" class="app-header__logo">

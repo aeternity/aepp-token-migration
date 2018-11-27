@@ -1,3 +1,10 @@
+<i18n>
+  {
+    "en": {},
+    "ru": {},
+    "zh-CN": {}
+  }
+</i18n>
 <template>
   <div class="app-address" :class="{ disabled }">
     <div class="app-address-input" :style="{ background }">

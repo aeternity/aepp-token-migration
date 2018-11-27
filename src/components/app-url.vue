@@ -1,3 +1,10 @@
+<i18n>
+  {
+    "en": {},
+    "ru": {},
+    "zh-CN": {}
+  }
+</i18n>
 <template>
   <div class="app-url">
     <label for="url">MyEtherWallet URL</label>
