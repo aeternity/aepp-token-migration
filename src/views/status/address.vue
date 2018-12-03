@@ -1,6 +1,7 @@
 <i18n>
   {
     "en": {
+      "header": "Statuspage",
       "intro": {
         "title": "Check your migrations!",
         "intro": "You have completed your part of migrating your AE tokens to the æternity Mainnet."
@@ -18,15 +19,13 @@
         "migrated": "Tokens migrated in Phase 1",
         "details": "Tokens will be available after the 1st Hardfork.<br /> All tokens migrated during Phase 1 (November 26th, 2018 - February 2019)."
       }
-    },
-    "ru": {},
-    "zh-CN": {}
+    }
   }
 </i18n>
 <template>
   <app-view>
     <app-header>
-      <app-header-nav text="Statuspage"/>
+      <app-header-nav :text="$t('header')" />
     </app-header>
     <app-view container>
       <app-intro spacing>
@@ -50,7 +49,9 @@
       <app-panel shadow>
         <app-panel secondary padding style="text-align: center">
           <img :src="require('../../assets/graphics/header-check.svg')" class="app-migration-result-check">
-          <h4 class="app-migration-result-subtitle">{{ $t('migrated') }}</h4>
+          <h4 class="app-migration-result-subtitle">
+            {{ $t('migrated') }}
+          </h4>
           <h1 class="app-migration-result-title">
             {{collectiveSum | shorten(true) }}<small style="font-size: 2rem;">.{{collectiveSum | shorten }}</small>
             <span>&nbsp;AE</span>

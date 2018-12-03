@@ -1,14 +1,16 @@
 <i18n>
   {
-    "en": {},
-    "ru": {},
-    "zh-CN": {}
+    "en": {
+      "address": "Your æternity address"
+    }
   }
 </i18n>
 <template>
   <div class="app-address" :class="{ disabled }">
     <div class="app-address-input" :style="{ background }">
-      <label for="address">Your æternity address</label>
+      <label for="address">
+        {{ $t('address') }}
+      </label>
       <textarea
         placeholder="ak_"
         @input="$emit('input', $event.target.value)"
@@ -18,7 +20,7 @@
         :disabled="disabled"
       ></textarea>
     </div>
-    <slot/>
+    <slot />
   </div>
 </template>
 <script>

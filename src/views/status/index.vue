@@ -1,23 +1,21 @@
 <i18n>
   {
     "en": {
-      "title": "Statuspage",
+      "header": "Statuspage",
       "scannerError": "Please enter your address manually.",
       "intro": {
         "title": "Check how many tokens you have migrated to the æternity Mainnet",
         "intro": "Enter your æternity address and check the status of your migrations."
       },
       "checkMigrations": "Check Migrations"
-    },
-    "ru": {},
-    "zh-CN": {}
+    }
   }
 </i18n>
 <template>
   <app-view>
     <!-- Application Header -->
     <app-header>
-      <app-header-nav :text="$t('title')"/>
+      <app-header-nav :text="$t('header')"/>
     </app-header>
 
     <!-- Content View -->

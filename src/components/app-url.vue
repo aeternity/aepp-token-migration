@@ -1,16 +1,18 @@
 <i18n>
   {
-    "en": {},
-    "ru": {},
-    "zh-CN": {}
+    "en": {
+      "url": "MyEtherWallet URL"
+    }
   }
 </i18n>
 <template>
   <div class="app-url">
-    <label for="url">MyEtherWallet URL</label>
+    <label for="url">
+      {{ $t('url') }}
+    </label>
     <textarea :value="value" id="url" :disabled="disabled"></textarea>
     <div>
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

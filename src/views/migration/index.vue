@@ -1,52 +1,78 @@
 <i18n>
   {
-    "en": {},
-    "ru": {},
-    "zh-CN": {}
+    "en": {
+      "header": "Provide your æternity account",
+      "intro": {
+        "title": "Provide your æternity account",
+        "intro": "The amount of tokens you choose to migrate, will be available on this address in the next scheduled hardfork release."
+      },
+      "column": {
+        "airgap": {
+          "title": "AirGap Vault",
+          "text": "Open your æternity wallet in the AirGap Vault and scan your QR code.",
+          "button": "Scan from AirGap"
+        },
+        "or": "or",
+        "ledger": {
+          "title": "Ledger Wallet",
+          "text": "Connect your Ledger Wallet over USB, select the æternity app.",
+          "button": "Coming soon"
+        },
+        "manual": "Enter Address Manually"
+      },
+      "noChromeModal": {
+        "header": "Migrating with Ledger Wallet",
+        "subtitle": "Please use Google Chrome or Brave browser",
+        "intro": "We can only read your Ledger wallet from one these browsers.",
+        "button": "Close"
+      }
+    }
   }
 </i18n>
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="3/6" text="Provide your æternity account"/>
+      <app-header-nav prog="3/6" :text="$t('header')"/>
     </app-header>
     <app-view container>
       <app-intro spacing>
         <template slot="title">
-          Provide your æternity account
+          {{ $t('intro.title') }}
         </template>
         <template slot="intro">
-          The amount of tokens you choose to migrate, will be available on this address in the next scheduled hardfork release.
+          {{ $t('intro.intro') }}
         </template>
       </app-intro>
       <app-panel primary padding shadow>
         <app-row>
           <app-column>
-            <img :src="require('../../assets/graphics/airgap-logo.svg')" alt="AirGap Vault" slot="image">
+            <img :src="require('../../assets/graphics/airgap-logo.svg')" :alt="$t('column.airgap.title')" slot="image">
             <template slot="title">
-              AirGap Vault
+              {{ $t('column.airgap.title') }}
             </template>
             <template slot="text">
-              Open your æternity wallet in the AirGap Vault and scan your QR code.
+              {{ $t('column.airgap.text') }}
             </template>
             <router-link :to="{ name: 'scan' }" slot="button">
               <ae-button face="round" fill="secondary" extend>
-                Scan from AirGap
+                {{ $t('column.airgap.button') }}
               </ae-button>
             </router-link>
           </app-column>
-          <app-separator>or</app-separator>
+          <app-separator>
+            {{ $t('column.or') }}
+          </app-separator>
           <app-column>
-            <img :src="require('../../assets/graphics/ledger-logo.svg')" alt="Ledger Wallet" slot="image">
+            <img :src="require('../../assets/graphics/ledger-logo.svg')" :alt="$t('column.ledger.title')" slot="image">
             <template slot="title">
-              Ledger Wallet
+              {{ $t('column.ledger.title') }}
             </template>
             <template slot="text">
-              Connect your Ledger Wallet over USB, select the æternity app.
+              {{ $t('column.ledger.text') }}
             </template>
             <router-link :to="{ name: 'read' }" slot="button" disabled>
               <ae-button class="ae-button-ledger" face="round" extend disabled>
-                Coming soon
+                {{ $t('column.ledger.button') }}
               </ae-button>
             </router-link>
           </app-column>
@@ -55,7 +81,7 @@
         <router-link :to="{ name: 'input' }">
           <ae-button extend>
             <ae-text face="uppercase-base" :weight=700>
-              Enter Address Manually
+              {{ $t('column.manual') }}
             </ae-text>
           </ae-button>
         </router-link>
@@ -65,21 +91,21 @@
     <app-modal v-if="modal && name === 'not-chrome-browser'" @click="closeModal">
       <app-panel primary padding shadow>
         <template slot="header">
-          <img :src="require('../../assets/graphics/ledger-logo.svg')" alt="Ledger Wallet">
-          Migrating with Ledger Wallet
+          <img :src="require('../../assets/graphics/ledger-logo.svg')" :alt="$t('noChromeModal.header')">
+          {{ $t('noChromeModal.header') }}
         </template>
         <app-intro>
           <template slot="title">
             <ae-icon name="info"/>
           </template>
           <template slot="subtitle">
-            Please use Google Chrome or Brave browser
+            {{ $t('noChromeModal.subtitle') }}
           </template>
           <template slot="intro">
-            We can only read your Ledger wallet from one these browsers.
+            {{ $t('noChromeModal.intro') }}
           </template>
           <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">
-            Close
+            {{ $t('noChromeModal.button') }}
           </ae-button>
         </app-intro>
       </app-panel>

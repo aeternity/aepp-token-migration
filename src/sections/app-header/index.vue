@@ -1,8 +1,11 @@
 <i18n>
   {
-    "en": {},
-    "ru": {},
-    "zh-CN": {}
+    "en": {
+      "forum": {
+        "title": "Need assistance?",
+        "text": "Click to visit our forum for more information"
+      }
+    }
   }
 </i18n>
 <template>
@@ -28,8 +31,8 @@
         <a href="https://forum.aeternity.com/t/token-migration-phase-1-support-and-faq/1411" class="app-header__forum" target="_blank">
           <img :src="require('../../assets/icons/forum.png')" alt="Visit Forum">
           <div>
-            <h4>Need assistance?</h4>
-            <p>Click to visit our forum for more information</p>
+            <h4>{{ $t('forum.title') }}</h4>
+            <p>{{ $t('forum.text') }}</p>
           </div>
         </a>
       </div>
