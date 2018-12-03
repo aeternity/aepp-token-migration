@@ -1,21 +1,38 @@
 <i18n>
   {
-    "en": {}
+    "en": {
+      "header": "Create an æternity account with AirGap",
+      "intro": {
+        "title": "Create an æternity account with AirGap",
+        "button": "I already have an account"
+      },
+      "sliders": {
+        "0": {
+          "title": "",
+          "text": ""
+        },
+        "1": {},
+        "2": {}
+      },
+      "footer": {
+        "button": "Start Migration"
+      }
+    }
   }
 </i18n>
 <template>
   <app-view>
     <app-header>
-      <app-header-nav prog="2/6" text="Create an æternity account with AirGap"/>
+      <app-header-nav prog="2/6" :text="$t('header')"/>
     </app-header>
     <app-view container>
       <app-intro spacing>
         <template slot="title">
-          Create an æternity account with AirGap
+          {{ $t('intro.title') }}
         </template>
         <router-link :to="{ name: 'migration' }">
           <ae-button face="round" fill="secondary">
-            I already have an account
+            {{ $t('intro.button') }}
           </ae-button>
         </router-link>
       </app-intro>
@@ -185,7 +202,7 @@
     <app-footer>
       <router-link to="/migration">
         <ae-button face="round" fill="primary" shadow>
-          Start Migration
+          {{ $t('footer.button') }}
         </ae-button>
       </router-link>
     </app-footer>
