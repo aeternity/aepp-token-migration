@@ -6,16 +6,14 @@
     <app-view container>
       <app-intro spacing>
         <template slot="title">
-          Select the wallet where you hold your AE tokens
+          Select the wallet with your AE tokens
         </template>
         <template slot="intro">
-          Currently, we only support migrating with MyEtherWallet and MetaMask (or any other web3 wallet).
-          Both ways support Ledger and Trezor hardware wallets.
-          If you hold your tokens somewhere else, move them to one of these wallets.
-          Create an account there if necessary.
+          We currently support migration from MetaMask and MyEtherWallet (or any other web3 wallet).
+          Both options support Ledger and Trezor hardware wallets.
+          If you hold your tokens somewhere else, create an account and transfer them to one of these wallets first.
           <br /><br />
-          <strong>IMPORTANT</strong>: You will need to have enough ETH on the same account to
-          pay for transaction fees.
+          <strong>IMPORTANT</strong>: You will need a tiny amount ETH in the same wallet to pay for the transaction fee.
         </template>
       </app-intro>
       <app-panel primary padding shadow>

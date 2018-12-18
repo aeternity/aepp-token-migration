@@ -9,7 +9,7 @@
           Check your migrations!
         </template>
         <template slot="intro">
-          You have completed your part of migrating your AE tokens to the æternity Mainnet.
+          You have successfully migrated AE tokens to the æternity Mainnet.
         </template>
         <div class="app-migration-result-print">
           <ae-button @click="print()" face="round" fill="primary" extend shadow>
@@ -25,7 +25,7 @@
       <app-panel shadow>
         <app-panel secondary padding style="text-align: center">
           <img :src="require('../../assets/graphics/header-check.svg')" class="app-migration-result-check">
-          <h4 class="app-migration-result-subtitle">You've migrated</h4>
+          <h4 class="app-migration-result-subtitle">You have migrated</h4>
           <h1 class="app-migration-result-title">
             {{collectiveSum | shorten(true) }}<small style="font-size: 2rem;">.{{collectiveSum | shorten }}</small>
             <span>&nbsp;AE</span>
@@ -79,7 +79,7 @@
             <div class="app-migration-result-phase">
               <h2 class="check">
                 Tokens migrated in Phase 0
-                <span>Tokens will be available on Mainnet Launch.</span>
+                <span>Mainnet has been launched, tokens are available now.</span>
               </h2>
               <h1>
                 {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[0]) | fromWei | shorten }}</small>
