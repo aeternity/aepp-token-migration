@@ -9,7 +9,7 @@
           Prepare your transaction with Meta Mask
         </template>
         <template slot="intro">
-          u are about to transfer the Ethereum AE tokens to the AE Token Contract.
+          You are about to transfer the Ethereum AE tokens to the AE Token Contract.
           The rest is automated. Your AE will be available after the mainnet hardfork at the end of this phase.
         </template>
       </app-intro>
