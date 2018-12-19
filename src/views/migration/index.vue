@@ -9,7 +9,7 @@
           Provide your æternity account
         </template>
         <template slot="intro">
-          The amount of tokens you choose to migrate, will be available on this address in the next scheduled hardfork release.
+          This is the address which will hold your AE, after this migration and the next scheduled hardfork.
         </template>
       </app-intro>
       <app-panel primary padding shadow>

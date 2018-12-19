@@ -10,8 +10,8 @@
           Prepare your transaction with MyEtherWallet
         </template>
         <template slot="intro">
-          You are about to transfer AE tokens to the AE Token Contract, which sends them to the AE Migration Contract.
-          The Migration Contract takes care of everything else for you.
+          You are about to transfer the Ethereum AE tokens to the AE Token Contract.
+          The rest is automated. Your AE will be available after the mainnet hardfork at the end of this phase.
         </template>
       </app-intro>
       <app-panel shadow>
