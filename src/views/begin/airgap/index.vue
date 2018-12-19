@@ -20,11 +20,9 @@
             <img :src="require('@/assets/images/tutorial-airgap/0-download-install.svg')" alt="Download & Install">
           </figure>
           <section class="tutorial__info">
-            <h3 class="title title-category">Download & Install AirGap Vault app</h3>
+            <h3 class="title title-category">Install AirGap Vault</h3>
             <p>
-              Go to the App Store or the Play Store and download the <b>AirGap Vault App</b>.
-              For maximum security we recommend using a dedicated smartphone to
-              store your AE tokens. <a href="https://medium.com/airgap-it/what-is-airgap-74456b4844fb" target="_blank">Learn More »</a>
+              For maximum security we recommend using a dedicated smartphone to store your AE tokens. <a href="https://medium.com/airgap-it/what-is-airgap-74456b4844fb" target="_blank">About AirGap »</a>
             </p>
             <footer>
               <a href="https://itunes.apple.com/us/app/airgap-vault-secure-secrets/id1417126841" target="_blank">
@@ -53,12 +51,10 @@
                 <img :src="require('@/assets/images/tutorial-airgap/1.0-secret-generate.svg')">
               </figure>
               <section class="tutorial__info">
-                <h3 class="title title-category">Your secret</h3>
-                <h4 class="title title-subcategory">Select ‘Generate’</h4>
+                <h3 class="title title-category">Security Setup</h3>
+                <h4 class="title title-subcategory">1/5</h4>
                 <p>
-                  “Generate” a new secret, you can also import an existing mnemonic phrase.
-                  We recommend that you generate a new secret on the air gapped device and not
-                  import one that was previously used in a device with network connectivity.
+                  Generate a new secret phrase (recommended) or import an existing one.
                 </p>
               </section>
             </div>
@@ -69,13 +65,10 @@
                 <img :src="require('@/assets/images/tutorial-airgap/1.1-secret-generate.svg')">
               </figure>
               <section class="tutorial__info">
-                <h3 class="title title-category">Your secret</h3>
-                <h4 class="title title-subcategory">Generate</h4>
+                <h3 class="title title-category">Security Setup</h3>
+                <h4 class="title title-subcategory">2/5</h4>
                 <p>
-                  The enhanced entropy concept adds video, audio, accelerator and touch data
-                  to the entropy seed alongside the device’s pre-shipped secure random
-                  generator in order to generate a cryptographically secure seed used
-                  for the secret generation.
+                  AirGap adds audio, video, accelerator and touch data to create an unmatched security standard.
                 </p>
               </section>
             </div>
@@ -86,11 +79,10 @@
                 <img :src="require('@/assets/images/tutorial-airgap/1.2-secret-write.svg')">
               </figure>
               <section class="tutorial__info">
-                <h3 class="title title-category">Your secret</h3>
-                <h4 class="title title-subcategory">Write your secret on a piece of paper</h4>
+                <h3 class="title title-category">Security Setup</h3>
+                <h4 class="title title-subcategory">3/5</h4>
                 <p>
-                  In order to have a backup of your secret, you need to
-                  write the following words on a piece of paper. Remember the rules!
+                  Write down your secret phrase for account recovery. Make sure it’s in the right order.
                 </p>
               </section>
             </div>
@@ -101,11 +93,10 @@
                 <img :src="require('@/assets/images/tutorial-airgap/1.3-secret-verify.svg')">
               </figure>
               <section class="tutorial__info">
-                <h3 class="title title-category">Your secret</h3>
-                <h4 class="title title-subcategory">Verify your secret</h4>
+                <h3 class="title title-category">Security Setup</h3>
+                <h4 class="title title-subcategory">4/5</h4>
                 <p>
-                  Verify the secret you wrote down on a piece of paper,
-                  by ordering the mnemonic words in the right order.
+                  Verify the secret phrase by putting the words in the right order.
                 </p>
               </section>
             </div>
@@ -116,12 +107,10 @@
                 <img :src="require('@/assets/images/tutorial-airgap/1.4-secret-name.svg')">
               </figure>
               <section class="tutorial__info">
-                <h3 class="title title-category">Your secret</h3>
-                <h4 class="title title-subcategory">Security level & secret name</h4>
+                <h3 class="title title-category">Security Setup</h3>
+                <h4 class="title title-subcategory">5/5</h4>
                 <p>
-                  Use your fingerprint to store the secret in the secure
-                  enclave of the mobile device, set a password and
-                  confirm it for additional security.
+                  Lock your secret away on your device: protect it with your fingerprint and passcode.
                 </p>
               </section>
             </div>
@@ -136,11 +125,10 @@
                 <img :src="require('@/assets/images/tutorial-airgap/2.1-wallet-select.svg')">
               </figure>
               <section class="tutorial__info">
-                <h3 class="title title-category">Your Wallet</h3>
-                <h4 class="title title-subcategory">Add a new wallet: æternity</h4>
+                <h3 class="title title-category">Add æternity wallet</h3>
+                <h4 class="title title-subcategory">1/3</h4>
                 <p>
-                  For the purpose of migrating to the Mainnet, we will create an æternity account.
-                  Select ‘Add Wallet’ and choose <span class="app-highlight">æternity</span>
+                  Select <span class="app-highlight">æternity</span> in the ‘Add Wallet’ screen.
                 </p>
               </section>
             </div>
@@ -151,11 +139,10 @@
                 <img :src="require('@/assets/images/tutorial-airgap/2.2-wallet-select.svg')">
               </figure>
               <section class="tutorial__info">
-                <h3 class="title title-category">Your Wallet</h3>
-                <h4 class="title title-subcategory">Select the newly added æternity wallet</h4>
+                <h3 class="title title-category">Add æternity wallet</h3>
+                <h4 class="title title-subcategory">2/3</h4>
                 <p>
-                  In order to have a backup of your secret, you need
-                  to write the following words on a piece of paper. Remember the rules!
+                  Tap ‘æternity AE’ in the screen.
                 </p>
               </section>
             </div>
@@ -166,10 +153,10 @@
                 <img :src="require('@/assets/images/tutorial-airgap/2.3-wallet-qr.svg')">
               </figure>
               <section class="tutorial__info">
-                <h3 class="title title-category">Your Wallet</h3>
-                <h4 class="title title-subcategory">Select the æternity wallet</h4>
+                <h3 class="title title-category">Add æternity wallet</h3>
+                <h4 class="title title-subcategory">3/3</h4>
                 <p>
-                  In order to provide your new æternity address in the next step.
+                  Now continue and scan the QR code in the screen with your webcam. Or copy the address manually.
                 </p>
               </section>
             </div>
