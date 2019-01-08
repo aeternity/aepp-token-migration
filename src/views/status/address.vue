@@ -9,7 +9,7 @@
           Check your migrations!
         </template>
         <template slot="intro">
-          You have completed your part of migrating your AE tokens to the æternity Mainnet.
+          You have successfully migrated your AE tokens to Roma.
         </template>
         <div class="app-migration-result-print">
           <ae-button @click="print()" face="round" fill="primary" extend shadow>

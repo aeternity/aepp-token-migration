@@ -12,7 +12,7 @@
       </app-notice>
       <app-intro spacing>
         <template slot="title">
-          Check how many tokens you have migrated to the æternity Mainnet
+          Verify if, or how many tokens you have migrated to Roma.
         </template>
         <template slot="intro">
           Enter your æternity address and check the status of your migrations.
