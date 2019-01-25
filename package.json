@@ -11,7 +11,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@aeternity/aepp-components": "github:aeternity/aepp-components#enhance/ae-input-data-change",
+    "@aeternity/aepp-components": "git+ssh://git@github.com/aeternity/aepp-components.git#develop",
     "@aeternity/ledger-app-api": "0.0.4",
     "@ledgerhq/hw-transport-u2f": "^4.24.0",
     "@zxing/library": "^0.8.3",
