@@ -16,7 +16,7 @@
       <app-panel shadow>
         <app-panel primary padding>
           <template slot="header">
-            <img :src="require('../../../../assets/graphics/metamask-fox.svg')" alt="Metamask">
+            <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="Metamask">
             Migrating with MetaMask
           </template>
           <app-intro>
@@ -115,7 +115,7 @@
     <app-modal v-if="modal && name === 'not-enough-eth'" @click="closeModal">
       <app-panel primary padding shadow>
         <template slot="header">
-          <img :src="require('../../../../assets/graphics/metamask-fox.svg')" alt="Metamask">
+          <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="Metamask">
           Migrating with MetaMask
         </template>
         <app-intro>
@@ -139,7 +139,7 @@
     <app-modal v-if="modal && name === 'processing'">
       <app-panel primary padding shadow>
         <template slot="header">
-          <img :src="require('../../../../assets/graphics/metamask-fox.svg')" alt="Metamask">
+          <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="Metamask">
           Migrating with MetaMask
         </template>
         <app-intro>
@@ -160,7 +160,7 @@
     <app-modal v-if="modal && name === 'try-again'" @click="closeModal">
       <app-panel primary padding shadow>
         <template slot="header">
-          <img :src="require('../../../../assets/graphics/metamask-fox.svg')" alt="Metamask">
+          <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="Metamask">
           Migrating with MetaMask
         </template>
         <app-intro>
@@ -194,12 +194,12 @@ import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
-import AppModal from '../../../../sections/app-modal/index.vue'
-import AppIntro from '../../../../components/app-intro.vue'
-import AppJazzicon from '../../../../components/app-jazzicon.vue'
-import AppProcess from '../../../../components/app-process.vue'
+import AppModal from '../../../sections/app-modal/index.vue'
+import AppIntro from '../../../components/app-intro.vue'
+import AppJazzicon from '../../../components/app-jazzicon.vue'
+import AppProcess from '../../../components/app-process.vue'
 
-import mixinsModal from '../../../../mixins/modal'
+import mixinsModal from '../../../mixins/modal'
 
 export default {
   name: 'migration-wallets-metamask',
