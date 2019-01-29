@@ -40,10 +40,8 @@
               This creates an æternity account with the Ledger Nano S. A secure way to store your key pair
               on a hardware ledger.
             </template>
-            <router-link :to="{ name: 'ledger' }" slot="button" disabled>
-              <ae-button class="ae-button-ledger" face="round" extend disabled>
-                Coming soon
-              </ae-button>
+            <router-link :to="{ name: 'ledger' }" slot="button">
+              <ae-button class="ae-button-ledger" face="round" extend>Get Started</ae-button>
             </router-link>
           </app-column>
         </app-row>
