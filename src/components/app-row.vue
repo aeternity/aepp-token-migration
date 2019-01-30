@@ -1,6 +1,6 @@
 <template>
   <div class="app-row">
-    <slot/>
+    <slot />
   </div>
 </template>
 <script>
