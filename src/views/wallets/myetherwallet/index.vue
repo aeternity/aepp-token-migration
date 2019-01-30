@@ -110,7 +110,7 @@
         <app-panel primary padding centered>
           <app-url class="hide-mobile" :value="migrate" disabled>
             <ae-toolbar align="justify" fill="neutral">
-              <span>Your Migration payload is saved in this link</span>
+              <span>Your Migration dataload is saved in this link</span>
               <ae-button face="toolbar" v-copy-to-clipboard="migrate">
                 <ae-icon name="copy" />
                 COPY LINK
@@ -122,7 +122,7 @@
           <ae-icon name="info" size="2rem" class="app-highlight"/>
           <ae-text face="sans-s" :weight="700">
             The transaction you’re about to make will not send any ETH, it will only use ETH for gas. The amount of
-            tokens that you send will be stored in the payload, which can be found in
+            tokens that you send will be stored in the dataload, which can be found in
             <span class="app-highlight">
               Generated Data in MyEtherWallet.
             </span>
