@@ -72,27 +72,41 @@ export default {
   width: 50%;
 
   > ol {
+    counter-reset: li;
+  }
+
+  > ol, ul {
     margin: 0 0 1rem;
     padding-left: 1rem;
     list-style: none;
-    counter-reset: li;
+  }
 
-    > li {
-      @extend %face-sans-s;
+  > ol > li,
+  > ul > li {
+    @extend %face-sans-s;
 
-      font-weight: 500;
-      color: $color-black;
-      margin-bottom: 0.5rem;
-      counter-increment: li;
+    font-weight: 500;
+    color: $color-black;
+    margin-bottom: 0.5rem;
 
-      &:before {
-        content: counter(li);
-        color: $color-alternative;
-        display: inline-block;
-        width: 1rem;
-        margin-left: -1rem
-      }
+    &:before {
+      color: $color-alternative;
+      display: inline-block;
+      width: 1rem;
+      margin-left: -1rem
     }
+  }
+
+  > ol > li {
+    counter-increment: li;
+
+    &:before {
+      content: counter(li);
+    }
+  }
+
+  > ul > li:before {
+    content: '\2713';
   }
 }
 </style>

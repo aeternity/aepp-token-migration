@@ -64,10 +64,10 @@
               Desktop. Note: this step is not needed for migrating.
             </p>
             <p>With the Base æpp you can</p>
-            <ol>
+            <ul>
               <li>View your address</li>
               <li>Send and receive AE</li>
-            </ol>
+            </ul>
           </template>
         </app-tutorial>
       </app-panel>
