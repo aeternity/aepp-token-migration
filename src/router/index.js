@@ -35,16 +35,16 @@ export default new Router({
     component: require('../views/migration/read/index.vue').default
   }, {
     name: 'wallets',
-    path: '/migration/wallets',
-    component: require('../views/migration/wallets/index.vue').default
+    path: '/wallets',
+    component: require('../views/wallets/index.vue').default
   }, {
     name: 'metamask',
-    path: '/migration/metamask',
-    component: require('../views/migration/wallets/metamask/index.vue').default
+    path: '/wallets/metamask',
+    component: require('../views/wallets/metamask/index.vue').default
   }, {
     name: 'myetherwallet',
-    path: '/migration/myetherwallet',
-    component: require('../views/migration/wallets/myetherwallet/index.vue').default
+    path: '/wallets/myetherwallet',
+    component: require('../views/wallets/myetherwallet/index.vue').default
   }, {
     name: 'check',
     path: '/status/result',

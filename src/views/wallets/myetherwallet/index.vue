@@ -17,7 +17,7 @@
       <app-panel shadow>
         <app-panel primary padding>
           <template slot="header">
-            <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
+            <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
             Migrating with MyEtherWallet
           </template>
           <app-panel centered>
@@ -85,7 +85,7 @@
             </li>
             <li>
               <span>
-                <img :src="require('../../../../assets/graphics/aeternity-contract.png')" alt="æternity contract">
+                <img :src="require('../../../assets/graphics/aeternity-contract.png')" alt="æternity contract">
               </span>
               <h4>AE Token Contract</h4>
               <p v-html="$options.filters.chunk($tokenContract)"></p>
@@ -139,12 +139,12 @@
     <app-modal v-if="modal && name === 'step'" @click="closeModal">
       <app-panel tertiary padding shadow overflow v-if="step === 1" :close="closeModal">
         <template slot="header">
-          <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
+          <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
           Migrating with MyEtherWallet
         </template>
         <app-row>
           <div class="app-myetherwallet-screenshot">
-            <img :src="require('../../../../assets/graphics/screenshot.png')" alt="MyEtherWallet">
+            <img :src="require('../../../assets/graphics/screenshot.png')" alt="MyEtherWallet">
           </div>
           <app-separator class="hide-mobile" />
           <app-column size="small">
@@ -168,12 +168,12 @@
       </app-panel>
       <app-panel tertiary padding shadow overflow v-if="step === 2 || step === 3" :close="closeModal">
         <template slot="header">
-          <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
+          <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
           Migrating with MyEtherWallet
         </template>
         <app-row>
           <div class="app-myetherwallet-screenshot">
-            <img :src="require('../../../../assets/graphics/screenshot-2.png')" alt="MyEtherWallet">
+            <img :src="require('../../../assets/graphics/screenshot-2.png')" alt="MyEtherWallet">
           </div>
           <app-separator class="hide-mobile" />
           <app-column size="small">
@@ -239,16 +239,16 @@ import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
-import AppModal from '../../../../sections/app-modal/index.vue'
-import AppIntro from '../../../../components/app-intro.vue'
-import AppJazzicon from '../../../../components/app-jazzicon.vue'
-import AppProcess from '../../../../components/app-process.vue'
-import AppUrl from '../../../../components/app-url.vue'
-import AppRow from '../../../../components/app-row.vue'
-import AppSeparator from '../../../../components/app-separator.vue'
-import AppColumn from '../../../../components/app-column.vue'
+import AppModal from '../../../sections/app-modal/index.vue'
+import AppIntro from '../../../components/app-intro.vue'
+import AppJazzicon from '../../../components/app-jazzicon.vue'
+import AppProcess from '../../../components/app-process.vue'
+import AppUrl from '../../../components/app-url.vue'
+import AppRow from '../../../components/app-row.vue'
+import AppSeparator from '../../../components/app-separator.vue'
+import AppColumn from '../../../components/app-column.vue'
 
-import mixinsModal from '../../../../mixins/modal'
+import mixinsModal from '../../../mixins/modal'
 
 export default {
   name: 'migration-wallets-myetherwallet',

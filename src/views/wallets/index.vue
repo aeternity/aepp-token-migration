@@ -21,7 +21,7 @@
       <app-panel primary padding shadow>
         <app-row>
           <app-column>
-            <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="Meta Mask" slot="image">
+            <img :src="require('../../assets/graphics/metamask-fox.svg')" alt="Meta Mask" slot="image">
             <template slot="title">
               MetaMask
             </template>
@@ -34,7 +34,7 @@
           </app-column>
           <app-separator>or</app-separator>
           <app-column>
-            <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="My EEther Wallet" slot="image">
+            <img :src="require('../../assets/graphics/myetherwallet.svg')" alt="My EEther Wallet" slot="image">
             <template slot="title">
               MyEtherWallet
             </template>
@@ -54,7 +54,7 @@
     <app-modal v-if="modal && name === 'wallet-not-found'" @click="closeModal">
       <app-panel primary padding shadow>
         <template slot="header">
-          <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="MetaMask">
+          <img :src="require('../../assets/graphics/metamask-fox.svg')" alt="MetaMask">
           Migrating with MetaMask
         </template>
         <app-intro>
@@ -80,12 +80,12 @@
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 
-import AppIntro from '../../../components/app-intro.vue'
-import AppRow from '../../../components/app-row.vue'
-import AppSeparator from '../../../components/app-separator.vue'
-import AppColumn from '../../../components/app-column.vue'
+import AppIntro from '../../components/app-intro.vue'
+import AppRow from '../../components/app-row.vue'
+import AppSeparator from '../../components/app-separator.vue'
+import AppColumn from '../../components/app-column.vue'
 
-import mixinsModal from '../../../mixins/modal'
+import mixinsModal from '../../mixins/modal'
 
 export default {
   name: 'migration-wallets',
