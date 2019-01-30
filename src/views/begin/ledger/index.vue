@@ -23,8 +23,8 @@
             :src="require('../../../assets/images/tutorial-ledger/1.0-install-ledger-live-app.svg')"
           />
           <template slot="info">
-            <h1>Download & Install the Ledger Live desktop app</h1>
-            <p>The Ledger Live app is available on the official Ledger website.</p>
+            <h1>Install Ledger Live</h1>
+            <p>Download Ledger Live for desktop from their official website.</p>
             <a href="//www.ledger.com/pages/ledger-live" target="_blank">
               <ae-button class="ae-button-ledger" face="round" extend>Download Ledger Live</ae-button>
             </a>
@@ -40,11 +40,11 @@
             :src="require('../../../assets/images/tutorial-ledger/2.0-install-aeternity-ledger-app.svg')"
           />
           <template slot="info">
-            <h1>Install the æternity app from Ledger Live</h1>
+            <h1>Install æternity in Ledger Live</h1>
             <ol>
-              <li>Connect Ledger with USB and unlock it</li>
-              <li>Navigate to ‘Manager’ in the sidebar</li>
-              <li>Install the official ‘Aeternity’ Ledger app on the device</li>
+              <li>Connect Ledger via USB and unlock it</li>
+              <li>Click 'Manager' in the menu</li>
+              <li>Search for 'æternity' and install</li>
             </ol>
           </template>
         </app-tutorial>
@@ -58,16 +58,10 @@
             :src="require('../../../assets/images/tutorial-ledger/3.0-aeternity-account-created.svg')"
           />
           <template slot="info">
-            <h1>You have safely created an æternity account</h1>
-            <p>
-              Currently, the Ledger Live app cannot display your æternity account. To view it, visit the Base æpp on
-              Desktop. Note: this step is not needed for migrating.
-            </p>
-            <p>With the Base æpp you can</p>
-            <ul>
-              <li>View your address</li>
-              <li>Send and receive AE</li>
-            </ul>
+            <h1>You now have an æternity account on your Ledger</h1>
+            <p>Ledger Live is still working on displaying æternity accounts in their app. But it's there.</p>
+            <p>To see your account details and transfer, go to Base æpp for Desktop.</p>
+            <p>You can now start the Token Migration.</p>
           </template>
         </app-tutorial>
       </app-panel>
