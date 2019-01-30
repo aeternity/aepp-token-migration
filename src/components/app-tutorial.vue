@@ -1,22 +1,42 @@
 <template>
   <article class="app-tutorial">
-    <figure class="app-tutorial__img">
-      <slot name="image"/>
+    <figure class="app-tutorial-img">
+      <slot name="image" />
     </figure>
-    <section class="app-tutorial__info">
-      <slot name="info"/>
+    <app-separator />
+    <section class="app-tutorial-info">
+      <slot name="info" />
     </section>
   </article>
 </template>
 <script>
+import AppSeparator from './app-separator.vue'
+
 export default {
-  name: 'app-tutorial'
+  name: 'app-tutorial',
+  components: {
+    AppSeparator
+  }
 }
 </script>
 <style lang="scss" scoped>
+@import "~@aeternity/aepp-components/src/styles/variables/colors";
+@import "~@aeternity/aepp-components/src/styles/placeholders/typography";
+
 .app-tutorial {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+
+  @include only-phone {
+    flex-direction: column;
+    align-items: center;
+
+    /deep/ .app-separator {
+      display: none;
+      visibility: hidden;
+    }
+  }
 
   /deep/ h1,
   /deep/ h2,
@@ -24,39 +44,54 @@ export default {
   /deep/ h4,
   /deep/ h5,
   /deep/ h6 {
+    margin-top: 0;
     line-height: 1.2;
   }
 
-  &__img {
-    width: 50%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin: 0;
+  /deep/ p {
+    margin-bottom: 1rem;
+    margin-top: 0;
   }
+}
 
-  &__img > img {
-    margin: 0 auto;
-    position: absolute;
-    bottom: 1rem;
-    left: 0;
-    right: 0;
-    object-fit: contain;
-    object-position: 100% 100%;
-    max-height: 470px;
+.app-tutorial-img {
+  margin: 0;
+  padding-right: 2rem;
+  width: 50%;
+
+  > img {
+    width: 100%;
   }
+}
 
-  &__info {
-    width: 50%;
-    padding: 4rem 2rem;
-  }
+.app-tutorial-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2rem;
+  width: 50%;
 
-  &__info > footer {
-    display: flex;
-    margin-top: $spacer-l;
+  > ol {
+    margin: 0 0 1rem;
+    padding-left: 1rem;
+    list-style: none;
+    counter-reset: li;
 
-    & a {
-      margin-right: $spacer-l;
+    > li {
+      @extend %face-sans-s;
+
+      font-weight: 500;
+      color: $color-black;
+      margin-bottom: 0.5rem;
+      counter-increment: li;
+
+      &:before {
+        content: counter(li);
+        color: $color-alternative;
+        display: inline-block;
+        width: 1rem;
+        margin-left: -1rem
+      }
     }
   }
 }
