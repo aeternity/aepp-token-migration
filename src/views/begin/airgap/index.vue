@@ -14,168 +14,194 @@
           </ae-button>
         </router-link>
       </app-intro>
-      <div class="tutorial-wrapper">
-        <div class="tutorial">
-          <figure class="tutorial__img" v-if="!isMobile">
-            <img :src="require('@/assets/images/tutorial-airgap/0-download-install.svg')" alt="Download & Install">
-          </figure>
-          <section class="tutorial__info">
-            <h3 class="title title-category">Download & Install AirGap Vault app</h3>
+
+      <app-panel padding margin shadow header-align="left">
+        <template slot="header">
+          <img :src="require('../../../assets/graphics/airgap-logo.svg')" alt="AirGap">
+          Download & Install AirGap Vault App
+        </template>
+        <app-tutorial>
+          <img
+            slot="image"
+            alt="Install"
+            :src="require('../../../assets/images/tutorial-airgap/0.0-download-install.svg')"
+          />
+          <template slot="info">
+            <h1>Download the AirGap Vault</h1>
             <p>
-              Go to the App Store or the Play Store and download the <b>AirGap Vault App</b>.
-              For maximum security we recommend using a dedicated smartphone to
-              store your AE tokens. <a href="https://medium.com/airgap-it/what-is-airgap-74456b4844fb" target="_blank">Learn More »</a>
+              Go to the App Store or Google Play Store and download the Airgap Vault App.
+              For maximum security we recommend using a dedicated smart phone to store your AE tokens.
             </p>
             <footer>
-              <a href="https://itunes.apple.com/us/app/airgap-vault-secure-secrets/id1417126841" target="_blank">
+              <a href="//itunes.apple.com/us/app/airgap-vault-secure-secrets/id1417126841" target="_blank">
                 <img
-                  :src="require('@/assets/graphics/apple-store.svg')"
-                  alt="Apple Store"
                   title="Go to Apple Store"
+                  alt="Apple Store"
+                  :src="require('@/assets/graphics/apple-store.svg')"
                 />
               </a>
-              <a href="https://play.google.com/store/apps/details?id=it.airgap.vault" target="_blank">
+              <a href="//play.google.com/store/apps/details?id=it.airgap.vault" target="_blank">
                 <img
-                  :src="require('@/assets/graphics/google-play.svg')"
-                  alt="Google Play"
                   title="Go to Google Play"
+                  alt="Google Play"
+                  :src="require('@/assets/graphics/google-play.svg')"
                 />
               </a>
             </footer>
-          </section>
-        </div>
-      </div>
-      <div class="tutorial-wrapper">
+          </template>
+        </app-tutorial>
+      </app-panel>
+      <app-panel padding margin shadow header-align="left">
+        <template slot="header">
+          <img :src="require('../../../assets/graphics/airgap-logo.svg')" alt="AirGap">
+          Creating a secret with AirGap
+        </template>
         <app-slider>
           <app-slide-container>
-            <div class="tutorial">
-              <figure class="tutorial__img" v-if="!isMobile">
-                <img :src="require('@/assets/images/tutorial-airgap/1.0-secret-generate.svg')">
-              </figure>
-              <section class="tutorial__info">
-                <h3 class="title title-category">Your secret</h3>
-                <h4 class="title title-subcategory">Select ‘Generate’</h4>
+            <app-tutorial>
+              <img
+                slot="image"
+                alt="Install"
+                :src="require('../../../assets/images/tutorial-airgap/1.0-secret-generate.svg')"
+              />
+              <template slot="info">
+                <h1>Select ‘Generate’</h1>
                 <p>
-                  “Generate” a new secret, you can also import an existing mnemonic phrase.
-                  We recommend that you generate a new secret on the air gapped device and not
-                  import one that was previously used in a device with network connectivity.
+                  Generate a new secret. You can also import an existing mnemonic phrase / seed.
                 </p>
-              </section>
-            </div>
+                <p>
+                  We strongly recommend that you generate a new secret phrase on an off-line device and not import
+                  one that has been used on a device that has been connected to the internet.
+                </p>
+              </template>
+            </app-tutorial>
           </app-slide-container>
           <app-slide-container>
-            <div class="tutorial">
-              <figure class="tutorial__img" v-if="!isMobile">
-                <img :src="require('@/assets/images/tutorial-airgap/1.1-secret-generate.svg')">
-              </figure>
-              <section class="tutorial__info">
-                <h3 class="title title-category">Your secret</h3>
-                <h4 class="title title-subcategory">Generate</h4>
+            <app-tutorial>
+              <img
+                slot="image"
+                alt="Install"
+                :src="require('../../../assets/images/tutorial-airgap/1.1-secret-generate.svg')"
+              />
+              <template slot="info">
+                <h1>Generate with entropy</h1>
                 <p>
-                  The enhanced entropy concept adds video, audio, accelerator and touch data
-                  to the entropy seed alongside the device’s pre-shipped secure random
-                  generator in order to generate a cryptographically secure seed used
-                  for the secret generation.
+                  The enhanced entropy concept adds video, audio, accelerator and touch data to the entropy seed
+                  alongside the device’s pre-shipped secure random generator in order to generate a cryptographically
+                  secure seed used for the secret generation.
                 </p>
-              </section>
-            </div>
+              </template>
+            </app-tutorial>
           </app-slide-container>
           <app-slide-container>
-            <div class="tutorial">
-              <figure class="tutorial__img" v-if="!isMobile">
-                <img :src="require('@/assets/images/tutorial-airgap/1.2-secret-write.svg')">
-              </figure>
-              <section class="tutorial__info">
-                <h3 class="title title-category">Your secret</h3>
-                <h4 class="title title-subcategory">Write your secret on a piece of paper</h4>
+            <app-tutorial>
+              <img
+                slot="image"
+                alt="Install"
+                :src="require('../../../assets/images/tutorial-airgap/1.2-secret-write.svg')"
+              />
+              <template slot="info">
+                <h1>Write your secret on a piece of paper</h1>
                 <p>
-                  In order to have a backup of your secret, you need to
-                  write the following words on a piece of paper. Remember the rules!
+                  In order to have a backup of your secret, you need to write the following words on a piece of paper.
+                  Remember the rules!
                 </p>
-              </section>
-            </div>
+              </template>
+            </app-tutorial>
           </app-slide-container>
           <app-slide-container>
-            <div class="tutorial">
-              <figure class="tutorial__img" v-if="!isMobile">
-                <img :src="require('@/assets/images/tutorial-airgap/1.3-secret-verify.svg')">
-              </figure>
-              <section class="tutorial__info">
-                <h3 class="title title-category">Your secret</h3>
-                <h4 class="title title-subcategory">Verify your secret</h4>
+            <app-tutorial>
+              <img
+                slot="image"
+                alt="Install"
+                :src="require('../../../assets/images/tutorial-airgap/1.3-secret-verify.svg')"
+              />
+              <template slot="info">
+                <h1>Verify your secret</h1>
                 <p>
-                  Verify the secret you wrote down on a piece of paper,
-                  by ordering the mnemonic words in the right order.
+                  Verify the secret you wrote down on a piece of paper, by ordering the mnemonic words in the right order.
                 </p>
-              </section>
-            </div>
+              </template>
+            </app-tutorial>
           </app-slide-container>
           <app-slide-container>
-            <div class="tutorial">
-              <figure class="tutorial__img" v-if="!isMobile">
-                <img :src="require('@/assets/images/tutorial-airgap/1.4-secret-name.svg')">
-              </figure>
-              <section class="tutorial__info">
-                <h3 class="title title-category">Your secret</h3>
-                <h4 class="title title-subcategory">Security level & secret name</h4>
+            <app-tutorial>
+              <img
+                slot="image"
+                alt="Install"
+                :src="require('../../../assets/images/tutorial-airgap/1.4-secret-name.svg')"
+              />
+              <template slot="info">
+                <h1>Security level & secret name</h1>
                 <p>
-                  Use your fingerprint to store the secret in the secure
-                  enclave of the mobile device, set a password and
-                  confirm it for additional security.
+                  Use your fingerprint to store the secret in the secure enclave of the mobile device, set a
+                  password and confirm it for additional security.
                 </p>
-              </section>
-            </div>
+              </template>
+            </app-tutorial>
           </app-slide-container>
         </app-slider>
-      </div>
-      <div class="tutorial-wrapper">
+      </app-panel>
+      <app-panel padding margin shadow header-align="left">
+        <template slot="header">
+          <img :src="require('../../../assets/graphics/airgap-logo.svg')" alt="AirGap">
+          Creating a secret with AirGap
+        </template>
         <app-slider>
           <app-slide-container>
-            <div class="tutorial">
-              <figure class="tutorial__img" v-if="!isMobile">
-                <img :src="require('@/assets/images/tutorial-airgap/2.1-wallet-select.svg')">
-              </figure>
-              <section class="tutorial__info">
-                <h3 class="title title-category">Your Wallet</h3>
-                <h4 class="title title-subcategory">Add a new wallet: æternity</h4>
+            <app-tutorial>
+              <img
+                slot="image"
+                alt="Install"
+                :src="require('../../../assets/images/tutorial-airgap/2.1-wallet-select.svg')"
+              />
+              <template slot="info">
+                <h1>Add a new æternity wallet</h1>
                 <p>
                   For the purpose of migrating to the Mainnet, we will create an æternity account.
-                  Select ‘Add Wallet’ and choose <span class="app-highlight">æternity</span>
+                  Select ‘Add Wallet’ and choose <span class="app-highlight">æternity</span> from the list.
                 </p>
-              </section>
-            </div>
+                <ul>
+                  <li class="success">æternity</li>
+                  <li class="error">æternity Ethereum Token.</li>
+                </ul>
+              </template>
+            </app-tutorial>
           </app-slide-container>
           <app-slide-container>
-            <div class="tutorial">
-              <figure class="tutorial__img" v-if="!isMobile">
-                <img :src="require('@/assets/images/tutorial-airgap/2.2-wallet-select.svg')">
-              </figure>
-              <section class="tutorial__info">
-                <h3 class="title title-category">Your Wallet</h3>
-                <h4 class="title title-subcategory">Select the newly added æternity wallet</h4>
+            <app-tutorial>
+              <img
+                slot="image"
+                alt="Install"
+                :src="require('../../../assets/images/tutorial-airgap/2.2-wallet-select.svg')"
+              />
+              <template slot="info">
+                <h1>Select the newly added æternity wallet</h1>
                 <p>
-                  In order to have a backup of your secret, you need
-                  to write the following words on a piece of paper. Remember the rules!
+                  In order to have a backup of your secret, you need to write the following words on a piece of paper.
+                  Remember the rules!
                 </p>
-              </section>
-            </div>
+              </template>
+            </app-tutorial>
           </app-slide-container>
           <app-slide-container>
-            <div class="tutorial">
-              <figure class="tutorial__img" v-if="!isMobile">
-                <img :src="require('@/assets/images/tutorial-airgap/2.3-wallet-qr.svg')">
-              </figure>
-              <section class="tutorial__info">
-                <h3 class="title title-category">Your Wallet</h3>
-                <h4 class="title title-subcategory">Select the æternity wallet</h4>
+            <app-tutorial>
+              <img
+                slot="image"
+                alt="Install"
+                :src="require('../../../assets/images/tutorial-airgap/2.3-wallet-qr.svg')"
+              />
+              <template slot="info">
+                <h1>Select your æternity wallet</h1>
                 <p>
-                  In order to provide your new æternity address in the next step.
+                  You will see your account address as well as a scannable QR code.
+                  You will need that in the next steps of the token migration.
                 </p>
-              </section>
-            </div>
+              </template>
+            </app-tutorial>
           </app-slide-container>
         </app-slider>
-      </div>
+      </app-panel>
     </app-view>
     <app-footer>
       <router-link to="/migration">
@@ -192,6 +218,7 @@ import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AppIntro from '../../../components/app-intro.vue'
 import AppSlider from '../../../components/app-slider.vue'
 import AppSlideContainer from '../../../components/app-slide-container.vue'
+import AppTutorial from '../../../components/app-tutorial.vue'
 
 export default {
   name: 'begin-airgap',
@@ -199,7 +226,8 @@ export default {
     AeButton,
     AppSlider,
     AppSlideContainer,
-    AppIntro
+    AppIntro,
+    AppTutorial
   },
   data () {
     return {

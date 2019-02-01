@@ -20,6 +20,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "~@aeternity/aepp-components/src/styles/globals/functions";
 @import "~@aeternity/aepp-components/src/styles/variables/colors";
 @import "~@aeternity/aepp-components/src/styles/placeholders/typography";
 
@@ -28,14 +29,17 @@ export default {
   justify-content: space-between;
   align-items: center;
 
-  @include only-phone {
-    flex-direction: column;
-    align-items: center;
-
+  @include phone-and-tablet {
     /deep/ .app-separator {
       display: none;
       visibility: hidden;
     }
+  }
+
+  @include only-phone {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
   }
 
   /deep/ h1,
@@ -45,12 +49,25 @@ export default {
   /deep/ h5,
   /deep/ h6 {
     margin-top: 0;
-    line-height: 1.2;
+    line-height: 1.5;
+  }
+
+  /deep/ h1 {
+    font-size: rem(28px);
+
+    @include only-phone {
+      font-size: rem(20px);
+    }
   }
 
   /deep/ p {
     margin-bottom: 1rem;
     margin-top: 0;
+    font-size: rem(16px);
+
+    @include only-phone {
+      font-size: rem(14px);
+    }
   }
 }
 
@@ -62,6 +79,11 @@ export default {
   > img {
     width: 100%;
   }
+
+  @include phone-and-tablet {
+    display: none;
+    visibility: hidden;
+  }
 }
 
 .app-tutorial-info {
@@ -70,6 +92,11 @@ export default {
   justify-content: center;
   padding-left: 2rem;
   width: 50%;
+
+  @include phone-and-tablet {
+    justify-content: flex-start;
+    width: 100%;
+  }
 
   > ol {
     counter-reset: li;
@@ -107,6 +134,32 @@ export default {
 
   > ul > li:before {
     content: '\2713';
+  }
+
+  > ul > li.success {
+    color: $color-alternative;
+  }
+
+  > ul > li.error {
+    color: $color-primary;
+
+    &:before {
+      color: $color-primary;
+      content: '\2717';
+    }
+  }
+
+  > footer {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  > footer > a {
+    margin-left: 0.5rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 }
 </style>
