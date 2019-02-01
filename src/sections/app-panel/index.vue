@@ -1,6 +1,6 @@
 <template>
   <div class="app-panel" :class="{ primary, secondary, tertiary, padding, margin, shadow, middle, centered, overflow }">
-    <div class="app-panel-header" v-if="$slots.header">
+    <div class="app-panel-header" :class="[headerAlign]" v-if="$slots.header">
       <slot name="header"/>
       <ae-button class="app-panel-close hide-desktop" v-if="close" @click="close">
         <ae-icon name="close"/>
@@ -29,7 +29,8 @@ export default {
     centered: [Boolean, String],
     middle: Boolean,
     overflow: Boolean,
-    close: [Boolean, Function]
+    close: [Boolean, Function],
+    headerAlign: String
   }
 }
 </script>
@@ -130,12 +131,28 @@ export default {
   > img {
     margin-right: 1rem;
     width: 28px;
-    height: 26px;
+  }
+
+  &.left,
+  &.right {
+    padding: 0 2rem;
+  }
+
+  &.left {
+    justify-content: flex-start;
+  }
+  &.right {
+    justify-content: flex-end;
   }
 
   @include only-phone {
     justify-content: flex-start;
     padding-left: 2rem;
+    font-size: rem(14px);
+
+    > img {
+      width: 22px;
+    }
   }
 }
 

@@ -18,7 +18,6 @@
         <app-tutorial>
           <img
             slot="image"
-            class="app-begin-ledger-image"
             alt="Install"
             :src="require('../../../assets/images/tutorial-ledger/1.0-install-ledger-live-app.svg')"
           />
@@ -35,7 +34,6 @@
         <app-tutorial>
           <img
             slot="image"
-            class="app-begin-ledger-image"
             alt="Account"
             :src="require('../../../assets/images/tutorial-ledger/2.0-install-aeternity-ledger-app.svg')"
           />
@@ -53,7 +51,6 @@
         <app-tutorial>
           <img
             slot="image"
-            class="app-begin-ledger-image"
             alt="Account Created"
             :src="require('../../../assets/images/tutorial-ledger/3.0-aeternity-account-created.svg')"
           />
