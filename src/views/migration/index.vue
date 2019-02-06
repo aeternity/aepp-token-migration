@@ -9,7 +9,7 @@
           Provide your æternity account
         </template>
         <template slot="intro">
-          This is the address which will hold your AE, after this migration and the next scheduled hardfork.
+          The amount of tokens you choose to migrate, will be available on this address in the next scheduled hardfork release.
         </template>
       </app-intro>
       <app-panel primary padding shadow>
@@ -37,10 +37,8 @@
             <template slot="text">
               Connect your Ledger Wallet over USB, select the æternity app.
             </template>
-            <router-link :to="{ name: 'read' }" slot="button" disabled>
-              <ae-button class="ae-button-ledger" face="round" extend disabled>
-                Coming soon
-              </ae-button>
+            <router-link :to="{ name: 'read' }" slot="button">
+              <ae-button class="ae-button-ledger" face="round" extend>Read from Ledger</ae-button>
             </router-link>
           </app-column>
         </app-row>

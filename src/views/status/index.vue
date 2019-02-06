@@ -12,10 +12,10 @@
       </app-notice>
       <app-intro spacing>
         <template slot="title">
-          Verify if, or how many tokens you have migrated to the æternity Mainnet.
+          Verify if, or how many tokens you have migrated to Mainnet.
         </template>
         <template slot="intro">
-          Paste your æternity address below.
+          Enter your æternity address and check the status of your migrations.
         </template>
       </app-intro>
       <div class="app-migration-check">
@@ -37,7 +37,7 @@
           :disabled="!walletAddress"
         >
           <ae-button face="round" fill="primary" :disabled="!walletAddress">
-            Verify Migration
+            Check Migrations
           </ae-button>
         </router-link>
       </div>

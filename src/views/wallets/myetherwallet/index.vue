@@ -10,14 +10,14 @@
           Prepare your transaction with MyEtherWallet
         </template>
         <template slot="intro">
-          You are about to transfer the Ethereum AE tokens to the AE Token Contract.
-          The rest is automated. Your AE will be available after the mainnet hardfork at the end of this phase.
+          You are about to transfer AE tokens to the AE Token Contract, which sends them to the AE Migration Contract.
+          The Migration Contract takes care of everything else for you.
         </template>
       </app-intro>
       <app-panel shadow>
         <app-panel primary padding>
           <template slot="header">
-            <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
+            <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
             Migrating with MyEtherWallet
           </template>
           <app-panel centered>
@@ -85,7 +85,7 @@
             </li>
             <li>
               <span>
-                <img :src="require('../../../../assets/graphics/aeternity-contract.png')" alt="æternity contract">
+                <img :src="require('../../../assets/graphics/aeternity-contract.png')" alt="æternity contract">
               </span>
               <h4>AE Token Contract</h4>
               <p v-html="$options.filters.chunk($tokenContract)"></p>
@@ -110,7 +110,7 @@
         <app-panel primary padding centered>
           <app-url class="hide-mobile" :value="migrate" disabled>
             <ae-toolbar align="justify" fill="neutral">
-              <span>Your Migration payload is saved in this link</span>
+              <span>Your Migration dataload is saved in this link</span>
               <ae-button face="toolbar" v-copy-to-clipboard="migrate">
                 <ae-icon name="copy" />
                 COPY LINK
@@ -122,7 +122,7 @@
           <ae-icon name="info" size="2rem" class="app-highlight"/>
           <ae-text face="sans-s" :weight="700">
             The transaction you’re about to make will not send any ETH, it will only use ETH for gas. The amount of
-            tokens that you send will be stored in the payload, which can be found in
+            tokens that you send will be stored in the dataload, which can be found in
             <span class="app-highlight">
               Generated Data in MyEtherWallet.
             </span>
@@ -139,12 +139,12 @@
     <app-modal v-if="modal && name === 'step'" @click="closeModal">
       <app-panel tertiary padding shadow overflow v-if="step === 1" :close="closeModal">
         <template slot="header">
-          <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
+          <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
           Migrating with MyEtherWallet
         </template>
         <app-row>
           <div class="app-myetherwallet-screenshot">
-            <img :src="require('../../../../assets/graphics/screenshot.png')" alt="MyEtherWallet">
+            <img :src="require('../../../assets/graphics/screenshot.png')" alt="MyEtherWallet">
           </div>
           <app-separator class="hide-mobile" />
           <app-column size="small">
@@ -168,12 +168,12 @@
       </app-panel>
       <app-panel tertiary padding shadow overflow v-if="step === 2 || step === 3" :close="closeModal">
         <template slot="header">
-          <img :src="require('../../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
+          <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
           Migrating with MyEtherWallet
         </template>
         <app-row>
           <div class="app-myetherwallet-screenshot">
-            <img :src="require('../../../../assets/graphics/screenshot-2.png')" alt="MyEtherWallet">
+            <img :src="require('../../../assets/graphics/screenshot-2.png')" alt="MyEtherWallet">
           </div>
           <app-separator class="hide-mobile" />
           <app-column size="small">
@@ -239,16 +239,16 @@ import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
-import AppModal from '../../../../sections/app-modal/index.vue'
-import AppIntro from '../../../../components/app-intro.vue'
-import AppJazzicon from '../../../../components/app-jazzicon.vue'
-import AppProcess from '../../../../components/app-process.vue'
-import AppUrl from '../../../../components/app-url.vue'
-import AppRow from '../../../../components/app-row.vue'
-import AppSeparator from '../../../../components/app-separator.vue'
-import AppColumn from '../../../../components/app-column.vue'
+import AppModal from '../../../sections/app-modal/index.vue'
+import AppIntro from '../../../components/app-intro.vue'
+import AppJazzicon from '../../../components/app-jazzicon.vue'
+import AppProcess from '../../../components/app-process.vue'
+import AppUrl from '../../../components/app-url.vue'
+import AppRow from '../../../components/app-row.vue'
+import AppSeparator from '../../../components/app-separator.vue'
+import AppColumn from '../../../components/app-column.vue'
 
-import mixinsModal from '../../../../mixins/modal'
+import mixinsModal from '../../../mixins/modal'
 
 export default {
   name: 'migration-wallets-myetherwallet',

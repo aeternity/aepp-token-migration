@@ -6,20 +6,22 @@
     <app-view container>
       <app-intro spacing>
         <template slot="title">
-          Select the wallet with your AE tokens
+          Select the wallet where you hold your AE tokens
         </template>
         <template slot="intro">
-          We currently support migration from MetaMask and MyEtherWallet (or any other web3 wallet).
-          Both options support Ledger and Trezor hardware wallets.
-          If you hold your tokens somewhere else, create an account and transfer them to one of these wallets first.
+          Currently, we only support migrating with MyEtherWallet and MetaMask (or any other web3 wallet).
+          Both ways support Ledger and Trezor hardware wallets.
+          If you hold your tokens somewhere else, move them to one of these wallets.
+          Create an account there if necessary.
           <br /><br />
-          <strong>IMPORTANT</strong>: You will need a tiny amount ETH in the same wallet to pay for the transaction fee.
+          <strong>IMPORTANT</strong>: You will need to have enough ETH on the same account to
+          pay for transaction fees.
         </template>
       </app-intro>
       <app-panel primary padding shadow>
         <app-row>
           <app-column>
-            <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="Meta Mask" slot="image">
+            <img :src="require('../../assets/graphics/metamask-fox.svg')" alt="Meta Mask" slot="image">
             <template slot="title">
               MetaMask
             </template>
@@ -32,7 +34,7 @@
           </app-column>
           <app-separator>or</app-separator>
           <app-column>
-            <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="My EEther Wallet" slot="image">
+            <img :src="require('../../assets/graphics/myetherwallet.svg')" alt="My EEther Wallet" slot="image">
             <template slot="title">
               MyEtherWallet
             </template>
@@ -52,7 +54,7 @@
     <app-modal v-if="modal && name === 'wallet-not-found'" @click="closeModal">
       <app-panel primary padding shadow>
         <template slot="header">
-          <img :src="require('../../../assets/graphics/metamask-fox.svg')" alt="MetaMask">
+          <img :src="require('../../assets/graphics/metamask-fox.svg')" alt="MetaMask">
           Migrating with MetaMask
         </template>
         <app-intro>
@@ -78,12 +80,12 @@
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 
-import AppIntro from '../../../components/app-intro.vue'
-import AppRow from '../../../components/app-row.vue'
-import AppSeparator from '../../../components/app-separator.vue'
-import AppColumn from '../../../components/app-column.vue'
+import AppIntro from '../../components/app-intro.vue'
+import AppRow from '../../components/app-row.vue'
+import AppSeparator from '../../components/app-separator.vue'
+import AppColumn from '../../components/app-column.vue'
 
-import mixinsModal from '../../../mixins/modal'
+import mixinsModal from '../../mixins/modal'
 
 export default {
   name: 'migration-wallets',

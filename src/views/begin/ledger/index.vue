@@ -8,7 +8,7 @@
         <template slot="title">
           Create an æternity account with Ledger Nano S
         </template>
-        <router-link to="/migration">
+        <router-link :to="{ name: 'migration' }">
           <ae-button face="round" fill="secondary" class="ae-button-ledger">
             I already have an account
           </ae-button>
@@ -17,31 +17,48 @@
       <app-panel padding margin shadow overflow>
         <app-tutorial>
           <img
-            class="app-begin-ledger-image"
             slot="image"
-            :src="require('../../../assets/images/tutorial-ledger/1.0-install-ledger-app.svg')"
             alt="Install"
+            :src="require('../../../assets/images/tutorial-ledger/1.0-install-ledger-live-app.svg')"
           />
           <template slot="info">
-            <h1>Download and install the Ledger app</h1>
-            <p>For now it can be downloaded from our Github page. Soon it will be available in Ledger Live.</p>
+            <h1>Install Ledger Live</h1>
+            <p>Download Ledger Live for desktop from their official website.</p>
+            <a href="//www.ledger.com/pages/ledger-live" target="_blank">
+              <ae-button class="ae-button-ledger" face="round" extend>Download Ledger Live</ae-button>
+            </a>
           </template>
         </app-tutorial>
       </app-panel>
       <app-panel padding margin shadow overflow>
         <app-tutorial>
           <img
-            class="app-begin-ledger-image"
             slot="image"
-            :src="require('../../../assets/images/tutorial-ledger/2.0-create-account-on-ledger.svg')"
             alt="Account"
+            :src="require('../../../assets/images/tutorial-ledger/2.0-install-aeternity-ledger-app.svg')"
           />
           <template slot="info">
-            <h1>Create æternity account on the Ledger</h1>
-            <p>
-              This will securely create an æternity account on the Ledger.
-              Please confirm on the Ledger when you’re asked to do so.
-            </p>
+            <h1>Install æternity in Ledger Live</h1>
+            <ol>
+              <li>Connect Ledger via USB and unlock it</li>
+              <li>Click 'Manager' in the menu</li>
+              <li>Search for 'æternity' and install</li>
+            </ol>
+          </template>
+        </app-tutorial>
+      </app-panel>
+      <app-panel padding margin shadow overflow>
+        <app-tutorial>
+          <img
+            slot="image"
+            alt="Account Created"
+            :src="require('../../../assets/images/tutorial-ledger/3.0-aeternity-account-created.svg')"
+          />
+          <template slot="info">
+            <h1>You now have an æternity account on your Ledger</h1>
+            <p>Ledger Live is still working on displaying æternity accounts in their app. But it's there.</p>
+            <p>To see your account details and transfer, go to Base æpp for Desktop.</p>
+            <p>You can now start the Token Migration.</p>
           </template>
         </app-tutorial>
       </app-panel>
@@ -77,12 +94,4 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.app-begin-ledger-image {
-  position: absolute;
-  bottom: -3rem !important;
-  right: 5rem !important;
-  left: auto !important;
-  height: 520px !important;
-}
-</style>
+<style lang="scss" scoped></style>

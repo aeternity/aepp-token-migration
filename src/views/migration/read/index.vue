@@ -55,28 +55,31 @@
         <div class="app-read-error" v-if="error">
           {{ error }}
         </div>
-        <br />
         <app-tutorial>
           <img
             slot="image"
-            :src="require('../../../assets/images/tutorial-ledger/1.0-install-ledger-app.svg')"
+            :src="require('../../../assets/images/tutorial-ledger/4.0-connect-to-ledger.svg')"
           />
           <template slot="info">
-            <h1>Connect the Ledger with your computer</h1>
-            <p>And open the æternity app on the Ledger</p>
+            <h1>Connect the Ledger with USB</h1>
+            <ol>
+              <li>Unlock the Ledger</li>
+              <li>Open the æternity app on the Ledger</li>
+              <li>Press continue below</li>
+            </ol>
             <ae-button
-              @click="fetchAddress"
+              class="ae-button-ledger"
               face="round"
               fill="secondary"
-              class="ae-button-ledger"
               :disabled="loading"
+              @click="fetchAddress"
             >
-              Continue
+              <span v-if="loading">
+                <ae-icon name="reload" class="app-rotate"/>
+                Searching for Ledger
+              </span>
+              <template v-else>Continue</template>
             </ae-button>
-            <h4 v-if="loading">
-              <ae-icon name="reload" class="app-rotate"/>
-              Searching for Ledger
-            </h4>
           </template>
         </app-tutorial>
       </app-panel>
