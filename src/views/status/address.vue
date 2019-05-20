@@ -42,6 +42,42 @@
           <app-panel primary padding>
             <div class="app-migration-result-phase">
               <h2 class="warning">
+                Tokens migrated in Phase 3
+                <span>
+                  Tokens will be available after the 3rd Hardfork.<br />
+                  All tokens migrated during Phase 3.
+                </span>
+              </h2>
+              <h1>
+                {{totalAmountMigrated(this.phase[3]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[3]) | fromWei | shorten }}</small>
+                <small>&nbsp;AE</small>
+              </h1>
+            </div>
+            <ul class="app-migration-result-table">
+              <li v-for="(e, index) in phase[3]" :key="index">
+                <h5>
+                  {{ new Date(e.created).toDateString() }}
+                  <span>PHASE {{ e.deliveryPeriod }}</span>
+                </h5>
+                <div class="app-migration-result-tx">
+                  <a :href="`https://${
+                 env === 'development' ? 'kovan.' : ''
+                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
+                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                  </a>
+                  <h1>
+                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
+                    <small>&nbsp;AE</small>
+                  </h1>
+                </div>
+              </li>
+            </ul>
+          </app-panel>
+        </div>
+        <div class="app-migration-panel-phase">
+          <app-panel primary padding>
+            <div class="app-migration-result-phase">
+              <h2 class="check">
                 Tokens migrated in Phase 2
                 <span>
                   Tokens will be available after the 2nd Hardfork.<br />
@@ -186,7 +222,8 @@ export default {
       phase: {
         0: [],
         1: [],
-        2: []
+        2: [],
+        3: []
       }
     }
   },
@@ -221,15 +258,17 @@ export default {
      * Get all burn events
      */
     async getBurnEvents () {
-      const [zero, one, two] = await Promise.all([
+      const [zero, one, two, three] = await Promise.all([
         this.phaseAPIResponse(0),
         this.phaseAPIResponse(1),
-        this.phaseAPIResponse(2)
+        this.phaseAPIResponse(2),
+        this.phaseAPIResponse(3)
       ])
       this.phase = {
         0: orderBy(zero, ['created'], ['desc']),
         1: orderBy(one, ['created'], ['desc']),
-        2: orderBy(two, ['created'], ['desc'])
+        2: orderBy(two, ['created'], ['desc']),
+        3: orderBy(three, ['created'], ['desc'])
       }
     },
 
@@ -254,7 +293,8 @@ export default {
         this.totalAmountMigrated(
           this.phase[0].concat(
             this.phase[1],
-            this.phase[2]
+            this.phase[2],
+            this.phase[3]
           )
         )
       )
