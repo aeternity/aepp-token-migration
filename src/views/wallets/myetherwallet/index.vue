@@ -83,7 +83,7 @@
               <h4>Your Ethereum Account</h4>
               <p>0x• ••• ••• ••• ••• ••• ••• ••• ••• ••• ••• ••• •••</p>
             </li>
-            <li>
+            <!--<li>
               <span>
                 <img :src="require('../../../assets/graphics/aeternity-contract.png')" alt="æternity contract">
               </span>
@@ -96,7 +96,7 @@
               </span>
               <h4>AE Migration Contract</h4>
               <p v-html="$options.filters.chunk($tokenBurner)"></p>
-            </li>
+            </li> -->
             <li>
               <span>
                 <ae-identicon :address="walletAddress" v-if="walletAddress"/>
@@ -282,13 +282,15 @@ export default {
     },
     migrate () {
       if (!this.walletAddress) return
-      return this.$generateMEWURI(
-        this.$tokenContract,
-        this.$generatePayload(
-          this.amount ? this.amount : '0',
-          this.$encodeExtraData(this.walletAddress)
-        )
-      )
+      // THIS IS TO BE IMPLEMENTED AT LATER STAGE
+
+      // return this.$generateMEWURI(
+      //   this.$tokenContract,
+      //   this.$generatePayload(
+      //     this.amount ? this.amount : '0',
+      //     this.$encodeExtraData(this.walletAddress)
+      //   )
+      // )
     },
     ...mapState([
       'walletAddress'

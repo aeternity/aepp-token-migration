@@ -39,20 +39,20 @@
               <h4>Your Ethereum Account</h4>
               <p v-html="$options.filters.chunk(coinbase)"></p>
             </li>
-            <li>
-              <span>
-                <app-jazzicon :address="$tokenContract" v-if="$tokenContract"/>
-              </span>
-              <h4>AE Token Contract</h4>
-              <p v-html="$options.filters.chunk($tokenContract)"></p>
-            </li>
-            <li>
+            <!-- <li>
+            //   <span>
+            //     <app-jazzicon :address="$tokenContract" v-if="$tokenContract"/>
+            //   </span>
+            //   <h4>AE Token Contract</h4>
+            //   <p v-html="$options.filters.chunk($tokenContract)"></p>
+            // </li> -->
+            <!--<li>
               <span>
                 <app-jazzicon :address="$tokenBurner" v-if="$tokenBurner"/>
               </span>
               <h4>AE Migration Contract</h4>
               <p v-html="$options.filters.chunk($tokenBurner)"></p>
-            </li>
+            </li> -->
             <li>
               <span>
                 <ae-identicon :address="walletAddress" v-if="walletAddress"/>
@@ -62,24 +62,23 @@
             </li>
           </app-process>
         </app-panel>
-        <app-panel primary padding centered>
+        <app-panel primary >
           <app-intro>
             <template slot="subtitle">
               AE Token Balance
             </template>
             <template slot="intro">
-              Define the amount of tokens you want to migrate here. You can migrate all your tokens at once, or
-              in multiple steps.
+              The below information is read only. That is all the balance you have currently on your ETH account for migration. You have to migrate all your tokens at once.
             </template>
           </app-intro>
-          <ae-input for="amount" type="number" label="Amount" v-model="amount" :placeholder="balance" aemount>
-            <ae-text slot="header" fill="black">AE Tokens</ae-text>
+          <ae-input readonly for="amount" type="number" label="Amount" v-model="amount" :placeholder="balance" aemount>
+            <ae-text  slot="header" fill="black" class="ae-text-width">AE Tokens</ae-text>
             <ae-toolbar align="justify" slot="footer">
               <span>GAS: {{ gasPrice }} ETH</span>
-              <ae-button @click="setEntireBalance" face="toolbar">
+              <!--<ae-button @click="setEntireBalance" face="toolbar">
                 <ae-icon name="left-more"/>
                 Send Entire Balance
-              </ae-button>
+              </ae-button> -->
             </ae-toolbar>
           </ae-input>
           <div class="app-check-spacing">
@@ -93,7 +92,7 @@
             class="app-center-block"
             face="round"
             fill="secondary"
-            @click="migrate(amount, walletAddress)"
+            @click="migrate(amount, walletAddress, coinbase)"
             :disabled="!validated"
           >
             Make Transaction
@@ -238,24 +237,20 @@ export default {
     /**
      * Connect to Metamask
      */
-    async migrate (_amount, _sender) {
+    async migrate (_amount, _sender, _coinbase) {
+      
       this.openModal('processing')
-      return this
-        .$migrateTokens(
-          _amount,
-          this.$encodeExtraData(_sender)
-        )
-        .then(
-          () => this.$router.push({
-            name: 'result',
-            params: {
-              pubkey: this.walletAddress
-            }
+      try {
+          await this.$migrateTokens(_amount, _sender, _coinbase)
+          await this.$router.push({
+              name: 'result',
+              params: {
+                pubkey: this.walletAddress
+              }
           })
-        )
-        .catch(
-          () => this.openModal('try-again')
-        )
+      } catch (e) {
+        this.openModal('try-again')
+      }
     },
 
     /**
@@ -296,12 +291,22 @@ export default {
 
     const gasPrice = await this.$web3.eth.getGasPrice()
     const coinbase = await this.$getCoinbase()
-
+    
     Object.assign(this.$data, {
       coinbase,
       gasPrice: this.$web3.utils.fromWei(gasPrice, 'ether')
     })
+
+    await this.setEntireBalance()
   }
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.ae-text-width {
+      width: 110px;
+      position: relative
+}
+
+
+</style>

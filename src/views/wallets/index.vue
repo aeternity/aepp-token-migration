@@ -101,6 +101,7 @@ export default {
   beforeRouteLeave: async function (to, from, next) {
     if (to.name === 'metamask') {
       try {
+
         await this.$hasWeb3()
         await this.$isLoggedIn()
       } catch (e) {

@@ -5,6 +5,8 @@ import Vue from 'vue'
 import VueAgile from 'vue-agile'
 import VueWeb3 from './plugins/web3'
 
+import Axios from 'axios'
+
 import app from './views/app.vue'
 import router from './router'
 import store from './store'
@@ -17,6 +19,8 @@ Vue.use(VueWeb3, {
   tokenContract: process.env.VUE_APP_AE_TOKEN_CONTRACT,
   tokenBurner: process.env.VUE_APP_AE_TOKEN_BURNER
 })
+
+Axios.defaults.baseURL = process.env.VUE_APP_API_ENDPOINT;
 
 export default new Vue({
   router,

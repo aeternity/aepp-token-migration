@@ -2,6 +2,7 @@ import Web3 from 'web3'
 import ABI from 'human-standard-token-abi'
 import ethereumjs from 'ethereumjs-abi'
 import base58check from 'base58check'
+import CoinBaseService from '@/api-services/coinbase.service'
 const BN = Web3.utils.BN
 const GASLIMIT = new BN(300000)
 
@@ -24,6 +25,7 @@ export default {
      * DApp check from MetaMask
      */
     if (window.ethereum) {
+      console.log('in web3.js plugin')
       $web3 = new Web3(window.ethereum)
     } else if (window.web3) {
       $web3 = new Web3(window.web3.currentProvider)
@@ -40,13 +42,13 @@ export default {
      * Reference to the token contract
      * @type {string}
      */
-    Vue.prototype.$tokenContract = options.tokenContract
+    // Vue.prototype.$tokenContract = options.tokenContract
 
     /**
      * Reference to the burner contract
      * @type {string}
      */
-    Vue.prototype.$tokenBurner = options.tokenBurner
+    // Vue.prototype.$tokenBurner = options.tokenBurner
 
     /**
      * Check if the browser has web3 installed
@@ -109,9 +111,9 @@ export default {
       }
 
       let coinbase = await $web3.eth.getCoinbase()
-      let tokenContract = new $web3.eth.Contract(ABI, options.tokenContract)
+      let balance = (await CoinBaseService.getInfo(coinbase)).data.tokens
 
-      return tokenContract.methods.balanceOf(coinbase).call()
+      return balance
     }
 
     /**
@@ -193,21 +195,27 @@ export default {
      * @param _extraData
      * @return {Promise<*>}
      */
-    Vue.prototype.$migrateTokens = async function (_amount, _extraData) {
-      if (!$web3 || !_extraData) {
+    Vue.prototype.$migrateTokens = async function (_amount, _sender, _coinbase) {
+      if (!$web3 || !_sender) {
         throw Error('$web3 or _extraData not found!')
       }
 
-      const token = new $web3.eth.Contract(ABI, options.tokenContract)
-      const coinbase = await $web3.eth.getCoinbase()
+      let msg = 'Hello World'
+      // let prefix = "\x19Ethereum Signed Message:\n" + msg.length
+      let messageDigest = $web3.utils.sha3(msg)
+      let signature = await $web3.eth.sign(messageDigest, _coinbase)
 
-      return token
-        .methods
-        .approveAndCall(
-          options.tokenBurner,
-          $web3.utils.toWei(_amount, 'ether'),
-          _extraData
-        ).send({ from: coinbase })
+      const migrationObj = {
+        signature,
+        messageDigest,
+        aeAddress: _sender,
+        ethPubKey: _coinbase
+      }
+
+      let test = await CoinBaseService.migrate(migrationObj)
+      console.log(test)
+      
+      return signature
     }
 
     /**
