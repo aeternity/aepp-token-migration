@@ -192,14 +192,20 @@ export default {
     /**
      * Executes the migration of the tokens
      * @param _amount
-     * @param _extraData
+     * @param _sender
+     * @param _coinbase
      * @return {Promise<*>}
      */
     Vue.prototype.$migrateTokens = async function (_amount, _sender, _coinbase) {
-      if (!$web3 || !_sender) {
-        throw Error('$web3 or _extraData not found!')
+      console.log(_amount)
+      console.log(_sender)
+      console.log()
+      console.log('daskhd');
+      
+      if (!$web3 || !_sender || !_coinbase) {
+        throw Error('$web3 or _sender or _coinbase not found!')
       }
-
+      console.log('he')
       let msg = 'Hello World'
       // let prefix = "\x19Ethereum Signed Message:\n" + msg.length
       let messageDigest = $web3.utils.sha3(msg)
@@ -211,9 +217,14 @@ export default {
         aeAddress: _sender,
         ethPubKey: _coinbase
       }
+      console.log('hehehe')
 
-      let test = await CoinBaseService.migrate(migrationObj)
-      console.log(test)
+      try {
+        let test = await CoinBaseService.migrate(migrationObj)
+        console.log(test)
+      } catch (error) {
+        console.log(error)
+      }
       
       return signature
     }

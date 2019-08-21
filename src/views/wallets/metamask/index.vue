@@ -62,7 +62,7 @@
             </li>
           </app-process>
         </app-panel>
-        <app-panel primary >
+        <app-panel primary>
           <app-intro>
             <template slot="subtitle">
               AE Token Balance

@@ -283,7 +283,7 @@ export default {
     migrate () {
       if (!this.walletAddress) return
       // THIS IS TO BE IMPLEMENTED AT LATER STAGE
-
+      return 's'
       // return this.$generateMEWURI(
       //   this.$tokenContract,
       //   this.$generatePayload(

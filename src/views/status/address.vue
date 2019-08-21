@@ -1,189 +1,191 @@
 <template>
   <app-view>
-    <app-header>
-      <app-header-nav text="Statuspage"/>
-    </app-header>
-    <app-view container>
-      <app-intro spacing>
-        <template slot="title">
-          Check your migrations!
-        </template>
-        <template slot="intro">
-          You have successfully migrated your AE tokens to Mainnet.
-        </template>
-        <div class="app-migration-result-print">
-          <ae-button @click="print()" face="round" fill="primary" extend shadow>
-            Print / Save as PDF
-          </ae-button>
-          <router-link :to="{ name: 'migration' }">
-            <ae-button @click="$store.commit('setWalletAddress', null)" face="flat" fill="neutral"  extend>
-              Migrate More Tokens
+    <app-allert padding center :hash="'tova e moq hash12312'"></app-allert>
+      <app-header>
+        <app-header-nav text="Statuspage"/>
+      </app-header>
+      <app-view container>
+        <app-intro spacing>
+          <template slot="title">
+            Check your migrations!
+          </template>
+          <template slot="intro">
+            You have successfully migrated your AE tokens to Mainnet.
+          </template>
+          <div class="app-migration-result-print">
+            <ae-button @click="print()" face="round" fill="primary" extend shadow>
+              Print / Save as PDF
             </ae-button>
-          </router-link>
-        </div>
-      </app-intro>
-      <app-panel shadow>
-        <app-panel secondary padding style="text-align: center">
-          <img :src="require('../../assets/graphics/header-check.svg')" class="app-migration-result-check">
-          <h4 class="app-migration-result-subtitle">You've migrated</h4>
-          <h1 class="app-migration-result-title">
-            {{collectiveSum | shorten(true) }}<small style="font-size: 2rem;">.{{collectiveSum | shorten }}</small>
-            <span>&nbsp;AE</span>
-          </h1>
-          <h4 class="app-migration-result-subtitle">in total to the following address</h4>
-          <ae-identicon :address="$route.params.pubkey"/>
-          <ae-address
-            v-if="$route.params.pubkey"
-            :value="$route.params.pubkey"
-            length="flat"
-          />
+            <!--<router-link :to="{ name: 'migration' }">
+              <ae-button @click="$store.commit('setWalletAddress', null)" face="flat" fill="neutral"  extend>
+                Migrate More Tokens
+              </ae-button>
+            </router-link>
+            -->
+          </div>
+        </app-intro>
+        <app-panel shadow>
+          <app-panel secondary padding style="text-align: center">
+            <img :src="require('../../assets/graphics/header-check.svg')" class="app-migration-result-check">
+            <h4 class="app-migration-result-subtitle">You've migrated</h4>
+            <h1 class="app-migration-result-title">
+              {{collectiveSum | shorten(true) }}<small style="font-size: 2rem;">.{{collectiveSum | shorten }}</small>
+              <span>&nbsp;AE</span>
+            </h1>
+            <h4 class="app-migration-result-subtitle">in total to the following address</h4>
+            <ae-identicon :address="$route.params.pubkey"/>
+            <ae-address
+              v-if="$route.params.pubkey"
+              :value="$route.params.pubkey"
+              length="flat"
+            />
+          </app-panel>
+          <div class="app-migration-panel-phase">
+            <app-panel primary padding>
+              <div class="app-migration-result-phase">
+                <h2 class="warning">
+                  Tokens migrated in Phase 3
+                  <span>
+                    Tokens will be available after the 3rd Hardfork.<br />
+                    All tokens migrated during Phase 3.
+                  </span>
+                </h2>
+                <h1>
+                  {{totalAmountMigrated(this.phase[3]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[3]) | fromWei | shorten }}</small>
+                  <small>&nbsp;AE</small>
+                </h1>
+              </div>
+              <ul class="app-migration-result-table">
+                <li v-for="(e, index) in phase[3]" :key="index">
+                  <h5>
+                    {{ new Date(e.created).toDateString() }}
+                    <span>PHASE {{ e.deliveryPeriod }}</span>
+                  </h5>
+                  <div class="app-migration-result-tx">
+                    <a :href="`https://${
+                  env === 'development' ? 'kovan.' : ''
+                  }etherscan.io/tx/${e.transactionHash}`" target="_blank">
+                      <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                    </a>
+                    <h1>
+                      {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
+                      <small>&nbsp;AE</small>
+                    </h1>
+                  </div>
+                </li>
+              </ul>
+            </app-panel>
+          </div>
+          <div class="app-migration-panel-phase">
+            <app-panel primary padding>
+              <div class="app-migration-result-phase">
+                <h2 class="check">
+                  Tokens migrated in Phase 2
+                  <span>
+                    Tokens will be available after the 2nd Hardfork.<br />
+                    All tokens migrated during Phase 2 (March, 2019 - May 2019).
+                  </span>
+                </h2>
+                <h1>
+                  {{totalAmountMigrated(this.phase[2]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[2]) | fromWei | shorten }}</small>
+                  <small>&nbsp;AE</small>
+                </h1>
+              </div>
+              <ul class="app-migration-result-table">
+                <li v-for="(e, index) in phase[2]" :key="index">
+                  <h5>
+                    {{ new Date(e.created).toDateString() }}
+                    <span>PHASE {{ e.deliveryPeriod }}</span>
+                  </h5>
+                  <div class="app-migration-result-tx">
+                    <a :href="`https://${
+                  env === 'development' ? 'kovan.' : ''
+                  }etherscan.io/tx/${e.transactionHash}`" target="_blank">
+                      <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                    </a>
+                    <h1>
+                      {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
+                      <small>&nbsp;AE</small>
+                    </h1>
+                  </div>
+                </li>
+              </ul>
+            </app-panel>
+          </div>
+          <div class="app-migration-panel-phase">
+            <app-panel primary padding>
+              <div class="app-migration-result-phase">
+                <h2 class="check">
+                  Tokens migrated in Phase 1
+                  <span>
+                    Tokens will be available after the 1st Hardfork.<br />
+                    All tokens migrated during Phase 1 (November 26th, 2018 - February 2019).
+                  </span>
+                </h2>
+                <h1>
+                  {{totalAmountMigrated(this.phase[1]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
+                  <small>&nbsp;AE</small>
+                </h1>
+              </div>
+              <ul class="app-migration-result-table">
+                <li v-for="(e, index) in phase[1]" :key="index">
+                  <h5>
+                    {{ new Date(e.created).toDateString() }}
+                    <span>PHASE {{ e.deliveryPeriod }}</span>
+                  </h5>
+                  <div class="app-migration-result-tx">
+                    <a :href="`https://${
+                  env === 'development' ? 'kovan.' : ''
+                  }etherscan.io/tx/${e.transactionHash}`" target="_blank">
+                      <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                    </a>
+                    <h1>
+                      {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
+                      <small>&nbsp;AE</small>
+                    </h1>
+                  </div>
+                </li>
+              </ul>
+            </app-panel>
+          </div>
+          <div class="app-migration-panel-phase">
+            <app-panel primary padding>
+              <div class="app-migration-result-phase">
+                <h2 class="check">
+                  Tokens migrated in Phase 0
+                  <span>Tokens will be available on Mainnet Launch.</span>
+                </h2>
+                <h1>
+                  {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[0]) | fromWei | shorten }}</small>
+                  <small>&nbsp;AE</small>
+                </h1>
+              </div>
+              <ul class="app-migration-result-table">
+                <li v-for="(e, index) in phase[0]" :key="index">
+                  <h5>
+                    {{ new Date(e.created).toDateString() }}
+                    <span>PHASE {{ e.deliveryPeriod }}</span>
+                  </h5>
+                  <div class="app-migration-result-tx">
+                    <a :href="`https://${
+                  env === 'development' ? 'kovan.' : ''
+                  }etherscan.io/tx/${e.transactionHash}`" target="_blank">
+                      <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                    </a>
+                    <h1>
+                      {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
+                      <small>&nbsp;AE</small>
+                    </h1>
+                  </div>
+                </li>
+              </ul>
+            </app-panel>
+          </div>
         </app-panel>
-        <div class="app-migration-panel-phase">
-          <app-panel primary padding>
-            <div class="app-migration-result-phase">
-              <h2 class="warning">
-                Tokens migrated in Phase 3
-                <span>
-                  Tokens will be available after the 3rd Hardfork.<br />
-                  All tokens migrated during Phase 3.
-                </span>
-              </h2>
-              <h1>
-                {{totalAmountMigrated(this.phase[3]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[3]) | fromWei | shorten }}</small>
-                <small>&nbsp;AE</small>
-              </h1>
-            </div>
-            <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[3]" :key="index">
-                <h5>
-                  {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
-                </h5>
-                <div class="app-migration-result-tx">
-                  <a :href="`https://${
-                 env === 'development' ? 'kovan.' : ''
-                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
-                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                  </a>
-                  <h1>
-                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
-                    <small>&nbsp;AE</small>
-                  </h1>
-                </div>
-              </li>
-            </ul>
-          </app-panel>
-        </div>
-        <div class="app-migration-panel-phase">
-          <app-panel primary padding>
-            <div class="app-migration-result-phase">
-              <h2 class="check">
-                Tokens migrated in Phase 2
-                <span>
-                  Tokens will be available after the 2nd Hardfork.<br />
-                  All tokens migrated during Phase 2 (March, 2019 - May 2019).
-                </span>
-              </h2>
-              <h1>
-                {{totalAmountMigrated(this.phase[2]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[2]) | fromWei | shorten }}</small>
-                <small>&nbsp;AE</small>
-              </h1>
-            </div>
-            <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[2]" :key="index">
-                <h5>
-                  {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
-                </h5>
-                <div class="app-migration-result-tx">
-                  <a :href="`https://${
-                 env === 'development' ? 'kovan.' : ''
-                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
-                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                  </a>
-                  <h1>
-                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
-                    <small>&nbsp;AE</small>
-                  </h1>
-                </div>
-              </li>
-            </ul>
-          </app-panel>
-        </div>
-        <div class="app-migration-panel-phase">
-          <app-panel primary padding>
-            <div class="app-migration-result-phase">
-              <h2 class="check">
-                Tokens migrated in Phase 1
-                <span>
-                  Tokens will be available after the 1st Hardfork.<br />
-                  All tokens migrated during Phase 1 (November 26th, 2018 - February 2019).
-                </span>
-              </h2>
-              <h1>
-                {{totalAmountMigrated(this.phase[1]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
-                <small>&nbsp;AE</small>
-              </h1>
-            </div>
-            <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[1]" :key="index">
-                <h5>
-                  {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
-                </h5>
-                <div class="app-migration-result-tx">
-                  <a :href="`https://${
-                 env === 'development' ? 'kovan.' : ''
-                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
-                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                  </a>
-                  <h1>
-                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
-                    <small>&nbsp;AE</small>
-                  </h1>
-                </div>
-              </li>
-            </ul>
-          </app-panel>
-        </div>
-        <div class="app-migration-panel-phase">
-          <app-panel primary padding>
-            <div class="app-migration-result-phase">
-              <h2 class="check">
-                Tokens migrated in Phase 0
-                <span>Tokens will be available on Mainnet Launch.</span>
-              </h2>
-              <h1>
-                {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[0]) | fromWei | shorten }}</small>
-                <small>&nbsp;AE</small>
-              </h1>
-            </div>
-            <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[0]" :key="index">
-                <h5>
-                  {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
-                </h5>
-                <div class="app-migration-result-tx">
-                  <a :href="`https://${
-                 env === 'development' ? 'kovan.' : ''
-                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
-                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                  </a>
-                  <h1>
-                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
-                    <small>&nbsp;AE</small>
-                  </h1>
-                </div>
-              </li>
-            </ul>
-          </app-panel>
-        </div>
-      </app-panel>
-    </app-view>
-    <app-modal v-if="loading">
-      <img :src="require('../../../public/loader.svg')" class="app-migration-result-loading" alt="Loading">
-    </app-modal>
+      </app-view>
+      <app-modal v-if="loading">
+        <img :src="require('../../../public/loader.svg')" class="app-migration-result-loading" alt="Loading">
+      </app-modal>
   </app-view>
 </template>
 <script>
@@ -200,6 +202,8 @@ import AppIntro from '../../components/app-intro.vue'
 import AppRow from '../../components/app-row.vue'
 import AppSeparator from '../../components/app-separator.vue'
 import AppColumn from '../../components/app-column.vue'
+import AppNotice from '../../components/app-notice.vue'
+import AppAllert from '../../components/app-alert.vue'
 
 const print = window.print
 
@@ -213,10 +217,12 @@ export default {
     AppIntro,
     AppRow,
     AppSeparator,
-    AppColumn
+    AppColumn,
+    AppAllert
   },
   data () {
     return {
+      color:"#00BFA8",
       loading: true,
       intervalId: 0,
       phase: {

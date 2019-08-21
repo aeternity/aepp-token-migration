@@ -4,6 +4,9 @@ import '@aeternity/aepp-components/dist/aepp.components.css'
 import Vue from 'vue'
 import VueAgile from 'vue-agile'
 import VueWeb3 from './plugins/web3'
+import Vuesax from 'vuesax'
+import 'vuesax/dist/vuesax.css' // Vuesax styles
+import 'material-icons/iconfont/material-icons.css'
 
 import Axios from 'axios'
 
@@ -19,8 +22,9 @@ Vue.use(VueWeb3, {
   tokenContract: process.env.VUE_APP_AE_TOKEN_CONTRACT,
   tokenBurner: process.env.VUE_APP_AE_TOKEN_BURNER
 })
+Vue.use(Vuesax)
 
-Axios.defaults.baseURL = process.env.VUE_APP_API_ENDPOINT;
+Axios.defaults.baseURL = process.env.VUE_APP_API_ENDPOINT
 
 export default new Vue({
   router,
