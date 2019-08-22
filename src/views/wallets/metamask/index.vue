@@ -268,7 +268,7 @@ export default {
     async getDetails () {
       const infoObj = await this.$getAEInfo()
       this.migrated = infoObj.migrated
-      this.TxHash = infoObj.hash
+      this.TxHash = infoObj.migrateTxHash
 
       Object.assign(this.$data, {
         amount: this.$web3.utils.fromWei(infoObj.tokens, 'ether')
