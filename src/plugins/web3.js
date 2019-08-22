@@ -25,7 +25,6 @@ export default {
      * DApp check from MetaMask
      */
     if (window.ethereum) {
-      console.log('in web3.js plugin')
       $web3 = new Web3(window.ethereum)
     } else if (window.web3) {
       $web3 = new Web3(window.web3.currentProvider)
@@ -105,15 +104,15 @@ export default {
      * Returns the balance in AE of the address holder
      * @return {Promise<any>}
      */
-    Vue.prototype.$getAEBalance = async function () {
+    Vue.prototype.$getAEInfo = async function () {
       if (!$web3) {
         throw Error('$web3 is not installed!')
       }
 
       let coinbase = await $web3.eth.getCoinbase()
-      let balance = (await CoinBaseService.getInfo(coinbase)).data.tokens
+      let result = (await CoinBaseService.getInfo(coinbase)).data
 
-      return balance
+      return result
     }
 
     /**
@@ -197,15 +196,10 @@ export default {
      * @return {Promise<*>}
      */
     Vue.prototype.$migrateTokens = async function (_amount, _sender, _coinbase) {
-      console.log(_amount)
-      console.log(_sender)
-      console.log()
-      console.log('daskhd');
-      
       if (!$web3 || !_sender || !_coinbase) {
         throw Error('$web3 or _sender or _coinbase not found!')
       }
-      console.log('he')
+
       let msg = 'Hello World'
       // let prefix = "\x19Ethereum Signed Message:\n" + msg.length
       let messageDigest = $web3.utils.sha3(msg)
@@ -217,16 +211,9 @@ export default {
         aeAddress: _sender,
         ethPubKey: _coinbase
       }
-      console.log('hehehe')
 
-      try {
-        let test = await CoinBaseService.migrate(migrationObj)
-        console.log(test)
-      } catch (error) {
-        console.log(error)
-      }
-      
-      return signature
+      const txInfo = await CoinBaseService.migrate(migrationObj)
+      return txInfo
     }
 
     /**
