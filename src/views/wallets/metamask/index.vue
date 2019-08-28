@@ -237,7 +237,7 @@ export default {
     ...mapState([
       'walletAddress'
     ]),
-    introTemplate: function() {
+    introTemplate: function () {
       return this.migrated ? `The balance has already been migrated in ${ this.TxHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You have to migrate all your tokens at once.`
     }
   },
@@ -263,7 +263,7 @@ export default {
     },
 
     /**
-     * Set Entire balance
+     * Get Details for the current ETH address
      */
     async getDetails () {
       const infoObj = await this.$getAEInfo()

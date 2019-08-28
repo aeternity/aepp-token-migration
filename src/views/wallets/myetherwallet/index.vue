@@ -7,7 +7,7 @@
     <app-view container>
       <app-intro spacing>
         <template slot="title">
-          Prepare your transaction with MyEtherWallet
+          Prepare your transaction with MyEtherWallet And
         </template>
         <template slot="intro">
           You are about to transfer AE tokens to the AE Token Contract, which sends them to the AE Migration Contract.
@@ -20,7 +20,7 @@
             <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
             Migrating with MyEtherWallet
           </template>
-          <app-panel centered>
+          <app-panel>
             <app-intro>
               <template slot="subtitle">
                 Amount AE to migrate
@@ -38,6 +38,7 @@
               </template>
             </app-intro>
             <ae-input
+              readonly
               for="amount"
               type="number"
               label="Amount to migrate"
@@ -45,7 +46,7 @@
               placeholder="0.0"
               aemount
             >
-              <ae-text slot="header" fill="black">AE</ae-text>
+              <ae-text slot="header" fill="black">AE Tokens</ae-text>
               <ae-toolbar align="justify" slot="footer">
                 <span>Estimated GAS: {{ gasPrice }} ETH</span>
               </ae-toolbar>
@@ -293,19 +294,35 @@ export default {
       // )
     },
     ...mapState([
-      'walletAddress'
+      'walletAddress',
+      'ethWalletAddress'
     ])
   },
   methods: {
     startMigration () {
       this.step = 1
       this.openModal('step')
+    },
+    /**
+      * Get Details for the current ETH address
+    */
+    async getDetails () {
+
+      const infoObj = await this.$getAEInfo(this.ethWalletAddress)
+      this.migrated = infoObj.migrated
+      this.TxHash = infoObj.migrateTxHash
+
+      Object.assign(this.$data, {
+        amount: this.$web3.utils.fromWei(infoObj.tokens, 'ether')
+      })
     }
   },
   mounted: async function () {
     if (!this.walletAddress) {
       return this.$router.push({ name: 'migration' })
     }
+
+    await this.getDetails()
   }
 }
 </script>

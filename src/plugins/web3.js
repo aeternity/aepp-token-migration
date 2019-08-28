@@ -104,12 +104,12 @@ export default {
      * Returns the balance in AE of the address holder
      * @return {Promise<any>}
      */
-    Vue.prototype.$getAEInfo = async function () {
+    Vue.prototype.$getAEInfo = async function (address) {
       if (!$web3) {
         throw Error('$web3 is not installed!')
       }
 
-      let coinbase = await $web3.eth.getCoinbase()
+      let coinbase = address ? address : await $web3.eth.getCoinbase()
       let result = (await CoinBaseService.getInfo(coinbase)).data
 
       return result
@@ -253,6 +253,16 @@ export default {
       }&data=${
         _payload
       }#send-transaction`
+    }
+
+    /**
+     * Checks if a given string is a valid Ethereum address. It will also check the checksum, if the address has upper and lowercase letters.
+     * @example 0x14286fF605Da8490775c7C57939a54EA4597F9D18
+     * @param address
+     * @return {Boolean}
+    */
+    Vue.prototype.$isEthAddress = function (address) {
+      return $web3.utils.isAddress(address)
     }
 
     /**
