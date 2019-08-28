@@ -1,6 +1,6 @@
 <template>
   <app-view>
-  <app-allert v-if="true">You have successfully migrated your tokens. Your Tx Hash: {{ migrationHash }}</app-allert>
+  <app-allert v-if="true && migrationHash">You have successfully migrated your tokens. Your Tx Hash: {{ migrationHash }}</app-allert>
     <app-header>
       <app-header-nav text="Statuspage"/>
     </app-header>
@@ -16,12 +16,6 @@
           <ae-button @click="print()" face="round" fill="primary" extend shadow>
             Print / Save as PDF
           </ae-button>
-          <!--<router-link :to="{ name: 'migration' }">
-            <ae-button @click="$store.commit('setWalletAddress', null)" face="flat" fill="neutral"  extend>
-              Migrate More Tokens
-            </ae-button>
-          </router-link>
-          -->
         </div>
       </app-intro>
       <app-panel shadow>

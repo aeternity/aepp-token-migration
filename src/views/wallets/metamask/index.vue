@@ -1,6 +1,8 @@
 <template>
   <app-view>
-    <app-allert v-if="migrated">You already have migrated your tokens. More information with the following TX Hash: {{ TxHash }}</app-allert>
+    <app-allert v-if="migrated">
+      You already have migrated your tokens. More information with the following TX Hash: {{ TxHash }}
+    </app-allert>
       <app-header>
         <app-header-nav prog="6/6" text="Prepare your transaction with MetaMask"/>
       </app-header>
@@ -40,20 +42,6 @@
                 <h4>Your Ethereum Account</h4>
                 <p v-html="$options.filters.chunk(coinbase)"></p>
               </li>
-              <!-- <li>
-              //   <span>
-              //     <app-jazzicon :address="$tokenContract" v-if="$tokenContract"/>
-              //   </span>
-              //   <h4>AE Token Contract</h4>
-              //   <p v-html="$options.filters.chunk($tokenContract)"></p>
-              // </li> -->
-              <!--<li>
-                <span>
-                  <app-jazzicon :address="$tokenBurner" v-if="$tokenBurner"/>
-                </span>
-                <h4>AE Migration Contract</h4>
-                <p v-html="$options.filters.chunk($tokenBurner)"></p>
-              </li> -->
               <li>
                 <span>
                   <ae-identicon :address="walletAddress" v-if="walletAddress"/>
@@ -76,10 +64,6 @@
               <ae-text  slot="header" fill="black" class="ae-text-width">AE Tokens</ae-text>
               <ae-toolbar align="justify" slot="footer">
                 <span>GAS: {{ gasPrice }} ETH</span>
-                <!--<ae-button @click="setEntireBalance" face="toolbar">
-                  <ae-icon name="left-more"/>
-                  Send Entire Balance
-                </ae-button> -->
               </ae-toolbar>
             </ae-input>
             <div class="app-check-spacing">
@@ -227,7 +211,7 @@ export default {
       gasPrice: '0',
       checked: false,
       migrated: false,
-      TxHash: undefined
+      TxHash: null
     }
   },
   computed: {
@@ -249,7 +233,7 @@ export default {
       this.openModal('processing')
       try {
         const res = await this.$migrateTokens(_amount, _sender, _coinbase)
-        this.$store.commit('setMigrationHash', res.data.TxHash)
+        this.$store.commit('setMigrationHash', res)
 
         await this.$router.push({
           name: 'result',

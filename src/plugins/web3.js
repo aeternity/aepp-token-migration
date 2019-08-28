@@ -109,7 +109,7 @@ export default {
         throw Error('$web3 is not installed!')
       }
 
-      let coinbase = address ? address : await $web3.eth.getCoinbase()
+      let coinbase = address || await $web3.eth.getCoinbase()
       let result = (await CoinBaseService.getInfo(coinbase)).data
 
       return result
@@ -195,9 +195,21 @@ export default {
      * @param _coinbase
      * @return {Promise<*>}
      */
-    Vue.prototype.$migrateTokens = async function (_amount, _sender, _coinbase) {
-      if (!$web3 || !_sender || !_coinbase) {
-        throw Error('$web3 or _sender or _coinbase not found!')
+    Vue.prototype.$migrateTokens = async function (_amount, _sender, _coinbase, msgObj) {
+      const methodToExecute = validateMigrationMethod(msgObj)
+      const migrationObj = await eval(methodToExecute)(_amount, _sender, _coinbase, msgObj)
+      const txInfo = await CoinBaseService.migrate(migrationObj)
+      
+      return txInfo.data.TxHash
+    }
+
+    function validateMigrationMethod(_msgObj) {
+      return !_msgObj ? 'prepareMetaMaskmigrationObject' : 'prepareMEWmigrationObject'
+    }
+
+    async function prepareMetaMaskmigrationObject (_amount, _sender, _coinbase) {
+      if (!_sender || !_coinbase) {
+        throw Error('_sender or _coinbase not found!')
       }
 
       let msg = 'Hello World'
@@ -212,8 +224,27 @@ export default {
         ethPubKey: _coinbase
       }
 
-      const txInfo = await CoinBaseService.migrate(migrationObj)
-      return txInfo
+      return migrationObj
+    }
+
+    async function prepareMEWmigrationObject (_amount, _sender, _coinbase, msgObj) {
+      console.log('MEW Coonnect');
+      
+      if (!_sender || !_coinbase || !msgObj) {
+        throw Error('_sender or _coinbase not found!')
+      }
+
+      let parsedMsg = JSON.parse(msgObj)
+      let msg = 'Hello World'
+      let messageDigest = $web3.utils.sha3(msg)
+      const migrationObj = {
+        signature: parsedMsg.sig,
+        messageDigest,
+        aeAddress: _sender,
+        ethPubKey: _coinbase
+      }
+
+      return migrationObj
     }
 
     /**
@@ -245,14 +276,8 @@ export default {
      * @param _payload
      * @return {string}
      */
-    Vue.prototype.$generateMEWURI = function (_contract, _payload, _gas = GASLIMIT) {
-      return `https://vintage.myetherwallet.com/?to=${
-        _contract
-      }&value=0&gaslimit=${
-        _gas
-      }&data=${
-        _payload
-      }#send-transaction`
+    Vue.prototype.$generateMEWURI = function () {
+      return `https://www.myetherwallet.com/interface/sign-message`
     }
 
     /**
