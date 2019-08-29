@@ -228,8 +228,6 @@ export default {
     }
 
     async function prepareMEWmigrationObject (_amount, _sender, _coinbase, msgObj) {
-      console.log('MEW Coonnect');
-      
       if (!_sender || !_coinbase || !msgObj) {
         throw Error('_sender or _coinbase not found!')
       }
