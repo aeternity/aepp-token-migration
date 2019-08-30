@@ -222,7 +222,7 @@ export default {
       'walletAddress'
     ]),
     introTemplate: function () {
-      return this.migrated ? `The balance has already been migrated in ${ this.TxHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You have to migrate all your tokens at once.`
+      return this.migrated ? `The balance has already been migrated in ${ this.TxHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
     }
   },
   methods: {

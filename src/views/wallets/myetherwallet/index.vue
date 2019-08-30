@@ -26,18 +26,12 @@
           <app-panel>
             <app-intro>
               <template slot="subtitle">
-                Amount AE to migrate
+                AE Token Balance
               </template>
               <template slot="intro">
                 <p>
-                  Define the amount of tokens you want to migrate here. You can migrate all your tokens at once,
-                  or in multiple steps.
+                  {{ introTemplate }}
                 </p>
-                <ae-text face="sans-s">
-                  <span class="app-highlight">Important</span>:
-                  <strong>Do not change</strong> any field on
-                  <strong>MyEtherWallet</strong> manually!
-                </ae-text>
               </template>
             </app-intro>
             <ae-input
@@ -305,6 +299,9 @@ export default {
     mewURI () {
       if (!this.walletAddress) return
        return this.$generateMEWURI()
+    },
+    introTemplate: function () {
+      return this.migrated ? `The balance has already been migrated in ${ this.TxHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
     },
     ...mapState([
       'walletAddress',
