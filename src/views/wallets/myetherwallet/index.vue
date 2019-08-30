@@ -89,9 +89,9 @@
               <p v-html="$options.filters.chunk(walletAddress)"></p>
             </li>
           </app-process>
-          <hr class="app-horizontal-line" />
+          <hr v-if="!migrated" class="app-horizontal-line" />
         </app-panel>
-        <app-panel class="app-text-center" padding secondary>
+        <app-panel v-if="!migrated" class="app-text-center" padding secondary>
           <ae-icon name="info" size="2rem" class="app-highlight"/>
           <ae-text face="sans-s" :weight="700">
             The transaction you’re about to make will not send any ETH, it will only use ETH for gas. The amount of
