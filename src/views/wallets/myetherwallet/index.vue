@@ -1,5 +1,8 @@
 <template>
   <app-view>
+    <app-allert v-if="migrated">
+      You already have migrated your tokens. More information with the following TX Hash: {{ TxHash }}
+    </app-allert>
     <app-header>
       <app-header-nav prog="6/6" text="Prepare your transaction with MyEtherWallet"/>
     </app-header>
@@ -7,7 +10,7 @@
     <app-view container>
       <app-intro spacing>
         <template slot="title">
-          Prepare your transaction with MyEtherWallet
+          Prepare your transaction with MyEtherWallet And
         </template>
         <template slot="intro">
           You are about to transfer AE tokens to the AE Token Contract, which sends them to the AE Migration Contract.
@@ -20,24 +23,19 @@
             <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
             Migrating with MyEtherWallet
           </template>
-          <app-panel centered>
+          <app-panel>
             <app-intro>
               <template slot="subtitle">
-                Amount AE to migrate
+                AE Token Balance
               </template>
               <template slot="intro">
                 <p>
-                  Define the amount of tokens you want to migrate here. You can migrate all your tokens at once,
-                  or in multiple steps.
+                  {{ introTemplate }}
                 </p>
-                <ae-text face="sans-s">
-                  <span class="app-highlight">Important</span>:
-                  <strong>Do not change</strong> any field on
-                  <strong>MyEtherWallet</strong> manually!
-                </ae-text>
               </template>
             </app-intro>
             <ae-input
+              readonly
               for="amount"
               type="number"
               label="Amount to migrate"
@@ -45,7 +43,7 @@
               placeholder="0.0"
               aemount
             >
-              <ae-text slot="header" fill="black">AE</ae-text>
+              <ae-text slot="header" fill="black">AE Tokens</ae-text>
               <ae-toolbar align="justify" slot="footer">
                 <span>Estimated GAS: {{ gasPrice }} ETH</span>
               </ae-toolbar>
@@ -85,40 +83,15 @@
             </li>
             <li>
               <span>
-                <img :src="require('../../../assets/graphics/aeternity-contract.png')" alt="æternity contract">
-              </span>
-              <h4>AE Token Contract</h4>
-              <p v-html="$options.filters.chunk($tokenContract)"></p>
-            </li>
-            <li>
-              <span>
-                <ae-identicon :address="$tokenBurner" v-if="$tokenBurner"/>
-              </span>
-              <h4>AE Migration Contract</h4>
-              <p v-html="$options.filters.chunk($tokenBurner)"></p>
-            </li>
-            <li>
-              <span>
                 <ae-identicon :address="walletAddress" v-if="walletAddress"/>
               </span>
               <h4>Your AE Mainnet Address</h4>
               <p v-html="$options.filters.chunk(walletAddress)"></p>
             </li>
           </app-process>
-          <hr class="app-horizontal-line" />
+          <hr v-if="!migrated" class="app-horizontal-line" />
         </app-panel>
-        <app-panel primary padding centered>
-          <app-url class="hide-mobile" :value="migrate" disabled>
-            <ae-toolbar align="justify" fill="neutral">
-              <span>Your Migration dataload is saved in this link</span>
-              <ae-button face="toolbar" v-copy-to-clipboard="migrate">
-                <ae-icon name="copy" />
-                COPY LINK
-              </ae-button>
-            </ae-toolbar>
-          </app-url>
-        </app-panel>
-        <app-panel class="app-text-center" padding secondary>
+        <app-panel v-if="!migrated" class="app-text-center" padding secondary>
           <ae-icon name="info" size="2rem" class="app-highlight"/>
           <ae-text face="sans-s" :weight="700">
             The transaction you’re about to make will not send any ETH, it will only use ETH for gas. The amount of
@@ -144,19 +117,15 @@
         </template>
         <app-row>
           <div class="app-myetherwallet-screenshot">
-            <img :src="require('../../../assets/graphics/screenshot.png')" alt="MyEtherWallet">
+            <img :src="require('../../../assets/graphics/signMsg.png')" alt="MyEtherWallet">
           </div>
           <app-separator class="hide-mobile" />
           <app-column size="small">
             <app-intro align="left">
               <template slot="subtitle">
-                You will be forwarded to the transaction link on MyEtherWallet
+                You will be forwarded to the sign message link on MyEtherWallet
               </template>
               <template slot="intro">
-                The transaction form will be pre-filled and
-                <span class="app-highlight">
-                  should not be changed!
-                </span>
                 <p>Continue for more information, before proceeding.</p>
               </template>
             </app-intro>
@@ -166,62 +135,103 @@
           </app-column>
         </app-row>
       </app-panel>
-      <app-panel tertiary padding shadow overflow v-if="step === 2 || step === 3" :close="closeModal">
+      <app-panel tertiary padding shadow overflow v-if="step === 2" :close="closeModal">
         <template slot="header">
           <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
           Migrating with MyEtherWallet
         </template>
         <app-row>
           <div class="app-myetherwallet-screenshot">
-            <img :src="require('../../../assets/graphics/screenshot-2.png')" alt="MyEtherWallet">
+            <img :src="require('../../../assets/graphics/signMsgConfirmed.png')" alt="MyEtherWallet">
           </div>
           <app-separator class="hide-mobile" />
           <app-column size="small">
             <ul class="app-myetherwallet-list">
               <li>
                 <span>1</span>
-                Address of the AE Token Contract.
+                Log in with you preferred way on MEW
               </li>
               <li>
                 <span>2</span>
-                Amount of <strong>ETH</strong> to send to the aeternity token contract, this is
-                <strong>not</strong> the <strong>AE</strong> amount
-                <div class="app-highlight">
-                  This field must to be zero.
-                </div>
+                Enter you message
               </li>
               <li>
                 <span>3</span>
-                Gas needed for the contract’s executions.
+                Sign it
               </li>
               <li>
                 <span>4</span>
-                Dataload included in the transaction, It contains the
-                <strong>AE Migration Address</strong>, your <strong>AE Mainnet Account</strong>
-                and the <strong>Amount of AE</strong> Decode dataload
-                <a href="//verify-data.aeternity.com" target="_blank">here</a>.
+                Copy it 
               </li>
               <li>
-                <a :href="migrate" target="_blank" v-if="step === 2">
+                <span>5</span>
+                On the next page you'll be asked to paste it.
+              </li>
+              <li>
+                <a :href="mewURI" target="_blank">
                   <ae-button @click="step = 3" face="round" fill="secondary" extend>
-                    Migrate on MEW
+                    Sign message
                   </ae-button>
                 </a>
-                <router-link :to="{ name: 'result', params: { pubkey: walletAddress } }" v-if="step === 3">
-                  <ae-button @click="step = 3" face="round" fill="alternative" extend>
-                    Check Migrations
-                  </ae-button>
-                </router-link>
               </li>
             </ul>
           </app-column>
         </app-row>
-        <div class="app-myetherwallet-notification" v-if="step === 2">
+        <div class="app-myetherwallet-notification">
           When you are done come back to check your transaction!
         </div>
-        <div class="app-myetherwallet-notification" v-else-if="step === 3">
-          Closed the MyEtherWallet transaction too soon? <a :href="migrate" target="_blank">Try again</a>
+      </app-panel>
+      <app-panel tertiary padding shadow overflow v-if="step === 3" :close="closeModal">
+        <template slot="header">
+          <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="MyEtherWallet">
+          Migrating with MyEtherWallet
+        </template>
+        <app-row>
+          <div class="app-myetherwallet-screenshot">
+            <img :src="require('../../../assets/graphics/signMsgConfirmed.png')" alt="MyEtherWallet">
+          </div>
+          <app-separator class="hide-mobile" />
+          <app-column size="small">
+            <div class="ae-desc"> Paste the signed message here: </div>
+            <textarea class="ae-text-area"
+              for="signature"
+              type="string"
+              label="Copied signature from MEW"
+              v-model="signature"
+              placeholder="{}"
+            >
+            </textarea>
+              <router-link :to="{ name: 'result', params: { pubkey: walletAddress } }">
+                <ae-button @click="step = 3" face="round" fill="alternative" extend class="ae-migrate-button">
+                  Migrate
+                </ae-button>
+              </router-link>
+          </app-column>
+        </app-row>
+        <div class="app-myetherwallet-notification">
+          Closed the MyEtherWallet transaction too soon? <a :href="mewURI" target="_blank">Try again</a>
         </div>
+      </app-panel>
+      <app-panel tertiary padding shadow overflow v-if="step === 4" :close="closeModal">
+        <template slot="header">
+          <img :src="require('../../../assets/graphics/myetherwallet.svg')" alt="Metamask">
+          Migrating with MyEtherWallet
+        </template>
+        <app-intro>
+          <template slot="title">
+            <ae-icon name="info"/>
+          </template>
+          <template slot="subtitle">
+            Something went wrong
+          </template>
+          <template slot="intro">
+            Migration did not take place. This does not affect your <br />
+            tokens, you are safe to try again.
+          </template>
+          <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">
+            Try Again
+          </ae-button>
+        </app-intro>
       </app-panel>
     </app-modal>
   </app-view>
@@ -239,11 +249,10 @@ import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
+import AppAllert from '../../../components/app-alert.vue'
 import AppModal from '../../../sections/app-modal/index.vue'
 import AppIntro from '../../../components/app-intro.vue'
-import AppJazzicon from '../../../components/app-jazzicon.vue'
 import AppProcess from '../../../components/app-process.vue'
-import AppUrl from '../../../components/app-url.vue'
 import AppRow from '../../../components/app-row.vue'
 import AppSeparator from '../../../components/app-separator.vue'
 import AppColumn from '../../../components/app-column.vue'
@@ -257,6 +266,7 @@ export default {
     copyToClipboard: directives.copyToClipboard
   },
   components: {
+    AppAllert,
     AeButton,
     AeIcon,
     AeText,
@@ -266,43 +276,75 @@ export default {
     AeToolbar,
     AppModal,
     AppIntro,
-    AppJazzicon,
     AppProcess,
-    AppUrl,
     AppRow,
     AppSeparator,
     AppColumn
   },
   data: function () {
-    return { amount: null, gasPrice: '0', step: 0, checked: false }
+    return { 
+      amount: null, 
+      gasPrice: '0', 
+      step: 0, 
+      checked: false, 
+      signature: null,
+      migrated: false,
+      TxHash: null
+    }
   },
   computed: {
     validated: function () {
-      return Number(this.amount) && this.checked
+      return Number(this.amount) && this.checked && !this.migrated
     },
-    migrate () {
+    mewURI () {
       if (!this.walletAddress) return
-      return this.$generateMEWURI(
-        this.$tokenContract,
-        this.$generatePayload(
-          this.amount ? this.amount : '0',
-          this.$encodeExtraData(this.walletAddress)
-        )
-      )
+       return this.$generateMEWURI()
+    },
+    introTemplate: function () {
+      return this.migrated ? `The balance has already been migrated in ${ this.TxHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
     },
     ...mapState([
-      'walletAddress'
+      'walletAddress',
+      'ethWalletAddress'
     ])
   },
   methods: {
     startMigration () {
       this.step = 1
       this.openModal('step')
+    },
+    /**
+      * Get Details for the current ETH address
+    */
+    async getDetails () {
+
+      const infoObj = await this.$getAEInfo(this.ethWalletAddress)
+      this.migrated = infoObj.migrated
+      this.TxHash = infoObj.migrateTxHash
+
+      Object.assign(this.$data, {
+        amount: this.$web3.utils.fromWei(infoObj.tokens, 'ether')
+      })
     }
   },
   mounted: async function () {
     if (!this.walletAddress) {
       return this.$router.push({ name: 'migration' })
+    }
+
+    await this.getDetails()
+  },
+  beforeRouteLeave: async function (to, from, next) {
+
+    if (to.name === 'result') {
+      try {
+        let txHash = await this.$migrateTokens(this.amount, this.walletAddress, this.ethWalletAddress, this.signature)
+        this.$store.commit('setMigrationHash', txHash)
+        next()
+      } catch(e) {
+        this.step = 4
+        this.signature = null
+      }
     }
   }
 }
@@ -313,16 +355,6 @@ export default {
 
   @include only-phone {
     width: 100%;
-  }
-}
-
-.app-myetherwallet-button-group {
-  display: block;
-  text-align: center;
-
-  & /deep/ button {
-    width: 240px;
-    margin: 0 1rem;
   }
 }
 
@@ -387,5 +419,24 @@ export default {
     margin: 0 -1rem -1rem -1rem;
     line-height: 1.5;
   }
+}
+
+.ae-migrate-button {
+  margin-top: 10px;
+}
+
+.ae-desc {
+  text-align: left;
+}
+
+.ae-text-area {
+  flex-direction: column;
+  background: #F7FAFC;
+  min-height: 4rem;
+  resize: none;
+  border: 0 none;
+  width: 100%;
+  outline: none;
+  height: 100%;
 }
 </style>

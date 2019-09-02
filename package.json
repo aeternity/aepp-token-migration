@@ -15,18 +15,21 @@
     "@aeternity/ledger-app-api": "0.0.4",
     "@ledgerhq/hw-transport-u2f": "^4.24.0",
     "@zxing/library": "^0.8.3",
+    "axios": "^0.19.0",
     "base58check": "^2.0.0",
     "cleave.js": "^1.4.4",
     "ethereumjs-abi": "^0.6.5",
     "human-standard-token-abi": "^2.0.0",
     "jazzicon": "^1.5.0",
     "lodash.orderby": "^4.6.0",
+    "material-icons": "^0.3.1",
     "vue": "^2.5.17",
     "vue-agile": "^0.3.7",
     "vue-qrcode-reader": "^1.2.2",
     "vue-router": "^3.0.1",
+    "vuesax": "^3.9.0",
     "vuex": "^3.0.1",
-    "web3": "^1.0.0-beta.35"
+    "web3": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
