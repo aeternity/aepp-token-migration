@@ -1,0 +1,67 @@
+service: frontend
+runtime: python27
+threadsafe: true
+api_version: 1
+
+handlers:
+  - url: /(.+\.js)
+    static_files: dist/\1
+    upload: dist/(.+\.js)
+
+  - url: /(.+\.css)
+    static_files: dist/\1
+    upload: dist/(.+\.css)
+
+  - url: /(.+\.png)
+    static_files: dist/\1
+    upload: dist/(.+\.png)
+
+  - url: /(.+\.jpg)
+    static_files: dist/\1
+    upload: dist/(.+\.jpg)
+
+  - url: /(.+\.jpeg)
+    static_files: dist/\1
+    upload: dist/(.+\.jpeg)
+
+  - url: /(.+\.svg)
+    static_files: dist/\1
+    upload: dist/(.+\.svg)
+
+  - url: /(.+\.ttf)
+    static_files: dist/\1
+    upload: dist/(.+\.ttf)
+
+  - url: /(.+\.woff)
+    static_files: dist/\1
+    upload: dist/(.+\.woff)
+
+  - url: /(.+\.woff2)
+    static_files: dist/\1
+    upload: dist/(.+\.woff2)
+
+  - url: /(.+\.eot)
+    static_files: dist/\1
+    upload: dist/(.+\.eot)
+
+  - url: /(.+\.otf)
+    static_files: dist/\1
+    upload: dist/(.+\.otf)
+
+  - url: /favicon.ico
+    static_files: dist/favicon.ico
+    upload: dist/favicon.ico
+
+  - url: /(.+\.json)
+    static_files: dist/\1
+    upload: dist/(.+\.json)
+
+  - url: /(.+)
+    secure: always
+    static_files: dist/index.html
+    upload: dist/index.html
+
+  - url: /
+    secure: always
+    static_files: dist/index.html
+    upload: dist/index.html

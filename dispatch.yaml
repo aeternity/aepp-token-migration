@@ -1,0 +1,11 @@
+# dispatch:
+#   - url: "backend-transfer.aeternity.app/*"
+#     service: default
+#   - url: "backend-demo.aeternity.app/*"
+#     service: default
+#   - url: "transfer.aeternity.app/*"
+#     service: frontend
+#   - url: "demo.aeternity.app/*"
+#     service: frontend
+#   - url: "aeternity.app/*"
+#     service: frontend
