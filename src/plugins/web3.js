@@ -41,18 +41,6 @@ export default {
     Object.assign(Vue.prototype, { $web3 })
 
     /**
-     * Reference to the token contract
-     * @type {string}
-     */
-    // Vue.prototype.$tokenContract = options.tokenContract
-
-    /**
-     * Reference to the burner contract
-     * @type {string}
-     */
-    // Vue.prototype.$tokenBurner = options.tokenBurner
-
-    /**
      * Check if the browser has web3 installed
      * @return {Promise<undefined>}
      */
