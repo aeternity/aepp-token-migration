@@ -3,8 +3,11 @@ import ABI from 'human-standard-token-abi'
 import ethereumjs from 'ethereumjs-abi'
 import base58check from 'base58check'
 import CoinBaseService from '@/api-services/coinbase.service'
+
 const BN = Web3.utils.BN
 const GASLIMIT = new BN(300000)
+const METAMASK = 'prepareMetaMaskMigrationObject'
+const MEW = 'prepareMEWMigrationObject'
 
 /**
  * Exporting IDs of the networks
@@ -199,24 +202,22 @@ export default {
       const methodToExecute = validateMigrationMethod(msgObj)
       const migrationObj = await eval(methodToExecute)(_amount, _sender, _coinbase, msgObj)
       const txInfo = await CoinBaseService.migrate(migrationObj)
-      
+
       return txInfo.data.TxHash
     }
 
-    function validateMigrationMethod(_msgObj) {
-      return !_msgObj ? 'prepareMetaMaskmigrationObject' : 'prepareMEWmigrationObject'
+    function validateMigrationMethod (_msgObj) {
+      return !_msgObj ? METAMASK : MEW
     }
 
-    async function prepareMetaMaskmigrationObject (_amount, _sender, _coinbase) {
+    async function prepareMetaMaskMigrationObject (_amount, _sender, _coinbase) {
       if (!_sender || !_coinbase) {
         throw Error('_sender or _coinbase not found!')
       }
 
       let msg = 'Hello World'
-      // let prefix = "\x19Ethereum Signed Message:\n" + msg.length
       let messageDigest = $web3.utils.sha3(msg)
       let signature = await $web3.eth.sign(messageDigest, _coinbase)
-
       const migrationObj = {
         signature,
         messageDigest,
@@ -227,13 +228,15 @@ export default {
       return migrationObj
     }
 
-    async function prepareMEWmigrationObject (_amount, _sender, _coinbase, msgObj) {
+    async function prepareMEWMigrationObject (_amount, _sender, _coinbase, msgObj) {
       if (!_sender || !_coinbase || !msgObj) {
         throw Error('_sender or _coinbase not found!')
       }
 
       let parsedMsg = JSON.parse(msgObj)
-      let msg = 'Hello World'
+
+      let msg = parsedMsg.msg
+      msg = '\x19Ethereum Signed Message:\n' + msg.length + msg
       let messageDigest = $web3.utils.sha3(msg)
       const migrationObj = {
         signature: parsedMsg.sig,

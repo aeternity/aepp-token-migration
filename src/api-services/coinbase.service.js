@@ -1,6 +1,7 @@
 import Axios from 'axios'
 
 const COINBASE_INFORMATION = '/info'
+const MIGRATE = '/migrate'
 
 export default {
   getInfo (coinbase) {
@@ -8,6 +9,6 @@ export default {
   },
 
   migrate (data) {
-    return Axios.post(`/migrate`, data)
+    return Axios.post(`${MIGRATE}`, data)
   }
 }
