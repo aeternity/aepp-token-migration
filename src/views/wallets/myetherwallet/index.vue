@@ -1,7 +1,7 @@
 <template>
   <app-view>
     <app-allert v-if="migrated">
-      You already have migrated your tokens. More information with the following TX Hash: {{ TxHash }}
+      You already have migrated your tokens. More information with the following TX Hash: {{ txHash }}
     </app-allert>
     <app-header>
       <app-header-nav prog="6/6" text="Prepare your transaction with MyEtherWallet"/>
@@ -222,17 +222,25 @@
             <ae-icon name="info"/>
           </template>
           <template slot="subtitle">
-            Something went wrong
+            {{ errorTitle }}
           </template>
           <template slot="intro">
-            Migration did not take place. This does not affect your <br />
-            tokens, you are safe to try again.
+            <div> 
+              Migration did not take place. This does not affect your <br />
+              tokens, you are safe to try again.
+            </div>
+            <div v-if="reverted"> 
+              <strong> Failed Tx: </strong> {{ txHash }}
+            </div>
           </template>
           <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">
             Try Again
           </ae-button>
         </app-intro>
       </app-panel>
+    </app-modal>
+      <app-modal v-if="loading">
+        <img :src="require('../../../../public/loader.svg')" class="app-migration-result-loading" alt="Loading">
     </app-modal>
   </app-view>
 </template>
@@ -289,7 +297,9 @@ export default {
       checked: false, 
       signature: null,
       migrated: false,
-      TxHash: null
+      txHash: null,
+      reverted: false,
+      loading: false
     }
   },
   computed: {
@@ -301,7 +311,10 @@ export default {
        return this.$generateMEWURI()
     },
     introTemplate: function () {
-      return this.migrated ? `The balance has already been migrated in ${ this.TxHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
+      return this.migrated ? `The balance has already been migrated in ${ this.txHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
+    },
+    errorTitle() {
+      return this.reverted ? 'The transaction has been reverted!' : 'Something went wrong'
     },
     ...mapState([
       'walletAddress',
@@ -320,11 +333,21 @@ export default {
 
       const infoObj = await this.$getAEInfo(this.ethWalletAddress)
       this.migrated = infoObj.migrated
-      this.TxHash = infoObj.migrateTxHash
+      this.txHash = infoObj.migrateTxHash
 
       Object.assign(this.$data, {
         amount: this.$web3.utils.fromWei(infoObj.tokens, 'ether')
       })
+    },
+    toggleLoader() {
+      this.loading = !this.loading
+    },
+    throwReverted(tx) {
+      if (tx.status.toLowerCase() !== 'ok') {
+        this.reverted = true
+        this.txHash = tx.txHash
+        throw new Error()
+      }
     }
   },
   mounted: async function () {
@@ -335,16 +358,21 @@ export default {
     await this.getDetails()
   },
   beforeRouteLeave: async function (to, from, next) {
+    this.reverted = false;
 
     if (to.name === 'result') {
+      this.toggleLoader();
       try {
-        let txHash = await this.$migrateTokens(this.amount, this.walletAddress, this.ethWalletAddress, this.signature)
-        this.$store.commit('setMigrationHash', txHash)
+        let txResult = await this.$migrateTokens(this.amount, this.walletAddress, this.ethWalletAddress, this.signature)
+        this.throwReverted(txResult)
+        this.$store.commit('setMigrationHash', txResult.txHash)
+
         next()
       } catch(e) {
         this.step = 4
         this.signature = null
       }
+      this.toggleLoader();
     }
   }
 }
@@ -438,5 +466,13 @@ export default {
   width: 100%;
   outline: none;
   height: 100%;
+}
+
+.app-migration-result-loading {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 50px;
+  animation: rotate 2s reverse infinite linear;
 }
 </style>

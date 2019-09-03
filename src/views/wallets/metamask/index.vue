@@ -233,7 +233,7 @@ export default {
       this.openModal('processing')
       try {
         const res = await this.$migrateTokens(_amount, _sender, _coinbase)
-        this.$store.commit('setMigrationHash', res)
+        this.$store.commit('setMigrationHash', res.txHash)
 
         await this.$router.push({
           name: 'result',
