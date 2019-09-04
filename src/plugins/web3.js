@@ -191,7 +191,7 @@ export default {
       const migrationObj = await eval(methodToExecute)(_amount, _sender, _coinbase, msgObj)
       const txInfo = await CoinBaseService.migrate(migrationObj)
 
-      return txInfo.data.TxHash
+      return txInfo.data
     }
 
     function validateMigrationMethod (_msgObj) {
