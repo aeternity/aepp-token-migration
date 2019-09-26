@@ -153,7 +153,8 @@
               </li>
               <li>
                 <span>2</span>
-                Enter you message
+                <ae-text face="sans-s" class="app-highlight"> IMPORTANT </ae-text>
+                The message you enter must be your <b>AEternity address only! </b>
               </li>
               <li>
                 <span>3</span>

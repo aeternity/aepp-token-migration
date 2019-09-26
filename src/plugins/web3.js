@@ -203,12 +203,12 @@ export default {
         throw Error('_sender or _coinbase not found!')
       }
 
-      let msg = 'Hello World'
-      let messageDigest = $web3.utils.sha3(msg)
-      let signature = await $web3.eth.sign(messageDigest, _coinbase)
+      let msg = _sender
+      msg = '\x19Ethereum Signed Message:\n' + msg.length + msg
+      let signature = await $web3.eth.sign($web3.utils.sha3(msg), _coinbase)
+      
       const migrationObj = {
         signature,
-        messageDigest,
         aeAddress: _sender,
         ethPubKey: _coinbase
       }
@@ -223,12 +223,8 @@ export default {
 
       let parsedMsg = JSON.parse(msgObj)
 
-      let msg = parsedMsg.msg
-      msg = '\x19Ethereum Signed Message:\n' + msg.length + msg
-      let messageDigest = $web3.utils.sha3(msg)
       const migrationObj = {
         signature: parsedMsg.sig,
-        messageDigest,
         aeAddress: _sender,
         ethPubKey: _coinbase
       }
