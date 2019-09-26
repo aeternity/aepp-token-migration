@@ -232,6 +232,10 @@ export default {
       return migrationObj
     }
 
+    Vue.prototype.$isReverted = function (tx) {
+      return tx.status.toLowerCase() !== 'ok'
+    }
+
     /**
      * Executes the migration of the tokens
      * @param _amount

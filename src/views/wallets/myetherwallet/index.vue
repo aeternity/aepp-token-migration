@@ -343,8 +343,8 @@ export default {
     toggleLoader() {
       this.loading = !this.loading
     },
-    throwReverted(tx) {
-      if (tx.status.toLowerCase() !== 'ok') {
+    checkForRevert(tx) {
+      if (this.$isReverted(tx)) {
         this.reverted = true
         this.txHash = tx.txHash
         throw new Error()
@@ -365,7 +365,7 @@ export default {
       this.toggleLoader();
       try {
         let txResult = await this.$migrateTokens(this.amount, this.walletAddress, this.ethWalletAddress, this.signature)
-        this.throwReverted(txResult)
+        this.checkForRevert(txResult)
         this.$store.commit('setMigrationHash', txResult.txHash)
 
         next()

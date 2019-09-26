@@ -1,7 +1,7 @@
 <template>
   <app-view>
     <app-allert v-if="migrated">
-      You already have migrated your tokens. More information with the following TX Hash: {{ TxHash }}
+      You already have migrated your tokens. More information with the following TX Hash: {{ txHash }}
     </app-allert>
       <app-header>
         <app-header-nav prog="6/6" text="Prepare your transaction with MetaMask"/>
@@ -152,11 +152,14 @@
               <ae-icon name="info"/>
             </template>
             <template slot="subtitle">
-              Something went wrong
+              {{ errorTitle }}
             </template>
             <template slot="intro">
               Migration did not take place. This does not affect your <br />
               tokens, you are safe to try again.
+              <div v-if="reverted"> 
+                <strong> Failed Tx: </strong> {{ txHash }}
+              </div>
             </template>
             <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">
               Try Again
@@ -211,7 +214,8 @@ export default {
       gasPrice: '0',
       checked: false,
       migrated: false,
-      TxHash: null
+      txHash: null,
+      reverted: false
     }
   },
   computed: {
@@ -222,8 +226,11 @@ export default {
       'walletAddress'
     ]),
     introTemplate: function () {
-      return this.migrated ? `The balance has already been migrated in ${ this.TxHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
-    }
+      return this.migrated ? `The balance has already been migrated in ${ this.txHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
+    },
+    errorTitle() {
+      return this.reverted ? 'The transaction has been reverted!' : 'Something went wrong'
+    },
   },
   methods: {
     /**
@@ -233,6 +240,7 @@ export default {
       this.openModal('processing')
       try {
         const res = await this.$migrateTokens(_amount, _sender, _coinbase)
+        this.checkForRevert(res)
         this.$store.commit('setMigrationHash', res.txHash)
 
         await this.$router.push({
@@ -252,11 +260,19 @@ export default {
     async getDetails () {
       const infoObj = await this.$getAEInfo()
       this.migrated = infoObj.migrated
-      this.TxHash = infoObj.migrateTxHash
+      this.txHash = infoObj.migrateTxHash
 
       Object.assign(this.$data, {
         amount: this.$web3.utils.fromWei(infoObj.tokens, 'ether')
       })
+    },
+
+    checkForRevert(tx) {
+      if (this.$isReverted(tx)) {
+        this.reverted = true
+        this.txHash = tx.txHash
+        throw new Error()
+      }
     }
   },
 
