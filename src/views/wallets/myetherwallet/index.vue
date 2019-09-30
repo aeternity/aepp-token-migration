@@ -162,7 +162,7 @@
               </li>
               <li>
                 <span>4</span>
-                Copy it 
+                Copy it
               </li>
               <li>
                 <span>5</span>
@@ -226,16 +226,16 @@
             {{ errorTitle }}
           </template>
           <template slot="intro">
-            <div> 
+            <div>
               Migration did not take place. This does not affect your <br />
               tokens, you are safe to try again.
             </div>
-            <div v-if="reverted"> 
+            <div v-if="reverted">
               <strong> Failed Tx: </strong> {{ txHash }}
             </div>
-            <div v-if="rejectedByNode"> 
+            <div v-if="rejectedByNode">
               <strong> Reason: </strong> {{ rejectedByNode }}
-            </div>            
+            </div>
           </template>
           <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">
             Try Again
@@ -294,17 +294,17 @@ export default {
     AppColumn
   },
   data: function () {
-    return { 
-      amount: null, 
-      gasPrice: '0', 
-      step: 0, 
-      checked: false, 
+    return {
+      amount: null,
+      gasPrice: '0',
+      step: 0,
+      checked: false,
       signature: null,
       migrated: false,
       txHash: null,
       reverted: false,
       loading: false,
-      rejectedByNode: ""
+      rejectedByNode: ''
     }
   },
   computed: {
@@ -313,7 +313,8 @@ export default {
     },
     mewURI () {
       if (!this.walletAddress) return
-       return this.$generateMEWURI()
+
+      return this.$generateMEWURI()
     },
     introTemplate: function () {
       return this.migrated ? `The balance has already been migrated in ${ this.txHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
@@ -335,7 +336,6 @@ export default {
       * Get Details for the current ETH address
     */
     async getDetails () {
-
       const infoObj = await this.$getAEInfo(this.ethWalletAddress)
       this.migrated = infoObj.migrated
       this.txHash = infoObj.migrateTxHash
@@ -344,13 +344,11 @@ export default {
         amount: this.$web3.utils.fromWei(infoObj.tokens, 'ether')
       })
     },
-    toggleLoader() {
+    toggleLoader () {
       this.loading = !this.loading
     },
-    async checkForRevert(tx) {
-
+    async checkForRevert (tx) {
       if (this.rejectedByNode || await this.$isReverted(tx)) {
-
         this.reverted = true
         this.txHash = tx
         throw new Error()
@@ -365,10 +363,10 @@ export default {
     await this.getDetails()
   },
   beforeRouteLeave: async function (to, from, next) {
-    this.reverted = false;
+    this.reverted = false
 
     if (to.name === 'result') {
-      this.toggleLoader();
+      this.toggleLoader()
       try {
         let txResult = await this.$migrateTokens(this.amount, this.walletAddress, this.ethWalletAddress, this.signature)
         this.rejectedByNode = await this.$waitForMineTx(txResult.txHash)
