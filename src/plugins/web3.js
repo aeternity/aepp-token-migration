@@ -206,7 +206,7 @@ export default {
       let msg = _sender
       msg = '\x19Ethereum Signed Message:\n' + msg.length + msg
       let signature = await $web3.eth.sign($web3.utils.sha3(msg), _coinbase)
-      
+
       const migrationObj = {
         signature,
         aeAddress: _sender,

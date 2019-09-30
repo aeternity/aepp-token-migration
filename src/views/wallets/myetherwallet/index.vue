@@ -318,7 +318,7 @@ export default {
     introTemplate: function () {
       return this.migrated ? `The balance has already been migrated in ${ this.txHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
     },
-    errorTitle() {
+    errorTitle () {
       return this.reverted ? 'The transaction has been reverted!' : 'Something went wrong'
     },
     ...mapState([
@@ -376,11 +376,11 @@ export default {
         this.$store.commit('setMigrationHash', txResult.txHash)
 
         next()
-      } catch(e) {
+      } catch (e) {
         this.step = 4
         this.signature = null
       }
-      this.toggleLoader();
+      this.toggleLoader()
     }
   }
 }

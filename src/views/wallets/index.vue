@@ -164,7 +164,7 @@ export default {
       if (!this.ethWalletAddress) return false
       try {
         return this.$isEthAddress(this.ethWalletAddress)
-      } catch (e) {
+      } catch (e){
 
         return false
       }
@@ -200,7 +200,7 @@ export default {
         return this.openModal('wallet-not-found')
       }
       return next()
-    } else if (to.name === 'myetherwallet'){
+    } else if (to.name === 'myetherwallet') {
         if(!this.ethWalletAddress) return this.openModal('enter-eth-address')
 
         return next()
