@@ -254,13 +254,6 @@ export default {
         ).encodeABI().slice(2)
     }
 
-    /**
-     * Generates MEW URL String
-     * @param _contract
-     * @param _gas
-     * @param _payload
-     * @return {string}
-     */
     Vue.prototype.$generateMEWURI = function () {
       return `https://www.myetherwallet.com/interface/sign-message`
     }
