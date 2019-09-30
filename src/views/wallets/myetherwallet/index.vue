@@ -233,6 +233,9 @@
             <div v-if="reverted"> 
               <strong> Failed Tx: </strong> {{ txHash }}
             </div>
+            <div v-if="rejectedByNode"> 
+              <strong> Reason: </strong> {{ rejectedByNode }}
+            </div>            
           </template>
           <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">
             Try Again
@@ -300,7 +303,8 @@ export default {
       migrated: false,
       txHash: null,
       reverted: false,
-      loading: false
+      loading: false,
+      rejectedByNode: ""
     }
   },
   computed: {
@@ -343,10 +347,12 @@ export default {
     toggleLoader() {
       this.loading = !this.loading
     },
-    checkForRevert(tx) {
-      if (this.$isReverted(tx)) {
+    async checkForRevert(tx) {
+
+      if (this.rejectedByNode || await this.$isReverted(tx)) {
+
         this.reverted = true
-        this.txHash = tx.txHash
+        this.txHash = tx
         throw new Error()
       }
     }
@@ -365,7 +371,8 @@ export default {
       this.toggleLoader();
       try {
         let txResult = await this.$migrateTokens(this.amount, this.walletAddress, this.ethWalletAddress, this.signature)
-        this.checkForRevert(txResult)
+        this.rejectedByNode = await this.$waitForMineTx(txResult.txHash)
+        await this.checkForRevert(txResult.txHash)
         this.$store.commit('setMigrationHash', txResult.txHash)
 
         next()

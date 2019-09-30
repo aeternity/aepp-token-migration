@@ -160,6 +160,9 @@
               <div v-if="reverted"> 
                 <strong> Failed Tx: </strong> {{ txHash }}
               </div>
+              <div v-if="rejectedByNode"> 
+                <strong> Reason: </strong> {{ rejectedByNode }}
+              </div>
             </template>
             <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">
               Try Again
@@ -215,7 +218,8 @@ export default {
       checked: false,
       migrated: false,
       txHash: null,
-      reverted: false
+      reverted: false,
+      rejectedByNode: ""
     }
   },
   computed: {
@@ -240,7 +244,8 @@ export default {
       this.openModal('processing')
       try {
         const res = await this.$migrateTokens(_amount, _sender, _coinbase)
-        this.checkForRevert(res)
+        this.rejectedByNode = await this.$waitForMineTx(res.txHash)
+        await this.checkForRevert(res.txHash)
         this.$store.commit('setMigrationHash', res.txHash)
 
         await this.$router.push({
@@ -267,10 +272,10 @@ export default {
       })
     },
 
-    checkForRevert(tx) {
-      if (this.$isReverted(tx)) {
+    async checkForRevert(tx) {
+      if (this.rejectedByNode || await this.$isReverted(tx)) {
         this.reverted = true
-        this.txHash = tx.txHash
+        this.txHash = tx
         throw new Error()
       }
     }
