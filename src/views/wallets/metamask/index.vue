@@ -1,7 +1,7 @@
 <template>
   <app-view>
     <app-allert v-if="migrated">
-      You already have migrated your tokens. More information with the following TX Hash: {{ TxHash }}
+      You already have migrated your tokens. More information with the following TX Hash: {{ txHash }}
     </app-allert>
       <app-header>
         <app-header-nav prog="6/6" text="Prepare your transaction with MetaMask"/>
@@ -152,11 +152,17 @@
               <ae-icon name="info"/>
             </template>
             <template slot="subtitle">
-              Something went wrong
+              {{ errorTitle }}
             </template>
             <template slot="intro">
               Migration did not take place. This does not affect your <br />
               tokens, you are safe to try again.
+              <div v-if="reverted"> 
+                <strong> Failed Tx: </strong> {{ txHash }}
+              </div>
+              <div v-if="rejectedByNode"> 
+                <strong> Reason: </strong> {{ rejectedByNode }}
+              </div>
             </template>
             <ae-button @click="closeModal" face="round" fill="secondary" style="width: 260px">
               Try Again
@@ -211,7 +217,9 @@ export default {
       gasPrice: '0',
       checked: false,
       migrated: false,
-      TxHash: null
+      txHash: null,
+      reverted: false,
+      rejectedByNode: ""
     }
   },
   computed: {
@@ -222,8 +230,11 @@ export default {
       'walletAddress'
     ]),
     introTemplate: function () {
-      return this.migrated ? `The balance has already been migrated in ${ this.TxHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
-    }
+      return this.migrated ? `The balance has already been migrated in ${ this.txHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
+    },
+    errorTitle() {
+      return this.reverted ? 'The transaction has been reverted!' : 'Something went wrong'
+    },
   },
   methods: {
     /**
@@ -233,6 +244,8 @@ export default {
       this.openModal('processing')
       try {
         const res = await this.$migrateTokens(_amount, _sender, _coinbase)
+        this.rejectedByNode = await this.$waitForMineTx(res.txHash)
+        await this.checkForRevert(res.txHash)
         this.$store.commit('setMigrationHash', res.txHash)
 
         await this.$router.push({
@@ -252,11 +265,19 @@ export default {
     async getDetails () {
       const infoObj = await this.$getAEInfo()
       this.migrated = infoObj.migrated
-      this.TxHash = infoObj.migrateTxHash
+      this.txHash = infoObj.migrateTxHash
 
       Object.assign(this.$data, {
         amount: this.$web3.utils.fromWei(infoObj.tokens, 'ether')
       })
+    },
+
+    async checkForRevert(tx) {
+      if (this.rejectedByNode || await this.$isReverted(tx)) {
+        this.reverted = true
+        this.txHash = tx
+        throw new Error()
+      }
     }
   },
 
