@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Web3 from 'web3'
 import ABI from 'human-standard-token-abi'
 import ethereumjs from 'ethereumjs-abi'
