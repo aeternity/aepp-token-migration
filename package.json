@@ -52,7 +52,7 @@
     "sass-loader": "^7.0.1",
     "vue-svg-loader": "^0.10.0",
     "vue-template-compiler": "^2.5.17",
-    "webpack": "4.18.0",
+    "webpack": "4.17.0",
     "webpack-bundle-analyzer": "^3.0.3"
   },
   "browserslist": [
