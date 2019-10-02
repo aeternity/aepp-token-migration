@@ -219,7 +219,7 @@ export default {
       migrated: false,
       txHash: null,
       reverted: false,
-      rejectedByNode: ""
+      rejectedByNode: ''
     }
   },
   computed: {
@@ -234,7 +234,7 @@ export default {
     },
     errorTitle() {
       return this.reverted ? 'The transaction has been reverted!' : 'Something went wrong'
-    },
+    }
   },
   methods: {
     /**
@@ -272,7 +272,7 @@ export default {
       })
     },
 
-    async checkForRevert(tx) {
+    async checkForRevert (tx) {
       if (this.rejectedByNode || await this.$isReverted(tx)) {
         this.reverted = true
         this.txHash = tx
