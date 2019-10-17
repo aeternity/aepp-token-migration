@@ -325,17 +325,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-.hris-custom {
-  margin-left: auto;
-  margin-right: auto;
-  font-family: "IBM Plex Mono";
-  font-size: 3.25rem;
-  letter-spacing: -0.05em;
-  line-height: 3rem;
-  color: dimgrey; 
-}
-
 .card-opacity {
   opacity: 0.6;
 }
+
 </style>
