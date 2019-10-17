@@ -60,12 +60,14 @@
                 {{ introTemplate }}
               </template>
             </app-intro>
-            <ae-input readonly for="amount" type="number" label="Amount" v-model="amount" :placeholder="balance" aemount>
-              <ae-text  slot="header" fill="black" class="ae-text-width">AE Tokens</ae-text>
+             <ae-card class="card-opacity">
+              <ae-text  slot="header" fill="black" >AE Tokens</ae-text>
+              <ae-text  slot="header" fill="black" >Amount</ae-text>
+              <app-ae-text-readonly>{{ amount }}</app-ae-text-readonly> 
               <ae-toolbar align="justify" slot="footer">
                 <span>GAS: {{ gasPrice }} ETH</span>
               </ae-toolbar>
-            </ae-input>
+            </ae-card>
             <div class="app-check-spacing">
               <ae-check name="approve" v-model="checked">
                 <ae-text face="sans-s">
@@ -181,6 +183,7 @@ import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
 import AeInput from '@aeternity/aepp-components/dist/ae-input'
+import AeCard from '@aeternity/aepp-components/dist/ae-card'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
@@ -189,6 +192,7 @@ import AppIntro from '../../../components/app-intro.vue'
 import AppJazzicon from '../../../components/app-jazzicon.vue'
 import AppProcess from '../../../components/app-process.vue'
 import AppAllert from '../../../components/app-alert.vue'
+import AppAeTextReadonly from '../../../components/app-ae-text-readonly.vue'
 
 import mixinsModal from '../../../mixins/modal'
 
@@ -201,13 +205,15 @@ export default {
     AeText,
     AeIdenticon,
     AeInput,
+    AeCard,
     AeCheck,
     AeToolbar,
     AppModal,
     AppIntro,
     AppJazzicon,
     AppProcess,
-    AppAllert
+    AppAllert,
+    AppAeTextReadonly
   },
   data () {
     return {
@@ -319,9 +325,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-.ae-text-width {
-      width: 110px;
-      position: relative
+.card-opacity {
+  opacity: 0.6;
 }
 
 </style>
