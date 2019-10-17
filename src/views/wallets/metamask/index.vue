@@ -60,20 +60,10 @@
                 {{ introTemplate }}
               </template>
             </app-intro>
-           <!-- <ae-card >
-              <ae-text  slot="header" fill="black" class="ae-text-width">AE Tokens</ae-text>
-              <ae-text  fill="black" class="ae-amount">{{ amount }}</ae-text>
-              <ae-toolbar align="justify" slot="footer">
-                <span>GAS: {{ gasPrice }} ETH</span>
-              </ae-toolbar>
-            </ae-card> -->
              <ae-card class="card-opacity">
               <ae-text  slot="header" fill="black" >AE Tokens</ae-text>
               <ae-text  slot="header" fill="black" >Amount</ae-text>
-              <!-- <div class="hris-custom">
-                <ae-text  fill="black" class="ae-amount">{{ amount }}</ae-text>
-              </div> -->
-              <ae-text class="hris-custom" >{{ amount }}</ae-text>
+              <app-ae-text-readonly>{{ amount }}</app-ae-text-readonly> 
               <ae-toolbar align="justify" slot="footer">
                 <span>GAS: {{ gasPrice }} ETH</span>
               </ae-toolbar>
@@ -193,7 +183,6 @@ import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
 import AeInput from '@aeternity/aepp-components/dist/ae-input'
-// import AeCard from '@aeternity/aepp-components/dist/ae-card'
 import AeCard from '@aeternity/aepp-components/dist/ae-card'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
@@ -203,6 +192,7 @@ import AppIntro from '../../../components/app-intro.vue'
 import AppJazzicon from '../../../components/app-jazzicon.vue'
 import AppProcess from '../../../components/app-process.vue'
 import AppAllert from '../../../components/app-alert.vue'
+import AppAeTextReadonly from '../../../components/app-ae-text-readonly.vue'
 
 import mixinsModal from '../../../mixins/modal'
 
@@ -222,7 +212,8 @@ export default {
     AppIntro,
     AppJazzicon,
     AppProcess,
-    AppAllert
+    AppAllert,
+    AppAeTextReadonly
   },
   data () {
     return {
@@ -333,11 +324,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
-// .ae-text-width {
-//       width: 110px;
-//       position: relative;
-// }
 
 .hris-custom {
   margin-left: auto;

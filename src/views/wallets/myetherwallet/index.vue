@@ -34,20 +34,14 @@
                 </p>
               </template>
             </app-intro>
-            <ae-input
-              readonly
-              for="amount"
-              type="number"
-              label="Amount to migrate"
-              v-model="amount"
-              placeholder="0.0"
-              aemount
-            >
-              <ae-text slot="header" fill="black">AE Tokens</ae-text>
+             <ae-card class="card-opacity">
+              <ae-text  slot="header" fill="black" >AE Tokens</ae-text>
+              <ae-text  slot="header" fill="black" >Amount</ae-text>
+              <app-ae-text-readonly>{{ amount }}</app-ae-text-readonly> 
               <ae-toolbar align="justify" slot="footer">
-                <span>Estimated GAS: {{ gasPrice }} ETH</span>
+                <span>GAS: {{ gasPrice }} ETH</span>
               </ae-toolbar>
-            </ae-input>
+            </ae-card>
             <div class="app-check-spacing">
               <ae-check name="approve" v-model="checked">
                 <ae-text face="sans-s">
@@ -256,6 +250,7 @@ import { directives } from '@aeternity/aepp-components'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
+import AeCard from '@aeternity/aepp-components/dist/ae-card'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
 import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
@@ -268,6 +263,7 @@ import AppProcess from '../../../components/app-process.vue'
 import AppRow from '../../../components/app-row.vue'
 import AppSeparator from '../../../components/app-separator.vue'
 import AppColumn from '../../../components/app-column.vue'
+import AppAeTextReadonly from '../../../components/app-ae-text-readonly.vue'
 
 import mixinsModal from '../../../mixins/modal'
 
@@ -284,6 +280,7 @@ export default {
     AeText,
     AeIdenticon,
     AeInput,
+    AeCard,
     AeCheck,
     AeToolbar,
     AppModal,
@@ -291,7 +288,8 @@ export default {
     AppProcess,
     AppRow,
     AppSeparator,
-    AppColumn
+    AppColumn,
+    AppAeTextReadonly
   },
   data: function () {
     return {
@@ -480,5 +478,9 @@ export default {
   margin: 0 auto;
   width: 50px;
   animation: rotate 2s reverse infinite linear;
+}
+
+.card-opacity {
+  opacity: 0.6;
 }
 </style>
