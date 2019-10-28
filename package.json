@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@aeternity/aepp-components": "git+https://git@github.com/aeternity/aepp-components.git#develop",
-    "@aeternity/aepp-sdk": "5.0.0-next.1",
+    "@aeternity/aepp-sdk": "6.0.0",
     "@aeternity/ledger-app-api": "0.0.4",
     "@ledgerhq/hw-transport-u2f": "^4.24.0",
     "@zxing/library": "^0.8.3",
