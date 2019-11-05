@@ -5,8 +5,6 @@ dispatch:
 #     service: default
 #   - url: "transfer.aeternity.app/*"
 #   service: frontend
-  - url: "migrate.aeternity.com/*"
-    service: frontend
   - url: "www.migrate.aeternity.com/*"
     service: frontend
 #   - url: "aeternity.app/*"
