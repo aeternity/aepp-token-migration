@@ -85,16 +85,6 @@
               Make Transaction
             </ae-button>
           </app-panel>
-          <app-panel v-if="!migrated" class="app-text-center" padding secondary>
-            <ae-icon name="info" size="2rem" class="app-highlight"/>
-            <ae-text face="sans-s" :weight=700>
-              The transaction you’re about to make will not send any ETH, will only use ETH for gas. The amount of tokens
-              that you send will be stored in the
-              <span class="app-highlight">
-                data tab in MetaMask.
-              </span>
-            </ae-text>
-          </app-panel>
         </app-panel>
       </app-view>
       <!-- Modal for not-enough-eth -->

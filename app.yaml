@@ -57,11 +57,11 @@ handlers:
     upload: dist/(.+\.json)
 
   - url: /(.+)
-    #secure: always
+    secure: always
     static_files: dist/index.html
     upload: dist/index.html
 
   - url: /
-    #secure: always
+    secure: always
     static_files: dist/index.html
     upload: dist/index.html

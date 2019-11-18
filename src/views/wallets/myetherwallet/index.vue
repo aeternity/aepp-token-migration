@@ -59,7 +59,7 @@
               Start Migration on MEW
             </ae-button>
           </app-panel>
-          <hr class="app-horizontal-line" />
+          <hr class="app-horizontal-line, horizontal-line-margin"/>
           <app-intro>
             <template slot="subtitle">
               Migration Process
@@ -83,21 +83,6 @@
               <p v-html="$options.filters.chunk(walletAddress)"></p>
             </li>
           </app-process>
-          <hr v-if="!migrated" class="app-horizontal-line" />
-        </app-panel>
-        <app-panel v-if="!migrated" class="app-text-center" padding secondary>
-          <ae-icon name="info" size="2rem" class="app-highlight"/>
-          <ae-text face="sans-s" :weight="700">
-            The transaction you’re about to make will not send any ETH, it will only use ETH for gas. The amount of
-            tokens that you send will be stored in the dataload, which can be found in
-            <span class="app-highlight">
-              Generated Data in MyEtherWallet.
-            </span>
-          </ae-text>
-          <br />
-          <ae-text face="sans-s" class="app-highlight">
-            DO NOT SEND AE TOKENS TO THE MIGRATION CONTRACT DIRECTLY
-          </ae-text>
         </app-panel>
       </app-panel>
     </app-view>
@@ -482,5 +467,10 @@ export default {
 
 .card-opacity {
   opacity: 0.6;
+}
+
+.horizontal-line-margin {
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 </style>
