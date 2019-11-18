@@ -40,7 +40,7 @@
               <h2 class="warning">
                 Tokens migrated in Phase 4
                 <span>
-                  Tokens are available right after the 4th Hardfork.<br />
+                  Tokens are available right after the Lima Hardfork.<br />
                   All tokens migrated during Phase 4. (October, 2019 - ∞).
                 </span>
               </h2>
@@ -77,7 +77,7 @@
               <h2 class="check">
                 Tokens migrated in Phase 3
                 <span>
-                  Tokens will be available after the 3rd Hardfork.<br />
+                  Tokens will be available after the Fortuna Hardfork.<br />
                   All tokens migrated during Phase 3 (May, 2019 - September 2019).
                 </span>
               </h2>
@@ -114,7 +114,7 @@
               <h2 class="check">
                 Tokens migrated in Phase 2
                 <span>
-                  Tokens will be available after the 2nd Hardfork.<br />
+                  Tokens will be available after the Minerva Hardfork.<br />
                   All tokens migrated during Phase 2 (March, 2019 - May 2019).
                 </span>
               </h2>
@@ -150,7 +150,7 @@
               <h2 class="check">
                 Tokens migrated in Phase 1
                 <span>
-                  Tokens will be available after the 1st Hardfork.<br />
+                  Tokens will be available after the Mainnet Launch.<br />
                   All tokens migrated during Phase 1 (November 26th, 2018 - February 2019).
                 </span>
               </h2>
