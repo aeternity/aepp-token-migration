@@ -56,9 +56,7 @@
                   <span>PHASE {{ e.deliveryPeriod }}</span>
                 </h5>
                 <div class="app-migration-result-tx">
-                  <a :href="`https://${
-                 env === 'development' ? 'kovan.' : ''
-                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
+                  <a :href="`https://mainnet.aeternal.io/transactions/${e.transactionHash}`" target="_blank">
                     <p v-html="$options.filters.chunk(e.transactionHash)"></p>
                   </a>
                   <h1>
