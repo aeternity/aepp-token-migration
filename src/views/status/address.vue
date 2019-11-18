@@ -77,7 +77,7 @@
               <h2 class="check">
                 Tokens migrated in Phase 3
                 <span>
-                  Tokens will be available after the 3nd Hardfork.<br />
+                  Tokens will be available after the 3rd Hardfork.<br />
                   All tokens migrated during Phase 3 (May, 2019 - September 2019).
                 </span>
               </h2>
