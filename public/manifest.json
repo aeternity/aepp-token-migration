@@ -1,0 +1,16 @@
+{
+  "name": "AE Token Migration",
+  "short_name": "migration",
+  "description": "The official aepp for migrating your tokens from Ethereum to AEternity network",
+  "lang": "en-GB",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ff0d6a",
+  "icons": [
+    {
+      "src": "/public/token-migration-icon.jpg",
+      "sizes": "96x96",
+      "type": "image"
+    }
+  ]
+}
