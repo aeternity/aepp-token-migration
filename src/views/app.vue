@@ -41,6 +41,7 @@ export default {
   mounted: async function () {
     try {
       await this.$hasWeb3()
+      await this.$getClient()
     } catch (e) {
       return
     }

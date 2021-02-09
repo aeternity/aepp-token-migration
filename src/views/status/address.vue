@@ -1,5 +1,6 @@
 <template>
   <app-view>
+  <app-allert v-if="true && migrationHash">You have successfully migrated your tokens. Your Tx Hash: {{ migrationHash }}</app-allert>
     <app-header>
       <app-header-nav text="Statuspage"/>
     </app-header>
@@ -15,11 +16,6 @@
           <ae-button @click="print()" face="round" fill="primary" extend shadow>
             Print / Save as PDF
           </ae-button>
-          <router-link :to="{ name: 'migration' }">
-            <ae-button @click="$store.commit('setWalletAddress', null)" face="flat" fill="neutral"  extend>
-              Migrate More Tokens
-            </ae-button>
-          </router-link>
         </div>
       </app-intro>
       <app-panel shadow>
@@ -42,9 +38,81 @@
           <app-panel primary padding>
             <div class="app-migration-result-phase">
               <h2 class="warning">
+                Tokens migrated in Phase 4
+                <span>
+                  Tokens are available right after the Lima Hardfork.<br />
+                  All tokens migrated during Phase 4. (October, 2019 - ∞).
+                </span>
+              </h2>
+              <h1>
+                {{totalAmountMigrated(this.phase[4]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[4]) | fromWei | shorten }}</small>
+                <small>&nbsp;AE</small>
+              </h1>
+            </div>
+            <ul class="app-migration-result-table">
+              <li v-for="(e, index) in phase[4]" :key="index">
+                <h5>
+                  {{ new Date(e.created).toDateString() }}
+                  <span>PHASE {{ e.deliveryPeriod }}</span>
+                </h5>
+                <div class="app-migration-result-tx">
+                  <a :href="`https://mainnet.aeternal.io/transactions/${e.transactionHash}`" target="_blank">
+                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                  </a>
+                  <h1>
+                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
+                    <small>&nbsp;AE</small>
+                  </h1>
+                </div>
+              </li>
+            </ul>
+          </app-panel>
+        </div>
+
+        <div class="app-migration-panel-phase">
+          <app-panel primary padding>
+            <div class="app-migration-result-phase">
+              <h2 class="check">
+                Tokens migrated in Phase 3
+                <span>
+                  Tokens will be available after the Fortuna Hardfork.<br />
+                  All tokens migrated during Phase 3 (May, 2019 - September 2019).
+                </span>
+              </h2>
+              <h1>
+                {{totalAmountMigrated(this.phase[3]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[3]) | fromWei | shorten }}</small>
+                <small>&nbsp;AE</small>
+              </h1>
+            </div>
+            <ul class="app-migration-result-table">
+              <li v-for="(e, index) in phase[3]" :key="index">
+                <h5>
+                  {{ new Date(e.created).toDateString() }}
+                  <span>PHASE {{ e.deliveryPeriod }}</span>
+                </h5>
+                <div class="app-migration-result-tx">
+                  <a :href="`https://${
+                 env === 'development' ? 'kovan.' : ''
+                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
+                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
+                  </a>
+                  <h1>
+                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
+                    <small>&nbsp;AE</small>
+                  </h1>
+                </div>
+              </li>
+            </ul>
+          </app-panel>
+        </div> 
+
+        <div class="app-migration-panel-phase">
+          <app-panel primary padding>
+            <div class="app-migration-result-phase">
+              <h2 class="check">
                 Tokens migrated in Phase 2
                 <span>
-                  Tokens will be available after the 2nd Hardfork.<br />
+                  Tokens will be available after the Minerva Hardfork.<br />
                   All tokens migrated during Phase 2 (March, 2019 - May 2019).
                 </span>
               </h2>
@@ -80,7 +148,7 @@
               <h2 class="check">
                 Tokens migrated in Phase 1
                 <span>
-                  Tokens will be available after the 1st Hardfork.<br />
+                  Tokens will be available after the Mainnet Launch.<br />
                   All tokens migrated during Phase 1 (November 26th, 2018 - February 2019).
                 </span>
               </h2>
@@ -164,6 +232,8 @@ import AppIntro from '../../components/app-intro.vue'
 import AppRow from '../../components/app-row.vue'
 import AppSeparator from '../../components/app-separator.vue'
 import AppColumn from '../../components/app-column.vue'
+import AppNotice from '../../components/app-notice.vue'
+import AppAllert from '../../components/app-alert.vue'
 
 const print = window.print
 
@@ -177,16 +247,20 @@ export default {
     AppIntro,
     AppRow,
     AppSeparator,
-    AppColumn
+    AppColumn,
+    AppAllert
   },
   data () {
     return {
+      color:"#00BFA8",
       loading: true,
       intervalId: 0,
       phase: {
         0: [],
         1: [],
-        2: []
+        2: [],
+        3: [],
+        4: []
       }
     }
   },
@@ -221,15 +295,19 @@ export default {
      * Get all burn events
      */
     async getBurnEvents () {
-      const [zero, one, two] = await Promise.all([
+      const [zero, one, two, three, four] = await Promise.all([
         this.phaseAPIResponse(0),
         this.phaseAPIResponse(1),
-        this.phaseAPIResponse(2)
+        this.phaseAPIResponse(2),
+        this.phaseAPIResponse(3),
+        this.phaseAPIResponse(4)
       ])
       this.phase = {
         0: orderBy(zero, ['created'], ['desc']),
         1: orderBy(one, ['created'], ['desc']),
-        2: orderBy(two, ['created'], ['desc'])
+        2: orderBy(two, ['created'], ['desc']),
+        3: orderBy(three, ['created'], ['desc']),
+        4: orderBy(four, ['created'], ['desc'])
       }
     },
 
@@ -254,14 +332,17 @@ export default {
         this.totalAmountMigrated(
           this.phase[0].concat(
             this.phase[1],
-            this.phase[2]
+            this.phase[2],
+            this.phase[3],
+            this.phase[4]
           )
         )
       )
     },
     ...mapState([
       'env',
-      'walletAddress'
+      'walletAddress',
+      'migrationHash'
     ])
   },
   mounted () {

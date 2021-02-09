@@ -1,9 +1,15 @@
+/* eslint-disable */
+
 import Web3 from 'web3'
 import ABI from 'human-standard-token-abi'
 import ethereumjs from 'ethereumjs-abi'
 import base58check from 'base58check'
+import CoinBaseService from '@/api-services/coinbase.service'
+
 const BN = Web3.utils.BN
 const GASLIMIT = new BN(300000)
+const METAMASK = 'prepareMetaMaskMigrationObject'
+const MEW = 'prepareMEWMigrationObject'
 
 /**
  * Exporting IDs of the networks
@@ -35,18 +41,6 @@ export default {
      * Assign web3 to the vue prototype
      */
     Object.assign(Vue.prototype, { $web3 })
-
-    /**
-     * Reference to the token contract
-     * @type {string}
-     */
-    Vue.prototype.$tokenContract = options.tokenContract
-
-    /**
-     * Reference to the burner contract
-     * @type {string}
-     */
-    Vue.prototype.$tokenBurner = options.tokenBurner
 
     /**
      * Check if the browser has web3 installed
@@ -103,15 +97,15 @@ export default {
      * Returns the balance in AE of the address holder
      * @return {Promise<any>}
      */
-    Vue.prototype.$getAEBalance = async function () {
+    Vue.prototype.$getAEInfo = async function (address) {
       if (!$web3) {
         throw Error('$web3 is not installed!')
       }
 
-      let coinbase = await $web3.eth.getCoinbase()
-      let tokenContract = new $web3.eth.Contract(ABI, options.tokenContract)
+      let coinbase = address || await $web3.eth.getCoinbase()
+      let result = (await CoinBaseService.getInfo(coinbase)).data
 
-      return tokenContract.methods.balanceOf(coinbase).call()
+      return result
     }
 
     /**
@@ -190,24 +184,54 @@ export default {
     /**
      * Executes the migration of the tokens
      * @param _amount
-     * @param _extraData
+     * @param _sender
+     * @param _coinbase
      * @return {Promise<*>}
      */
-    Vue.prototype.$migrateTokens = async function (_amount, _extraData) {
-      if (!$web3 || !_extraData) {
-        throw Error('$web3 or _extraData not found!')
+    Vue.prototype.$migrateTokens = async function (_amount, _sender, _coinbase, msgObj) {
+      const methodToExecute = validateMigrationMethod(msgObj)
+      const migrationObj = await eval(methodToExecute)(_amount, _sender, _coinbase, msgObj)
+      const txInfo = await CoinBaseService.migrate(migrationObj)
+
+      return txInfo.data
+    }
+
+    function validateMigrationMethod (_msgObj) {
+      return !_msgObj ? METAMASK : MEW
+    }
+
+    async function prepareMetaMaskMigrationObject (_amount, _sender, _coinbase) {
+      if (!_sender || !_coinbase) {
+        throw Error('_sender or _coinbase not found!')
       }
 
-      const token = new $web3.eth.Contract(ABI, options.tokenContract)
-      const coinbase = await $web3.eth.getCoinbase()
+      let msg = _sender
+      msg = '\x19Ethereum Signed Message:\n' + msg.length + msg
+      let signature = await $web3.eth.sign($web3.utils.sha3(msg), _coinbase)
 
-      return token
-        .methods
-        .approveAndCall(
-          options.tokenBurner,
-          $web3.utils.toWei(_amount, 'ether'),
-          _extraData
-        ).send({ from: coinbase })
+      const migrationObj = {
+        signature,
+        aeAddress: _sender,
+        ethPubKey: _coinbase
+      }
+
+      return migrationObj
+    }
+
+    async function prepareMEWMigrationObject (_amount, _sender, _coinbase, msgObj) {
+      if (!_sender || !_coinbase || !msgObj) {
+        throw Error('_sender or _coinbase not found!')
+      }
+
+      let parsedMsg = JSON.parse(msgObj)
+
+      const migrationObj = {
+        signature: parsedMsg.sig,
+        aeAddress: _sender,
+        ethPubKey: _coinbase
+      }
+
+      return migrationObj
     }
 
     /**
@@ -232,21 +256,18 @@ export default {
         ).encodeABI().slice(2)
     }
 
+    Vue.prototype.$generateMEWURI = function () {
+      return `https://www.myetherwallet.com/interface/sign-message`
+    }
+
     /**
-     * Generates MEW URL String
-     * @param _contract
-     * @param _gas
-     * @param _payload
-     * @return {string}
-     */
-    Vue.prototype.$generateMEWURI = function (_contract, _payload, _gas = GASLIMIT) {
-      return `https://vintage.myetherwallet.com/?to=${
-        _contract
-      }&value=0&gaslimit=${
-        _gas
-      }&data=${
-        _payload
-      }#send-transaction`
+     * Checks if a given string is a valid Ethereum address. It will also check the checksum, if the address has upper and lowercase letters.
+     * @example 0x14286fF605Da8490775c7C57939a54EA4597F9D18
+     * @param address
+     * @return {Boolean}
+    */
+    Vue.prototype.$isEthAddress = function (address) {
+      return $web3.utils.isAddress(address)
     }
 
     /**
