@@ -1,5 +1,5 @@
 <template>
-  <app-view>
+  <div>
     <!-- Application Header -->
     <app-header>
       <app-header-nav prog="4/6" text="Provide your æternity account"/>
@@ -73,11 +73,12 @@
       :paused="paused"
       v-show="scanner"
     >
+
       <ae-button class="app-scan__btn" @click="closeScanner('migration')" face="icon" fill="neutral">
         <ae-icon name="close"/>
       </ae-button>
     </qrcode-stream>
-  </app-view>
+  </div>
 </template>
 
 <script>
@@ -111,7 +112,7 @@ export default {
     AeToolbar
   },
   data () {
-    return { validated: false }
+    return { validated: false, camera: 'rear' }
   },
   computed: {
     validbase58: function () {

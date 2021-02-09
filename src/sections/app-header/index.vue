@@ -87,7 +87,7 @@ export default {
     position: relative;
     display: inline-block;
     color: #203040;
-    z-index: 10;
+    z-index: 9;
 
     > img {
       width: 20px;
