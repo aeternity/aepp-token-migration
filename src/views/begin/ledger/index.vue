@@ -77,9 +77,6 @@
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 
 import AppIntro from '../../../components/app-intro.vue'
-import AppRow from '../../../components/app-row.vue'
-import AppColumn from '../../../components/app-column.vue'
-import AppSlideContainer from '../../../components/app-slide-container.vue'
 import AppTutorial from '../../../components/app-tutorial.vue'
 
 export default {
@@ -87,9 +84,6 @@ export default {
   components: {
     AeButton,
     AppIntro,
-    AppRow,
-    AppColumn,
-    AppSlideContainer,
     AppTutorial
   }
 }

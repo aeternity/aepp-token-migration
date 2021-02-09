@@ -63,7 +63,7 @@
              <ae-card class="card-opacity">
               <ae-text  slot="header" fill="black" >AE Tokens</ae-text>
               <ae-text  slot="header" fill="black" >Amount</ae-text>
-              <app-ae-text-readonly>{{ amount }}</app-ae-text-readonly> 
+              <app-ae-text-readonly>{{ amount }}</app-ae-text-readonly>
               <ae-toolbar align="justify" slot="footer">
                 <span>GAS: {{ gasPrice }} ETH</span>
               </ae-toolbar>
@@ -149,10 +149,10 @@
             <template slot="intro">
               Migration did not take place. This does not affect your <br />
               tokens, you are safe to try again.
-              <div v-if="reverted"> 
+              <div v-if="reverted">
                 <strong> Failed Tx: </strong> {{ txHash }}
               </div>
-              <div v-if="rejectedByNode"> 
+              <div v-if="rejectedByNode">
                 <strong> Reason: </strong> {{ rejectedByNode }}
               </div>
             </template>
@@ -172,7 +172,6 @@ import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
-import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeCard from '@aeternity/aepp-components/dist/ae-card'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
@@ -194,7 +193,6 @@ export default {
     AeIcon,
     AeText,
     AeIdenticon,
-    AeInput,
     AeCard,
     AeCheck,
     AeToolbar,
@@ -226,9 +224,9 @@ export default {
       'walletAddress'
     ]),
     introTemplate: function () {
-      return this.migrated ? `The balance has already been migrated in ${ this.txHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
+      return this.migrated ? `The balance has already been migrated in ${this.txHash}` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
     },
-    errorTitle() {
+    errorTitle () {
       return this.reverted ? 'The transaction has been reverted!' : 'Something went wrong'
     }
   },

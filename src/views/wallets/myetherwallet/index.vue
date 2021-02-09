@@ -37,7 +37,7 @@
              <ae-card class="card-opacity">
               <ae-text  slot="header" fill="black" >AE Tokens</ae-text>
               <ae-text  slot="header" fill="black" >Amount</ae-text>
-              <app-ae-text-readonly>{{ amount }}</app-ae-text-readonly> 
+              <app-ae-text-readonly>{{ amount }}</app-ae-text-readonly>
               <ae-toolbar align="justify" slot="footer">
                 <span>GAS: {{ gasPrice }} ETH</span>
               </ae-toolbar>
@@ -237,7 +237,6 @@ import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeCard from '@aeternity/aepp-components/dist/ae-card'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
-import AeInput from '@aeternity/aepp-components/dist/ae-input'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
@@ -264,7 +263,6 @@ export default {
     AeIcon,
     AeText,
     AeIdenticon,
-    AeInput,
     AeCard,
     AeCheck,
     AeToolbar,
@@ -300,7 +298,7 @@ export default {
       return this.$generateMEWURI()
     },
     introTemplate: function () {
-      return this.migrated ? `The balance has already been migrated in ${ this.txHash }` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
+      return this.migrated ? `The balance has already been migrated in ${this.txHash}` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
     },
     errorTitle () {
       return this.reverted ? 'The transaction has been reverted!' : 'Something went wrong'

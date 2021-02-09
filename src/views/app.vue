@@ -10,13 +10,11 @@
 </template>
 <script>
 import { network } from '../plugins/web3'
-import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AppNotice from '../components/app-notice.vue'
 
 export default {
   name: 'app',
   components: {
-    AeButton,
     AppNotice
   },
   data () {

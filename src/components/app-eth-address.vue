@@ -17,15 +17,8 @@
 <script>
 import Cleave from 'cleave.js'
 
-import AeButton from '@aeternity/aepp-components/dist/ae-button'
-import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
-
 export default {
   name: 'app-eth-address',
-  components: {
-    AeButton,
-    AeIcon
-  },
   data () {
     return {
       cleave: null,

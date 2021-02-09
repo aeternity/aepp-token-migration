@@ -1,9 +1,19 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 
 module.exports = {
+  publicPath: process.env.BASE_URL || '.',
   productionSourceMap: false,
   configureWebpack: {
+    devtool: false,
+    performance: {
+      hints: false
+    },
     plugins: [
+      new HtmlWebpackPlugin({
+        template: 'public/index.html',
+        inlineSource: '.(js|css)$' // embed all javascript and css inline
+      }),
       new HtmlWebpackInlineSourcePlugin()
     ]
   },
@@ -16,12 +26,5 @@ module.exports = {
         data: '@import "@/style/index.scss";'
       }
     }
-  },
-  chainWebpack: (config) => config
-    .plugin('html')
-    .tap(args => {
-      // inline all js files in index.html
-      args[0]['inlineSource'] = '.(js)$'
-      return args
-    })
+  }
 }

@@ -63,8 +63,6 @@ import { mapState } from 'vuex'
 
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
-import AeText from '@aeternity/aepp-components/dist/ae-text'
-import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
 import AppNotice from '../../components/app-notice.vue'
@@ -81,9 +79,7 @@ export default {
     AppAddress,
     AppIntro,
     AeIcon,
-    AeText,
     AeButton,
-    AeCheck,
     AeToolbar
   },
   data: function () {

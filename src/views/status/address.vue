@@ -104,7 +104,7 @@
               </li>
             </ul>
           </app-panel>
-        </div> 
+        </div>
 
         <div class="app-migration-panel-phase">
           <app-panel primary padding>
@@ -226,14 +226,8 @@ import { mapState } from 'vuex'
 import AeAddress from '@aeternity/aepp-components/dist/ae-address'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
-import AeText from '@aeternity/aepp-components/dist/ae-text'
 
 import AppIntro from '../../components/app-intro.vue'
-import AppRow from '../../components/app-row.vue'
-import AppSeparator from '../../components/app-separator.vue'
-import AppColumn from '../../components/app-column.vue'
-import AppNotice from '../../components/app-notice.vue'
-import AppAllert from '../../components/app-alert.vue'
 
 const print = window.print
 
@@ -243,16 +237,11 @@ export default {
     AeAddress,
     AeButton,
     AeIdenticon,
-    AeText,
-    AppIntro,
-    AppRow,
-    AppSeparator,
-    AppColumn,
-    AppAllert
+    AppIntro
   },
   data () {
     return {
-      color:"#00BFA8",
+      color: '#00BFA8',
       loading: true,
       intervalId: 0,
       phase: {
@@ -273,7 +262,7 @@ export default {
 
     async phaseAPIResponse (phase) {
       const response = await fetch(`${
-        'https://api.backendless.com'
+        process.env.VUE_APP_BL_HOST
       }/${
         process.env.VUE_APP_BL_ID
       }/${

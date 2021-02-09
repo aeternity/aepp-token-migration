@@ -94,13 +94,10 @@ import Ae from '@aeternity/ledger-app-api'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
-import AeText from '@aeternity/aepp-components/dist/ae-text'
-import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
 import AppIntro from '../../../components/app-intro.vue'
 import AppAddress from '../../../components/app-address.vue'
-import AppNotice from '../../../components/app-notice.vue'
 import AppTutorial from '../../../components/app-tutorial.vue'
 
 import mixinsModal from '../../../mixins/modal'
@@ -112,12 +109,9 @@ export default {
     AeButton,
     AeIcon,
     AeIdenticon,
-    AeText,
-    AeCheck,
     AeToolbar,
     AppIntro,
     AppAddress,
-    AppNotice,
     AppTutorial
   },
   data: function () {

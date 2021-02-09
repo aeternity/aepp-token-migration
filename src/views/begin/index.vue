@@ -63,7 +63,6 @@
 <script>
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
-import AeText from '@aeternity/aepp-components/dist/ae-text'
 
 import AppIntro from '../../components/app-intro.vue'
 import AppRow from '../../components/app-row.vue'
@@ -75,7 +74,6 @@ export default {
   components: {
     AeButton,
     AeIcon,
-    AeText,
     AppIntro,
     AppRow,
     AppSeparator,

@@ -114,7 +114,6 @@
               </div>
             </app-panel>
           </template>
-        
         </app-intro>
       </app-panel>
     </app-modal>
@@ -124,13 +123,10 @@
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 
-import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
 import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
 import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
-import Cleave from 'cleave.js'
 
-import AppAddress from '../../components/app-address.vue'
 import AppEthAddress from '../../components/app-eth-address.vue'
 
 import AppIntro from '../../components/app-intro.vue'
@@ -143,20 +139,20 @@ import mixinsModal from '../../mixins/modal'
 import { mapState } from 'vuex'
 
 export default {
-  data() {
+  data () {
     return {
-      validated: false,
+      validated: false
     }
   },
   methods: {
-    onSubmit: function() {
-      this.$router.push({name: 'myetherwallet'})
+    onSubmit: function () {
+      this.$router.push({ name: 'myetherwallet' })
     },
     updateAddress: function (value) {
       this.$store.commit('setEthWalletAddress', value)
     }
   },
-    computed: {
+  computed: {
     approved () {
       return this.validated && this.ethWalletAddress && this.validEthAddress
     },
@@ -164,8 +160,7 @@ export default {
       if (!this.ethWalletAddress) return false
       try {
         return this.$isEthAddress(this.ethWalletAddress)
-      } catch (e){
-
+      } catch (e) {
         return false
       }
     },
@@ -177,11 +172,9 @@ export default {
   name: 'migration-wallets',
   mixins: [mixinsModal],
   components: {
-    AppAddress,
     AeToolbar,
     AppEthAddress,
     AeCheck,
-    AeIdenticon,
     AeButton,
     AeIcon,
     AppIntro,
@@ -193,7 +186,6 @@ export default {
   beforeRouteLeave: async function (to, from, next) {
     if (to.name === 'metamask') {
       try {
-
         await this.$hasWeb3()
         await this.$isLoggedIn()
       } catch (e) {
@@ -201,11 +193,11 @@ export default {
       }
       return next()
     } else if (to.name === 'myetherwallet') {
-        if(!this.ethWalletAddress) return this.openModal('enter-eth-address')
+      if (!this.ethWalletAddress) return this.openModal('enter-eth-address')
 
-        return next()
+      return next()
     }
-    
+
     return next()
   }
 }
@@ -300,6 +292,4 @@ export default {
     }
   }
 }
-
-
 </style>

@@ -13,13 +13,11 @@
   </div>
 </template>
 <script>
-import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 
 export default {
   name: 'app-process',
   components: {
-    AeButton,
     AeIcon
   },
   data: function () {
