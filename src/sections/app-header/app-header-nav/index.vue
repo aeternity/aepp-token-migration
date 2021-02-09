@@ -13,14 +13,12 @@
   </div>
 </template>
 <script>
-import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeButton from '@aeternity/aepp-components/dist/ae-button'
 import AeIcon from '@aeternity/aepp-components/dist/ae-icon'
 
 export default {
   name: 'app-header-nav',
   components: {
-    AeText,
     AeButton,
     AeIcon
   },

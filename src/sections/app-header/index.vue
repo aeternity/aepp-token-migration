@@ -33,14 +33,12 @@
 import { mapState } from 'vuex'
 
 import AeAddress from '@aeternity/aepp-components/dist/ae-address'
-import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
 
 export default {
   name: 'app-header',
   components: {
     AeAddress,
-    AeText,
     AeIdenticon
   },
   computed: {

@@ -20,6 +20,7 @@ export default {
   font-size: 0.875rem;
   width: 100%;
   padding: 0.5rem;
+  z-index: 20;
 
   a {
     display: inline-block;

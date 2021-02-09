@@ -92,6 +92,7 @@ export default {
   justify-content: center;
   padding-left: 2rem;
   width: 50%;
+  @extend %face-sans-s;
 
   @include phone-and-tablet {
     justify-content: flex-start;

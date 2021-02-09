@@ -66,18 +66,17 @@
     </app-view>
 
     <!-- QRCode Scanner -->
-    <qrcode-reader
+    <qrcode-stream
       class="app-scan"
       @init="onInit"
       @decode="onDecode"
       :paused="paused"
-      :camera="!paused"
       v-show="scanner"
     >
       <ae-button class="app-scan__btn" @click="closeScanner('migration')" face="icon" fill="neutral">
         <ae-icon name="close"/>
       </ae-button>
-    </qrcode-reader>
+    </qrcode-stream>
   </app-view>
 </template>
 

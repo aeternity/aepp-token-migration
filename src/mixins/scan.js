@@ -1,7 +1,7 @@
-import { QrcodeReader } from 'vue-qrcode-reader'
+import { QrcodeStream } from 'vue-qrcode-reader'
 
 export default {
-  components: { QrcodeReader },
+  components: { QrcodeStream },
   data: function () {
     return {
       scanner: true,
@@ -30,6 +30,7 @@ export default {
       try {
         await promise
       } catch (error) {
+        console.log(error)
         this.scanner = false
         this.paused = true
         if (error.name === 'NotFoundError') {
