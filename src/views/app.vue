@@ -1,22 +1,13 @@
 <template>
   <div id="app">
-    <app-notice v-if="!mainnet">
-      You’re connected to a Ethereum Testnet,
-      the tokens that you are about to migrate
-      will NOT be available in the æternity Mainnet
-    </app-notice>
     <router-view />
   </div>
 </template>
 <script>
 import { network } from '../plugins/web3'
-import AppNotice from '../components/app-notice.vue'
 
 export default {
   name: 'app',
-  components: {
-    AppNotice
-  },
   data () {
     return { mainnet: true }
   },

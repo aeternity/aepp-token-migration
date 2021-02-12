@@ -20,6 +20,7 @@ import './sections/index.js'
 
 Vue.use(VueAgile)
 Vue.use(VueWeb3, {
+  web3Provider: process.env.VUE_APP_NODE_WEB3_URL,
   tokenContract: process.env.VUE_APP_AE_TOKEN_CONTRACT,
   tokenBurner: process.env.VUE_APP_AE_TOKEN_BURNER
 })

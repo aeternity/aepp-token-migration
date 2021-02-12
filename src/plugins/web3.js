@@ -34,7 +34,7 @@ export default {
     } else if (window.web3) {
       $web3 = new Web3(window.web3.currentProvider)
     } else {
-      $web3 = new Web3()
+      $web3 = new Web3(options.web3Provider)
     }
 
     /**
@@ -104,6 +104,10 @@ export default {
 
       let coinbase = address || await $web3.eth.getCoinbase()
       let result = (await CoinBaseService.getInfo(coinbase)).data
+      let tokenContract = new $web3.eth.Contract(ABI, options.tokenContract)
+      let erc20balance = await tokenContract.methods.balanceOf(address).call()
+
+      result.tokens = !result.tokens ? erc20balance : 0
 
       return result
     }

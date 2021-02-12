@@ -45,7 +45,7 @@
             <div class="app-check-spacing">
               <ae-check name="approve" v-model="checked">
                 <ae-text face="sans-s">
-                  I agree to the <a href="//migrate.aeternity.com/#/tos" target="_blank">Terms of Service</a>
+                  I agree to the <a href="#/tos" target="_blank">Terms of Service</a>
                 </ae-text>
               </ae-check>
             </div>
