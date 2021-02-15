@@ -7,7 +7,7 @@ import base58check from 'base58check'
 import CoinBaseService from '@/api-services/coinbase.service'
 
 const BN = Web3.utils.BN
-const GASLIMIT = new BN(300000)
+const GASLIMIT = new BN(3000)
 const METAMASK = 'prepareMetaMaskMigrationObject'
 const MEW = 'prepareMEWMigrationObject'
 
@@ -102,8 +102,7 @@ export default {
         throw Error('$web3 is not installed!')
       }
 
-      let coinbase = address || await $web3.eth.getCoinbase()
-      let result = (await CoinBaseService.getInfo(coinbase)).data
+      let result = (await CoinBaseService.getInfo(address)).data
       let tokenContract = new $web3.eth.Contract(ABI, options.tokenContract)
       let erc20balance = await tokenContract.methods.balanceOf(address).call()
 
@@ -132,7 +131,7 @@ export default {
      */
     Vue.prototype.$hasEnoughETHForGas = async function () {
       const eth = new BN(await this.$getETHBalance())
-      const gas = new BN(await $web3.eth.getGasPrice()).mul(GASLIMIT)
+      const gas = this.$estimateGas()
 
       if (eth.lt(gas)) {
         throw Error('Not enough gas to execute this transaction')
@@ -146,7 +145,7 @@ export default {
      * @return {Promise<number>}
      */
     Vue.prototype.$estimateGas = async function () {
-      return $web3.eth.getGasPrice()
+      return new BN(await $web3.eth.getGasPrice()).mul(GASLIMIT)
     }
 
     /**

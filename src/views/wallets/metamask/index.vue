@@ -256,8 +256,8 @@ export default {
     /**
      * Get Details for the current ETH address
      */
-    async getDetails () {
-      const infoObj = await this.$getAEInfo()
+    async getDetails (address) {
+      const infoObj = await this.$getAEInfo(address)
       this.migrated = infoObj.migrated
       this.txHash = infoObj.migrateTxHash
 
@@ -299,15 +299,15 @@ export default {
       this.openModal('not-enough-eth')
     }
 
-    const gasPrice = await this.$web3.eth.getGasPrice()
     const coinbase = await this.$getCoinbase()
+    const gasPrice = await this.$web3.eth.getGasPrice()
 
     Object.assign(this.$data, {
       coinbase,
       gasPrice: this.$web3.utils.fromWei(gasPrice, 'ether')
     })
 
-    await this.getDetails()
+    await this.getDetails(coinbase)
   }
 }
 </script>

@@ -73,7 +73,7 @@
             <li>
               <span></span>
               <h4>Your Ethereum Account</h4>
-              <p>0x• ••• ••• ••• ••• ••• ••• ••• ••• ••• ••• ••• •••</p>
+              <p v-html="$options.filters.chunk(ethWalletAddress)"></p>
             </li>
             <li>
               <span>
@@ -277,7 +277,7 @@ export default {
   data: function () {
     return {
       amount: null,
-      gasPrice: '0',
+      gasPrice: '~0.0000002',
       step: 0,
       checked: false,
       signature: null,
@@ -289,7 +289,7 @@ export default {
     }
   },
   computed: {
-    validated: function () {
+    validated () {
       return Number(this.amount) && this.checked && !this.migrated
     },
     mewURI () {
@@ -297,7 +297,7 @@ export default {
 
       return this.$generateMEWURI()
     },
-    introTemplate: function () {
+    introTemplate () {
       return this.migrated ? `The balance has already been migrated in ${this.txHash}` : `The below information is read only. That is all the balance you have currently on your ETH account for migration. You are going to migrate all your tokens at once.`
     },
     errorTitle () {
