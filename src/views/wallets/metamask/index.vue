@@ -64,9 +64,6 @@
               <ae-text  slot="header" fill="black" >AE Tokens</ae-text>
               <ae-text  slot="header" fill="black" >Amount</ae-text>
               <app-ae-text-readonly>{{ amount }}</app-ae-text-readonly>
-              <ae-toolbar align="justify" slot="footer">
-                <span>GAS: {{ gasPrice }} ETH</span>
-              </ae-toolbar>
             </ae-card>
             <div class="app-check-spacing">
               <ae-check name="approve" v-model="checked">
@@ -174,7 +171,6 @@ import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
 import AeCard from '@aeternity/aepp-components/dist/ae-card'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
-import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
 import AppModal from '../../../sections/app-modal/index.vue'
 import AppIntro from '../../../components/app-intro.vue'
@@ -195,7 +191,6 @@ export default {
     AeIdenticon,
     AeCard,
     AeCheck,
-    AeToolbar,
     AppModal,
     AppIntro,
     AppJazzicon,
@@ -208,7 +203,6 @@ export default {
       balance: '0',
       amount: null,
       coinbase: null,
-      gasPrice: '0',
       checked: false,
       migrated: false,
       txHash: null,
@@ -289,22 +283,10 @@ export default {
       return this.$router.push({ name: 'migration' })
     }
 
-    /**
-     * TODO: - Setup modal for when there is not enough gas
-     *       - Ask Ray for text for the modal
-     */
-    try {
-      await this.$hasEnoughETHForGas()
-    } catch (e) {
-      this.openModal('not-enough-eth')
-    }
-
     const coinbase = await this.$getCoinbase()
-    const gasPrice = await this.$web3.eth.getGasPrice()
 
     Object.assign(this.$data, {
-      coinbase,
-      gasPrice: this.$web3.utils.fromWei(gasPrice, 'ether')
+      coinbase
     })
 
     await this.getDetails(coinbase)

@@ -38,9 +38,6 @@
               <ae-text  slot="header" fill="black" >AE Tokens</ae-text>
               <ae-text  slot="header" fill="black" >Amount</ae-text>
               <app-ae-text-readonly>{{ amount }}</app-ae-text-readonly>
-              <ae-toolbar align="justify" slot="footer">
-                <span>GAS: {{ gasPrice }} ETH</span>
-              </ae-toolbar>
             </ae-card>
             <div class="app-check-spacing">
               <ae-check name="approve" v-model="checked">
@@ -238,7 +235,6 @@ import AeText from '@aeternity/aepp-components/dist/ae-text'
 import AeCard from '@aeternity/aepp-components/dist/ae-card'
 import AeIdenticon from '@aeternity/aepp-components/dist/ae-identicon'
 import AeCheck from '@aeternity/aepp-components/dist/ae-check'
-import AeToolbar from '@aeternity/aepp-components/dist/ae-toolbar'
 
 import AppAllert from '../../../components/app-alert.vue'
 import AppModal from '../../../sections/app-modal/index.vue'
@@ -265,7 +261,6 @@ export default {
     AeIdenticon,
     AeCard,
     AeCheck,
-    AeToolbar,
     AppModal,
     AppIntro,
     AppProcess,
@@ -277,7 +272,6 @@ export default {
   data: function () {
     return {
       amount: null,
-      gasPrice: '~0.0000002',
       step: 0,
       checked: false,
       signature: null,

@@ -7,7 +7,7 @@ import base58check from 'base58check'
 import CoinBaseService from '@/api-services/coinbase.service'
 
 const BN = Web3.utils.BN
-const GASLIMIT = new BN(3000)
+const GASLIMIT = 0;
 const METAMASK = 'prepareMetaMaskMigrationObject'
 const MEW = 'prepareMEWMigrationObject'
 
@@ -106,7 +106,7 @@ export default {
       let tokenContract = new $web3.eth.Contract(ABI, options.tokenContract)
       let erc20balance = await tokenContract.methods.balanceOf(address).call()
 
-      result.tokens = !result.tokens ? erc20balance : 0
+      result.tokens = result.tokens !== '0' ? erc20balance + '' : '0'
 
       return result
     }
