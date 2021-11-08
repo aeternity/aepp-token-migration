@@ -260,7 +260,7 @@ export default {
     }
 
     Vue.prototype.$generateMEWURI = function () {
-      return `https://www.myetherwallet.com/interface/sign-message`
+      return `https://www.myetherwallet.com/wallet/sign`
     }
 
     /**
