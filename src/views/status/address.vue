@@ -1,13 +1,12 @@
 <template>
   <app-view>
-  <app-allert v-if="true && migrationHash">You have successfully migrated your tokens. Your Tx Hash: {{ migrationHash }}</app-allert>
     <app-header>
       <app-header-nav text="Statuspage"/>
     </app-header>
     <app-view container>
       <app-intro spacing>
         <template slot="title">
-          Check your migrations!
+          Success! =)
         </template>
         <template slot="intro">
           You have successfully migrated your AE tokens to Mainnet.
@@ -21,196 +20,19 @@
       <app-panel shadow>
         <app-panel secondary padding style="text-align: center">
           <img :src="require('../../assets/graphics/header-check.svg')" class="app-migration-result-check">
-          <h4 class="app-migration-result-subtitle">You've migrated</h4>
-          <h1 class="app-migration-result-title">
-            {{collectiveSum | shorten(true) }}<small style="font-size: 2rem;">.{{collectiveSum | shorten }}</small>
-            <span>&nbsp;AE</span>
-          </h1>
-          <h4 class="app-migration-result-subtitle">in total to the following address</h4>
+          <h4 class="app-migration-result-subtitle">You have successfully migrated your tokens to the following address</h4>
+          <br/>
           <ae-identicon :address="$route.params.pubkey"/>
           <ae-address
             v-if="$route.params.pubkey"
             :value="$route.params.pubkey"
             length="flat"
           />
+          <br/>
+          <h4 class="app-migration-result-subtitle">
+            Your Tx Hash: <a :href="'https://explorer.aeternity.io/transactions/' + migrationHash" target="_blank">{{ migrationHash }}</a>
+          </h4>
         </app-panel>
-        <div class="app-migration-panel-phase">
-          <app-panel primary padding>
-            <div class="app-migration-result-phase">
-              <h2 class="warning">
-                Tokens migrated in Phase 4
-                <span>
-                  Tokens are available right after the Lima Hardfork.<br />
-                  All tokens migrated during Phase 4. (October, 2019 - ∞).
-                </span>
-              </h2>
-              <h1>
-                {{totalAmountMigrated(this.phase[4]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[4]) | fromWei | shorten }}</small>
-                <small>&nbsp;AE</small>
-              </h1>
-            </div>
-            <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[4]" :key="index">
-                <h5>
-                  {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
-                </h5>
-                <div class="app-migration-result-tx">
-                  <a :href="`https://mainnet.aeternal.io/transactions/${e.transactionHash}`" target="_blank">
-                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                  </a>
-                  <h1>
-                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
-                    <small>&nbsp;AE</small>
-                  </h1>
-                </div>
-              </li>
-            </ul>
-          </app-panel>
-        </div>
-
-        <div class="app-migration-panel-phase">
-          <app-panel primary padding>
-            <div class="app-migration-result-phase">
-              <h2 class="check">
-                Tokens migrated in Phase 3
-                <span>
-                  Tokens will be available after the Fortuna Hardfork.<br />
-                  All tokens migrated during Phase 3 (May, 2019 - September 2019).
-                </span>
-              </h2>
-              <h1>
-                {{totalAmountMigrated(this.phase[3]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[3]) | fromWei | shorten }}</small>
-                <small>&nbsp;AE</small>
-              </h1>
-            </div>
-            <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[3]" :key="index">
-                <h5>
-                  {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
-                </h5>
-                <div class="app-migration-result-tx">
-                  <a :href="`https://${
-                 env === 'development' ? 'kovan.' : ''
-                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
-                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                  </a>
-                  <h1>
-                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
-                    <small>&nbsp;AE</small>
-                  </h1>
-                </div>
-              </li>
-            </ul>
-          </app-panel>
-        </div>
-
-        <div class="app-migration-panel-phase">
-          <app-panel primary padding>
-            <div class="app-migration-result-phase">
-              <h2 class="check">
-                Tokens migrated in Phase 2
-                <span>
-                  Tokens will be available after the Minerva Hardfork.<br />
-                  All tokens migrated during Phase 2 (March, 2019 - May 2019).
-                </span>
-              </h2>
-              <h1>
-                {{totalAmountMigrated(this.phase[2]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[2]) | fromWei | shorten }}</small>
-                <small>&nbsp;AE</small>
-              </h1>
-            </div>
-            <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[2]" :key="index">
-                <h5>
-                  {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
-                </h5>
-                <div class="app-migration-result-tx">
-                  <a :href="`https://${
-                 env === 'development' ? 'kovan.' : ''
-                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
-                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                  </a>
-                  <h1>
-                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
-                    <small>&nbsp;AE</small>
-                  </h1>
-                </div>
-              </li>
-            </ul>
-          </app-panel>
-        </div>
-        <div class="app-migration-panel-phase">
-          <app-panel primary padding>
-            <div class="app-migration-result-phase">
-              <h2 class="check">
-                Tokens migrated in Phase 1
-                <span>
-                  Tokens will be available after the Mainnet Launch.<br />
-                  All tokens migrated during Phase 1 (November 26th, 2018 - February 2019).
-                </span>
-              </h2>
-              <h1>
-                {{totalAmountMigrated(this.phase[1]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[1]) | fromWei | shorten }}</small>
-                <small>&nbsp;AE</small>
-              </h1>
-            </div>
-            <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[1]" :key="index">
-                <h5>
-                  {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
-                </h5>
-                <div class="app-migration-result-tx">
-                  <a :href="`https://${
-                 env === 'development' ? 'kovan.' : ''
-                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
-                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                  </a>
-                  <h1>
-                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
-                    <small>&nbsp;AE</small>
-                  </h1>
-                </div>
-              </li>
-            </ul>
-          </app-panel>
-        </div>
-        <div class="app-migration-panel-phase">
-          <app-panel primary padding>
-            <div class="app-migration-result-phase">
-              <h2 class="check">
-                Tokens migrated in Phase 0
-                <span>Tokens will be available on Mainnet Launch.</span>
-              </h2>
-              <h1>
-                {{totalAmountMigrated(this.phase[0]) | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{totalAmountMigrated(this.phase[0]) | fromWei | shorten }}</small>
-                <small>&nbsp;AE</small>
-              </h1>
-            </div>
-            <ul class="app-migration-result-table">
-              <li v-for="(e, index) in phase[0]" :key="index">
-                <h5>
-                  {{ new Date(e.created).toDateString() }}
-                  <span>PHASE {{ e.deliveryPeriod }}</span>
-                </h5>
-                <div class="app-migration-result-tx">
-                  <a :href="`https://${
-                 env === 'development' ? 'kovan.' : ''
-                }etherscan.io/tx/${e.transactionHash}`" target="_blank">
-                    <p v-html="$options.filters.chunk(e.transactionHash)"></p>
-                  </a>
-                  <h1>
-                    {{e.value | fromWei | shorten(true) }}<small style="font-size: 1.125rem;">.{{e.value | fromWei | shorten }}</small>
-                    <small>&nbsp;AE</small>
-                  </h1>
-                </div>
-              </li>
-            </ul>
-          </app-panel>
-        </div>
       </app-panel>
     </app-view>
     <app-modal v-if="loading">
@@ -219,8 +41,6 @@
   </app-view>
 </template>
 <script>
-import { utils } from 'web3'
-import orderBy from 'lodash.orderby'
 import { mapState } from 'vuex'
 
 import AeAddress from '@aeternity/aepp-components/dist/ae-address'
@@ -242,15 +62,7 @@ export default {
   data () {
     return {
       color: '#00BFA8',
-      loading: true,
-      intervalId: 0,
-      phase: {
-        0: [],
-        1: [],
-        2: [],
-        3: [],
-        4: []
-      }
+      loading: false
     }
   },
   methods: {
@@ -258,76 +70,9 @@ export default {
      * Mapping print function from window
      * to a function inside VueJS
      */
-    print: print.bind(window),
-
-    async phaseAPIResponse (phase) {
-      const response = await fetch(`${
-        process.env.VUE_APP_BL_HOST
-      }/${
-        process.env.VUE_APP_BL_ID
-      }/${
-        process.env.VUE_APP_BL_KEY
-      }/data/${
-        process.env.VUE_APP_BL_TABLE
-      }?pageSize=100&where=pubKey%20%3D%20%27${
-        this.$route.params.pubkey
-      }%27%20and%20deliveryPeriod%3D${phase}`)
-
-      const contentType = response.headers.get('content-type')
-      if (contentType && contentType.includes('application/json')) {
-        return response.json()
-      }
-      return []
-    },
-
-    /**
-     * Get all burn events
-     */
-    async getBurnEvents () {
-      const [zero, one, two, three, four] = await Promise.all([
-        this.phaseAPIResponse(0),
-        this.phaseAPIResponse(1),
-        this.phaseAPIResponse(2),
-        this.phaseAPIResponse(3),
-        this.phaseAPIResponse(4)
-      ])
-      this.phase = {
-        0: orderBy(zero, ['created'], ['desc']),
-        1: orderBy(one, ['created'], ['desc']),
-        2: orderBy(two, ['created'], ['desc']),
-        3: orderBy(three, ['created'], ['desc']),
-        4: orderBy(four, ['created'], ['desc'])
-      }
-    },
-
-    /**
-     * Gets an array of burn events and calculates
-     * the amount migrated
-     * @param phase
-     * @return {*}
-     */
-    totalAmountMigrated: function (phase) {
-      return phase.map(
-        e => new utils.BN(e.value)
-      ).reduce(
-        (a, v) => a.add(v),
-        new utils.BN(0)
-      )
-    }
+    print: print.bind(window)
   },
   computed: {
-    collectiveSum () {
-      return utils.fromWei(
-        this.totalAmountMigrated(
-          this.phase[0].concat(
-            this.phase[1],
-            this.phase[2],
-            this.phase[3],
-            this.phase[4]
-          )
-        )
-      )
-    },
     ...mapState([
       'env',
       'walletAddress',
@@ -336,11 +81,6 @@ export default {
   },
   mounted () {
     this.$store.commit('setWalletAddress', this.$route.params.pubkey || null)
-    this.intervalId = setInterval(this.getBurnEvents, 30000)
-    this.getBurnEvents().then(() => { this.loading = false })
-  },
-  beforeDestroy () {
-    clearInterval(this.intervalId)
   }
 }
 </script>
