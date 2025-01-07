@@ -1,3 +1,6 @@
+# DEPRECATED
+As of Jan 2025 this project is considered deprecated.
+
 # aepp-token-migration
 
 [![Build Status](https://ci.aepps.com/job/aepp-token-migration/badge/icon)](https://ci.aepps.com/job/aepp-token-migration/)
